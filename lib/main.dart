@@ -50,28 +50,27 @@ class MyApp extends StatelessWidget {
         super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return EasyLocalization(
-      supportedLocales: const <Locale>[Locale('en'), Locale('de')],
-      fallbackLocale: const Locale('en'),
-      path: 'assets/translations',
-      useOnlyLangCode: true,
-      child: BeamerProvider(
-        routerDelegate: _beamerDelegate,
-        child: Builder(
-          builder: (BuildContext context) {
-            return MaterialApp.router(
+  Widget build(BuildContext context) => EasyLocalization(
+        supportedLocales: const <Locale>[Locale('en'), Locale('de')],
+        fallbackLocale: const Locale('en'),
+        path: 'assets/translations',
+        useOnlyLangCode: true,
+        child: BeamerProvider(
+          routerDelegate: _beamerDelegate,
+          child: Builder(
+            builder: (BuildContext context) => MaterialApp.router(
               theme: ThemeData(
-                  colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: const Color.fromARGB(1, 125, 125, 125),
+                ),
+              ),
               routeInformationParser: _beamerParser,
               routerDelegate: _beamerDelegate,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
               locale: context.locale,
-            );
-          },
+            ),
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
