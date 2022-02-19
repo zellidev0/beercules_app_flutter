@@ -1,7 +1,7 @@
 import 'package:riverpod/riverpod.dart';
 
-import 'home_controller.dart';
-import 'home_model.dart';
+import 'home/home_controller.dart';
+import 'home/home_model.dart';
 import 'navigation_service.dart';
 
 final Providers providers = Providers();

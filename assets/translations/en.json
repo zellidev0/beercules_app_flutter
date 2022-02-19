@@ -1,1 +1,11 @@
-{}
+{
+  "home_view": {
+    "title": "Beercules",
+    "sub_title": "Play like a god",
+    "button": {
+      "go_drinking": "Let's get drunk",
+      "rules": "Rules",
+      "customize": "Customize"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
-import 'package:beercules_flutter/home_view.dart';
+import 'package:beercules_flutter/home/home_view.dart';
 import 'package:beercules_flutter/navigation_service.dart';
+import 'package:beercules_flutter/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => EasyLocalization(
         supportedLocales: const <Locale>[Locale('en'), Locale('de')],
         fallbackLocale: const Locale('en'),
+        startLocale: const Locale('en'),
         path: 'assets/translations',
         useOnlyLangCode: true,
         child: BeamerProvider(
@@ -61,7 +63,7 @@ class MyApp extends StatelessWidget {
             builder: (BuildContext context) => MaterialApp.router(
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(
-                  seedColor: const Color.fromARGB(1, 125, 125, 125),
+                  seedColor: BeerculesColors.primary,
                 ),
               ),
               routeInformationParser: _beamerParser,
