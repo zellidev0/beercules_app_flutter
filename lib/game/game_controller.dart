@@ -13,4 +13,10 @@ class GameController extends StateNotifier<GameModel> {
     required GameModel model,
   })  : _navigationService = navigationService,
         super(model);
+
+  void cartSelected() {
+    print("sec");
+  }
+
+  void popDialog() async => await _navigationService.pop();
 }

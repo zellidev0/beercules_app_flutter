@@ -1,1 +1,147 @@
-{}
+{
+  "home_view": {
+    "title": "Beercules",
+    "sub_title": "Das göttliche Trinkspiel",
+    "button": {
+      "go_drinking": "Saufen gehen",
+      "rules": "Regeln",
+      "customize": "Anpassen"
+    }
+  },
+  "game_view": {
+    "instructions": {
+      "DECKEL_DRAUF": {
+        "title": "Deckel Drauf",
+        "description": "Lege irgendwann heimlich deine Hand auf dein Glas.\nAlle Mitspieler müssen jetzt schnell Ihre Hand auf Ihr Glas legen.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+      },
+      "EISPRINZESSIN": {
+        "title": "Eisprinzessin",
+        "description": "Friere irgendwann heimlich deine Bewegung ein. Alle Mitspieler müssen sich auch sofort einfrieren.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+      },
+      "OHREN_SPITZEN": {
+        "title": "Ohren Spitzen",
+        "description": "Halte irgendwann heimlich dein Ohrläppchen fest. Alle Mitspieler müssen auch ihr Ohrläppchen festhalten.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+      },
+      "HAENDE_HOCH": {
+        "title": "Hände hoch",
+        "description": "Hebe irgendwann deine beiden Hände hoch. Deine Mitspieler müssen auch schnell die Hände hoch heben.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+      },
+      "BEER_LOVE": {
+        "title": "Beer Love",
+        "description": "Mache irgendwann heftig mit deinem Glas rum.\n\nDer erste der es merkt, verteilt einen zum Trinken."
+      },
+      "ICH_HAB_NOCH_NIE": {
+        "title": "Ich hab noch nie",
+        "description": "Du sagst etwas, das du noch nie getan hast.\n\nAlle die es schon mal getan haben, trinken einen."
+      },
+      "EIN_GESCHENK_VON_HERZEN": {
+        "title": "Ein Geschenk",
+        "description": "Jemand muss einen Trinken.\n\nWähle aus wer."
+      },
+      "DREI_GESCHENKE_VON_HERZEN": {
+        "title": "Drei Geschenke",
+        "description": "Du darfst drei zum Trinken verschenken.\n\nEs darf auch einer alle trinken und du darfst sie auch dir selbst schenken."
+      },
+      "OPFERGLAS": {
+        "title": "Opferglas",
+        "description": "Du füllst einen großen Schluck von deinem Getränk in das Opferglas.\n\nIst das die letzte Opferglas Karte, musst du das Glas exen"
+      },
+      "SCHERE_STEIN_PAAR_BIER": {
+        "title": "Schere, Stein, paar Bier",
+        "description": "Wähle einen Spieler, der gegen dich Schere Stein Papier spielt.\n\nDer Verlierer trinkt einen."
+      },
+      "TAUSCHRAUSCH": {
+        "title": "Tauschrausch",
+        "description": "Wähle zwei Spieler aus, die eine Runde lang das Getränk tauschen.\n\nDu darfst auch selbst tauschen."
+      },
+      "ICH_PACKE_MEINEN_KOFFER_": {
+        "title": "Ich packe meinen Koffer",
+        "description": "Ihr spielt „Ich packe meinen Koffer“.\n\nDu beginnst und der Verlierer trinkt einen."
+      },
+      "FILMRISS": {
+        "title": "Filmriss",
+        "description": "Nenne die letzten 3 Anweisungen in richtiger Reihenfolge. Schaffst du es, trinken alle einen.\n\nSchaffst du es nicht, trinkst du einen."
+      },
+      "FRAGENKOENIG": {
+        "title": "Fragenkönig",
+        "description": "Du bist der Fragenkönig. Stelle den anderen Spielern so viele Fragen wie möglich. Ganz egal welche.\nSobald sie antworten trinken sie einen.\n\nDu bleibst solange Fragenkönig, bis jemand neues Fragenkönig wird."
+      },
+      "TRINK_BUDDY": {
+        "title": "Trink Buddy",
+        "description": "Wähle einen Mitspieler aus, der immer einen trinkt, wenn du einen trinkst und umgekehrt.\n\nIhr bleibt Trink-Buddys über das ganze Spiel.\n\n\nÜbrigens, man kann natürlich auch mehrere Trink-Buddys haben."
+      },
+      "BIERGOTT": {
+        "title": "Bier Gott",
+        "description": "Denke dir eine neue Regel aus, sie gilt wie die Grundregeln das ganze Spiel über.\n\nWer Sie bricht, trinkt einen.\n\n\nAußerdem darf sie nicht für oder gegen bestimmte Spieler(-gruppen) sein, sondern muss für alle gelten."
+      },
+      "REIMSCHWEIN": {
+        "title": "Reimschwein",
+        "description": "Du wählst ein Wort, auf welches im Uhrzeigersinn gereimt werden muss.\n\nWer ein Wort wiederholt, einen Fehler macht oder nach 10 Sekunden keins mehr weiß, trinkt einen."
+      },
+      "ALLE_FUER_EINEN": {
+        "title": "Alle für einen …",
+        "description": "Alle trinken außer einer. Wähle aus wer."
+      },
+      "AUFZAEHLUNG": {
+        "title": "Aufzählung",
+        "description": "Wähle ein Thema und beginne eine Aufzählung. Wer etwas wiederholt oder nach 10 Sekunden nichts mehr weiß, trinkt einen.\n\n\nVorschläge: (Automarken, Biersorten …)"
+      },
+      "ABSTIMMUNG": {
+        "title": "Abstimmung",
+        "description": "Du wählst ein Thema zum Abstimmen(A oder B). Die Verliererseite trinkt einen. Bei Gleichstand trinken alle."
+      },
+      "_1_2_3_BIER": {
+        "title": "1, 2, Bier",
+        "description": "Wähle eine Zahl zwischen 1 und 10. Ihr zählt nun reih um hoch.\nBei jeder Zahl die durch deine Zahl teilbar ist oder in der deine Zahl vorkommt, muss der Spieler  \"Bier\" anstelle der Zahl sagen.\n\nIhr seid fertig wenn jemand einen Fehler macht.\n\nDer trinkt zwei."
+      },
+      "RECHTS": {
+        "title": "Rechts",
+        "description": "Dein rechter Nachbar trinkt einen."
+      },
+      "LINKS": {
+        "title": "Links",
+        "description": "Dein linker Nachbar trinkt einen."
+      },
+      "KNUTSCHKARTE": {
+        "title": "Suck it",
+        "description": "Nimm eine Visitenkarte o.ä. und gib sie nur durch ansaugen mit dem Mund weiter.\nDein Nachbar muss sie jetzt ansaugen und ebenso weitergeben.\n\nDie zwei Spieler, die sie fallen lassen, trinken einen."
+      },
+      "MENS_HEALTH": {
+        "title": "Men‘s Health",
+        "description": "Alle Männer trinken einen."
+      },
+      "WOMENS_HEALTH": {
+        "title": "Women’s Health",
+        "description": "Alle Frauen trinken einen."
+      },
+      "RICHTUNGSWECHSEL": {
+        "title": "Richtungswechsel",
+        "description": "Ihr wechselt die Richtung. Außerdem trinkst du einen."
+      },
+      "KETTENREAKTION": {
+        "title": "Kettenreaktion",
+        "description": "Alle setzten jetzt an zum Exen.\n\nErst wenn der erste sein Glas leer hat, darf sein rechter Nachbar absetzten.\n\nDann sein rechter Nachbar, und so weiter."
+      },
+      "SPIEGLEIN_SPIEGLEIN": {
+        "title": "Spieglein Spieglein",
+        "description": "Entscheidet, wer der oder die geilste ist. Er/Sie trinkt einen. Werdet ihr euch nicht einig, trinken alle einen."
+      },
+      "SING_NO_SONG": {
+        "title": "Sing no song",
+        "description": "Ab jetzt darf zu keinem Lied mehr mitgesungen oder mit dem Fuss gewippt werden. Wer die Regel bricht, trinkt einen."
+      },
+      "BASIC_RULE_1": {
+        "title": "Grundregel 1",
+        "description": "Es dürfen keine Kraftausdrücke oder Beleidigungen gesagt oder gezeigt werden.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
+      },
+      "BASIC_RULE_2": {
+        "title": "Grundregel 2",
+        "description": "Es muss immer mit links getrunken werden. Linkshänder trinken mit rechts.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
+      },
+      "BASIC_RULE_3": {
+        "title": "Grundregel 3",
+        "description": "Es darf nicht das Wort \"trinken\"gesagt werden. Auch nicht \"trink\", \"getrunken\", etc.).\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
+      }
+    }
+  }
+}

@@ -28,7 +28,7 @@ Future<Widget> buildApp() async {
 }
 
 BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
-      initialPath: NavigationService.homeRouteUri,
+      initialPath: NavigationService.homeRouteUri, //TODO Change to home
       locationBuilder: RoutesLocationBuilder(
         routes: {
           NavigationService.homeRouteUri: (_, __, ___) => const BeamPage(

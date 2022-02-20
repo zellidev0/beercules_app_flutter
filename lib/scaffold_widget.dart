@@ -14,10 +14,12 @@ class ScaffoldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-        child: Scaffold(
-          backgroundColor: BeerculesColors.primary,
-          body: SafeArea(child: child),
-          appBar: appBar,
+        child: Material(
+          child: Scaffold(
+            backgroundColor: Theme.of(context).primaryColorDark,
+            body: SafeArea(child: child),
+            appBar: appBar,
+          ),
         ),
       );
 }

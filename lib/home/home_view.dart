@@ -40,7 +40,7 @@ class HomeView extends ConsumerWidget {
 
   Widget _buildSubTitle() => const Text(
         'home_view.sub_title',
-        style: TextStyles.header2,
+        style: TextStyles.header3,
       ).tr();
 
   Widget _buildLogo() => Image.asset("assets/images/logo.png");

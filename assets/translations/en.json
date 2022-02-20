@@ -7,5 +7,141 @@
       "rules": "Rules",
       "customize": "Customize"
     }
+  },
+  "game_view": {
+    "instructions": {
+      "DECKEL_DRAUF": {
+        "title": "Lid on it",
+        "description": "At some point secretly lay your flat hand on your glass. All players must quickly put their hands on their glass as well.\nThe slowest and last player drinks one.\n\nForget your task, drink two."
+      },
+      "EISPRINZESSIN": {
+        "title": "Ice Princess",
+        "description": "At some point, freeze your movement secretly. All players must now freeze immediately.\nThe slowest and last player drinks one.\n\nForget your task, drink two."
+      },
+      "OHREN_SPITZEN": {
+        "title": "Listen carefully",
+        "description": "At some point hold your earlobe secretly. All players must now also hold their earlobes.\nThe slowest and last player drinks one.\n\nForget your task, drink two."
+      },
+      "HAENDE_HOCH": {
+        "title": "Hands up",
+        "description": "At some point raise your two hands. All players must now also raise their hands quickly.\nThe slowest and last player drinks one.\n\nForget your task, drink two."
+      },
+      "BEER_LOVE": {
+        "title": "Beer Love",
+        "description": "Love you dearly with your glass.\nThe first one notices, distributes one to drink."
+      },
+      "ICH_HAB_NOCH_NIE": {
+        "title": "Never have I ever",
+        "description": "You say something you have never done.\nAll those who have already done it drink one."
+      },
+      "EIN_GESCHENK_VON_HERZEN": {
+        "title": "A gift",
+        "description": "Someone needs a drink.\nChoose who."
+      },
+      "DREI_GESCHENKE_VON_HERZEN": {
+        "title": "Three gifts",
+        "description": "You can give away three for drinking.\nYou can also give it to yourself."
+      },
+      "OPFERGLAS": {
+        "title": "Victims glass",
+        "description": "You fill up the victim glass with a sip of your drink.\nIs this the last victim glass card, you have to exe the glass"
+      },
+      "SCHERE_STEIN_PAAR_BIER": {
+        "title": "Rock, paper, beer",
+        "description": "Choose a player who will play scissors stone paper against you.\nThe loser drinks one."
+      },
+      "TAUSCHRAUSCH": {
+        "title": "Replacements",
+        "description": "Choose two players who will swap the drink for one round.\nIt can be yu, too."
+      },
+      "ICH_PACKE_MEINEN_KOFFER_": {
+        "title": "I pack my suitcase",
+        "description": "You play \"I pack my suitcase\".\nYou start and the loser drinks one."
+      },
+      "FILMRISS": {
+        "title": "Blackout",
+        "description": "Name the last 3 cards in the correct order. Can you make it, all drink one.\nCan not you make it, you drink one."
+      },
+      "FRAGENKOENIG": {
+        "title": "Questionking",
+        "description": "You are the Questionking. Ask as many questions as possible to other players. No matter which. As soon as they answer you drink one You stay Questionking until someone new becomes Questionking."
+      },
+      "TRINK_BUDDY": {
+        "title": "Drink Buddy",
+        "description": "Choose a player who always drinks one when you drink one and vice versa.\nYou remain drinking buddies throughout the whole game.\n\nOf course you can also have several drinking buddies and be a drinking buddy of a drinking buddy."
+      },
+      "BIERGOTT": {
+        "title": "Beer God",
+        "description": "Imagine a new basic rule, like the other basic rules that apply throughout the whole game.\nWhoever breaks the rule drinks one.\n\nIn addition, it may not be for or against specific players (groups), but must apply to all."
+      },
+      "REIMSCHWEIN": {
+        "title": "Rhyme time",
+        "description": "You choose a word that needs to be rhymed in a clockwise direction.\nWhoever repeats a word, makes a mistake or does not know anymore after 10 seconds, drinks one."
+      },
+      "ALLE_FUER_EINEN": {
+        "title": "All for one …",
+        "description": "You choose somebody. Everyone drinks now, except he / she."
+      },
+      "AUFZAEHLUNG": {
+        "title": "Enumeration",
+        "description": "You choose a topic and start a list. If you repeat something or do not remember anything after 10 seconds, you have to drink.\n\nSuggestions: (car brands, former presidents …)"
+      },
+      "ABSTIMMUNG": {
+        "title": "Poll",
+        "description": "You choose a theme to vote (A or B). The loser side drinks one. In case of a tie everybody drinks one."
+      },
+      "_1_2_3_BIER": {
+        "title": "1, 2, beer",
+        "description": "You name a number between 1 and 10. You now count up in a clockwise direction. For each number divisible by the selected one or where the selected one appears, the player must say \"beer\" instead of the number.\nYou're done when someone makes a mistake.\nThe one who made the mistake drinks two."
+      },
+      "RECHTS": {
+        "title": "Right",
+        "description": "Your right neighbor drinks one."
+      },
+      "LINKS": {
+        "title": "Left",
+        "description": "Your left neighbor drinks one."
+      },
+      "KNUTSCHKARTE": {
+        "title": "Suck it",
+        "description": "Take a business card or similar. and only pass it on by mouth. Your neighbor must now suck it and pass it directly to his neighbor.\nThe two players who drop it drink one."
+      },
+      "MENS_HEALTH": {
+        "title": "Men's Health",
+        "description": "All men drink one."
+      },
+      "WOMENS_HEALTH": {
+        "title": "Women's Health",
+        "description": "All women drink one."
+      },
+      "RICHTUNGSWECHSEL": {
+        "title": "Change of direction",
+        "description": "Take a break.\nOnly change direction."
+      },
+      "KETTENREAKTION": {
+        "title": "Chain reaction",
+        "description": "Everyone is starting now to exe his glass.\nOnly when the first one has his glass empty may his right neighbor stop drinking.\nThen his right neighbor, and so on."
+      },
+      "SPIEGLEIN_SPIEGLEIN": {
+        "title": "Mirror Mirror",
+        "description": "Decide who is the best looking one. He / she drinks one. If you do not agree, all drink one."
+      },
+      "SING_NO_SONG": {
+        "title": "Sing no song",
+        "description": "From now on no song can be sung or rocked with. Who breaks the rule, drinks one."
+      },
+      "BASIC_RULE_1": {
+        "title": "Basic Rule 1",
+        "description": "There must be no curse words oder insults said or shown.\n\nThis rule applies throughout the game. Who breaks it, drinks one"
+      },
+      "BASIC_RULE_2": {
+        "title": "Basic Rule 2",
+        "description": "You always have to drink with your left hand Left-handers drink with the right hand.\n\nThis rule applies throughout the game. Who breaks it, drinks one"
+      },
+      "BASIC_RULE_3": {
+        "title": "Basic Rule 3",
+        "description": "You can not say drink, drunk etc. booze etc. is OK.\n\nThis rule applies throughout the game. Who breaks it, drinks one"
+      }
+    }
   }
 }

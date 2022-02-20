@@ -45,14 +45,14 @@ class TextStyles {
     fontWeight: FontWeight.w400,
   );
   static const TextStyle header2 = TextStyle(
-    fontSize: 20,
+    fontSize: 28,
     color: Colors.yellow,
     fontWeight: FontWeight.w500,
     fontFamily: _fontFamilyInter,
   );
   static const TextStyle header3 = TextStyle(
-    fontSize: 22,
-    color: Colors.white,
+    fontSize: 20,
+    color: Colors.yellow,
     fontWeight: FontWeight.w500,
     fontFamily: _fontFamilyInter,
   );
@@ -81,13 +81,6 @@ class TextStyles {
     fontFamily: _fontFamilyInter,
   );
   static const TextStyle body2 = TextStyle(
-    fontSize: 16,
-    color: Colors.white,
-    fontWeight: FontWeight.w400,
-    fontFamily: _fontFamilyInter,
-    fontStyle: FontStyle.italic,
-  );
-  static const TextStyle body3 = TextStyle(
     fontSize: 16,
     color: Colors.white,
     fontWeight: FontWeight.w600,
