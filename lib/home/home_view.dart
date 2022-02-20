@@ -1,5 +1,4 @@
 import 'package:beercules_flutter/home/home_controller.dart';
-import 'package:beercules_flutter/home/home_model.dart';
 import 'package:beercules_flutter/providers.dart';
 import 'package:beercules_flutter/scaffold_widget.dart';
 import 'package:beercules_flutter/theme.dart';
@@ -14,7 +13,6 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final HomeController controller =
         ref.read(providers.homeController.notifier);
-    final HomeModel model = ref.watch(providers.homeController);
     return ScaffoldWidget(
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -28,7 +26,7 @@ class HomeView extends ConsumerWidget {
             const SizedBox(height: 32),
             _buildLogo(),
             const SizedBox(height: 32),
-            _buildButtons(),
+            _buildButtons(controller: controller),
           ],
         ),
       ),
@@ -47,15 +45,28 @@ class HomeView extends ConsumerWidget {
 
   Widget _buildLogo() => Image.asset("assets/images/logo.png");
 
-  Widget _buildButtons() => Column(
+  Widget _buildButtons({required HomeController controller}) => Column(
         children: [
-          _buildButton(textResource: "home_view.button.go_drinking"),
-          _buildButton(textResource: "home_view.button.rules"),
-          _buildButton(textResource: "home_view.button.customize"),
+          _buildButton(
+            textResource: "home_view.button.go_drinking",
+            onPressed: controller.goToGameView,
+          ),
+          _buildButton(
+            textResource: "home_view.button.rules",
+            onPressed: () {},
+          ),
+          _buildButton(
+            textResource: "home_view.button.customize",
+            onPressed: () {},
+          ),
         ],
       );
 
-  Widget _buildButton({required String textResource}) => SizedBox(
+  Widget _buildButton({
+    required String textResource,
+    required VoidCallback onPressed,
+  }) =>
+      SizedBox(
         width: 150,
         child: ElevatedButton(
           style: ButtonStyle(
@@ -65,7 +76,7 @@ class HomeView extends ConsumerWidget {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Text(textResource).tr(),
         ),
       );

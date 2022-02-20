@@ -1,3 +1,5 @@
+import 'package:beercules_flutter/game/game_controller.dart';
+import 'package:beercules_flutter/game/game_model.dart';
 import 'package:riverpod/riverpod.dart';
 
 import 'home/home_controller.dart';
@@ -22,6 +24,16 @@ class Providers {
         providers.navigationServiceProvider,
       ),
       model: HomeModel(),
+    ),
+  );
+
+  final StateNotifierProvider<GameController, GameModel> gameController =
+      StateNotifierProvider<GameController, GameModel>(
+    (StateNotifierProviderRef<GameController, GameModel> ref) => GameController(
+      navigationService: ref.read(
+        providers.navigationServiceProvider,
+      ),
+      model: GameModel(),
     ),
   );
 }

@@ -3,18 +3,14 @@ import 'dart:core';
 import 'package:beercules_flutter/navigation_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'home_model.dart';
+import 'game_model.dart';
 
-class HomeController extends StateNotifier<HomeModel> {
+class GameController extends StateNotifier<GameModel> {
   final NavigationService _navigationService;
 
-  HomeController({
+  GameController({
     required NavigationService navigationService,
-    required HomeModel model,
+    required GameModel model,
   })  : _navigationService = navigationService,
         super(model);
-
-  void goToGameView() {
-    _navigationService.navigateToNamed(uri: NavigationService.gameRouteUri);
-  }
 }

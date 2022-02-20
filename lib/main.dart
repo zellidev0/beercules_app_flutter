@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:beercules_flutter/game/game_view.dart';
 import 'package:beercules_flutter/home/home_view.dart';
 import 'package:beercules_flutter/navigation_service.dart';
 import 'package:beercules_flutter/theme.dart';
@@ -27,12 +28,18 @@ Future<Widget> buildApp() async {
 }
 
 BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
+      initialPath: NavigationService.homeRouteUri,
       locationBuilder: RoutesLocationBuilder(
         routes: {
           NavigationService.homeRouteUri: (_, __, ___) => const BeamPage(
                 key: ValueKey<String>(NavigationService.homeRouteUri),
                 title: 'Home',
                 child: HomeView(),
+              ),
+          NavigationService.gameRouteUri: (_, __, ___) => const BeamPage(
+                key: ValueKey<String>(NavigationService.gameRouteUri),
+                title: 'Game',
+                child: GameView(),
               ),
         },
       ),
