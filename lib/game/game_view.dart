@@ -20,21 +20,45 @@ class GameView extends ConsumerWidget {
     final GameModel model = ref.watch(providers.gameController);
     return ScaffoldWidget(
       child: Padding(
-        padding: const EdgeInsets.all(64.0),
+        padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
         child: Stack(
-          alignment: Alignment.center,
-          children: model.cards
-              .mapIndexed(
-                (String cardKey, int index) => Transform.rotate(
-                  angle: index.toDouble(),
-                  child: _buildCardBackground(
-                    context: context,
-                    cardKey: cardKey,
-                    controller: controller,
-                  ),
+          alignment: Alignment.topCenter,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(64),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: model.cards.entries
+                    .map((cardWithAmount) => List.generate(
+                        cardWithAmount.value, (_) => cardWithAmount.key))
+                    .expand((_) => _)
+                    .mapIndexed(
+                      (String cardKey, int index) => Transform.rotate(
+                        angle: index.toDouble(),
+                        child: _buildCardBackground(
+                          context: context,
+                          cardKey: cardKey,
+                          controller: controller,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: controller.pop,
+                  child: const Icon(Icons.arrow_back_ios_new_rounded),
                 ),
-              )
-              .toList(),
+                const Spacer(),
+                Text(
+                  model.cardsSwiped.toString(),
+                  style: TextStyles.header4,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -44,55 +68,41 @@ class GameView extends ConsumerWidget {
     required BuildContext context,
     required String cardKey,
     required GameController controller,
-  }) =>
-      Swipable(
-        onSwipeDown: (_) => showDialog(
+  }) {
+    void onSwipe(_) {
+      controller.decreaseCardAmount();
+      showDialog(
+        context: context,
+        builder: (_) => _buildCardForeground(
           context: context,
-          builder: (_) => _buildCardForeground(
-            context: context,
-            controller: controller,
-            cardKey: cardKey,
-          ),
-        ),
-        onSwipeUp: (_) => showDialog(
-          context: context,
-          builder: (_) => _buildCardForeground(
-            context: context,
-            controller: controller,
-            cardKey: cardKey,
-          ),
-        ),
-        onSwipeLeft: (_) => showDialog(
-          context: context,
-          builder: (_) => _buildCardForeground(
-            context: context,
-            controller: controller,
-            cardKey: cardKey,
-          ),
-        ),
-        onSwipeRight: (_) => showDialog(
-          context: context,
-          builder: (_) => _buildCardForeground(
-            context: context,
-            controller: controller,
-            cardKey: cardKey,
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Theme.of(context).primaryColorDark),
-          ),
-          child: AspectRatio(
-            aspectRatio: 2.5 / 3.5,
-            child: Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: Image.asset("assets/images/logo.png"),
-            ),
-          ),
+          controller: controller,
+          cardKey: cardKey,
         ),
       );
+    }
+
+    ;
+    return Swipable(
+      onSwipeDown: onSwipe,
+      onSwipeUp: onSwipe,
+      onSwipeLeft: onSwipe,
+      onSwipeRight: onSwipe,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Theme.of(context).primaryColorDark),
+        ),
+        child: AspectRatio(
+          aspectRatio: 2.5 / 3.5,
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Image.asset("assets/images/logo.png"),
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _buildCardForeground({
     required BuildContext context,
@@ -100,7 +110,7 @@ class GameView extends ConsumerWidget {
     required String cardKey,
   }) =>
       GestureDetector(
-        onTap: controller.popDialog,
+        onTap: controller.pop,
         child: Material(
           color: Colors.transparent,
           child: Padding(

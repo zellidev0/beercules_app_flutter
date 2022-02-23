@@ -18,5 +18,11 @@ class GameController extends StateNotifier<GameModel> {
     print("sec");
   }
 
-  void popDialog() async => await _navigationService.pop();
+  void pop() async {
+    print((await _navigationService.pop()).toString());
+  }
+
+  void decreaseCardAmount() {
+    state = state.copyWith(cardsSwiped: state.cardsSwiped - 1);
+  }
 }
