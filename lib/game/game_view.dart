@@ -1,3 +1,4 @@
+import 'package:beercules_flutter/common.dart';
 import 'package:beercules_flutter/extensions.dart';
 import 'package:beercules_flutter/game/game_controller.dart';
 import 'package:beercules_flutter/game/game_model.dart';
@@ -18,6 +19,41 @@ class GameView extends ConsumerWidget {
     final GameController controller =
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
+    Future.delayed(Duration.zero, () {
+      if (model.cardsSwiped == 0) {
+        showDialog(
+          context: context,
+          builder: (_) => Material(
+            color: Colors.transparent,
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(32),
+                    )),
+                child: Column(
+                  children: [
+                    const Text('Continue'),
+                    const Text('Would you like to continue the last game?'),
+                    Row(
+                      children: [
+                        buildButton(
+                            onPressed: controller.pop, textResource: 'Yes'),
+                        buildButton(
+                            onPressed: controller.newGame, textResource: 'No'),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      }
+    });
+
     return ScaffoldWidget(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
@@ -48,12 +84,22 @@ class GameView extends ConsumerWidget {
             Row(
               children: [
                 ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ),
+                  child: const Icon(Icons.arrow_back_ios_rounded),
                   onPressed: controller.pop,
-                  child: const Icon(Icons.arrow_back_ios_new_rounded),
                 ),
                 const Spacer(),
                 Text(
-                  model.cardsSwiped.toString(),
+                  (model.cards.values
+                              .reduce((value, element) => value + element) -
+                          model.cardsSwiped)
+                      .toString(),
                   style: TextStyles.header4,
                 ),
               ],
@@ -81,7 +127,6 @@ class GameView extends ConsumerWidget {
       );
     }
 
-    ;
     return Swipable(
       onSwipeDown: onSwipe,
       onSwipeUp: onSwipe,
@@ -130,7 +175,7 @@ class GameView extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(80, 0, 80, 32),
+                              padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
                               child: AspectRatio(
                                 aspectRatio: 1,
                                 child: SvgPicture.asset(
@@ -138,10 +183,13 @@ class GameView extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            Text(
-                              "game_view.instructions.$cardKey.title",
-                              style: TextStyles.header2,
-                            ).tr(),
+                            FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                "game_view.instructions.$cardKey.title",
+                                style: TextStyles.header2,
+                              ).tr(),
+                            ),
                             const SizedBox(height: 16),
                             Text(
                               "game_view.instructions.$cardKey.description",

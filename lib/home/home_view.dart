@@ -6,6 +6,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../common.dart';
+
 class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
 
@@ -68,16 +70,9 @@ class HomeView extends ConsumerWidget {
   }) =>
       SizedBox(
         width: 150,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-          ),
+        child: buildButton(
           onPressed: onPressed,
-          child: Text(textResource).tr(),
+          textResource: textResource,
         ),
       );
 }

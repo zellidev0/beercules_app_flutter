@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:ui';
 
 import 'package:beercules_flutter/navigation_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +15,9 @@ class HomeController extends StateNotifier<HomeModel> {
         super(model);
 
   void goToGameView() {
-    _navigationService.navigateToNamed(uri: NavigationService.gameRouteUri);
+    _navigationService.navigateToNamed(
+      uri: NavigationService.gameRouteUri,
+      beamBackOnPop: true,
+    );
   }
 }

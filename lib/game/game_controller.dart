@@ -10,19 +10,18 @@ class GameController extends StateNotifier<GameModel> {
 
   GameController({
     required NavigationService navigationService,
-    required GameModel model,
+    GameModel? model,
   })  : _navigationService = navigationService,
-        super(model);
+        super(model ?? defaultModel);
 
-  void cartSelected() {
-    print("sec");
-  }
-
-  void pop() async {
-    print((await _navigationService.pop()).toString());
-  }
+  void pop() async => await _navigationService.pop();
 
   void decreaseCardAmount() {
-    state = state.copyWith(cardsSwiped: state.cardsSwiped - 1);
+    state = state.copyWith(cardsSwiped: state.cardsSwiped + 1);
+  }
+
+  void newGame() {
+    state = state.copyWith(cards: defaultModel.cards);
+    pop();
   }
 }
