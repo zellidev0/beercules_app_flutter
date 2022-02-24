@@ -3,6 +3,7 @@ import 'package:beercules_flutter/main.dart';
 class NavigationService {
   static const String homeRouteUri = '/';
   static const String gameRouteUri = '/game';
+  static const String rulesRouteUri = '/rules';
 
   Future<void> navigateToNamed({
     required String uri,

@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:beercules_flutter/game/game_view.dart';
 import 'package:beercules_flutter/home/home_view.dart';
 import 'package:beercules_flutter/navigation_service.dart';
+import 'package:beercules_flutter/rules/rules_view.dart';
 import 'package:beercules_flutter/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,11 @@ BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
                 key: ValueKey<String>(NavigationService.gameRouteUri),
                 title: 'Game',
                 child: GameView(),
+              ),
+          NavigationService.rulesRouteUri: (_, __, ___) => const BeamPage(
+                key: ValueKey<String>(NavigationService.rulesRouteUri),
+                title: 'Rules',
+                child: RulesView(),
               ),
         },
       ),

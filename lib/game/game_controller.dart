@@ -14,14 +14,25 @@ class GameController extends StateNotifier<GameModel> {
   })  : _navigationService = navigationService,
         super(model ?? defaultModel);
 
-  void pop() async => await _navigationService.pop();
+  void goBackToHome() async {
+    await _navigationService.navigateToNamed(
+      uri: NavigationService.homeRouteUri,
+      beamBackOnPop: false,
+    );
+  }
 
-  void decreaseCardAmount() {
-    state = state.copyWith(cardsSwiped: state.cardsSwiped + 1);
+  void hideCard() async => await _navigationService.pop();
+
+  void decreaseCardAmount({required String cardKey}) {
+    Map<String, int> newMap = Map<String, int>.from(state.cards);
+    newMap[cardKey] = (newMap[cardKey] ?? 0) - 1;
+    state = state.copyWith(cards: newMap);
   }
 
   void newGame() {
-    state = state.copyWith(cards: defaultModel.cards);
-    pop();
+    state = state.copyWith(
+      cards: defaultModel.cards,
+    );
+    goBackToHome();
   }
 }

@@ -1,12 +1,10 @@
 class GameModel {
   final Map<String, int> cards;
-  final int cardsSwiped;
 
 //<editor-fold desc="Data Methods">
 
   const GameModel({
     required this.cards,
-    required this.cardsSwiped,
   });
 
   @override
@@ -14,47 +12,38 @@ class GameModel {
       identical(this, other) ||
       (other is GameModel &&
           runtimeType == other.runtimeType &&
-          cards == other.cards &&
-          cardsSwiped == other.cardsSwiped);
+          cards == other.cards);
 
   @override
-  int get hashCode => cards.hashCode ^ cardsSwiped.hashCode;
+  int get hashCode => cards.hashCode;
 
   @override
   String toString() {
-    return 'GameModel{' +
-        ' cards: $cards,' +
-        ' cardsSwiped: $cardsSwiped,' +
-        '}';
+    return 'GameModel{' + ' cards: $cards,' + '}';
   }
 
   GameModel copyWith({
     Map<String, int>? cards,
-    int? cardsSwiped,
   }) {
     return GameModel(
       cards: cards ?? this.cards,
-      cardsSwiped: cardsSwiped ?? this.cardsSwiped,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'cards': this.cards,
-      'cardsSwiped': this.cardsSwiped,
     };
   }
 
   factory GameModel.fromMap(Map<String, dynamic> map) {
     return GameModel(
       cards: map['cards'] as Map<String, int>,
-      cardsSwiped: map['cardsSwiped'] as int,
     );
   }
 
 //</editor-fold>
 }
-
 
 const defaultModel = GameModel(
   cards: {
@@ -89,5 +78,4 @@ const defaultModel = GameModel(
     "WOMENS_HEALTH": 1,
     "_1_2_3_BIER": 1,
   },
-  cardsSwiped: 0,
 );

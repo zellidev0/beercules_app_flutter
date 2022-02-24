@@ -27,9 +27,11 @@ class Providers {
     ),
   );
 
-  final StateNotifierProvider<GameController, GameModel> gameController =
-      StateNotifierProvider<GameController, GameModel>(
-    (StateNotifierProviderRef<GameController, GameModel> ref) => GameController(
+  final AutoDisposeStateNotifierProvider<GameController, GameModel>
+      gameController =
+      StateNotifierProvider.autoDispose<GameController, GameModel>(
+    (AutoDisposeStateNotifierProviderRef<GameController, GameModel> ref) =>
+        GameController(
       navigationService: ref.read(
         providers.navigationServiceProvider,
       ),

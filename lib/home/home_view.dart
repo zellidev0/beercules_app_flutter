@@ -55,18 +55,18 @@ class HomeView extends ConsumerWidget {
           ),
           _buildButton(
             textResource: "home_view.button.rules",
-            onPressed: () {},
+            onPressed: controller.goToRulesView,
           ),
           _buildButton(
             textResource: "home_view.button.customize",
-            onPressed: () {},
+            onPressed: null,
           ),
         ],
       );
 
   Widget _buildButton({
     required String textResource,
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
   }) =>
       SizedBox(
         width: 150,
