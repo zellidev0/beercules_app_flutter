@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,18 @@ Widget buildButton({
       child: Text(textResource).tr(),
       onPressed: onPressed,
     );
+
+List<T> shuffle<T>(List<T> items) {
+  var random = Random();
+  for (var i = items.length - 1; i > 0; i--) {
+    var n = random.nextInt(i + 1);
+    var temp = items[i];
+    items[i] = items[n];
+    items[n] = temp;
+  }
+
+  return items;
+}
 
 Widget buildIconButton({
   required VoidCallback onPressed,

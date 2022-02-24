@@ -11,6 +11,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
 
+const basicRule = 'BASIC_RULE';
+
 class GameView extends ConsumerWidget {
   const GameView({Key? key}) : super(key: key);
 
@@ -19,7 +21,6 @@ class GameView extends ConsumerWidget {
     final GameController controller =
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
-    // Future.delayed(Duration.zero, () => controller.newGame());
 
     return ScaffoldWidget(
       child: Padding(
@@ -48,10 +49,19 @@ class GameView extends ConsumerWidget {
       padding: const EdgeInsets.all(64),
       child: Stack(
         alignment: Alignment.bottomCenter,
-        children: model.cards.entries
-            .map((cardWithAmount) =>
-                List.generate(cardWithAmount.value, (_) => cardWithAmount.key))
-            .expand((_) => _)
+        children: [
+          ...shuffle(model.cards.entries
+              .map(
+                (cardWithAmount) => List.generate(
+                    cardWithAmount.value, (_) => cardWithAmount.key),
+              )
+              .expand((_) => _)
+              .where((key) => !key.contains(basicRule))
+              .toList()),
+          '${basicRule}_1',
+          '${basicRule}_2',
+          '${basicRule}_3',
+        ]
             .mapIndexed(
               (String cardKey, int index) => Transform.rotate(
                 angle: index.toDouble(),
@@ -137,9 +147,7 @@ class GameView extends ConsumerWidget {
                 padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: SvgPicture.asset(
-                    "assets/instructions/${cardKey}_pic.svg",
-                  ),
+                  child: _getForegroundPic(cardKey: cardKey),
                 ),
               ),
               FittedBox(
@@ -159,6 +167,15 @@ class GameView extends ConsumerWidget {
           ),
           onTap: controller.hideCard,
           color: Theme.of(context).primaryColor);
+
+  Widget _getForegroundPic({required String cardKey}) {
+    if (cardKey == 'BASIC_RULE_1' ||
+        cardKey == 'BASIC_RULE_2' ||
+        cardKey == 'BASIC_RULE_3') {
+      return Image.asset("assets/images/logo.png");
+    }
+    return SvgPicture.asset("assets/instructions/${cardKey}_pic.svg");
+  }
 
   void showContinueDialog({
     required BuildContext context,

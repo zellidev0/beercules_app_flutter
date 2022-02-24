@@ -77,5 +77,8 @@ const defaultModel = GameModel(
     "TRINK_BUDDY": 3,
     "WOMENS_HEALTH": 1,
     "_1_2_3_BIER": 1,
+    "BASIC_RULE_1": 1,
+    "BASIC_RULE_2": 1,
+    "BASIC_RULE_3": 1,
   },
 );
