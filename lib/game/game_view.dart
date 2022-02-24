@@ -20,33 +20,61 @@ class GameView extends ConsumerWidget {
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
     Future.delayed(Duration.zero, () {
-      if (model.cardsSwiped == 0) {
+      if (model.cardsSwiped != 0) {
         showDialog(
           context: context,
           builder: (_) => Material(
             color: Colors.transparent,
             child: Padding(
               padding: const EdgeInsets.all(32.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(32),
-                    )),
-                child: Column(
-                  children: [
-                    const Text('Continue'),
-                    const Text('Would you like to continue the last game?'),
-                    Row(
-                      children: [
-                        buildButton(
-                            onPressed: controller.pop, textResource: 'Yes'),
-                        buildButton(
-                            onPressed: controller.newGame, textResource: 'No'),
-                      ],
-                    )
-                  ],
-                ),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(16),
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              'Proceed last game?',
+                              style: TextStyles.header2,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Would you like to continue the last game?',
+                            style: TextStyles.body1,
+                            textAlign: TextAlign.justify,
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              buildButton(
+                                onPressed: controller.pop,
+                                textResource: 'Yes',
+                              ),
+                              const SizedBox(
+                                width: 32,
+                              ),
+                              buildButton(
+                                onPressed: controller.newGame,
+                                textResource: 'No',
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
