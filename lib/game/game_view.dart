@@ -66,7 +66,8 @@ class GameView extends ConsumerWidget {
         ]
             .mapIndexed(
               (String cardKey, int index) => Transform.translate(
-                offset: Offset(Random().nextDouble(), Random().nextDouble()),
+                offset: Offset(
+                    Random().nextInt(10).toDouble(), Random().nextDouble()),
                 child: Transform.rotate(
                   angle: index.toDouble() + Random().nextDouble(),
                   child: _buildCardBackground(
@@ -118,21 +119,28 @@ class GameView extends ConsumerWidget {
     }
 
     return Swipable(
+      threshold: 4.0,
       onSwipeDown: onSwipe,
       onSwipeUp: onSwipe,
       onSwipeLeft: onSwipe,
       onSwipeRight: onSwipe,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Theme.of(context).primaryColorDark),
-        ),
-        child: AspectRatio(
-          aspectRatio: 2.5 / 3.5,
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Image.asset("assets/images/logo.png"),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: () {},
+          child: Ink(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: AspectRatio(
+              aspectRatio: 2.5 / 3.5,
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Image.asset("assets/images/logo.png"),
+              ),
+            ),
           ),
         ),
       ),
@@ -171,7 +179,7 @@ class GameView extends ConsumerWidget {
             ],
           ),
           onTap: controller.hideCard,
-          color: Theme.of(context).primaryColor);
+          color: Theme.of(context).colorScheme.primary);
 
   Widget _getForegroundPic({required String cardKey}) {
     if (cardKey == 'BASIC_RULE_1' ||
@@ -196,7 +204,7 @@ class GameView extends ConsumerWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).colorScheme.primary,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(16),
                     )),
