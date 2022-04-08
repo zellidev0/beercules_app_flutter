@@ -20,51 +20,53 @@ class RulesView extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buildCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'rules_view.title',
-                    style: TextStyles.header2,
-                  ).tr(),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'rules_view.rule_1_title',
-                    style: TextStyles.body1,
-                  ).tr(),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'rules_view.rule_1_description',
-                    style: TextStyles.body4,
-                  ).tr(),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'rules_view.rule_2_title',
-                    style: TextStyles.body1,
-                  ).tr(),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'rules_view.rule_2_description',
-                    style: TextStyles.body4,
-                  ).tr(),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'rules_view.rule_3_title',
-                    style: TextStyles.body1,
-                  ).tr(),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'rules_view.rule_3_description',
-                    style: TextStyles.body4,
-                  ).tr(),
-                ],
+            Expanded(
+              child: buildCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'rules_view.title',
+                      style: TextStyles.header2,
+                    ).tr(),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'rules_view.rule_1_title',
+                      style: TextStyles.body1,
+                    ).tr(),
+                    const SizedBox(height: 4),
+                    const Text(
+                      'rules_view.rule_1_description',
+                      style: TextStyles.body4,
+                    ).tr(),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'rules_view.rule_2_title',
+                      style: TextStyles.body1,
+                    ).tr(),
+                    const SizedBox(height: 4),
+                    const Text(
+                      'rules_view.rule_2_description',
+                      style: TextStyles.body4,
+                    ).tr(),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'rules_view.rule_3_title',
+                      style: TextStyles.body1,
+                    ).tr(),
+                    const SizedBox(height: 4),
+                    const Text(
+                      'rules_view.rule_3_description',
+                      style: TextStyles.body4,
+                    ).tr(),
+                  ],
+                ),
+                onTap: null,
+                color: Colors.black12,
               ),
-              onTap: null,
-              color: Colors.black12,
             ),
             buildButton(
               onPressed: () => navigationService.navigateToNamed(

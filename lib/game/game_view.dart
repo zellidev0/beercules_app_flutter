@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:beercules_flutter/common.dart';
 import 'package:beercules_flutter/extensions.dart';
 import 'package:beercules_flutter/game/game_controller.dart';
@@ -24,7 +26,7 @@ class GameView extends ConsumerWidget {
 
     return ScaffoldWidget(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
+        padding: const EdgeInsets.all(32),
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -63,12 +65,15 @@ class GameView extends ConsumerWidget {
           '${basicRule}_3',
         ]
             .mapIndexed(
-              (String cardKey, int index) => Transform.rotate(
-                angle: index.toDouble(),
-                child: _buildCardBackground(
-                  context: context,
-                  cardKey: cardKey,
-                  controller: controller,
+              (String cardKey, int index) => Transform.translate(
+                offset: Offset(Random().nextDouble(), Random().nextDouble()),
+                child: Transform.rotate(
+                  angle: index.toDouble() + Random().nextDouble(),
+                  child: _buildCardBackground(
+                    context: context,
+                    cardKey: cardKey,
+                    controller: controller,
+                  ),
                 ),
               ),
             )

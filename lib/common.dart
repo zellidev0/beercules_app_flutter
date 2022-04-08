@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:beercules_flutter/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,10 @@ Widget buildButton({
   required String textResource,
 }) =>
     _buildButton(
-      child: Text(textResource).tr(),
+      child: Text(
+        textResource,
+        style: TextStyles.body1,
+      ).tr(),
       onPressed: onPressed,
     );
 
@@ -77,4 +81,7 @@ Widget _buildButton({
           ),
         ),
         onPressed: onPressed,
-        child: child);
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: child,
+        ));

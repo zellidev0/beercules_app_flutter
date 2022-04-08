@@ -16,7 +16,7 @@
     "rule_2_title" : "2. Karte befolgen",
     "rule_2_description" : "Ein Spieler beginnt und befolgt die erste Karte",
     "rule_3_title" : "3. Weitergeben",
-    "rule_3_description" : "Du wischt die Karte weg und dein Nachbar ist dran"
+    "rule_3_description" : "Du swipest die Karte weg und dein Nachbar ist dran"
   },
   "game_view": {
     "instructions": {

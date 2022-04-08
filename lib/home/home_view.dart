@@ -53,10 +53,12 @@ class HomeView extends ConsumerWidget {
             textResource: "home_view.button.go_drinking",
             onPressed: controller.goToGameView,
           ),
+          const SizedBox(height: 8),
           _buildButton(
             textResource: "home_view.button.rules",
             onPressed: controller.goToRulesView,
           ),
+          const SizedBox(height: 8),
           _buildButton(
             textResource: "home_view.button.customize",
             onPressed: null,
@@ -69,7 +71,7 @@ class HomeView extends ConsumerWidget {
     required VoidCallback? onPressed,
   }) =>
       SizedBox(
-        width: 150,
+        width: 200,
         child: buildButton(
           onPressed: onPressed,
           textResource: textResource,

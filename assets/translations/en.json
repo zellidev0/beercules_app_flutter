@@ -14,9 +14,9 @@
     "rule_1_title" : "1. Sit down",
     "rule_1_description" : "All players sit in a circle",
     "rule_2_title" : "2. Do it",
-    "rule_2_description" : "One player starts and follows the first map",
+    "rule_2_description" : "One player starts takes a card and follows the instruction",
     "rule_3_title" : "3. Next one",
-    "rule_3_description" : "You swipe away a card and it's your neighbor's turn"
+    "rule_3_description" : "Swipe away your card and it's your neighbor's turn"
   },
   "game_view": {
     "instructions": {

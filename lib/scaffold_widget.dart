@@ -1,4 +1,3 @@
-import 'package:beercules_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWidget extends StatelessWidget {
@@ -17,7 +16,7 @@ class ScaffoldWidget extends StatelessWidget {
         child: Material(
           child: Scaffold(
             backgroundColor: Theme.of(context).primaryColorDark,
-            body: SafeArea(child: child),
+            body: Center(child: SafeArea(child: child)),
             appBar: appBar,
           ),
         ),
