@@ -1,4 +1,4 @@
-import 'package:beercules_flutter/main.dart';
+import 'package:beercules/main.dart';
 
 class NavigationService {
   static const String homeRouteUri = '/';

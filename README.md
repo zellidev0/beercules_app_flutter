@@ -1,4 +1,4 @@
-# beercules_flutter
+# beercules
 
 Beercules
 

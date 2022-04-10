@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:beercules_flutter/theme.dart';
+import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

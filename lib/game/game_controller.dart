@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:beercules_flutter/navigation_service.dart';
+import 'package:beercules/navigation_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'game_model.dart';

@@ -1,12 +1,13 @@
 import 'dart:math';
 
-import 'package:beercules_flutter/common.dart';
-import 'package:beercules_flutter/extensions.dart';
-import 'package:beercules_flutter/game/game_controller.dart';
-import 'package:beercules_flutter/game/game_model.dart';
-import 'package:beercules_flutter/providers.dart';
-import 'package:beercules_flutter/scaffold_widget.dart';
-import 'package:beercules_flutter/theme.dart';
+import 'package:beercules/common.dart';
+import 'package:beercules/extensions.dart';
+import 'package:beercules/game/game_controller.dart';
+import 'package:beercules/game/game_model.dart';
+import 'package:beercules/providers.dart';
+import 'package:beercules/scaffold_widget.dart';
+import 'package:beercules/theme.dart';
+import 'package:clay_containers/clay_containers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -131,7 +132,9 @@ class GameView extends ConsumerWidget {
           onTap: () {},
           child: Ink(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).primaryColor,
+              // borderRadius: const BorderRadius.all(Radius.circular(8)),
+              border: Border.all(color: Theme.of(context).primaryColorDark),
               borderRadius: BorderRadius.circular(8),
             ),
             child: AspectRatio(

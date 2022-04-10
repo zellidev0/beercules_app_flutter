@@ -1,7 +1,7 @@
-import 'package:beercules_flutter/navigation_service.dart';
-import 'package:beercules_flutter/providers.dart';
-import 'package:beercules_flutter/scaffold_widget.dart';
-import 'package:beercules_flutter/theme.dart';
+import 'package:beercules/navigation_service.dart';
+import 'package:beercules/providers.dart';
+import 'package:beercules/scaffold_widget.dart';
+import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

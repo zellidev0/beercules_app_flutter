@@ -1,4 +1,4 @@
-package cc.zellner.beercules.beercules_flutter
+package cc.zellner.beercules.beercules
 
 import io.flutter.embedding.android.FlutterActivity
 

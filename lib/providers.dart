@@ -1,5 +1,5 @@
-import 'package:beercules_flutter/game/game_controller.dart';
-import 'package:beercules_flutter/game/game_model.dart';
+import 'package:beercules/game/game_controller.dart';
+import 'package:beercules/game/game_model.dart';
 import 'package:riverpod/riverpod.dart';
 
 import 'home/home_controller.dart';

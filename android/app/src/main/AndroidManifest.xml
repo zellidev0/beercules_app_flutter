@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cc.zellner.beercules.beercules_flutter">
+    package="cc.zellner.beercules.beercules">
    <application
-        android:label="beercules_flutter"
+        android:label="beercules"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

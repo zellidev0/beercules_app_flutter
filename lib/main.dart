@@ -1,9 +1,9 @@
 import 'package:beamer/beamer.dart';
-import 'package:beercules_flutter/game/game_view.dart';
-import 'package:beercules_flutter/home/home_view.dart';
-import 'package:beercules_flutter/navigation_service.dart';
-import 'package:beercules_flutter/rules/rules_view.dart';
-import 'package:beercules_flutter/theme.dart';
+import 'package:beercules/game/game_view.dart';
+import 'package:beercules/home/home_view.dart';
+import 'package:beercules/navigation_service.dart';
+import 'package:beercules/rules/rules_view.dart';
+import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
