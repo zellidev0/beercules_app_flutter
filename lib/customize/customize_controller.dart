@@ -1,24 +1,26 @@
 import 'dart:core';
 
+import 'package:beercules/common.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'customize_model.dart';
 
 class CustomizeController extends StateNotifier<CustomizeModel> {
   final NavigationService _navigationService;
-  final List<BeerculesCard> _beerculesCards;
+  final BeerculesCardProvider _beerculesCardsProvider;
 
   CustomizeController({
     required NavigationService navigationService,
     required CustomizeModel model,
-    required List<BeerculesCard> beerculesCards,
+    required BeerculesCardProvider beerculesCardsProvider,
   })  : _navigationService = navigationService,
-        _beerculesCards = beerculesCards,
+        _beerculesCardsProvider = beerculesCardsProvider,
         super(model);
 
-  List<BeerculesCard> get beerculesCards => _beerculesCards;
+  List<BeerculesCard> get beerculesCards => _beerculesCardsProvider.state;
 
   Future<void> goToGameView() async => _navigationService.navigateToNamed(
         uri: NavigationService.gameRouteUri,
@@ -34,5 +36,31 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
         uri: NavigationService.homeRouteUri,
         beamBackOnPop: false,
       );
+
+  showModal({
+    required BuildContext context,
+    required Widget widget,
+  }) {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext innerContext) => widget,
+    );
+  }
+
+  void modifyCardAmount({required BeerculesCard card}) {
+    _beerculesCardsProvider.state = _beerculesCardsProvider.state
+        .map((c) => c.key == card.key ? c.copyWith(amount: (c.amount + 1)) : c)
+        .toList();
+  }
+
+  void restoreDefault() {
+    _beerculesCardsProvider.restoreDefault();
+  }
+
+  void pop() {
+    _navigationService.pop();
+  }
 
 }

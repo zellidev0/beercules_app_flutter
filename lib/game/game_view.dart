@@ -11,7 +11,6 @@ import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
 
 const basicRule = 'BASIC_RULE';
@@ -102,9 +101,9 @@ class GameView extends ConsumerWidget {
       controller.decreaseCardAmount(cardKey: card.key);
       showDialog(
         context: context,
-        builder: (_) => _buildCardForeground(
+        builder: (_) => buildCardForeground(
           context: context,
-          controller: controller,
+          onTap: controller.hideCard,
           card: card,
         ),
       );
@@ -139,49 +138,6 @@ class GameView extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  Widget _buildCardForeground({
-    required BuildContext context,
-    required GameController controller,
-    required BeerculesCard card,
-  }) =>
-      buildCard(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: _getForegroundPic(card: card),
-                ),
-              ),
-              FittedBox(
-                fit: BoxFit.fitHeight,
-                child: Text(
-                  "game_view.instructions.${card.key}.title",
-                  style: TextStyles.header2,
-                ).tr(),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                "game_view.instructions.${card.key}.description",
-                style: TextStyles.body2,
-                textAlign: TextAlign.center,
-              ).tr(),
-            ],
-          ),
-          onTap: controller.hideCard,
-          color: Theme.of(context).colorScheme.primary);
-
-  Widget _getForegroundPic({required BeerculesCard card}) {
-    if (card.key == 'BASIC_RULE_1' ||
-        card.key == 'BASIC_RULE_2' ||
-        card.key == 'BASIC_RULE_3') {
-      return Image.asset("assets/images/logo.png");
-    }
-    return SvgPicture.asset("assets/instructions/${card.key}_pic.svg");
   }
 
   void showContinueDialog({

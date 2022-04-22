@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'dart:math';
 
+import 'package:beercules/common.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,7 @@ class GameController extends StateNotifier<GameModel> {
         _beerculesCards = beerculesCards,
         super(model ??
             GameModel(
-              cards: beerculesCards,
+              cards: initCards(beerculesCards),
               cardTransformSeed: Random().nextInt(10).toDouble(),
             ));
 
@@ -44,5 +45,14 @@ class GameController extends StateNotifier<GameModel> {
       cards: _beerculesCards,
     );
     goBackToHome();
+  }
+
+  static List<BeerculesCard> initCards(List<BeerculesCard> beerculesCards) {
+    return [
+      ...shuffle(
+        beerculesCards.where((element) => !element.isBasicRule).toList(),
+      ),
+      ...beerculesCards.where((element) => element.isBasicRule).toList(),
+    ];
   }
 }

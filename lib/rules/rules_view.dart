@@ -24,7 +24,7 @@ class RulesView extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: buildCard(
+              child: buildBasicCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
