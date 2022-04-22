@@ -29,4 +29,10 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
         uri: NavigationService.rulesRouteUri,
         beamBackOnPop: true,
       );
+
+  void goBackToHome() async => await _navigationService.navigateToNamed(
+        uri: NavigationService.homeRouteUri,
+        beamBackOnPop: false,
+      );
+
 }
