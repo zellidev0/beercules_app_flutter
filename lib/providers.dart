@@ -91,7 +91,9 @@ class Providers {
       navigationService: ref.read(
         providers.navigationServiceProvider,
       ),
-      model: CustomizeModel(),
+      model: CustomizeModel(
+        selectedCardKey: null,
+      ),
       beerculesCardsProvider:
           ref.read(providers.beerculesCardProvider.notifier),
     ),

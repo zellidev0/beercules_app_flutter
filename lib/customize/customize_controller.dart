@@ -18,9 +18,16 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     required BeerculesCardProvider beerculesCardsProvider,
   })  : _navigationService = navigationService,
         _beerculesCardsProvider = beerculesCardsProvider,
-        super(model);
+        super(model) {
+
+          _beerculesCardsProvider.addListener((s) {
+            state = state.copyWith(selectedCardKey: state.selectedCardKey);
+          });
+        }
 
   List<BeerculesCard> get beerculesCards => _beerculesCardsProvider.state;
+
+  String get shownCardKey => "null";
 
   Future<void> goToGameView() async => _navigationService.navigateToNamed(
         uri: NavigationService.gameRouteUri,
@@ -39,8 +46,11 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
 
   showModal({
     required BuildContext context,
+    required String cardKey,
     required Widget widget,
   }) {
+    state = state.copyWith(selectedCardKey: cardKey);
+
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -49,9 +59,15 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     );
   }
 
-  void modifyCardAmount({required BeerculesCard card}) {
+  void modifyCardAmount() {
     _beerculesCardsProvider.state = _beerculesCardsProvider.state
-        .map((c) => c.key == card.key ? c.copyWith(amount: (c.amount + 1)) : c)
+        .map((c) => c.key ==
+                beerculesCards
+                    .firstWhere(
+                        (element) => element.key == state.selectedCardKey)
+                    .key
+            ? c.copyWith(amount: (c.amount + 1) % 6)
+            : c)
         .toList();
   }
 
@@ -62,5 +78,4 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
   void pop() {
     _navigationService.pop();
   }
-
 }

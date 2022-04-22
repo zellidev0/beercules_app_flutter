@@ -1,7 +1,9 @@
 import 'package:beercules/common.dart';
 import 'package:beercules/customize/customize_card.dart';
 import 'package:beercules/customize/customize_controller.dart';
+import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/providers.dart';
+import 'package:collection/collection.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -30,22 +32,21 @@ class CustomizeView extends ConsumerWidget {
                   crossAxisCount: 3,
                 ),
                 itemBuilder: (_, index) => CustomizeCard(
+                  cardKey: controller.beerculesCards
+                      .where((element) => !element.isBasicRule)
+                      .toList()[index]
+                      .key,
+                  onTapUp: (TapUpDetails details) {},
+                  onTapDown: (TapDownDetails details) {},
+                  onTap: () => controller.showModal(
                     cardKey: controller.beerculesCards
                         .where((element) => !element.isBasicRule)
                         .toList()[index]
                         .key,
-                    onTapUp: (TapUpDetails details) {},
-                    onTapDown: (TapDownDetails details) {},
-                    onTap: () => controller.showModal(
-                          widget: buildModalWidget(
-                            card: controller.beerculesCards
-                                .where((element) => !element.isBasicRule)
-                                .toList()[index],
-                            context: context,
-                            controller: controller,
-                          ),
-                          context: context,
-                        )),
+                    context: context,
+                    widget: const CardDetailsView(),
+                  ),
+                ),
                 itemCount: controller.beerculesCards
                     .where((element) => !element.isBasicRule)
                     .toList()
@@ -58,32 +59,11 @@ class CustomizeView extends ConsumerWidget {
     );
   }
 
-  Widget buildModalWidget({
-    required BuildContext context,
-    required CustomizeController controller,
-    required BeerculesCard card,
-  }) =>
-      GestureDetector(
-        onTap: () => controller.pop(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            buildCardForeground(
-              onTap: () => controller.pop(),
-              card: card,
-              context: context,
-            ),
-            FloatingActionButton(
-              onPressed: () => controller.modifyCardAmount(card: card),
-              child: Text(
-                card.amount.toString(),
-              ),
-            ),
-            const SizedBox(height: 64),
-          ],
-        ),
-      );
+  // Widget buildModalWidget({
+  //   required BuildContext context,
+  //   required CustomizeController controller,
+  //   required BeerculesCard card,
+  // }) =>
 
   Widget _buildTopRow({
     required CustomizeController controller,
@@ -101,4 +81,43 @@ class CustomizeView extends ConsumerWidget {
           ),
         ],
       );
+}
+
+class CardDetailsView extends ConsumerWidget {
+  const CardDetailsView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    CustomizeController controller =
+        ref.read(providers.customizeController.notifier);
+    CustomizeModel model = ref.watch(providers.customizeController);
+    return GestureDetector(
+      onTap: () => controller.pop(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          buildCardForeground(
+            onTap: () => controller.pop(),
+            card: controller.beerculesCards
+                .firstWhere((element) => element.key == model.selectedCardKey),
+            context: context,
+          ),
+          FloatingActionButton(
+            onPressed: () => controller.modifyCardAmount(),
+            child: Text(
+              controller.beerculesCards
+                  .firstWhere((element) => element.key == model.selectedCardKey)
+                  .amount
+                  .toString(),
+                  style: Theme.of(context).textTheme.bodyText2,
+            ),
+          ),
+          const SizedBox(height: 64),
+        ],
+      ),
+    );
+  }
 }
