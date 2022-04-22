@@ -13,6 +13,7 @@ dependencies:
   easy_localization: ^3.0.0
   flutter_riverpod: ^1.0.2
   riverpod: ^1.0.2
+  freezed_annotation: ^1.1.0
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
@@ -21,9 +22,11 @@ dependencies:
   clay_containers: ^0.3.2
 
 dev_dependencies:
+  build_runner: ^2.1.8
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  freezed: ^1.1.1
 
 flutter:
   uses-material-design: true

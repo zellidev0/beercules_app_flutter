@@ -61,7 +61,7 @@ class HomeView extends ConsumerWidget {
           const SizedBox(height: 8),
           _buildButton(
             textResource: "home_view.button.customize",
-            onPressed: null,
+            onPressed: controller.goToCustomizeView,
           ),
         ],
       );

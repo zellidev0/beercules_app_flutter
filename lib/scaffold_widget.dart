@@ -15,7 +15,7 @@ class ScaffoldWidget extends StatelessWidget {
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: Material(
           child: Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.primary,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: Center(child: SafeArea(child: child)),
             appBar: appBar,
           ),

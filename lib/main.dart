@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:beercules/customize/customize_view.dart';
 import 'package:beercules/game/game_view.dart';
 import 'package:beercules/home/home_view.dart';
 import 'package:beercules/navigation_service.dart';
@@ -29,6 +30,7 @@ Future<Widget> buildApp() async {
 }
 
 BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
+      initialPath: NavigationService.homeRouteUri,
       locationBuilder: RoutesLocationBuilder(
         routes: {
           NavigationService.homeRouteUri: (_, __, ___) => const BeamPage(
@@ -45,6 +47,11 @@ BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
                 key: ValueKey<String>(NavigationService.rulesRouteUri),
                 title: 'Rules',
                 child: RulesView(),
+              ),
+          NavigationService.customizeRouteUri: (_, __, ___) => const BeamPage(
+                key: ValueKey<String>(NavigationService.customizeRouteUri),
+                title: 'Customize',
+                child: CustomizeView(),
               ),
         },
       ),
@@ -76,6 +83,8 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(
                   seedColor: BeerculesColors.primary,
+                  secondary: BeerculesColors.accent,
+                  background: BeerculesColors.primary.withAlpha(150),
                 ),
               ),
               routeInformationParser: _beamerParser,

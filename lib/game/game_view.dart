@@ -6,8 +6,8 @@ import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
+import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
-import 'package:clay_containers/clay_containers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,28 +52,16 @@ class GameView extends ConsumerWidget {
       padding: const EdgeInsets.all(64),
       child: Stack(
         alignment: Alignment.bottomCenter,
-        children: [
-          ...shuffle(model.cards.entries
-              .map(
-                (cardWithAmount) => List.generate(
-                    cardWithAmount.value, (_) => cardWithAmount.key),
-              )
-              .expand((_) => _)
-              .where((key) => !key.contains(basicRule))
-              .toList()),
-          '${basicRule}_1',
-          '${basicRule}_2',
-          '${basicRule}_3',
-        ]
+        children: model.cards
             .mapIndexed(
-              (String cardKey, int index) => Transform.translate(
+              (BeerculesCard card, int index) => Transform.translate(
                 offset: Offset(
-                    Random().nextInt(10).toDouble(), Random().nextDouble()),
+                    model.cardTransformSeed, model.cardTransformSeed),
                 child: Transform.rotate(
-                  angle: index.toDouble() + Random().nextDouble(),
+                  angle: index.toDouble() + model.cardTransformSeed,
                   child: _buildCardBackground(
                     context: context,
-                    cardKey: cardKey,
+                    card: card,
                     controller: controller,
                   ),
                 ),
@@ -96,7 +84,10 @@ class GameView extends ConsumerWidget {
           ),
           const Spacer(),
           Text(
-            model.cards.values.reduce((_, __) => _ + __).toString(),
+            model.cards
+                .map((_) => _.amount)
+                .reduce((_, __) => _ + __)
+                .toString(),
             style: TextStyles.header4,
           ),
         ],
@@ -104,17 +95,17 @@ class GameView extends ConsumerWidget {
 
   Widget _buildCardBackground({
     required BuildContext context,
-    required String cardKey,
+    required BeerculesCard card,
     required GameController controller,
   }) {
     void onSwipe(_) {
-      controller.decreaseCardAmount(cardKey: cardKey);
+      controller.decreaseCardAmount(cardKey: card.key);
       showDialog(
         context: context,
         builder: (_) => _buildCardForeground(
           context: context,
           controller: controller,
-          cardKey: cardKey,
+          card: card,
         ),
       );
     }
@@ -153,7 +144,7 @@ class GameView extends ConsumerWidget {
   Widget _buildCardForeground({
     required BuildContext context,
     required GameController controller,
-    required String cardKey,
+    required BeerculesCard card,
   }) =>
       buildCard(
           child: Column(
@@ -163,19 +154,19 @@ class GameView extends ConsumerWidget {
                 padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: _getForegroundPic(cardKey: cardKey),
+                  child: _getForegroundPic(card: card),
                 ),
               ),
               FittedBox(
                 fit: BoxFit.fitHeight,
                 child: Text(
-                  "game_view.instructions.$cardKey.title",
+                  "game_view.instructions.${card.key}.title",
                   style: TextStyles.header2,
                 ).tr(),
               ),
               const SizedBox(height: 16),
               Text(
-                "game_view.instructions.$cardKey.description",
+                "game_view.instructions.${card.key}.description",
                 style: TextStyles.body2,
                 textAlign: TextAlign.center,
               ).tr(),
@@ -184,13 +175,13 @@ class GameView extends ConsumerWidget {
           onTap: controller.hideCard,
           color: Theme.of(context).colorScheme.primary);
 
-  Widget _getForegroundPic({required String cardKey}) {
-    if (cardKey == 'BASIC_RULE_1' ||
-        cardKey == 'BASIC_RULE_2' ||
-        cardKey == 'BASIC_RULE_3') {
+  Widget _getForegroundPic({required BeerculesCard card}) {
+    if (card.key == 'BASIC_RULE_1' ||
+        card.key == 'BASIC_RULE_2' ||
+        card.key == 'BASIC_RULE_3') {
       return Image.asset("assets/images/logo.png");
     }
-    return SvgPicture.asset("assets/instructions/${cardKey}_pic.svg");
+    return SvgPicture.asset("assets/instructions/${card.key}_pic.svg");
   }
 
   void showContinueDialog({

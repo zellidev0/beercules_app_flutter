@@ -64,7 +64,7 @@
         "title": "Tauschrausch",
         "description": "Wähle zwei Spieler aus, die eine Runde lang das Getränk tauschen.\n\nDu darfst auch selbst tauschen."
       },
-      "ICH_PACKE_MEINEN_KOFFER_": {
+      "ICH_PACKE_MEINEN_KOFFER": {
         "title": "Ich packe meinen Koffer",
         "description": "Ihr spielt „Ich packe meinen Koffer“.\n\nDu beginnst und der Verlierer trinkt einen."
       },

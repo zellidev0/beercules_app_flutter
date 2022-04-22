@@ -1,9 +1,10 @@
 import 'package:beercules/main.dart';
 
 class NavigationService {
-  static const String homeRouteUri = '/';
+  static const String homeRouteUri = '/home';
   static const String gameRouteUri = '/game';
   static const String rulesRouteUri = '/rules';
+  static const String customizeRouteUri = '/customize';
 
   Future<void> navigateToNamed({
     required String uri,
