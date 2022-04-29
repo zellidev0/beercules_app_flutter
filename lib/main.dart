@@ -87,6 +87,8 @@ class MyApp extends StatelessWidget {
                   background: BeerculesColors.primary.withAlpha(150),
                 ),
               ),
+              debugShowCheckedModeBanner: false,
+                backButtonDispatcher: BeamerBackButtonDispatcher(delegate: globalBeamerDelegate),
               routeInformationParser: _beamerParser,
               routerDelegate: _beamerDelegate,
               localizationsDelegates: context.localizationDelegates,
