@@ -141,15 +141,15 @@
         "description": "Ab jetzt darf zu keinem Lied mehr mitgesungen oder mit dem Fuss gewippt werden. Wer die Regel bricht, trinkt einen."
       },
       "BASIC_RULE_1": {
-        "title": "KLAPPE",
+        "title": "Schei**e",
         "description": "Es dürfen keine Kraftausdrücke oder Beleidigungen gesagt oder gezeigt werden.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
       },
       "BASIC_RULE_2": {
-        "title": "LINKS RECHTS",
+        "title": "Links, rechts",
         "description": "Es muss immer mit links getrunken werden. Linkshänder trinken mit rechts.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
       },
       "BASIC_RULE_3": {
-        "title": "FLUCH NICHT",
+        "title": "Trinken",
         "description": "Es darf nicht das Wort \"trinken\"gesagt werden. Auch nicht \"trink\", \"getrunken\", etc.).\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
       }
     }
