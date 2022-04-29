@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:beercules/common.dart';
 import 'package:beercules/extensions.dart';
 import 'package:beercules/game/game_controller.dart';
@@ -8,7 +6,6 @@ import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
@@ -24,6 +21,15 @@ class GameView extends ConsumerWidget {
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
 
+    if (model.showContinueDialog) {
+      Future.delayed(Duration.zero, () {
+        showContinueDialog(
+          controller: controller,
+          context: context,
+        );
+      });
+    }
+
     return ScaffoldWidget(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -35,7 +41,10 @@ class GameView extends ConsumerWidget {
               context: context,
               controller: controller,
             ),
-            _buildTopRow(controller: controller, model: model),
+            _buildTopRow(
+              controller: controller,
+              model: model,
+            ),
           ],
         ),
       ),
@@ -52,6 +61,8 @@ class GameView extends ConsumerWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: model.cards
+            .map((e) => List.generate(e.amount, (_) => e.copyWith(amount: 1)))
+            .expand((element) => element)
             .mapIndexed(
               (BeerculesCard card, int index) => Transform.rotate(
                 angle: index.toDouble() + model.cardTransformSeed,
@@ -103,7 +114,7 @@ class GameView extends ConsumerWidget {
         context: context,
         builder: (_) => buildCardForeground(
           context: context,
-          onTap: controller.hideCard,
+          onTap: controller.dismissCard,
           card: card,
         ),
       );
@@ -192,7 +203,7 @@ class GameView extends ConsumerWidget {
   Row _buildDialogButtons({required GameController controller}) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          buildButton(onPressed: controller.goBackToHome, textResource: 'Yes'),
+          buildButton(onPressed: controller.pop, textResource: 'Yes'),
           const SizedBox(width: 32),
           buildButton(
             onPressed: controller.newGame,

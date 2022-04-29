@@ -12,14 +12,42 @@ class BeerculesCard with _$BeerculesCard {
   }) = _BeerculesCard;
 }
 
-class BeerculesCardProvider extends StateNotifier<List<BeerculesCard>> {
+@freezed
+class BeerculesCardProviderModel with _$BeerculesCardProviderModel {
+  factory BeerculesCardProviderModel({
+    required List<BeerculesCard> currentGameCards,
+    required List<BeerculesCard> configCards,
+  }) = _BeerculesCardProviderModel;
+}
+
+class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
   final List<BeerculesCard> defaultBeerculesCards;
   BeerculesCardProvider({
     required List<BeerculesCard> beerculesCards,
   })  : defaultBeerculesCards = beerculesCards,
-        super(beerculesCards);
+        super(BeerculesCardProviderModel(
+          configCards: beerculesCards,
+          currentGameCards: beerculesCards,
+        ));
 
-  void restoreDefault() {
-    state = defaultBeerculesCards;
+  void setCurrentToDefault() {
+    state = state.copyWith(
+      currentGameCards: defaultBeerculesCards,
+    );
+  }
+
+  void setConfigToDefault() {
+    state = state.copyWith(
+      configCards: defaultBeerculesCards,
+    );
+  }
+
+  void decreaseCurrentGameCardsAmount({required String cardKey}) {
+    state = state.copyWith(
+        currentGameCards: state.currentGameCards
+            .map((BeerculesCard card) => card.key == cardKey
+                ? card.copyWith(amount: (card.amount - 1).clamp(0, 100000))
+                : card)
+            .toList());
   }
 }

@@ -17,9 +17,11 @@ class CustomizeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final CustomizeController controller =
         ref.read(providers.customizeController.notifier);
+    final CustomizeModel model =
+        ref.read(providers.customizeController);
     return ScaffoldWidget(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(32.0),
         child: Column(
           children: [
             _buildTopRow(controller: controller),
@@ -32,14 +34,14 @@ class CustomizeView extends ConsumerWidget {
                   crossAxisCount: 3,
                 ),
                 itemBuilder: (_, index) => CustomizeCard(
-                  cardKey: controller.beerculesCards
+                  cardKey: model.configCards
                       .where((element) => !element.isBasicRule)
                       .toList()[index]
                       .key,
                   onTapUp: (TapUpDetails details) {},
                   onTapDown: (TapDownDetails details) {},
                   onTap: () => controller.showModal(
-                    cardKey: controller.beerculesCards
+                    cardKey: model.configCards
                         .where((element) => !element.isBasicRule)
                         .toList()[index]
                         .key,
@@ -47,7 +49,7 @@ class CustomizeView extends ConsumerWidget {
                     widget: const CardDetailsView(),
                   ),
                 ),
-                itemCount: controller.beerculesCards
+                itemCount: model.configCards
                     .where((element) => !element.isBasicRule)
                     .toList()
                     .length,
@@ -101,14 +103,14 @@ class CardDetailsView extends ConsumerWidget {
         children: [
           buildCardForeground(
             onTap: () => controller.pop(),
-            card: controller.beerculesCards
+            card: model.configCards
                 .firstWhere((element) => element.key == model.selectedCardKey),
             context: context,
           ),
           FloatingActionButton(
             onPressed: () => controller.modifyCardAmount(),
             child: Text(
-              controller.beerculesCards
+              model.configCards
                   .firstWhere((element) => element.key == model.selectedCardKey)
                   .amount
                   .toString(),

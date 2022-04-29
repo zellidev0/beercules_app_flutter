@@ -30,10 +30,10 @@ class Providers {
       model: HomeModel(),
     ),
   );
-  final StateNotifierProvider<BeerculesCardProvider, List<BeerculesCard>>
+  final StateNotifierProvider<BeerculesCardProvider, BeerculesCardProviderModel>
       beerculesCardProvider =
-      StateNotifierProvider<BeerculesCardProvider, List<BeerculesCard>>(
-    (StateNotifierProviderRef<BeerculesCardProvider, List<BeerculesCard>>
+      StateNotifierProvider<BeerculesCardProvider, BeerculesCardProviderModel>(
+    (StateNotifierProviderRef<BeerculesCardProvider, BeerculesCardProviderModel>
             ref) =>
         BeerculesCardProvider(
       beerculesCards: {
@@ -91,9 +91,6 @@ class Providers {
       navigationService: ref.read(
         providers.navigationServiceProvider,
       ),
-      model: CustomizeModel(
-        selectedCardKey: null,
-      ),
       beerculesCardsProvider:
           ref.read(providers.beerculesCardProvider.notifier),
     ),
@@ -101,11 +98,13 @@ class Providers {
 
   final AutoDisposeStateNotifierProvider<GameController, GameModel>
       gameController =
-      StateNotifierProvider.autoDispose<GameController, GameModel>(
+      AutoDisposeStateNotifierProvider<GameController, GameModel>(
     (AutoDisposeStateNotifierProviderRef<GameController, GameModel> ref) =>
         GameController(
       navigationService: ref.read(providers.navigationServiceProvider),
-      beerculesCards: shuffle(ref.read(providers.beerculesCardProvider)),
+      beerculesCardsProvider:
+          ref.read(providers.beerculesCardProvider.notifier),
+          
     ),
   );
 }

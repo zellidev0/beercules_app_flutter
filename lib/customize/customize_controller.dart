@@ -14,34 +14,37 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
 
   CustomizeController({
     required NavigationService navigationService,
-    required CustomizeModel model,
+    CustomizeModel? model,
     required BeerculesCardProvider beerculesCardsProvider,
   })  : _navigationService = navigationService,
         _beerculesCardsProvider = beerculesCardsProvider,
-        super(model) {
-
-          _beerculesCardsProvider.addListener((s) {
-            state = state.copyWith(selectedCardKey: state.selectedCardKey);
-          });
-        }
-
-  List<BeerculesCard> get beerculesCards => _beerculesCardsProvider.state;
+        super(
+          model ??
+              CustomizeModel(
+                selectedCardKey: null,
+                configCards: [],
+              ),
+        ) {
+    _beerculesCardsProvider.addListener((s) {
+      state = state.copyWith(
+        selectedCardKey: state.selectedCardKey,
+        configCards: s.configCards,
+      );
+    });
+  }
 
   String get shownCardKey => "null";
 
   Future<void> goToGameView() async => _navigationService.navigateToNamed(
         uri: NavigationService.gameRouteUri,
-        beamBackOnPop: true,
       );
 
   Future<void> goToRulesView() async => _navigationService.navigateToNamed(
         uri: NavigationService.rulesRouteUri,
-        beamBackOnPop: true,
       );
 
   void goBackToHome() async => await _navigationService.navigateToNamed(
         uri: NavigationService.homeRouteUri,
-        beamBackOnPop: false,
       );
 
   showModal({
@@ -60,22 +63,22 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
   }
 
   void modifyCardAmount() {
-    _beerculesCardsProvider.state = _beerculesCardsProvider.state
-        .map((c) => c.key ==
-                beerculesCards
-                    .firstWhere(
-                        (element) => element.key == state.selectedCardKey)
-                    .key
-            ? c.copyWith(amount: (c.amount + 1) % 6)
-            : c)
-        .toList();
+    // _beerculesCardsProvider.state = _beerculesCardsProvider.state
+        // .map((c) => c.key ==
+                // beerculesCards
+                    // .firstWhere(
+                        // (element) => element.key == state.selectedCardKey)
+                    // .key
+            // ? c.copyWith(amount: (c.amount + 1) % 6)
+            // : c)
+        // .toList();
   }
 
   void restoreDefault() {
-    _beerculesCardsProvider.restoreDefault();
+    _beerculesCardsProvider.setCurrentToDefault();
   }
 
   void pop() {
-    _navigationService.pop();
+    _navigationService.beamBack();
   }
 }

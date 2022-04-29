@@ -4,55 +4,73 @@ import 'dart:math';
 import 'package:beercules/common.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'game_model.dart';
 
 class GameController extends StateNotifier<GameModel> {
   final NavigationService _navigationService;
-  final List<BeerculesCard> _beerculesCards;
+  final BeerculesCardProvider _beerculesCardsProvider;
+  RemoveListener? listener;
 
   GameController({
     required NavigationService navigationService,
-    required List<BeerculesCard> beerculesCards,
+    required BeerculesCardProvider beerculesCardsProvider,
     GameModel? model,
   })  : _navigationService = navigationService,
-        _beerculesCards = beerculesCards,
+        _beerculesCardsProvider = beerculesCardsProvider,
         super(model ??
             GameModel(
-              cards: initCards(beerculesCards),
+              cards: [],
               cardTransformSeed: Random().nextInt(10).toDouble(),
-            ));
-
-  void goBackToHome() async => await _navigationService.navigateToNamed(
-        uri: NavigationService.homeRouteUri,
-        beamBackOnPop: false,
+              showContinueDialog: !listEquals(
+                beerculesCardsProvider.state.currentGameCards,
+                beerculesCardsProvider.defaultBeerculesCards,
+              ),
+            )) {
+    listener =
+        _beerculesCardsProvider.addListener((BeerculesCardProviderModel model) {
+      state = state.copyWith(
+        cards: initCards(cards: model.currentGameCards),
       );
+    });
+  }
 
-  void hideCard() async => await _navigationService.pop();
+  @override
+  void dispose() {
+    listener?.call();
+    super.dispose();
+  }
+
+  void dismissCard() async => await _navigationService.pop();
 
   void decreaseCardAmount({required String cardKey}) {
-    state = state.copyWith(
-        cards: state.cards
-            .map((BeerculesCard card) => card.key == cardKey
-                ? card.copyWith(amount: (card.amount - 1).clamp(0, 100000))
-                : card)
-            .toList());
+    _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardKey: cardKey);
   }
 
   void newGame() {
-    state = state.copyWith(
-      cards: _beerculesCards,
-    );
-    goBackToHome();
+    _beerculesCardsProvider.setCurrentToDefault();
+    pop();
   }
 
-  static List<BeerculesCard> initCards(List<BeerculesCard> beerculesCards) {
+  static List<BeerculesCard> initCards({
+    required List<BeerculesCard> cards,
+  }) {
     return [
       ...shuffle(
-        beerculesCards.where((element) => !element.isBasicRule).toList(),
+        cards.where((element) => !element.isBasicRule).toList(),
       ),
-      ...beerculesCards.where((element) => element.isBasicRule).toList(),
+      ...cards.where((element) => element.isBasicRule).toList(),
     ];
+  }
+
+  void goBackToHome() {
+    _navigationService.beamBack();
+  }
+
+  void pop() {
+    state = state.copyWith(showContinueDialog: false);
+    _navigationService.pop();
   }
 }

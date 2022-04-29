@@ -185,3 +185,166 @@ abstract class _BeerculesCard implements BeerculesCard {
   _$BeerculesCardCopyWith<_BeerculesCard> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$BeerculesCardProviderModelTearOff {
+  const _$BeerculesCardProviderModelTearOff();
+
+  _BeerculesCardProviderModel call(
+      {required List<BeerculesCard> currentGameCards,
+      required List<BeerculesCard> configCards}) {
+    return _BeerculesCardProviderModel(
+      currentGameCards: currentGameCards,
+      configCards: configCards,
+    );
+  }
+}
+
+/// @nodoc
+const $BeerculesCardProviderModel = _$BeerculesCardProviderModelTearOff();
+
+/// @nodoc
+mixin _$BeerculesCardProviderModel {
+  List<BeerculesCard> get currentGameCards =>
+      throw _privateConstructorUsedError;
+  List<BeerculesCard> get configCards => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BeerculesCardProviderModelCopyWith<BeerculesCardProviderModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BeerculesCardProviderModelCopyWith<$Res> {
+  factory $BeerculesCardProviderModelCopyWith(BeerculesCardProviderModel value,
+          $Res Function(BeerculesCardProviderModel) then) =
+      _$BeerculesCardProviderModelCopyWithImpl<$Res>;
+  $Res call(
+      {List<BeerculesCard> currentGameCards, List<BeerculesCard> configCards});
+}
+
+/// @nodoc
+class _$BeerculesCardProviderModelCopyWithImpl<$Res>
+    implements $BeerculesCardProviderModelCopyWith<$Res> {
+  _$BeerculesCardProviderModelCopyWithImpl(this._value, this._then);
+
+  final BeerculesCardProviderModel _value;
+  // ignore: unused_field
+  final $Res Function(BeerculesCardProviderModel) _then;
+
+  @override
+  $Res call({
+    Object? currentGameCards = freezed,
+    Object? configCards = freezed,
+  }) {
+    return _then(_value.copyWith(
+      currentGameCards: currentGameCards == freezed
+          ? _value.currentGameCards
+          : currentGameCards // ignore: cast_nullable_to_non_nullable
+              as List<BeerculesCard>,
+      configCards: configCards == freezed
+          ? _value.configCards
+          : configCards // ignore: cast_nullable_to_non_nullable
+              as List<BeerculesCard>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$BeerculesCardProviderModelCopyWith<$Res>
+    implements $BeerculesCardProviderModelCopyWith<$Res> {
+  factory _$BeerculesCardProviderModelCopyWith(
+          _BeerculesCardProviderModel value,
+          $Res Function(_BeerculesCardProviderModel) then) =
+      __$BeerculesCardProviderModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {List<BeerculesCard> currentGameCards, List<BeerculesCard> configCards});
+}
+
+/// @nodoc
+class __$BeerculesCardProviderModelCopyWithImpl<$Res>
+    extends _$BeerculesCardProviderModelCopyWithImpl<$Res>
+    implements _$BeerculesCardProviderModelCopyWith<$Res> {
+  __$BeerculesCardProviderModelCopyWithImpl(_BeerculesCardProviderModel _value,
+      $Res Function(_BeerculesCardProviderModel) _then)
+      : super(_value, (v) => _then(v as _BeerculesCardProviderModel));
+
+  @override
+  _BeerculesCardProviderModel get _value =>
+      super._value as _BeerculesCardProviderModel;
+
+  @override
+  $Res call({
+    Object? currentGameCards = freezed,
+    Object? configCards = freezed,
+  }) {
+    return _then(_BeerculesCardProviderModel(
+      currentGameCards: currentGameCards == freezed
+          ? _value.currentGameCards
+          : currentGameCards // ignore: cast_nullable_to_non_nullable
+              as List<BeerculesCard>,
+      configCards: configCards == freezed
+          ? _value.configCards
+          : configCards // ignore: cast_nullable_to_non_nullable
+              as List<BeerculesCard>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_BeerculesCardProviderModel implements _BeerculesCardProviderModel {
+  _$_BeerculesCardProviderModel(
+      {required this.currentGameCards, required this.configCards});
+
+  @override
+  final List<BeerculesCard> currentGameCards;
+  @override
+  final List<BeerculesCard> configCards;
+
+  @override
+  String toString() {
+    return 'BeerculesCardProviderModel(currentGameCards: $currentGameCards, configCards: $configCards)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _BeerculesCardProviderModel &&
+            const DeepCollectionEquality()
+                .equals(other.currentGameCards, currentGameCards) &&
+            const DeepCollectionEquality()
+                .equals(other.configCards, configCards));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(currentGameCards),
+      const DeepCollectionEquality().hash(configCards));
+
+  @JsonKey(ignore: true)
+  @override
+  _$BeerculesCardProviderModelCopyWith<_BeerculesCardProviderModel>
+      get copyWith => __$BeerculesCardProviderModelCopyWithImpl<
+          _BeerculesCardProviderModel>(this, _$identity);
+}
+
+abstract class _BeerculesCardProviderModel
+    implements BeerculesCardProviderModel {
+  factory _BeerculesCardProviderModel(
+          {required List<BeerculesCard> currentGameCards,
+          required List<BeerculesCard> configCards}) =
+      _$_BeerculesCardProviderModel;
+
+  @override
+  List<BeerculesCard> get currentGameCards;
+  @override
+  List<BeerculesCard> get configCards;
+  @override
+  @JsonKey(ignore: true)
+  _$BeerculesCardProviderModelCopyWith<_BeerculesCardProviderModel>
+      get copyWith => throw _privateConstructorUsedError;
+}

@@ -19,10 +19,13 @@ class _$GameModelTearOff {
   const _$GameModelTearOff();
 
   _GameModel call(
-      {required List<BeerculesCard> cards, required double cardTransformSeed}) {
+      {required List<BeerculesCard> cards,
+      required double cardTransformSeed,
+      required bool showContinueDialog}) {
     return _GameModel(
       cards: cards,
       cardTransformSeed: cardTransformSeed,
+      showContinueDialog: showContinueDialog,
     );
   }
 }
@@ -34,6 +37,7 @@ const $GameModel = _$GameModelTearOff();
 mixin _$GameModel {
   List<BeerculesCard> get cards => throw _privateConstructorUsedError;
   double get cardTransformSeed => throw _privateConstructorUsedError;
+  bool get showContinueDialog => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameModelCopyWith<GameModel> get copyWith =>
@@ -44,7 +48,10 @@ mixin _$GameModel {
 abstract class $GameModelCopyWith<$Res> {
   factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
       _$GameModelCopyWithImpl<$Res>;
-  $Res call({List<BeerculesCard> cards, double cardTransformSeed});
+  $Res call(
+      {List<BeerculesCard> cards,
+      double cardTransformSeed,
+      bool showContinueDialog});
 }
 
 /// @nodoc
@@ -59,6 +66,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
   $Res call({
     Object? cards = freezed,
     Object? cardTransformSeed = freezed,
+    Object? showContinueDialog = freezed,
   }) {
     return _then(_value.copyWith(
       cards: cards == freezed
@@ -69,6 +77,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
               as double,
+      showContinueDialog: showContinueDialog == freezed
+          ? _value.showContinueDialog
+          : showContinueDialog // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -79,7 +91,10 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
           _GameModel value, $Res Function(_GameModel) then) =
       __$GameModelCopyWithImpl<$Res>;
   @override
-  $Res call({List<BeerculesCard> cards, double cardTransformSeed});
+  $Res call(
+      {List<BeerculesCard> cards,
+      double cardTransformSeed,
+      bool showContinueDialog});
 }
 
 /// @nodoc
@@ -95,6 +110,7 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
   $Res call({
     Object? cards = freezed,
     Object? cardTransformSeed = freezed,
+    Object? showContinueDialog = freezed,
   }) {
     return _then(_GameModel(
       cards: cards == freezed
@@ -105,6 +121,10 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
               as double,
+      showContinueDialog: showContinueDialog == freezed
+          ? _value.showContinueDialog
+          : showContinueDialog // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -112,16 +132,21 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_GameModel implements _GameModel {
-  _$_GameModel({required this.cards, required this.cardTransformSeed});
+  _$_GameModel(
+      {required this.cards,
+      required this.cardTransformSeed,
+      required this.showContinueDialog});
 
   @override
   final List<BeerculesCard> cards;
   @override
   final double cardTransformSeed;
+  @override
+  final bool showContinueDialog;
 
   @override
   String toString() {
-    return 'GameModel(cards: $cards, cardTransformSeed: $cardTransformSeed)';
+    return 'GameModel(cards: $cards, cardTransformSeed: $cardTransformSeed, showContinueDialog: $showContinueDialog)';
   }
 
   @override
@@ -131,14 +156,17 @@ class _$_GameModel implements _GameModel {
             other is _GameModel &&
             const DeepCollectionEquality().equals(other.cards, cards) &&
             const DeepCollectionEquality()
-                .equals(other.cardTransformSeed, cardTransformSeed));
+                .equals(other.cardTransformSeed, cardTransformSeed) &&
+            const DeepCollectionEquality()
+                .equals(other.showContinueDialog, showContinueDialog));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(cards),
-      const DeepCollectionEquality().hash(cardTransformSeed));
+      const DeepCollectionEquality().hash(cardTransformSeed),
+      const DeepCollectionEquality().hash(showContinueDialog));
 
   @JsonKey(ignore: true)
   @override
@@ -149,12 +177,15 @@ class _$_GameModel implements _GameModel {
 abstract class _GameModel implements GameModel {
   factory _GameModel(
       {required List<BeerculesCard> cards,
-      required double cardTransformSeed}) = _$_GameModel;
+      required double cardTransformSeed,
+      required bool showContinueDialog}) = _$_GameModel;
 
   @override
   List<BeerculesCard> get cards;
   @override
   double get cardTransformSeed;
+  @override
+  bool get showContinueDialog;
   @override
   @JsonKey(ignore: true)
   _$GameModelCopyWith<_GameModel> get copyWith =>

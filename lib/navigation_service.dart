@@ -17,8 +17,6 @@ class NavigationService {
         data: data,
       );
 
+  bool beamBack() => globalBeamerDelegate.beamBack();
   Future<bool> pop() async => await globalBeamerDelegate.popRoute();
-
-  Object? getCurrentRouteParam() =>
-      globalBeamerDelegate.currentBeamLocation.data;
 }

@@ -9,5 +9,6 @@ class GameModel with _$GameModel {
   factory GameModel({
     required List<BeerculesCard> cards,
     required double cardTransformSeed,
+    required bool showContinueDialog,
   }) = _GameModel;
 }

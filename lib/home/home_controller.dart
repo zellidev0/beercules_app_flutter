@@ -16,17 +16,14 @@ class HomeController extends StateNotifier<HomeModel> {
 
   Future<void> goToGameView() async => _navigationService.navigateToNamed(
         uri: NavigationService.gameRouteUri,
-        beamBackOnPop: true,
       );
 
   Future<void> goToRulesView() async => _navigationService.navigateToNamed(
         uri: NavigationService.rulesRouteUri,
-        beamBackOnPop: true,
       );
 
 
   Future<void> goToCustomizeView() async => _navigationService.navigateToNamed(
         uri: NavigationService.customizeRouteUri,
-        beamBackOnPop: true,
       );
 }
