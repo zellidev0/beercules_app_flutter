@@ -3,10 +3,7 @@ import 'package:beercules/customize/customize_card.dart';
 import 'package:beercules/customize/customize_controller.dart';
 import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/providers.dart';
-import 'package:collection/collection.dart';
 import 'package:beercules/scaffold_widget.dart';
-import 'package:beercules/shared/beercules_card_model.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,8 +14,7 @@ class CustomizeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final CustomizeController controller =
         ref.read(providers.customizeController.notifier);
-    final CustomizeModel model =
-        ref.read(providers.customizeController);
+    final CustomizeModel model = ref.read(providers.customizeController);
     return ScaffoldWidget(
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -114,7 +110,7 @@ class CardDetailsView extends ConsumerWidget {
                   .firstWhere((element) => element.key == model.selectedCardKey)
                   .amount
                   .toString(),
-                  style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyText2,
             ),
           ),
           const SizedBox(height: 64),

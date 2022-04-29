@@ -19,6 +19,12 @@
     "rule_3_description" : "Swipe away your card and it's your neighbor's turn"
   },
   "game_view": {
+    "continue": {
+      "question": "Would you like to continue your last game?",
+      "header": "Continue?",
+      "yes": "yes",
+      "no": "no"
+    },
     "instructions": {
       "DECKEL_DRAUF": {
         "title": "Lid on it",

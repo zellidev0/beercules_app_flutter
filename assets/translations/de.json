@@ -19,6 +19,12 @@
     "rule_3_description" : "Du swipest die Karte weg und dein Nachbar ist dran"
   },
   "game_view": {
+    "continue": {
+      "question": "Möchtest du dein letztes Spiel fortsetzen ?",
+      "header": "Fortsetzen ?",
+      "yes": "ja",
+      "no": "nein"
+    },
     "instructions": {
       "DECKEL_DRAUF": {
         "title": "Deckel Drauf",
