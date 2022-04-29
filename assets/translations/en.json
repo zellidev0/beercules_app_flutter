@@ -8,6 +8,9 @@
       "customize": "Customize"
     }
   },
+  "config_view": {
+    "restoredDefault":"Default restored!"
+  },
   "rules_view": {
     "go_to_game": "Let's get drunk",
     "title" : "How to",

@@ -20,7 +20,10 @@ class CustomizeView extends ConsumerWidget {
         padding: const EdgeInsets.all(32.0),
         child: Column(
           children: [
-            _buildTopRow(controller: controller),
+            _buildTopRow(
+              controller: controller,
+              context: context,
+            ),
             const SizedBox(height: 16),
             Flexible(
               child: GridView.builder(
@@ -57,14 +60,9 @@ class CustomizeView extends ConsumerWidget {
     );
   }
 
-  // Widget buildModalWidget({
-  //   required BuildContext context,
-  //   required CustomizeController controller,
-  //   required BeerculesCard card,
-  // }) =>
-
   Widget _buildTopRow({
     required CustomizeController controller,
+    required BuildContext context,
   }) =>
       Row(
         children: [
@@ -74,7 +72,7 @@ class CustomizeView extends ConsumerWidget {
           ),
           const Spacer(),
           buildIconButton(
-            onPressed: controller.restoreDefault,
+            onPressed: () => controller.restoreDefault(context: context),
             icon: Icons.restore,
           ),
         ],
@@ -104,7 +102,7 @@ class CardDetailsView extends ConsumerWidget {
             context: context,
           ),
           FloatingActionButton(
-            onPressed: () => controller.modifyCardAmount(),
+            onPressed: controller.modifyCardAmount,
             child: Text(
               model.configCards
                   .firstWhere((element) => element.key == model.selectedCardKey)

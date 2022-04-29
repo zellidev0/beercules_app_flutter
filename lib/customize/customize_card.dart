@@ -25,11 +25,9 @@ class CustomizeCard extends StatelessWidget {
       onTapUp: _onTapUp,
       onTapDown: _onTapDown,
       onTap: _onTap,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SvgPicture.asset("assets/instructions/${_cardKey}_pic.svg"),
-        ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SvgPicture.asset("assets/instructions/${_cardKey}_pic.svg"),
       ),
     );
   }

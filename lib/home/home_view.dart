@@ -26,7 +26,7 @@ class HomeView extends ConsumerWidget {
             const SizedBox(height: 8),
             _buildSubTitle(),
             const SizedBox(height: 32),
-            _buildLogo(),
+            _buildLogo(controller: controller),
             const SizedBox(height: 32),
             _buildButtons(controller: controller),
           ],
@@ -45,7 +45,10 @@ class HomeView extends ConsumerWidget {
         style: TextStyles.header3,
       ).tr();
 
-  Widget _buildLogo() => Image.asset("assets/images/logo.png");
+  Widget _buildLogo({required HomeController controller}) => GestureDetector(
+        onLongPress: controller.goToCustomizeView,
+        child: Image.asset("assets/images/logo.png"),
+      );
 
   Widget _buildButtons({required HomeController controller}) => Column(
         children: [
@@ -59,16 +62,18 @@ class HomeView extends ConsumerWidget {
             onPressed: controller.goToRulesView,
           ),
           const SizedBox(height: 8),
-          _buildButton(
-            textResource: "home_view.button.customize",
-            onPressed: controller.goToCustomizeView,
-          ),
+          // _buildButton(
+          //   textResource: "home_view.button.customize",
+          //   onPressed: null,
+          //   onLongPress: controller.goToCustomizeView,
+          // ),
         ],
       );
 
   Widget _buildButton({
     required String textResource,
     required VoidCallback? onPressed,
+    VoidCallback? onLongPress,
   }) =>
       SizedBox(
         width: 200,

@@ -50,4 +50,16 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
                 : card)
             .toList());
   }
+
+  void modifyConfigGameCardsAmount({
+    required String cardKey,
+    required int amount,
+  }) {
+    state = state.copyWith(
+        configCards: state.configCards
+            .map((BeerculesCard card) => card.key == cardKey
+                ? card.copyWith(amount: amount)
+                : card)
+            .toList());
+  }
 }

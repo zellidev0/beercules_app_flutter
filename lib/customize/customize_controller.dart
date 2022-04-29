@@ -1,8 +1,8 @@
 import 'dart:core';
-
-import 'package:beercules/common.dart';
+import 'package:collection/collection.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,6 +11,7 @@ import 'customize_model.dart';
 class CustomizeController extends StateNotifier<CustomizeModel> {
   final NavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
+  RemoveListener? listener;
 
   CustomizeController({
     required NavigationService navigationService,
@@ -25,7 +26,7 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
                 configCards: [],
               ),
         ) {
-    _beerculesCardsProvider.addListener((s) {
+    listener = _beerculesCardsProvider.addListener((s) {
       state = state.copyWith(
         selectedCardKey: state.selectedCardKey,
         configCards: s.configCards,
@@ -33,19 +34,13 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     });
   }
 
-  String get shownCardKey => "null";
+  @override
+  void dispose() {
+    listener?.call();
+    super.dispose();
+  }
 
-  Future<void> goToGameView() async => _navigationService.navigateToNamed(
-        uri: NavigationService.gameRouteUri,
-      );
-
-  Future<void> goToRulesView() async => _navigationService.navigateToNamed(
-        uri: NavigationService.rulesRouteUri,
-      );
-
-  void goBackToHome() async => await _navigationService.navigateToNamed(
-        uri: NavigationService.homeRouteUri,
-      );
+  void goBackToHome() => _navigationService.beamBack();
 
   showModal({
     required BuildContext context,
@@ -53,7 +48,6 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     required Widget widget,
   }) {
     state = state.copyWith(selectedCardKey: cardKey);
-
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -63,22 +57,31 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
   }
 
   void modifyCardAmount() {
-    // _beerculesCardsProvider.state = _beerculesCardsProvider.state
-        // .map((c) => c.key ==
-                // beerculesCards
-                    // .firstWhere(
-                        // (element) => element.key == state.selectedCardKey)
-                    // .key
-            // ? c.copyWith(amount: (c.amount + 1) % 6)
-            // : c)
-        // .toList();
+    _beerculesCardsProvider.modifyConfigGameCardsAmount(
+      cardKey: state.selectedCardKey ?? "",
+      amount: ((_beerculesCardsProvider.state.configCards
+                      .firstWhereOrNull(
+                          (card) => card.key == state.selectedCardKey)
+                      ?.amount ??
+                  0) +
+              1) %
+          6,
+    );
   }
 
-  void restoreDefault() {
-    _beerculesCardsProvider.setCurrentToDefault();
+  void restoreDefault({
+    required BuildContext context,
+  }) {
+    _beerculesCardsProvider.setConfigToDefault();
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      content: const Text('config_view.restoredDefault').tr(),
+      duration: const Duration(seconds: 1),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void pop() {
-    _navigationService.beamBack();
+    _navigationService.pop();
   }
 }

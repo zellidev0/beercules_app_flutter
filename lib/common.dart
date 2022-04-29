@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -94,11 +95,12 @@ Widget buildCardForeground({
               ).tr(),
             ),
             const SizedBox(height: 16),
-            Text(
-              "game_view.instructions.${card.key}.description",
-              style: TextStyles.body2,
+            AutoSizeText(
+              "game_view.instructions.${card.key}.description".tr(),
+              maxLines: 10,
+              style: TextStyles.body1,
               textAlign: TextAlign.center,
-            ).tr(),
+            ),
           ],
         ),
         onTap: onTap,

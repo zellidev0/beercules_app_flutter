@@ -8,6 +8,9 @@
       "customize": "Anpassen"
     }
   },
+  "config_view": {
+    "restoredDefault":"Standard wiederhergestellt!"
+  },
   "rules_view": {
     "go_to_game": "Saufen gehen",
     "title" : "Spielablauf",
