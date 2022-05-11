@@ -81,7 +81,10 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   void goBackToHome() {
-    _navigationService.beamBack();
+    _navigationService.navigateToNamed(
+      uri: NavigationService.homeRouteUri,
+      beamBackOnPop: false,
+    );
   }
 
   void pop() {
