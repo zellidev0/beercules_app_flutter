@@ -21,13 +21,17 @@ class GameView extends ConsumerWidget {
     if (model.showContinueDialog) {
       Future.delayed(Duration.zero, () {
         buildAndShowDialog(
-            context: context,
-            onConfirmPressed: controller.pop,
-            onCancelPressed: () => controller.newGame(context: context),
-            confirmTextResource: 'game_view.continue.yes',
-            declineTextResource: 'game_view.continue.no',
-            headerResource: 'game_view.continue.header',
-            descriptionResource: 'game_view.continue.question');
+          context: context,
+          onConfirmPressed: controller.pop,
+          onCancelPressed: () {
+            controller.newGame();
+            controller.showCustomizedCardActiveSnackbar(context: context);
+          },
+          confirmTextResource: 'game_view.continue.yes',
+          declineTextResource: 'game_view.continue.no',
+          headerResource: 'game_view.continue.header',
+          descriptionResource: 'game_view.continue.question',
+        );
       });
     }
 
@@ -109,13 +113,14 @@ class GameView extends ConsumerWidget {
         context: context,
         builder: (_) => buildCardForeground(
           context: context,
-          onTap: controller.dismissCard,
+          onTap: () => controller.dismissCard(context: context),
           showLogo: card.isBasicRule,
           showSkullAnimation: card.isVictimGlass &&
-              model.cards.where((element) => element.isVictimGlass).length == 1,
+              model.cards.where((_) => _.isVictimGlass && !_.played).length ==
+                  1,
           resourceKey: card.isVictimGlass &&
                   model.cards
-                          .where((element) => element.isVictimGlass)
+                          .where((_) => _.isVictimGlass && !_.played)
                           .length ==
                       1
               ? card.victimGlassKey
@@ -125,7 +130,7 @@ class GameView extends ConsumerWidget {
     }
 
     return Swipable(
-      threshold: 0.3,
+      threshold: 4,
       onSwipeEnd: onSwipe,
       child: Padding(
         padding: const EdgeInsets.all(64),

@@ -21,13 +21,11 @@ class _$GameModelTearOff {
   _GameModel call(
       {required List<GameModelCard> cards,
       required double cardTransformSeed,
-      required bool showContinueDialog,
-      required bool showConfigIsDefaultMessage}) {
+      required bool showContinueDialog}) {
     return _GameModel(
       cards: cards,
       cardTransformSeed: cardTransformSeed,
       showContinueDialog: showContinueDialog,
-      showConfigIsDefaultMessage: showConfigIsDefaultMessage,
     );
   }
 }
@@ -40,7 +38,6 @@ mixin _$GameModel {
   List<GameModelCard> get cards => throw _privateConstructorUsedError;
   double get cardTransformSeed => throw _privateConstructorUsedError;
   bool get showContinueDialog => throw _privateConstructorUsedError;
-  bool get showConfigIsDefaultMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameModelCopyWith<GameModel> get copyWith =>
@@ -54,8 +51,7 @@ abstract class $GameModelCopyWith<$Res> {
   $Res call(
       {List<GameModelCard> cards,
       double cardTransformSeed,
-      bool showContinueDialog,
-      bool showConfigIsDefaultMessage});
+      bool showContinueDialog});
 }
 
 /// @nodoc
@@ -71,7 +67,6 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? cards = freezed,
     Object? cardTransformSeed = freezed,
     Object? showContinueDialog = freezed,
-    Object? showConfigIsDefaultMessage = freezed,
   }) {
     return _then(_value.copyWith(
       cards: cards == freezed
@@ -86,10 +81,6 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.showContinueDialog
           : showContinueDialog // ignore: cast_nullable_to_non_nullable
               as bool,
-      showConfigIsDefaultMessage: showConfigIsDefaultMessage == freezed
-          ? _value.showConfigIsDefaultMessage
-          : showConfigIsDefaultMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -103,8 +94,7 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
   $Res call(
       {List<GameModelCard> cards,
       double cardTransformSeed,
-      bool showContinueDialog,
-      bool showConfigIsDefaultMessage});
+      bool showContinueDialog});
 }
 
 /// @nodoc
@@ -121,7 +111,6 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? cards = freezed,
     Object? cardTransformSeed = freezed,
     Object? showContinueDialog = freezed,
-    Object? showConfigIsDefaultMessage = freezed,
   }) {
     return _then(_GameModel(
       cards: cards == freezed
@@ -136,10 +125,6 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.showContinueDialog
           : showContinueDialog // ignore: cast_nullable_to_non_nullable
               as bool,
-      showConfigIsDefaultMessage: showConfigIsDefaultMessage == freezed
-          ? _value.showConfigIsDefaultMessage
-          : showConfigIsDefaultMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -150,8 +135,7 @@ class _$_GameModel implements _GameModel {
   _$_GameModel(
       {required this.cards,
       required this.cardTransformSeed,
-      required this.showContinueDialog,
-      required this.showConfigIsDefaultMessage});
+      required this.showContinueDialog});
 
   @override
   final List<GameModelCard> cards;
@@ -159,12 +143,10 @@ class _$_GameModel implements _GameModel {
   final double cardTransformSeed;
   @override
   final bool showContinueDialog;
-  @override
-  final bool showConfigIsDefaultMessage;
 
   @override
   String toString() {
-    return 'GameModel(cards: $cards, cardTransformSeed: $cardTransformSeed, showContinueDialog: $showContinueDialog, showConfigIsDefaultMessage: $showConfigIsDefaultMessage)';
+    return 'GameModel(cards: $cards, cardTransformSeed: $cardTransformSeed, showContinueDialog: $showContinueDialog)';
   }
 
   @override
@@ -176,9 +158,7 @@ class _$_GameModel implements _GameModel {
             const DeepCollectionEquality()
                 .equals(other.cardTransformSeed, cardTransformSeed) &&
             const DeepCollectionEquality()
-                .equals(other.showContinueDialog, showContinueDialog) &&
-            const DeepCollectionEquality().equals(
-                other.showConfigIsDefaultMessage, showConfigIsDefaultMessage));
+                .equals(other.showContinueDialog, showContinueDialog));
   }
 
   @override
@@ -186,8 +166,7 @@ class _$_GameModel implements _GameModel {
       runtimeType,
       const DeepCollectionEquality().hash(cards),
       const DeepCollectionEquality().hash(cardTransformSeed),
-      const DeepCollectionEquality().hash(showContinueDialog),
-      const DeepCollectionEquality().hash(showConfigIsDefaultMessage));
+      const DeepCollectionEquality().hash(showContinueDialog));
 
   @JsonKey(ignore: true)
   @override
@@ -199,8 +178,7 @@ abstract class _GameModel implements GameModel {
   factory _GameModel(
       {required List<GameModelCard> cards,
       required double cardTransformSeed,
-      required bool showContinueDialog,
-      required bool showConfigIsDefaultMessage}) = _$_GameModel;
+      required bool showContinueDialog}) = _$_GameModel;
 
   @override
   List<GameModelCard> get cards;
@@ -208,8 +186,6 @@ abstract class _GameModel implements GameModel {
   double get cardTransformSeed;
   @override
   bool get showContinueDialog;
-  @override
-  bool get showConfigIsDefaultMessage;
   @override
   @JsonKey(ignore: true)
   _$GameModelCopyWith<_GameModel> get copyWith =>

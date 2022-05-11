@@ -29,6 +29,12 @@
       "yes": "Yes",
       "no": "No"
     },
+    "finish": {
+      "question": "Would you like to play another round?",
+      "header": "Another round?",
+      "yes": "Yes",
+      "no": "No"
+    },
     "instructions": {
       "DECKEL_DRAUF": {
         "title": "Lid on it",

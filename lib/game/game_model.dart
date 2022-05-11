@@ -9,7 +9,6 @@ class GameModel with _$GameModel {
     required List<GameModelCard> cards,
     required double cardTransformSeed,
     required bool showContinueDialog,
-    required bool showConfigIsDefaultMessage,
   }) = _GameModel;
 }
 

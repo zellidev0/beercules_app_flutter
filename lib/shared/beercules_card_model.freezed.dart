@@ -143,7 +143,7 @@ class __$BeerculesCardCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BeerculesCard implements _BeerculesCard {
+class _$_BeerculesCard with DiagnosticableTreeMixin implements _BeerculesCard {
   _$_BeerculesCard(
       {required this.key,
       required this.amount,
@@ -160,8 +160,19 @@ class _$_BeerculesCard implements _BeerculesCard {
   final bool isVictimGlass;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'BeerculesCard(key: $key, amount: $amount, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BeerculesCard'))
+      ..add(DiagnosticsProperty('key', key))
+      ..add(DiagnosticsProperty('amount', amount))
+      ..add(DiagnosticsProperty('isBasicRule', isBasicRule))
+      ..add(DiagnosticsProperty('isVictimGlass', isVictimGlass));
   }
 
   @override
@@ -364,7 +375,9 @@ class __$BeerculesPlayCardCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BeerculesPlayCard implements _BeerculesPlayCard {
+class _$_BeerculesPlayCard
+    with DiagnosticableTreeMixin
+    implements _BeerculesPlayCard {
   _$_BeerculesPlayCard(
       {required this.id,
       required this.key,
@@ -384,8 +397,20 @@ class _$_BeerculesPlayCard implements _BeerculesPlayCard {
   final bool isVictimGlass;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'BeerculesPlayCard(id: $id, key: $key, played: $played, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BeerculesPlayCard'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('key', key))
+      ..add(DiagnosticsProperty('played', played))
+      ..add(DiagnosticsProperty('isBasicRule', isBasicRule))
+      ..add(DiagnosticsProperty('isVictimGlass', isVictimGlass));
   }
 
   @override
@@ -551,7 +576,9 @@ class __$BeerculesCardProviderModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BeerculesCardProviderModel implements _BeerculesCardProviderModel {
+class _$_BeerculesCardProviderModel
+    with DiagnosticableTreeMixin
+    implements _BeerculesCardProviderModel {
   _$_BeerculesCardProviderModel(
       {required this.currentGameCards, required this.configCards});
 
@@ -561,8 +588,17 @@ class _$_BeerculesCardProviderModel implements _BeerculesCardProviderModel {
   final List<BeerculesCard> configCards;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'BeerculesCardProviderModel(currentGameCards: $currentGameCards, configCards: $configCards)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BeerculesCardProviderModel'))
+      ..add(DiagnosticsProperty('currentGameCards', currentGameCards))
+      ..add(DiagnosticsProperty('configCards', configCards));
   }
 
   @override

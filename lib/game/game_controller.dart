@@ -6,7 +6,6 @@ import 'package:beercules/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'game_model.dart';
@@ -26,14 +25,8 @@ class GameController extends StateNotifier<GameModel> {
             GameModel(
               cards: [],
               cardTransformSeed: Random().nextInt(10).toDouble(),
-              showContinueDialog: !listEquals(
-                beerculesCardsProvider.state.currentGameCards,
-                beerculesCardsProvider.defaultBeerculesCards,
-              ),
-              showConfigIsDefaultMessage: !listEquals(
-                beerculesCardsProvider.state.currentGameCards,
-                beerculesCardsProvider.defaultBeerculesCards,
-              ),
+              showContinueDialog:
+                  !beerculesCardsProvider.currentGameHasBeenStarted(),
             )) {
     listener =
         _beerculesCardsProvider.addListener((BeerculesCardProviderModel model) {
@@ -60,24 +53,49 @@ class GameController extends StateNotifier<GameModel> {
     super.dispose();
   }
 
-  void dismissCard() async => await _navigationService.pop();
+  void dismissCard({required BuildContext context}) async {
+    await _navigationService.pop();
+    if (state.cards.where((element) => !element.played).isEmpty) {
+      buildAndShowDialog(
+        context: context,
+        onConfirmPressed: () {
+          newGame();
+        },
+        onCancelPressed: () {
+          newGame();
+          goBackToHome();
+        },
+        confirmTextResource: 'game_view.finish.yes',
+        declineTextResource: 'game_view.finish.no',
+        headerResource: 'game_view.finish.header',
+        descriptionResource: 'game_view.finish.question',
+      );
+    }
+  }
 
   void decreaseCardAmount({required String cardId}) {
     _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardId: cardId);
   }
 
-  void newGame({required BuildContext context}) {
-    if (state.showConfigIsDefaultMessage) {
+  void newGame() {
+    if (_beerculesCardsProvider.configDiffersFromDefault()) {
       _beerculesCardsProvider.setCurrentToConfig();
+    } else {
+      _beerculesCardsProvider.setCurrentToDefault();
+    }
+    pop();
+  }
+
+  void showCustomizedCardActiveSnackbar({
+    required BuildContext context,
+  }) {
+    if (_beerculesCardsProvider.configDiffersFromDefault()) {
       showSnackbar(
         context: context,
         message: 'game_view.customize_cards_used'.tr(),
         duration: const Duration(seconds: 3),
       );
-    } else {
-      _beerculesCardsProvider.setCurrentToDefault();
     }
-    pop();
   }
 
   static List<GameModelCard> initCards({
@@ -101,10 +119,7 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   void pop() {
-    state = state.copyWith(
-      showContinueDialog: false,
-      showConfigIsDefaultMessage: false,
-    );
+    state = state.copyWith(showContinueDialog: false);
     _navigationService.pop();
   }
 }

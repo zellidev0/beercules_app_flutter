@@ -29,6 +29,12 @@
       "yes": "Ja",
       "no": "Nein"
     },
+    "finish": {
+      "question": "Möchtest du noch eine Runde spielen?",
+      "header": "Noch 'ne Runde?",
+      "yes": "Ja",
+      "no": "Nein"
+    },
     "instructions": {
       "DECKEL_DRAUF": {
         "title": "Deckel Drauf",

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -94,4 +95,10 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
                 card.key == cardKey ? card.copyWith(amount: amount) : card)
             .toList());
   }
+
+  bool currentGameHasBeenStarted() =>
+      state.currentGameCards.where((_) => _.played).isEmpty;
+
+  bool configDiffersFromDefault() =>
+      !listEquals(state.configCards, defaultBeerculesCards);
 }
