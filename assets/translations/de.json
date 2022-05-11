@@ -9,7 +9,7 @@
     }
   },
   "config_view": {
-    "restoredDefault":"Standard wiederhergestellt!"
+    "restoredDefault":"Die Anzahl der einzelnen Karten wurde auf den Standard zurückgesetzt!"
   },
   "rules_view": {
     "go_to_game": "\uD83C\uDF89 Party jetzt \uD83C\uDF89",

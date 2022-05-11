@@ -9,7 +9,7 @@
     }
   },
   "config_view": {
-    "restoredDefault":"Default restored!"
+    "restoredDefault":"The amount of each card was reset to the default!"
   },
   "rules_view": {
     "go_to_game": "\uD83C\uDF89 Party now \uD83C\uDF89",
