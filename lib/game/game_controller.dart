@@ -38,7 +38,17 @@ class GameController extends StateNotifier<GameModel> {
     listener =
         _beerculesCardsProvider.addListener((BeerculesCardProviderModel model) {
       state = state.copyWith(
-        cards: initCards(cards: model.currentGameCards),
+        cards: initCards(
+            cards: model.currentGameCards
+                .map((card) => List.generate(card.amount, (_) => card))
+                .expand((element) => element)
+                .map((card) => GameModelCard(
+                      key: card.key,
+                      isBasicRule: card.isBasicRule,
+                      isVictimGlass: card.isVictimGlass,
+                      victimGlassKey: 'OPFERGLAS_LAST',
+                    ))
+                .toList()),
       );
     });
   }
@@ -70,31 +80,13 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   static List<GameModelCard> initCards({
-    required List<BeerculesCard> cards,
+    required List<GameModelCard> cards,
   }) {
     return [
       ...shuffle(
-        cards
-            .where((element) => !element.isBasicRule)
-            .map((card) => List.generate(card.amount, (_) => card))
-            .expand((element) => element)
-            .map((card) => GameModelCard(
-                  key: card.key,
-                  isBasicRule: card.isBasicRule,
-                  isVictimGlass: card.isVictimGlass,
-                ))
-            .toList(),
+        cards.where((element) => !element.isBasicRule).toList(),
       ),
-      ...cards
-          .where((element) => element.isBasicRule)
-          .map((card) => List.generate(card.amount, (_) => card))
-          .expand((element) => element)
-          .map((card) => GameModelCard(
-                key: card.key,
-                isBasicRule: card.isBasicRule,
-                isVictimGlass: card.isVictimGlass,
-              ))
-          .toList(),
+      ...cards.where((element) => element.isBasicRule).toList(),
     ];
   }
 

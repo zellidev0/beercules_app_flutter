@@ -72,6 +72,7 @@ class GameView extends ConsumerWidget {
                     context: context,
                     card: card,
                     controller: controller,
+                    model: model,
                   ),
                 ),
               ),
@@ -102,6 +103,7 @@ class GameView extends ConsumerWidget {
   Widget _buildCardBackground({
     required BuildContext context,
     required GameModelCard card,
+    required GameModel model,
     required GameController controller,
   }) {
     void onSwipe(_) {
@@ -112,9 +114,15 @@ class GameView extends ConsumerWidget {
           context: context,
           onTap: controller.dismissCard,
           showLogo: card.isBasicRule,
-          imageKey: card.key,
-          descriptionKey: card.key,
-          titleKey: card.key,
+          showSkullAnimation: card.isVictimGlass &&
+              model.cards.where((element) => element.isVictimGlass).length == 1,
+          resourceKey: card.isVictimGlass &&
+                  model.cards
+                          .where((element) => element.isVictimGlass)
+                          .length ==
+                      1
+              ? card.victimGlassKey
+              : card.key,
         ),
       );
     }

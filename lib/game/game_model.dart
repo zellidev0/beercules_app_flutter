@@ -19,5 +19,6 @@ class GameModelCard with _$GameModelCard {
     required String key,
     required bool isBasicRule,
     required bool isVictimGlass,
+    required String victimGlassKey,
   }) = _GameModelCard;
 }

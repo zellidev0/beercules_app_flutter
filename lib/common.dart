@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 
 void showSnackbar({
   required BuildContext context,
@@ -197,42 +197,44 @@ Widget buildCardForeground({
   required BuildContext context,
   required VoidCallback onTap,
   required bool showLogo,
-  required String imageKey,
-  required String titleKey,
-  required String descriptionKey,
+  required String resourceKey,
+  required bool showSkullAnimation,
 }) =>
     buildBasicCard(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: _getForegroundPic(
-                  imageKey: imageKey,
-                  showLogo: showLogo,
-                ),
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: showSkullAnimation
+                  ? Lottie.asset('assets/lotties/skull_animation.json')
+                  : _getForegroundPic(
+                      imageKey: resourceKey,
+                      showLogo: showLogo,
+                    ),
             ),
-            FittedBox(
-              fit: BoxFit.fitHeight,
-              child: Text(
-                "game_view.instructions.$titleKey.title",
-                style: TextStyles.header2,
-              ).tr(),
-            ),
-            const SizedBox(height: 16),
-            AutoSizeText(
-              "game_view.instructions.$descriptionKey.description".tr(),
-              maxLines: 10,
-              style: TextStyles.body1,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        onTap: onTap,
-        color: Theme.of(context).colorScheme.primary);
+          ),
+          FittedBox(
+            fit: BoxFit.fitHeight,
+            child: Text(
+              "game_view.instructions.$resourceKey.title",
+              style: TextStyles.header2,
+            ).tr(),
+          ),
+          const SizedBox(height: 16),
+          AutoSizeText(
+            "game_view.instructions.$resourceKey.description".tr(),
+            maxLines: 10,
+            style: TextStyles.body1,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+      onTap: onTap,
+      color: Theme.of(context).colorScheme.primary,
+    );
 
 Widget _getForegroundPic({
   required String imageKey,

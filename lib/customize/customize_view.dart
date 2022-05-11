@@ -4,6 +4,7 @@ import 'package:beercules/customize/customize_controller.dart';
 import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
+import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -89,7 +90,7 @@ class CardDetailsView extends ConsumerWidget {
     CustomizeController controller =
         ref.read(providers.customizeController.notifier);
     CustomizeModel model = ref.watch(providers.customizeController);
-    var selected = model.configCards
+    BeerculesCard selected = model.configCards
         .firstWhere((element) => element.key == model.selectedCardKey);
     return GestureDetector(
       onTap: () => controller.pop(),
@@ -100,10 +101,9 @@ class CardDetailsView extends ConsumerWidget {
           buildCardForeground(
             onTap: () => controller.pop(),
             showLogo: selected.isBasicRule,
-            imageKey: selected.key,
-            titleKey: selected.key,
-            descriptionKey: selected.key,
+            resourceKey: selected.key,
             context: context,
+            showSkullAnimation: false,
           ),
           Container(
             color: Colors.transparent,
