@@ -69,14 +69,32 @@ class GameController extends StateNotifier<GameModel> {
     pop();
   }
 
-  static List<BeerculesCard> initCards({
+  static List<GameModelCard> initCards({
     required List<BeerculesCard> cards,
   }) {
     return [
       ...shuffle(
-        cards.where((element) => !element.isBasicRule).toList(),
+        cards
+            .where((element) => !element.isBasicRule)
+            .map((card) => List.generate(card.amount, (_) => card))
+            .expand((element) => element)
+            .map((card) => GameModelCard(
+                  key: card.key,
+                  isBasicRule: card.isBasicRule,
+                  isVictimGlass: card.isVictimGlass,
+                ))
+            .toList(),
       ),
-      ...cards.where((element) => element.isBasicRule).toList(),
+      ...cards
+          .where((element) => element.isBasicRule)
+          .map((card) => List.generate(card.amount, (_) => card))
+          .expand((element) => element)
+          .map((card) => GameModelCard(
+                key: card.key,
+                isBasicRule: card.isBasicRule,
+                isVictimGlass: card.isVictimGlass,
+              ))
+          .toList(),
     ];
   }
 

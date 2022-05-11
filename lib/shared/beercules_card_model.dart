@@ -9,6 +9,7 @@ class BeerculesCard with _$BeerculesCard {
     required String key,
     required int amount,
     required bool isBasicRule,
+    required bool isVictimGlass,
   }) = _BeerculesCard;
 }
 

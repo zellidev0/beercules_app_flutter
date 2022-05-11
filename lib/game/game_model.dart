@@ -6,9 +6,18 @@ part 'game_model.freezed.dart';
 @freezed
 class GameModel with _$GameModel {
   factory GameModel({
-    required List<BeerculesCard> cards,
+    required List<GameModelCard> cards,
     required double cardTransformSeed,
     required bool showContinueDialog,
     required bool showConfigIsDefaultMessage,
   }) = _GameModel;
+}
+
+@freezed
+class GameModelCard with _$GameModelCard {
+  factory GameModelCard({
+    required String key,
+    required bool isBasicRule,
+    required bool isVictimGlass,
+  }) = _GameModelCard;
 }

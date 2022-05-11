@@ -64,7 +64,11 @@
       },
       "OPFERGLAS": {
         "title": "Victims glass",
-        "description": "You fill up the victim glass with a sip of your drink.\nIs this the last victim glass card, you have to drink the glass."
+        "description": "You fill up the victim glass with a sip of your drink."
+      },
+      "OPFERGLAS_LAST": {
+        "title": "Victims glass",
+        "description": "The last victim glass!\n\nYou must drink the whole glass now."
       },
       "SCHERE_STEIN_PAAR_BIER": {
         "title": "Rock, paper, beer",

@@ -19,11 +19,15 @@ class _$BeerculesCardTearOff {
   const _$BeerculesCardTearOff();
 
   _BeerculesCard call(
-      {required String key, required int amount, required bool isBasicRule}) {
+      {required String key,
+      required int amount,
+      required bool isBasicRule,
+      required bool isVictimGlass}) {
     return _BeerculesCard(
       key: key,
       amount: amount,
       isBasicRule: isBasicRule,
+      isVictimGlass: isVictimGlass,
     );
   }
 }
@@ -36,6 +40,7 @@ mixin _$BeerculesCard {
   String get key => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   bool get isBasicRule => throw _privateConstructorUsedError;
+  bool get isVictimGlass => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BeerculesCardCopyWith<BeerculesCard> get copyWith =>
@@ -47,7 +52,7 @@ abstract class $BeerculesCardCopyWith<$Res> {
   factory $BeerculesCardCopyWith(
           BeerculesCard value, $Res Function(BeerculesCard) then) =
       _$BeerculesCardCopyWithImpl<$Res>;
-  $Res call({String key, int amount, bool isBasicRule});
+  $Res call({String key, int amount, bool isBasicRule, bool isVictimGlass});
 }
 
 /// @nodoc
@@ -64,6 +69,7 @@ class _$BeerculesCardCopyWithImpl<$Res>
     Object? key = freezed,
     Object? amount = freezed,
     Object? isBasicRule = freezed,
+    Object? isVictimGlass = freezed,
   }) {
     return _then(_value.copyWith(
       key: key == freezed
@@ -78,6 +84,10 @@ class _$BeerculesCardCopyWithImpl<$Res>
           ? _value.isBasicRule
           : isBasicRule // ignore: cast_nullable_to_non_nullable
               as bool,
+      isVictimGlass: isVictimGlass == freezed
+          ? _value.isVictimGlass
+          : isVictimGlass // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -89,7 +99,7 @@ abstract class _$BeerculesCardCopyWith<$Res>
           _BeerculesCard value, $Res Function(_BeerculesCard) then) =
       __$BeerculesCardCopyWithImpl<$Res>;
   @override
-  $Res call({String key, int amount, bool isBasicRule});
+  $Res call({String key, int amount, bool isBasicRule, bool isVictimGlass});
 }
 
 /// @nodoc
@@ -108,6 +118,7 @@ class __$BeerculesCardCopyWithImpl<$Res>
     Object? key = freezed,
     Object? amount = freezed,
     Object? isBasicRule = freezed,
+    Object? isVictimGlass = freezed,
   }) {
     return _then(_BeerculesCard(
       key: key == freezed
@@ -122,6 +133,10 @@ class __$BeerculesCardCopyWithImpl<$Res>
           ? _value.isBasicRule
           : isBasicRule // ignore: cast_nullable_to_non_nullable
               as bool,
+      isVictimGlass: isVictimGlass == freezed
+          ? _value.isVictimGlass
+          : isVictimGlass // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -130,7 +145,10 @@ class __$BeerculesCardCopyWithImpl<$Res>
 
 class _$_BeerculesCard implements _BeerculesCard {
   _$_BeerculesCard(
-      {required this.key, required this.amount, required this.isBasicRule});
+      {required this.key,
+      required this.amount,
+      required this.isBasicRule,
+      required this.isVictimGlass});
 
   @override
   final String key;
@@ -138,10 +156,12 @@ class _$_BeerculesCard implements _BeerculesCard {
   final int amount;
   @override
   final bool isBasicRule;
+  @override
+  final bool isVictimGlass;
 
   @override
   String toString() {
-    return 'BeerculesCard(key: $key, amount: $amount, isBasicRule: $isBasicRule)';
+    return 'BeerculesCard(key: $key, amount: $amount, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass)';
   }
 
   @override
@@ -152,7 +172,9 @@ class _$_BeerculesCard implements _BeerculesCard {
             const DeepCollectionEquality().equals(other.key, key) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality()
-                .equals(other.isBasicRule, isBasicRule));
+                .equals(other.isBasicRule, isBasicRule) &&
+            const DeepCollectionEquality()
+                .equals(other.isVictimGlass, isVictimGlass));
   }
 
   @override
@@ -160,7 +182,8 @@ class _$_BeerculesCard implements _BeerculesCard {
       runtimeType,
       const DeepCollectionEquality().hash(key),
       const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(isBasicRule));
+      const DeepCollectionEquality().hash(isBasicRule),
+      const DeepCollectionEquality().hash(isVictimGlass));
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +195,8 @@ abstract class _BeerculesCard implements BeerculesCard {
   factory _BeerculesCard(
       {required String key,
       required int amount,
-      required bool isBasicRule}) = _$_BeerculesCard;
+      required bool isBasicRule,
+      required bool isVictimGlass}) = _$_BeerculesCard;
 
   @override
   String get key;
@@ -180,6 +204,8 @@ abstract class _BeerculesCard implements BeerculesCard {
   int get amount;
   @override
   bool get isBasicRule;
+  @override
+  bool get isVictimGlass;
   @override
   @JsonKey(ignore: true)
   _$BeerculesCardCopyWith<_BeerculesCard> get copyWith =>

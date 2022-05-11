@@ -196,7 +196,10 @@ Row _buildDialogButtons({
 Widget buildCardForeground({
   required BuildContext context,
   required VoidCallback onTap,
-  required BeerculesCard card,
+  required bool showLogo,
+  required String imageKey,
+  required String titleKey,
+  required String descriptionKey,
 }) =>
     buildBasicCard(
         child: Column(
@@ -206,19 +209,22 @@ Widget buildCardForeground({
               padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
               child: AspectRatio(
                 aspectRatio: 1,
-                child: _getForegroundPic(card: card),
+                child: _getForegroundPic(
+                  imageKey: imageKey,
+                  showLogo: showLogo,
+                ),
               ),
             ),
             FittedBox(
               fit: BoxFit.fitHeight,
               child: Text(
-                "game_view.instructions.${card.key}.title",
+                "game_view.instructions.$titleKey.title",
                 style: TextStyles.header2,
               ).tr(),
             ),
             const SizedBox(height: 16),
             AutoSizeText(
-              "game_view.instructions.${card.key}.description".tr(),
+              "game_view.instructions.$descriptionKey.description".tr(),
               maxLines: 10,
               style: TextStyles.body1,
               textAlign: TextAlign.center,
@@ -229,11 +235,12 @@ Widget buildCardForeground({
         color: Theme.of(context).colorScheme.primary);
 
 Widget _getForegroundPic({
-  required BeerculesCard card,
+  required String imageKey,
+  required bool showLogo,
 }) =>
-    card.isBasicRule
+    showLogo
         ? Image.asset("assets/images/logo.png")
-        : SvgPicture.asset("assets/instructions/${card.key}_pic.svg");
+        : SvgPicture.asset("assets/instructions/${imageKey}_pic.svg");
 
 Widget _buildButton({
   required Widget child,

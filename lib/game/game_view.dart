@@ -4,7 +4,6 @@ import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
-import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,10 +62,8 @@ class GameView extends ConsumerWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: model.cards
-            .map((e) => List.generate(e.amount, (_) => e.copyWith(amount: 1)))
-            .expand((element) => element)
             .mapIndexed(
-              (BeerculesCard card, int index) => Transform.rotate(
+              (GameModelCard card, int index) => Transform.rotate(
                 angle: index.toDouble() + model.cardTransformSeed,
                 child: Transform.translate(
                   offset: Offset(model.cardTransformSeed,
@@ -96,10 +93,7 @@ class GameView extends ConsumerWidget {
           ),
           const Spacer(),
           Text(
-            model.cards
-                .map((_) => _.amount)
-                .reduce((_, __) => _ + __)
-                .toString(),
+            model.cards.length.toString(),
             style: TextStyles.header4,
           ),
         ],
@@ -107,7 +101,7 @@ class GameView extends ConsumerWidget {
 
   Widget _buildCardBackground({
     required BuildContext context,
-    required BeerculesCard card,
+    required GameModelCard card,
     required GameController controller,
   }) {
     void onSwipe(_) {
@@ -117,7 +111,10 @@ class GameView extends ConsumerWidget {
         builder: (_) => buildCardForeground(
           context: context,
           onTap: controller.dismissCard,
-          card: card,
+          showLogo: card.isBasicRule,
+          imageKey: card.key,
+          descriptionKey: card.key,
+          titleKey: card.key,
         ),
       );
     }

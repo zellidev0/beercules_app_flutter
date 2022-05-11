@@ -19,7 +19,7 @@ class _$GameModelTearOff {
   const _$GameModelTearOff();
 
   _GameModel call(
-      {required List<BeerculesCard> cards,
+      {required List<GameModelCard> cards,
       required double cardTransformSeed,
       required bool showContinueDialog,
       required bool showConfigIsDefaultMessage}) {
@@ -37,7 +37,7 @@ const $GameModel = _$GameModelTearOff();
 
 /// @nodoc
 mixin _$GameModel {
-  List<BeerculesCard> get cards => throw _privateConstructorUsedError;
+  List<GameModelCard> get cards => throw _privateConstructorUsedError;
   double get cardTransformSeed => throw _privateConstructorUsedError;
   bool get showContinueDialog => throw _privateConstructorUsedError;
   bool get showConfigIsDefaultMessage => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $GameModelCopyWith<$Res> {
   factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
       _$GameModelCopyWithImpl<$Res>;
   $Res call(
-      {List<BeerculesCard> cards,
+      {List<GameModelCard> cards,
       double cardTransformSeed,
       bool showContinueDialog,
       bool showConfigIsDefaultMessage});
@@ -77,7 +77,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
       cards: cards == freezed
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
-              as List<BeerculesCard>,
+              as List<GameModelCard>,
       cardTransformSeed: cardTransformSeed == freezed
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
@@ -101,7 +101,7 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       __$GameModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<BeerculesCard> cards,
+      {List<GameModelCard> cards,
       double cardTransformSeed,
       bool showContinueDialog,
       bool showConfigIsDefaultMessage});
@@ -127,7 +127,7 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
       cards: cards == freezed
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
-              as List<BeerculesCard>,
+              as List<GameModelCard>,
       cardTransformSeed: cardTransformSeed == freezed
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
@@ -154,7 +154,7 @@ class _$_GameModel implements _GameModel {
       required this.showConfigIsDefaultMessage});
 
   @override
-  final List<BeerculesCard> cards;
+  final List<GameModelCard> cards;
   @override
   final double cardTransformSeed;
   @override
@@ -197,13 +197,13 @@ class _$_GameModel implements _GameModel {
 
 abstract class _GameModel implements GameModel {
   factory _GameModel(
-      {required List<BeerculesCard> cards,
+      {required List<GameModelCard> cards,
       required double cardTransformSeed,
       required bool showContinueDialog,
       required bool showConfigIsDefaultMessage}) = _$_GameModel;
 
   @override
-  List<BeerculesCard> get cards;
+  List<GameModelCard> get cards;
   @override
   double get cardTransformSeed;
   @override
@@ -213,5 +213,182 @@ abstract class _GameModel implements GameModel {
   @override
   @JsonKey(ignore: true)
   _$GameModelCopyWith<_GameModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$GameModelCardTearOff {
+  const _$GameModelCardTearOff();
+
+  _GameModelCard call(
+      {required String key,
+      required bool isBasicRule,
+      required bool isVictimGlass}) {
+    return _GameModelCard(
+      key: key,
+      isBasicRule: isBasicRule,
+      isVictimGlass: isVictimGlass,
+    );
+  }
+}
+
+/// @nodoc
+const $GameModelCard = _$GameModelCardTearOff();
+
+/// @nodoc
+mixin _$GameModelCard {
+  String get key => throw _privateConstructorUsedError;
+  bool get isBasicRule => throw _privateConstructorUsedError;
+  bool get isVictimGlass => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $GameModelCardCopyWith<GameModelCard> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameModelCardCopyWith<$Res> {
+  factory $GameModelCardCopyWith(
+          GameModelCard value, $Res Function(GameModelCard) then) =
+      _$GameModelCardCopyWithImpl<$Res>;
+  $Res call({String key, bool isBasicRule, bool isVictimGlass});
+}
+
+/// @nodoc
+class _$GameModelCardCopyWithImpl<$Res>
+    implements $GameModelCardCopyWith<$Res> {
+  _$GameModelCardCopyWithImpl(this._value, this._then);
+
+  final GameModelCard _value;
+  // ignore: unused_field
+  final $Res Function(GameModelCard) _then;
+
+  @override
+  $Res call({
+    Object? key = freezed,
+    Object? isBasicRule = freezed,
+    Object? isVictimGlass = freezed,
+  }) {
+    return _then(_value.copyWith(
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      isBasicRule: isBasicRule == freezed
+          ? _value.isBasicRule
+          : isBasicRule // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isVictimGlass: isVictimGlass == freezed
+          ? _value.isVictimGlass
+          : isVictimGlass // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$GameModelCardCopyWith<$Res>
+    implements $GameModelCardCopyWith<$Res> {
+  factory _$GameModelCardCopyWith(
+          _GameModelCard value, $Res Function(_GameModelCard) then) =
+      __$GameModelCardCopyWithImpl<$Res>;
+  @override
+  $Res call({String key, bool isBasicRule, bool isVictimGlass});
+}
+
+/// @nodoc
+class __$GameModelCardCopyWithImpl<$Res>
+    extends _$GameModelCardCopyWithImpl<$Res>
+    implements _$GameModelCardCopyWith<$Res> {
+  __$GameModelCardCopyWithImpl(
+      _GameModelCard _value, $Res Function(_GameModelCard) _then)
+      : super(_value, (v) => _then(v as _GameModelCard));
+
+  @override
+  _GameModelCard get _value => super._value as _GameModelCard;
+
+  @override
+  $Res call({
+    Object? key = freezed,
+    Object? isBasicRule = freezed,
+    Object? isVictimGlass = freezed,
+  }) {
+    return _then(_GameModelCard(
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      isBasicRule: isBasicRule == freezed
+          ? _value.isBasicRule
+          : isBasicRule // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isVictimGlass: isVictimGlass == freezed
+          ? _value.isVictimGlass
+          : isVictimGlass // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GameModelCard implements _GameModelCard {
+  _$_GameModelCard(
+      {required this.key,
+      required this.isBasicRule,
+      required this.isVictimGlass});
+
+  @override
+  final String key;
+  @override
+  final bool isBasicRule;
+  @override
+  final bool isVictimGlass;
+
+  @override
+  String toString() {
+    return 'GameModelCard(key: $key, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _GameModelCard &&
+            const DeepCollectionEquality().equals(other.key, key) &&
+            const DeepCollectionEquality()
+                .equals(other.isBasicRule, isBasicRule) &&
+            const DeepCollectionEquality()
+                .equals(other.isVictimGlass, isVictimGlass));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(key),
+      const DeepCollectionEquality().hash(isBasicRule),
+      const DeepCollectionEquality().hash(isVictimGlass));
+
+  @JsonKey(ignore: true)
+  @override
+  _$GameModelCardCopyWith<_GameModelCard> get copyWith =>
+      __$GameModelCardCopyWithImpl<_GameModelCard>(this, _$identity);
+}
+
+abstract class _GameModelCard implements GameModelCard {
+  factory _GameModelCard(
+      {required String key,
+      required bool isBasicRule,
+      required bool isVictimGlass}) = _$_GameModelCard;
+
+  @override
+  String get key;
+  @override
+  bool get isBasicRule;
+  @override
+  bool get isVictimGlass;
+  @override
+  @JsonKey(ignore: true)
+  _$GameModelCardCopyWith<_GameModelCard> get copyWith =>
       throw _privateConstructorUsedError;
 }

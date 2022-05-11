@@ -77,6 +77,7 @@ class Providers {
               key: entry.key,
               amount: entry.value,
               isBasicRule: entry.key.contains("BASIC_RULE"),
+              isVictimGlass: entry.key.contains("OPFERGLAS"),
             ),
           )
           .toList(),

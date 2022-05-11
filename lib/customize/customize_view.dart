@@ -89,6 +89,8 @@ class CardDetailsView extends ConsumerWidget {
     CustomizeController controller =
         ref.read(providers.customizeController.notifier);
     CustomizeModel model = ref.watch(providers.customizeController);
+    var selected = model.configCards
+        .firstWhere((element) => element.key == model.selectedCardKey);
     return GestureDetector(
       onTap: () => controller.pop(),
       child: Column(
@@ -97,8 +99,10 @@ class CardDetailsView extends ConsumerWidget {
         children: [
           buildCardForeground(
             onTap: () => controller.pop(),
-            card: model.configCards
-                .firstWhere((element) => element.key == model.selectedCardKey),
+            showLogo: selected.isBasicRule,
+            imageKey: selected.key,
+            titleKey: selected.key,
+            descriptionKey: selected.key,
             context: context,
           ),
           Container(

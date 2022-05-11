@@ -64,7 +64,11 @@
       },
       "OPFERGLAS": {
         "title": "Opferglas",
-        "description": "Du füllst einen großen Schluck von deinem Getränk in das Opferglas.\n\nIst das die letzte Opferglas Karte, musst du das Glas exen."
+        "description": "Du füllst einen großen Schluck von deinem Getränk in das Opferglas."
+      },
+      "OPFERGLAS_LAST": {
+        "title": "Opferglas",
+        "description": "Die letzte Opferglas Karte!\n\nDu musst das Opferglas exen."
       },
       "SCHERE_STEIN_PAAR_BIER": {
         "title": "Schere, Stein, paar Bier",
