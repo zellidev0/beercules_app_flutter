@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cc.zellner.beercules.beercules">
+    package="com.jzellner98.thedrinkinggame">
    <application
         android:label="beercules"
         android:name="${applicationName}"

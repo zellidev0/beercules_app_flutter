@@ -31,7 +31,7 @@ class GameView extends ConsumerWidget {
 
     return ScaffoldWidget(
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -166,7 +166,8 @@ class GameView extends ConsumerWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background.withAlpha(255),
+                    color:
+                        Theme.of(context).colorScheme.background.withAlpha(255),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(16),
                     )),

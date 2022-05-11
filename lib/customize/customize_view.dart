@@ -16,16 +16,18 @@ class CustomizeView extends ConsumerWidget {
         ref.read(providers.customizeController.notifier);
     final CustomizeModel model = ref.read(providers.customizeController);
     return ScaffoldWidget(
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          children: [
-            _buildTopRow(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 16, 32, 0),
+            child: _buildTopRow(
               controller: controller,
               context: context,
             ),
-            const SizedBox(height: 16),
-            Flexible(
+          ),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: GridView.builder(
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
@@ -54,8 +56,8 @@ class CustomizeView extends ConsumerWidget {
                     .length,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
