@@ -71,6 +71,91 @@ Widget buildBasicCard({
       ),
     );
 
+void buildAndShowDialog({
+  required BuildContext context,
+  required VoidCallback onConfirmPressed,
+  required VoidCallback onCancelPressed,
+  required String confirmTextResource,
+  required String declineTextResource,
+}) {
+  showDialog(
+    useSafeArea: false,
+    context: context,
+    builder: (_) => Material(
+      color: Colors.black.withAlpha(100),
+      child: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color:
+                      Theme.of(context).colorScheme.background.withAlpha(255),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(16),
+                  )),
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'game_view.continue.header'.tr(),
+                        style: TextStyles.header2,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    Text(
+                      'game_view.continue.question'.tr(),
+                      style: TextStyles.body1,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 32),
+                    _buildDialogButtons(
+                      onConfirmPressed: onConfirmPressed,
+                      onCancelPressed: onCancelPressed,
+                      confirmTextResource: confirmTextResource,
+                      declineTextResource: declineTextResource,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Row _buildDialogButtons({
+  required VoidCallback onConfirmPressed,
+  required VoidCallback onCancelPressed,
+  required String confirmTextResource,
+  required String declineTextResource,
+}) =>
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+          child: buildButton(
+            onPressed: onConfirmPressed,
+            textResource: confirmTextResource,
+          ),
+        ),
+        const SizedBox(width: 32),
+        Expanded(
+          child: buildButton(
+            onPressed: onCancelPressed,
+            textResource: declineTextResource,
+          ),
+        ),
+      ],
+    );
+
 Widget buildCardForeground({
   required BuildContext context,
   required VoidCallback onTap,

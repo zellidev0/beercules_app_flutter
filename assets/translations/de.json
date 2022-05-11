@@ -1,9 +1,9 @@
 {
   "home_view": {
     "title": "Beercules",
-    "sub_title": "Das göttliche Trinkspiel",
+    "sub_title": "Das göttliche Partyspiel",
     "button": {
-      "go_drinking": "Saufen gehen",
+      "go_drinking": "\uD83C\uDF89 Party jetzt \uD83C\uDF89",
       "rules": "Regeln",
       "customize": "Anpassen"
     }
@@ -12,7 +12,7 @@
     "restoredDefault":"Standard wiederhergestellt!"
   },
   "rules_view": {
-    "go_to_game": "Saufen gehen",
+    "go_to_game": "\uD83C\uDF89 Party jetzt \uD83C\uDF89",
     "title" : "Spielablauf",
     "rule_1_title" : "1. Hinsetzen",
     "rule_1_description" : "Alle Spieler setzen sich in einen Kreis",
@@ -23,51 +23,51 @@
   },
   "game_view": {
     "continue": {
-      "question": "Möchtest du dein letztes Spiel fortsetzen ?",
-      "header": "Fortsetzen ?",
-      "yes": "ja",
-      "no": "nein"
+      "question": "Möchtest du dein letztes Spiel weiterspielen?",
+      "header": "Fortsetzen?",
+      "yes": "Ja",
+      "no": "Nein"
     },
     "instructions": {
       "DECKEL_DRAUF": {
         "title": "Deckel Drauf",
-        "description": "Lege irgendwann heimlich deine Hand auf dein Glas.\nAlle Mitspieler müssen jetzt schnell Ihre Hand auf Ihr Glas legen.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+        "description": "Lege irgendwann heimlich deine Hand auf dein Glas.\nAlle Mitspieler müssen jetzt schnell Ihre Hand auf Ihr Glas legen.\n\nDer langsamste und damit letzte Spieler wird bestraft.\n\n\nVergisst du deine Aufgabe, wirst du doppelt bestraft."
       },
       "EISPRINZESSIN": {
         "title": "Eisprinzessin",
-        "description": "Friere irgendwann heimlich deine Bewegung ein. Alle Mitspieler müssen sich auch sofort einfrieren.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+        "description": "Friere irgendwann heimlich deine Bewegung ein. Alle Mitspieler müssen sich auch sofort einfrieren.\n\nDer langsamste und damit letzte Spieler wird bestraft.\n\n\nVergisst du deine Aufgabe, wirst du doppelt bestraft."
       },
       "OHREN_SPITZEN": {
         "title": "Ohren Spitzen",
-        "description": "Halte irgendwann heimlich dein Ohrläppchen fest. Alle Mitspieler müssen auch ihr Ohrläppchen festhalten.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+        "description": "Halte irgendwann heimlich dein Ohrläppchen fest. Alle Mitspieler müssen auch ihr Ohrläppchen festhalten.\n\nDer langsamste und damit letzte Spieler wird bestraft.\n\n\nVergisst du deine Aufgabe, wirst du doppelt bestraft."
       },
       "HAENDE_HOCH": {
         "title": "Hände hoch",
-        "description": "Hebe irgendwann deine beiden Hände hoch. Deine Mitspieler müssen auch schnell die Hände hoch heben.\n\nDer langsamste und damit letzte Spieler trinkt einen.\n\n\nVergisst du deine Aufgabe, trinkst du zwei."
+        "description": "Hebe irgendwann deine beiden Hände hoch. Deine Mitspieler müssen auch schnell die Hände hoch heben.\n\nDer langsamste und damit letzte Spieler wird bestraft.\n\n\nVergisst du deine Aufgabe, wirst du doppelt bestraft."
       },
       "BEER_LOVE": {
         "title": "Beer Love",
-        "description": "Mache irgendwann heftig mit deinem Glas rum.\n\nDer erste der es merkt, verteilt einen zum Trinken."
+        "description": "Mache irgendwann mit deinem Glas rum.\n\nDer erste der es merkt, verteilt eine Strafe."
       },
       "ICH_HAB_NOCH_NIE": {
         "title": "Ich hab noch nie",
-        "description": "Du sagst etwas, das du noch nie getan hast.\n\nAlle die es schon mal getan haben, trinken einen."
+        "description": "Du sagst etwas, das du noch nie getan hast.\n\nAlle die es schon mal getan haben, werden bestraft."
       },
       "EIN_GESCHENK_VON_HERZEN": {
         "title": "Ein Geschenk",
-        "description": "Jemand muss einen Trinken.\n\nWähle aus wer."
+        "description": "Jemand wird bestraft.\n\nWähle aus wer."
       },
       "DREI_GESCHENKE_VON_HERZEN": {
         "title": "Drei Geschenke",
-        "description": "Du darfst drei zum Trinken verschenken.\n\nEs darf auch einer alle trinken und du darfst sie auch dir selbst schenken."
+        "description": "Du darfst drei Strafen verschenken.\n\nEs darf auch einer alle bekommen und du darfst sie auch dir selbst schenken."
       },
       "OPFERGLAS": {
         "title": "Opferglas",
-        "description": "Du füllst einen großen Schluck von deinem Getränk in das Opferglas.\n\nIst das die letzte Opferglas Karte, musst du das Glas exen"
+        "description": "Du füllst einen großen Schluck von deinem Getränk in das Opferglas.\n\nIst das die letzte Opferglas Karte, musst du das Glas exen."
       },
       "SCHERE_STEIN_PAAR_BIER": {
         "title": "Schere, Stein, paar Bier",
-        "description": "Wähle einen Spieler, der gegen dich Schere Stein Papier spielt.\n\nDer Verlierer trinkt einen."
+        "description": "Wähle einen Spieler, der gegen dich Schere Stein Papier spielt.\n\nDer Verlierer wird bestraft."
       },
       "TAUSCHRAUSCH": {
         "title": "Tauschrausch",
@@ -75,67 +75,67 @@
       },
       "ICH_PACKE_MEINEN_KOFFER": {
         "title": "Ich packe meinen Koffer",
-        "description": "Ihr spielt „Ich packe meinen Koffer“.\n\nDu beginnst und der Verlierer trinkt einen."
+        "description": "Ihr spielt „Ich packe meinen Koffer“.\n\nDu beginnst und der Verlierer wird bestraft."
       },
       "FILMRISS": {
         "title": "Filmriss",
-        "description": "Nenne die letzten 3 Anweisungen in richtiger Reihenfolge. Schaffst du es, trinken alle einen.\n\nSchaffst du es nicht, trinkst du einen."
+        "description": "Nenne die letzten 3 Anweisungen in richtiger Reihenfolge. Schaffst du es, werden alle anderen Mitspieler bestraft.\n\nSchaffst du es nicht, wirst du bestraft."
       },
       "FRAGENKOENIG": {
         "title": "Fragenkönig",
-        "description": "Du bist der Fragenkönig. Stelle den anderen Spielern so viele Fragen wie möglich. Ganz egal welche.\nSobald sie antworten trinken sie einen.\n\nDu bleibst solange Fragenkönig, bis jemand neues Fragenkönig wird."
+        "description": "Du bist der Fragenkönig. Stelle den anderen Spielern so viele Fragen wie möglich. Ganz egal welche.\nSobald sie antworten werden sie bestraft.\n\nDu bleibst solange Fragenkönig, bis jemand neues Fragenkönig wird."
       },
       "TRINK_BUDDY": {
-        "title": "Trink Buddy",
-        "description": "Wähle einen Mitspieler aus, der immer einen trinkt, wenn du einen trinkst und umgekehrt.\n\nIhr bleibt Trink-Buddys über das ganze Spiel.\n\n\nÜbrigens, man kann natürlich auch mehrere Trink-Buddys haben."
+        "title": "Party Buddy",
+        "description": "Wähle einen Mitspieler aus, der immer bestraft wird, wenn du bestrafst wirst und umgekehrt.\n\nIhr bleibt Buddys über das ganze Spiel.\n\n\nÜbrigens, man kann natürlich auch mehrere Buddys gleichzeitig haben."
       },
       "BIERGOTT": {
         "title": "Bier Gott",
-        "description": "Denke dir eine neue Regel aus, sie gilt wie die Grundregeln das ganze Spiel über.\n\nWer Sie bricht, trinkt einen.\n\n\nAußerdem darf sie nicht für oder gegen bestimmte Spieler(-gruppen) sein, sondern muss für alle gelten."
+        "description": "Denke dir eine neue Regel aus, sie gilt wie die Grundregeln das ganze Spiel über.\n\nWer Sie bricht, wird bestraft.\n\n\nAußerdem darf sie nicht für oder gegen bestimmte Spieler(-gruppen) sein, sondern muss für alle gelten."
       },
       "REIMSCHWEIN": {
         "title": "Reimschwein",
-        "description": "Du wählst ein Wort, auf welches im Uhrzeigersinn gereimt werden muss.\n\nWer ein Wort wiederholt, einen Fehler macht oder nach 10 Sekunden keins mehr weiß, trinkt einen."
+        "description": "Du wählst ein Wort, auf welches im Uhrzeigersinn gereimt werden muss.\n\nWer ein Wort wiederholt, einen Fehler macht oder nach 10 Sekunden keins mehr weiß, wird bestraft."
       },
       "ALLE_FUER_EINEN": {
         "title": "Alle für einen …",
-        "description": "Alle trinken außer einer. Wähle aus wer."
+        "description": "Irgendwann während des Spiels darst du eine Strafe aussetzen, dafür werden alle deine Mitspieler bestraft."
       },
       "AUFZAEHLUNG": {
         "title": "Aufzählung",
-        "description": "Wähle ein Thema und beginne eine Aufzählung. Wer etwas wiederholt oder nach 10 Sekunden nichts mehr weiß, trinkt einen.\n\n\nVorschläge: (Automarken, Biersorten …)"
+        "description": "Wähle ein Thema und beginne eine Aufzählung. Wer etwas wiederholt oder nach 10 Sekunden nichts mehr weiß, wird bestraft.\n\n\nVorschläge: (Automarken, Filme …)"
       },
       "ABSTIMMUNG": {
         "title": "Abstimmung",
-        "description": "Du wählst ein Thema zum Abstimmen(A oder B). Die Verliererseite trinkt einen. Bei Gleichstand trinken alle."
+        "description": "Du wählst ein Thema zum Abstimmen(A oder B). Die Verliererseite wird bestraft. Bei Gleichstand werden alle bestraft."
       },
       "_1_2_3_BIER": {
-        "title": "1, 2, Bier",
-        "description": "Wähle eine Zahl zwischen 1 und 10. Ihr zählt nun reih um hoch.\nBei jeder Zahl die durch deine Zahl teilbar ist oder in der deine Zahl vorkommt, muss der Spieler  \"Bier\" anstelle der Zahl sagen.\n\nIhr seid fertig wenn jemand einen Fehler macht.\n\nDer trinkt zwei."
+        "title": "1, 2, X, 4",
+        "description": "Wähle eine Zahl zwischen 1 und 10. Ihr zählt nun reih um hoch.\nBei jeder Zahl die durch deine Zahl teilbar ist oder in der deine Zahl vorkommt, muss der Spieler  \"Beercules\" anstelle der Zahl sagen.\n\nIhr seid fertig wenn jemand einen Fehler macht.\n\nDer Verlierer wird doppelt bestraft."
       },
       "RECHTS": {
         "title": "Rechts",
-        "description": "Dein rechter Nachbar trinkt einen."
+        "description": "Dein rechter Nachbar wird bestraft."
       },
       "LINKS": {
         "title": "Links",
-        "description": "Dein linker Nachbar trinkt einen."
+        "description": "Dein linker Nachbar wird bestraft."
       },
       "KNUTSCHKARTE": {
         "title": "Suck it",
-        "description": "Nimm eine Visitenkarte o.ä. und gib sie nur durch ansaugen mit dem Mund weiter.\nDein Nachbar muss sie jetzt ansaugen und ebenso weitergeben.\n\nDie zwei Spieler, die sie fallen lassen, trinken einen."
+        "description": "Nimm eine Visitenkarte o.ä. und gib sie nur durch ansaugen mit dem Mund weiter.\nDein Nachbar muss sie jetzt ansaugen und ebenso weitergeben.\n\nDie zwei Spieler, die sie fallen lassen, werden bestraft."
       },
       "MENS_HEALTH": {
         "title": "Men‘s Health",
-        "description": "Alle Männer trinken einen."
+        "description": "Alle Männer werden bestraft."
       },
       "WOMENS_HEALTH": {
         "title": "Women’s Health",
-        "description": "Alle Frauen trinken einen."
+        "description": "Alle Frauen werden bestraft."
       },
       "RICHTUNGSWECHSEL": {
         "title": "Richtungswechsel",
-        "description": "Ihr wechselt die Richtung. Außerdem trinkst du einen."
+        "description": "Ihr wechselt die Richtung. Außerdem wirst du bestraft."
       },
       "KETTENREAKTION": {
         "title": "Kettenreaktion",
@@ -143,7 +143,7 @@
       },
       "SPIEGLEIN_SPIEGLEIN": {
         "title": "Spieglein Spieglein",
-        "description": "Entscheidet, wer der oder die geilste ist. Er/Sie trinkt einen. Werdet ihr euch nicht einig, trinken alle einen."
+        "description": "Entscheidet, wer der oder die schönste ist. Er/Sie wird bestraft. Werdet ihr euch nicht einig, werden alle bestraft."
       },
       "SING_NO_SONG": {
         "title": "Sing no song",
@@ -151,15 +151,15 @@
       },
       "BASIC_RULE_1": {
         "title": "Schei**e",
-        "description": "Es dürfen keine Kraftausdrücke oder Beleidigungen gesagt oder gezeigt werden.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
+        "description": "Es dürfen keine Kraftausdrücke oder Beleidigungen gesagt oder gezeigt werden.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, wird bestraft."
       },
       "BASIC_RULE_2": {
         "title": "Links, rechts",
-        "description": "Es muss immer mit links getrunken werden. Linkshänder trinken mit rechts.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
+        "description": "Es muss immer mit links getrunken werden. Linkshänder trinken mit rechts.\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, wird bestraft."
       },
       "BASIC_RULE_3": {
         "title": "Trinken",
-        "description": "Es darf nicht das Wort \"trinken\"gesagt werden. Auch nicht \"trink\", \"getrunken\", etc.).\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, trinkt einen."
+        "description": "Es darf nicht das Wort \"trinken\"gesagt werden. Auch nicht \"trink\", \"getrunken\", etc.).\n\nDiese Regel gilt das ganze Spiel. Wer sie bricht, wird bestraft."
       }
     }
   }

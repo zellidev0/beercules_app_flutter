@@ -22,9 +22,12 @@ class GameView extends ConsumerWidget {
 
     if (model.showContinueDialog) {
       Future.delayed(Duration.zero, () {
-        showContinueDialog(
-          controller: controller,
+        buildAndShowDialog(
           context: context,
+          onConfirmPressed: controller.pop,
+          onCancelPressed: controller.newGame,
+          confirmTextResource: 'game_view.continue.yes',
+          declineTextResource: 'game_view.continue.no',
         );
       });
     }
@@ -149,71 +152,4 @@ class GameView extends ConsumerWidget {
       ),
     );
   }
-
-  void showContinueDialog({
-    required BuildContext context,
-    required GameController controller,
-  }) {
-    showDialog(
-      useSafeArea: false,
-      context: context,
-      builder: (_) => Material(
-        color: Colors.black.withAlpha(100),
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).colorScheme.background.withAlpha(255),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(16),
-                    )),
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          'game_view.continue.header'.tr(),
-                          style: TextStyles.header2,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'game_view.continue.question'.tr(),
-                        style: TextStyles.body1,
-                        textAlign: TextAlign.justify,
-                      ),
-                      const SizedBox(height: 16),
-                      _buildDialogButtons(controller: controller)
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Row _buildDialogButtons({required GameController controller}) => Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          buildButton(
-            onPressed: controller.pop,
-            textResource: 'game_view.continue.yes',
-          ),
-          const SizedBox(width: 32),
-          buildButton(
-            onPressed: controller.newGame,
-            textResource: 'game_view.continue.no',
-          ),
-        ],
-      );
 }
