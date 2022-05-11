@@ -2,7 +2,7 @@ import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomizeCard extends StatelessWidget {
   final String _cardKey;
@@ -24,28 +24,38 @@ class CustomizeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapUp: _onTapUp,
-      onTapDown: _onTapDown,
-      onTap: _onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-                child: SvgPicture.asset(
-                    "assets/instructions/${_cardKey}_pic.svg")),
-            const SizedBox(height: 8),
-            Text(
-              "game_view.instructions.$_cardKey.title",
-              style: TextStyles.body4,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ).tr(),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Expanded(
+            child: Stack(
+              children: <Widget>[
+                SvgPicture.asset(
+                  "assets/instructions/${_cardKey}_pic.svg",
+                ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10000000),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: _onTap,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            "game_view.instructions.$_cardKey.title",
+            style: TextStyles.body4,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ).tr(),
+        ],
       ),
     );
   }
