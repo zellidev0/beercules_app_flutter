@@ -14,26 +14,53 @@ class BeerculesCard with _$BeerculesCard {
 }
 
 @freezed
+class BeerculesPlayCard with _$BeerculesPlayCard {
+  factory BeerculesPlayCard({
+    required String id,
+    required String key,
+    required bool played,
+    required bool isBasicRule,
+    required bool isVictimGlass,
+  }) = _BeerculesPlayCard;
+}
+
+@freezed
 class BeerculesCardProviderModel with _$BeerculesCardProviderModel {
   factory BeerculesCardProviderModel({
-    required List<BeerculesCard> currentGameCards,
+    required List<BeerculesPlayCard> currentGameCards,
     required List<BeerculesCard> configCards,
   }) = _BeerculesCardProviderModel;
 }
 
 class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
   final List<BeerculesCard> defaultBeerculesCards;
+
   BeerculesCardProvider({
     required List<BeerculesCard> beerculesCards,
   })  : defaultBeerculesCards = beerculesCards,
         super(BeerculesCardProviderModel(
           configCards: beerculesCards,
-          currentGameCards: beerculesCards,
+          currentGameCards: _toPlayingCard(beerculesCards),
         ));
+
+  static List<BeerculesPlayCard> _toPlayingCard(
+      List<BeerculesCard> beerculesCards) {
+    return beerculesCards
+        .map((card) => List.generate(card.amount, (index) => [index, card]))
+        .expand((_) => _)
+        .map((card) => BeerculesPlayCard(
+              key: (card[1] as BeerculesCard).key,
+              played: false,
+              isBasicRule: (card[1] as BeerculesCard).isBasicRule,
+              isVictimGlass: (card[1] as BeerculesCard).isVictimGlass,
+              id: (card[1] as BeerculesCard).key + card[0].toString(),
+            ))
+        .toList();
+  }
 
   void setCurrentToDefault() {
     state = state.copyWith(
-      currentGameCards: defaultBeerculesCards,
+      currentGameCards: _toPlayingCard(defaultBeerculesCards),
     );
   }
 
@@ -45,16 +72,15 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
 
   void setCurrentToConfig() {
     state = state.copyWith(
-      currentGameCards: state.configCards,
+      currentGameCards: _toPlayingCard(state.configCards),
     );
   }
 
-  void decreaseCurrentGameCardsAmount({required String cardKey}) {
+  void decreaseCurrentGameCardsAmount({required String cardId}) {
     state = state.copyWith(
         currentGameCards: state.currentGameCards
-            .map((BeerculesCard card) => card.key == cardKey
-                ? card.copyWith(amount: (card.amount - 1).clamp(0, 100000))
-                : card)
+            .map((BeerculesPlayCard card) =>
+                card.id == cardId ? card.copyWith(played: true) : card)
             .toList());
   }
 

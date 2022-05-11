@@ -39,14 +39,15 @@ class GameController extends StateNotifier<GameModel> {
         _beerculesCardsProvider.addListener((BeerculesCardProviderModel model) {
       state = state.copyWith(
         cards: initCards(
+            seed: state.cardTransformSeed.toInt(),
             cards: model.currentGameCards
-                .map((card) => List.generate(card.amount, (_) => card))
-                .expand((element) => element)
                 .map((card) => GameModelCard(
                       key: card.key,
                       isBasicRule: card.isBasicRule,
                       isVictimGlass: card.isVictimGlass,
                       victimGlassKey: 'OPFERGLAS_LAST',
+                      played: card.played,
+                      id: card.id,
                     ))
                 .toList()),
       );
@@ -61,8 +62,8 @@ class GameController extends StateNotifier<GameModel> {
 
   void dismissCard() async => await _navigationService.pop();
 
-  void decreaseCardAmount({required String cardKey}) {
-    _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardKey: cardKey);
+  void decreaseCardAmount({required String cardId}) {
+    _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardId: cardId);
   }
 
   void newGame({required BuildContext context}) {
@@ -80,10 +81,12 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   static List<GameModelCard> initCards({
+    required int seed,
     required List<GameModelCard> cards,
   }) {
     return [
       ...shuffle(
+        seed,
         cards.where((element) => !element.isBasicRule).toList(),
       ),
       ...cards.where((element) => element.isBasicRule).toList(),

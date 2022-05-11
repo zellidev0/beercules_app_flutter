@@ -16,9 +16,11 @@ class GameModel with _$GameModel {
 @freezed
 class GameModelCard with _$GameModelCard {
   factory GameModelCard({
+    required String id,
     required String key,
     required bool isBasicRule,
     required bool isVictimGlass,
     required String victimGlassKey,
+    required bool played,
   }) = _GameModelCard;
 }

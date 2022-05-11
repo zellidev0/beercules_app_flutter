@@ -213,11 +213,240 @@ abstract class _BeerculesCard implements BeerculesCard {
 }
 
 /// @nodoc
+class _$BeerculesPlayCardTearOff {
+  const _$BeerculesPlayCardTearOff();
+
+  _BeerculesPlayCard call(
+      {required String id,
+      required String key,
+      required bool played,
+      required bool isBasicRule,
+      required bool isVictimGlass}) {
+    return _BeerculesPlayCard(
+      id: id,
+      key: key,
+      played: played,
+      isBasicRule: isBasicRule,
+      isVictimGlass: isVictimGlass,
+    );
+  }
+}
+
+/// @nodoc
+const $BeerculesPlayCard = _$BeerculesPlayCardTearOff();
+
+/// @nodoc
+mixin _$BeerculesPlayCard {
+  String get id => throw _privateConstructorUsedError;
+  String get key => throw _privateConstructorUsedError;
+  bool get played => throw _privateConstructorUsedError;
+  bool get isBasicRule => throw _privateConstructorUsedError;
+  bool get isVictimGlass => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BeerculesPlayCardCopyWith<BeerculesPlayCard> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BeerculesPlayCardCopyWith<$Res> {
+  factory $BeerculesPlayCardCopyWith(
+          BeerculesPlayCard value, $Res Function(BeerculesPlayCard) then) =
+      _$BeerculesPlayCardCopyWithImpl<$Res>;
+  $Res call(
+      {String id,
+      String key,
+      bool played,
+      bool isBasicRule,
+      bool isVictimGlass});
+}
+
+/// @nodoc
+class _$BeerculesPlayCardCopyWithImpl<$Res>
+    implements $BeerculesPlayCardCopyWith<$Res> {
+  _$BeerculesPlayCardCopyWithImpl(this._value, this._then);
+
+  final BeerculesPlayCard _value;
+  // ignore: unused_field
+  final $Res Function(BeerculesPlayCard) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? key = freezed,
+    Object? played = freezed,
+    Object? isBasicRule = freezed,
+    Object? isVictimGlass = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      played: played == freezed
+          ? _value.played
+          : played // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isBasicRule: isBasicRule == freezed
+          ? _value.isBasicRule
+          : isBasicRule // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isVictimGlass: isVictimGlass == freezed
+          ? _value.isVictimGlass
+          : isVictimGlass // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$BeerculesPlayCardCopyWith<$Res>
+    implements $BeerculesPlayCardCopyWith<$Res> {
+  factory _$BeerculesPlayCardCopyWith(
+          _BeerculesPlayCard value, $Res Function(_BeerculesPlayCard) then) =
+      __$BeerculesPlayCardCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String id,
+      String key,
+      bool played,
+      bool isBasicRule,
+      bool isVictimGlass});
+}
+
+/// @nodoc
+class __$BeerculesPlayCardCopyWithImpl<$Res>
+    extends _$BeerculesPlayCardCopyWithImpl<$Res>
+    implements _$BeerculesPlayCardCopyWith<$Res> {
+  __$BeerculesPlayCardCopyWithImpl(
+      _BeerculesPlayCard _value, $Res Function(_BeerculesPlayCard) _then)
+      : super(_value, (v) => _then(v as _BeerculesPlayCard));
+
+  @override
+  _BeerculesPlayCard get _value => super._value as _BeerculesPlayCard;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? key = freezed,
+    Object? played = freezed,
+    Object? isBasicRule = freezed,
+    Object? isVictimGlass = freezed,
+  }) {
+    return _then(_BeerculesPlayCard(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      played: played == freezed
+          ? _value.played
+          : played // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isBasicRule: isBasicRule == freezed
+          ? _value.isBasicRule
+          : isBasicRule // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isVictimGlass: isVictimGlass == freezed
+          ? _value.isVictimGlass
+          : isVictimGlass // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_BeerculesPlayCard implements _BeerculesPlayCard {
+  _$_BeerculesPlayCard(
+      {required this.id,
+      required this.key,
+      required this.played,
+      required this.isBasicRule,
+      required this.isVictimGlass});
+
+  @override
+  final String id;
+  @override
+  final String key;
+  @override
+  final bool played;
+  @override
+  final bool isBasicRule;
+  @override
+  final bool isVictimGlass;
+
+  @override
+  String toString() {
+    return 'BeerculesPlayCard(id: $id, key: $key, played: $played, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _BeerculesPlayCard &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.key, key) &&
+            const DeepCollectionEquality().equals(other.played, played) &&
+            const DeepCollectionEquality()
+                .equals(other.isBasicRule, isBasicRule) &&
+            const DeepCollectionEquality()
+                .equals(other.isVictimGlass, isVictimGlass));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(key),
+      const DeepCollectionEquality().hash(played),
+      const DeepCollectionEquality().hash(isBasicRule),
+      const DeepCollectionEquality().hash(isVictimGlass));
+
+  @JsonKey(ignore: true)
+  @override
+  _$BeerculesPlayCardCopyWith<_BeerculesPlayCard> get copyWith =>
+      __$BeerculesPlayCardCopyWithImpl<_BeerculesPlayCard>(this, _$identity);
+}
+
+abstract class _BeerculesPlayCard implements BeerculesPlayCard {
+  factory _BeerculesPlayCard(
+      {required String id,
+      required String key,
+      required bool played,
+      required bool isBasicRule,
+      required bool isVictimGlass}) = _$_BeerculesPlayCard;
+
+  @override
+  String get id;
+  @override
+  String get key;
+  @override
+  bool get played;
+  @override
+  bool get isBasicRule;
+  @override
+  bool get isVictimGlass;
+  @override
+  @JsonKey(ignore: true)
+  _$BeerculesPlayCardCopyWith<_BeerculesPlayCard> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$BeerculesCardProviderModelTearOff {
   const _$BeerculesCardProviderModelTearOff();
 
   _BeerculesCardProviderModel call(
-      {required List<BeerculesCard> currentGameCards,
+      {required List<BeerculesPlayCard> currentGameCards,
       required List<BeerculesCard> configCards}) {
     return _BeerculesCardProviderModel(
       currentGameCards: currentGameCards,
@@ -231,7 +460,7 @@ const $BeerculesCardProviderModel = _$BeerculesCardProviderModelTearOff();
 
 /// @nodoc
 mixin _$BeerculesCardProviderModel {
-  List<BeerculesCard> get currentGameCards =>
+  List<BeerculesPlayCard> get currentGameCards =>
       throw _privateConstructorUsedError;
   List<BeerculesCard> get configCards => throw _privateConstructorUsedError;
 
@@ -246,7 +475,8 @@ abstract class $BeerculesCardProviderModelCopyWith<$Res> {
           $Res Function(BeerculesCardProviderModel) then) =
       _$BeerculesCardProviderModelCopyWithImpl<$Res>;
   $Res call(
-      {List<BeerculesCard> currentGameCards, List<BeerculesCard> configCards});
+      {List<BeerculesPlayCard> currentGameCards,
+      List<BeerculesCard> configCards});
 }
 
 /// @nodoc
@@ -267,7 +497,7 @@ class _$BeerculesCardProviderModelCopyWithImpl<$Res>
       currentGameCards: currentGameCards == freezed
           ? _value.currentGameCards
           : currentGameCards // ignore: cast_nullable_to_non_nullable
-              as List<BeerculesCard>,
+              as List<BeerculesPlayCard>,
       configCards: configCards == freezed
           ? _value.configCards
           : configCards // ignore: cast_nullable_to_non_nullable
@@ -285,7 +515,8 @@ abstract class _$BeerculesCardProviderModelCopyWith<$Res>
       __$BeerculesCardProviderModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<BeerculesCard> currentGameCards, List<BeerculesCard> configCards});
+      {List<BeerculesPlayCard> currentGameCards,
+      List<BeerculesCard> configCards});
 }
 
 /// @nodoc
@@ -309,7 +540,7 @@ class __$BeerculesCardProviderModelCopyWithImpl<$Res>
       currentGameCards: currentGameCards == freezed
           ? _value.currentGameCards
           : currentGameCards // ignore: cast_nullable_to_non_nullable
-              as List<BeerculesCard>,
+              as List<BeerculesPlayCard>,
       configCards: configCards == freezed
           ? _value.configCards
           : configCards // ignore: cast_nullable_to_non_nullable
@@ -325,7 +556,7 @@ class _$_BeerculesCardProviderModel implements _BeerculesCardProviderModel {
       {required this.currentGameCards, required this.configCards});
 
   @override
-  final List<BeerculesCard> currentGameCards;
+  final List<BeerculesPlayCard> currentGameCards;
   @override
   final List<BeerculesCard> configCards;
 
@@ -361,12 +592,12 @@ class _$_BeerculesCardProviderModel implements _BeerculesCardProviderModel {
 abstract class _BeerculesCardProviderModel
     implements BeerculesCardProviderModel {
   factory _BeerculesCardProviderModel(
-          {required List<BeerculesCard> currentGameCards,
+          {required List<BeerculesPlayCard> currentGameCards,
           required List<BeerculesCard> configCards}) =
       _$_BeerculesCardProviderModel;
 
   @override
-  List<BeerculesCard> get currentGameCards;
+  List<BeerculesPlayCard> get currentGameCards;
   @override
   List<BeerculesCard> get configCards;
   @override

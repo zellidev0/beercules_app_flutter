@@ -32,8 +32,8 @@ Widget buildButton({
       onPressed: onPressed,
     );
 
-List<T> shuffle<T>(List<T> items) {
-  var random = Random();
+List<T> shuffle<T>(int seed, List<T> items) {
+  var random = Random(seed);
   for (var i = items.length - 1; i > 0; i--) {
     var n = random.nextInt(i + 1);
     var temp = items[i];

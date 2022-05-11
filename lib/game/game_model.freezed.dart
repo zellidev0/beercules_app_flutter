@@ -221,15 +221,19 @@ class _$GameModelCardTearOff {
   const _$GameModelCardTearOff();
 
   _GameModelCard call(
-      {required String key,
+      {required String id,
+      required String key,
       required bool isBasicRule,
       required bool isVictimGlass,
-      required String victimGlassKey}) {
+      required String victimGlassKey,
+      required bool played}) {
     return _GameModelCard(
+      id: id,
       key: key,
       isBasicRule: isBasicRule,
       isVictimGlass: isVictimGlass,
       victimGlassKey: victimGlassKey,
+      played: played,
     );
   }
 }
@@ -239,10 +243,12 @@ const $GameModelCard = _$GameModelCardTearOff();
 
 /// @nodoc
 mixin _$GameModelCard {
+  String get id => throw _privateConstructorUsedError;
   String get key => throw _privateConstructorUsedError;
   bool get isBasicRule => throw _privateConstructorUsedError;
   bool get isVictimGlass => throw _privateConstructorUsedError;
   String get victimGlassKey => throw _privateConstructorUsedError;
+  bool get played => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameModelCardCopyWith<GameModelCard> get copyWith =>
@@ -255,10 +261,12 @@ abstract class $GameModelCardCopyWith<$Res> {
           GameModelCard value, $Res Function(GameModelCard) then) =
       _$GameModelCardCopyWithImpl<$Res>;
   $Res call(
-      {String key,
+      {String id,
+      String key,
       bool isBasicRule,
       bool isVictimGlass,
-      String victimGlassKey});
+      String victimGlassKey,
+      bool played});
 }
 
 /// @nodoc
@@ -272,12 +280,18 @@ class _$GameModelCardCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? key = freezed,
     Object? isBasicRule = freezed,
     Object? isVictimGlass = freezed,
     Object? victimGlassKey = freezed,
+    Object? played = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       key: key == freezed
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -294,6 +308,10 @@ class _$GameModelCardCopyWithImpl<$Res>
           ? _value.victimGlassKey
           : victimGlassKey // ignore: cast_nullable_to_non_nullable
               as String,
+      played: played == freezed
+          ? _value.played
+          : played // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -306,10 +324,12 @@ abstract class _$GameModelCardCopyWith<$Res>
       __$GameModelCardCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String key,
+      {String id,
+      String key,
       bool isBasicRule,
       bool isVictimGlass,
-      String victimGlassKey});
+      String victimGlassKey,
+      bool played});
 }
 
 /// @nodoc
@@ -325,12 +345,18 @@ class __$GameModelCardCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? key = freezed,
     Object? isBasicRule = freezed,
     Object? isVictimGlass = freezed,
     Object? victimGlassKey = freezed,
+    Object? played = freezed,
   }) {
     return _then(_GameModelCard(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       key: key == freezed
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -347,6 +373,10 @@ class __$GameModelCardCopyWithImpl<$Res>
           ? _value.victimGlassKey
           : victimGlassKey // ignore: cast_nullable_to_non_nullable
               as String,
+      played: played == freezed
+          ? _value.played
+          : played // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -355,11 +385,15 @@ class __$GameModelCardCopyWithImpl<$Res>
 
 class _$_GameModelCard implements _GameModelCard {
   _$_GameModelCard(
-      {required this.key,
+      {required this.id,
+      required this.key,
       required this.isBasicRule,
       required this.isVictimGlass,
-      required this.victimGlassKey});
+      required this.victimGlassKey,
+      required this.played});
 
+  @override
+  final String id;
   @override
   final String key;
   @override
@@ -368,10 +402,12 @@ class _$_GameModelCard implements _GameModelCard {
   final bool isVictimGlass;
   @override
   final String victimGlassKey;
+  @override
+  final bool played;
 
   @override
   String toString() {
-    return 'GameModelCard(key: $key, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass, victimGlassKey: $victimGlassKey)';
+    return 'GameModelCard(id: $id, key: $key, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass, victimGlassKey: $victimGlassKey, played: $played)';
   }
 
   @override
@@ -379,22 +415,26 @@ class _$_GameModelCard implements _GameModelCard {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GameModelCard &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.key, key) &&
             const DeepCollectionEquality()
                 .equals(other.isBasicRule, isBasicRule) &&
             const DeepCollectionEquality()
                 .equals(other.isVictimGlass, isVictimGlass) &&
             const DeepCollectionEquality()
-                .equals(other.victimGlassKey, victimGlassKey));
+                .equals(other.victimGlassKey, victimGlassKey) &&
+            const DeepCollectionEquality().equals(other.played, played));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(key),
       const DeepCollectionEquality().hash(isBasicRule),
       const DeepCollectionEquality().hash(isVictimGlass),
-      const DeepCollectionEquality().hash(victimGlassKey));
+      const DeepCollectionEquality().hash(victimGlassKey),
+      const DeepCollectionEquality().hash(played));
 
   @JsonKey(ignore: true)
   @override
@@ -404,11 +444,15 @@ class _$_GameModelCard implements _GameModelCard {
 
 abstract class _GameModelCard implements GameModelCard {
   factory _GameModelCard(
-      {required String key,
+      {required String id,
+      required String key,
       required bool isBasicRule,
       required bool isVictimGlass,
-      required String victimGlassKey}) = _$_GameModelCard;
+      required String victimGlassKey,
+      required bool played}) = _$_GameModelCard;
 
+  @override
+  String get id;
   @override
   String get key;
   @override
@@ -417,6 +461,8 @@ abstract class _GameModelCard implements GameModelCard {
   bool get isVictimGlass;
   @override
   String get victimGlassKey;
+  @override
+  bool get played;
   @override
   @JsonKey(ignore: true)
   _$GameModelCardCopyWith<_GameModelCard> get copyWith =>

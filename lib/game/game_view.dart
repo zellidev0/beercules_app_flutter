@@ -57,30 +57,25 @@ class GameView extends ConsumerWidget {
     required BuildContext context,
     required GameController controller,
   }) {
-    return Padding(
-      padding: const EdgeInsets.all(64),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: model.cards
-            .mapIndexed(
-              (int index, GameModelCard card) => Transform.rotate(
-                angle: index.toDouble() + model.cardTransformSeed,
-                child: RepaintBoundary(
-                  child: Transform.translate(
-                    offset: Offset(model.cardTransformSeed,
-                        index.toDouble() + model.cardTransformSeed),
-                    child: _buildCardBackground(
-                      context: context,
-                      card: card,
-                      controller: controller,
-                      model: model,
-                    ),
-                  ),
-                ),
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: model.cards
+          .mapIndexed(
+            (int index, GameModelCard card) => Transform.rotate(
+              angle: index.toDouble() + model.cardTransformSeed,
+              child: RepaintBoundary(
+                child: card.played
+                    ? Container()
+                    : _buildCardBackground(
+                        context: context,
+                        card: card,
+                        controller: controller,
+                        model: model,
+                      ),
               ),
-            )
-            .toList(),
-      ),
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -96,7 +91,7 @@ class GameView extends ConsumerWidget {
           ),
           const Spacer(),
           Text(
-            model.cards.length.toString(),
+            model.cards.where((_) => !_.played).length.toString(),
             style: TextStyles.header4,
           ),
         ],
@@ -109,7 +104,7 @@ class GameView extends ConsumerWidget {
     required GameController controller,
   }) {
     void onSwipe(_, __) {
-      controller.decreaseCardAmount(cardKey: card.key);
+      controller.decreaseCardAmount(cardId: card.id);
       showDialog(
         context: context,
         builder: (_) => buildCardForeground(
