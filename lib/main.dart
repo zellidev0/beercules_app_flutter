@@ -88,7 +88,8 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               debugShowCheckedModeBanner: false,
-                backButtonDispatcher: BeamerBackButtonDispatcher(delegate: globalBeamerDelegate),
+              backButtonDispatcher:
+                  BeamerBackButtonDispatcher(delegate: globalBeamerDelegate),
               routeInformationParser: _beamerParser,
               routerDelegate: _beamerDelegate,
               localizationsDelegates: context.localizationDelegates,
