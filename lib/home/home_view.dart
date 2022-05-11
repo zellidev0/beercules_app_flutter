@@ -45,41 +45,36 @@ class HomeView extends ConsumerWidget {
         style: TextStyles.header3,
       ).tr();
 
-  Widget _buildLogo({required HomeController controller}) => GestureDetector(
-        onLongPress: controller.goToCustomizeView,
-        child: Image.asset("assets/images/logo.png"),
-      );
+  Widget _buildLogo({required HomeController controller}) =>
+      Image.asset("assets/images/logo.png");
 
   Widget _buildButtons({required HomeController controller}) => Column(
         children: [
-          _buildButton(
+          buildButton(
             textResource: "home_view.button.go_drinking",
             onPressed: controller.goToGameView,
           ),
-          const SizedBox(height: 8),
-          _buildButton(
-            textResource: "home_view.button.rules",
-            onPressed: controller.goToRulesView,
-          ),
-          const SizedBox(height: 8),
-          // _buildButton(
-          //   textResource: "home_view.button.customize",
-          //   onPressed: null,
-          //   onLongPress: controller.goToCustomizeView,
-          // ),
+          const SizedBox(height: 32),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: buildIconButtonWithText(
+                  textResource: "home_view.button.rules",
+                  icon: Icons.rule,
+                  onPressed: controller.goToRulesView,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: buildIconButtonWithText(
+                  textResource: "home_view.button.customize",
+                  icon: Icons.settings,
+                  onPressed: controller.goToCustomizeView,
+                ),
+              ),
+            ],
+          )
         ],
-      );
-
-  Widget _buildButton({
-    required String textResource,
-    required VoidCallback? onPressed,
-    VoidCallback? onLongPress,
-  }) =>
-      SizedBox(
-        width: 200,
-        child: buildButton(
-          onPressed: onPressed,
-          textResource: textResource,
-        ),
       );
 }

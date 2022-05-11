@@ -40,6 +40,28 @@ Widget buildIconButton({
       onPressed: onPressed,
     );
 
+Widget buildIconButtonWithText({
+  required VoidCallback onPressed,
+  required String textResource,
+  required IconData icon,
+}) =>
+    _buildButton(
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: 16,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            textResource,
+            style: TextStyles.body1,
+          ).tr(),
+        ],
+      ),
+      onPressed: onPressed,
+    );
+
 Widget buildBasicCard({
   required Widget child,
   required VoidCallback? onTap,
