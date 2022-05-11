@@ -103,17 +103,26 @@ class CardDetailsView extends ConsumerWidget {
                 .firstWhere((element) => element.key == model.selectedCardKey),
             context: context,
           ),
-          FloatingActionButton(
-            onPressed: controller.modifyCardAmount,
-            child: Text(
-              model.configCards
-                  .firstWhere((element) => element.key == model.selectedCardKey)
-                  .amount
-                  .toString(),
-              style: Theme.of(context).textTheme.bodyText2,
+          Container(
+            color: Colors.transparent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingActionButton(
+                  onPressed: controller.modifyCardAmount,
+                  child: Text(
+                    model.configCards
+                        .firstWhere(
+                            (element) => element.key == model.selectedCardKey)
+                        .amount
+                        .toString(),
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 64),
+          Container(height: 64, color: Colors.transparent),
         ],
       ),
     );
