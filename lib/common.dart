@@ -10,7 +10,7 @@ import 'package:flutter_svg/svg.dart';
 void showSnackbar({
   required BuildContext context,
   required String message,
-  Duration duration = const Duration(seconds: 1),
+  Duration duration = const Duration(seconds: 3),
 }) {
   final snackBar = SnackBar(
     backgroundColor: Theme.of(context).colorScheme.primary,
