@@ -1,10 +1,10 @@
 import 'package:beercules/common.dart';
-import 'package:beercules/extensions.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
@@ -52,7 +52,7 @@ class GameView extends ConsumerWidget {
     );
   }
 
-  Padding _buildCardStack({
+  Widget _buildCardStack({
     required GameModel model,
     required BuildContext context,
     required GameController controller,
@@ -63,7 +63,7 @@ class GameView extends ConsumerWidget {
         alignment: Alignment.bottomCenter,
         children: model.cards
             .mapIndexed(
-              (GameModelCard card, int index) => Transform.rotate(
+              (int index, GameModelCard card) => Transform.rotate(
                 angle: index.toDouble() + model.cardTransformSeed,
                 child: RepaintBoundary(
                   child: Transform.translate(
@@ -108,7 +108,7 @@ class GameView extends ConsumerWidget {
     required GameModel model,
     required GameController controller,
   }) {
-    void onSwipe(_) {
+    void onSwipe(_, __) {
       controller.decreaseCardAmount(cardKey: card.key);
       showDialog(
         context: context,
@@ -130,28 +130,27 @@ class GameView extends ConsumerWidget {
     }
 
     return Swipable(
-      threshold: 4.0,
-      onSwipeDown: onSwipe,
-      onSwipeUp: onSwipe,
-      onSwipeLeft: onSwipe,
-      onSwipeRight: onSwipe,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8),
-          onTap: () {},
-          child: Ink(
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              // borderRadius: const BorderRadius.all(Radius.circular(8)),
-              border: Border.all(color: Theme.of(context).primaryColorDark),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: AspectRatio(
-              aspectRatio: 2.5 / 3.5,
-              child: Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Image.asset("assets/images/logo.png"),
+      threshold: 0.3,
+      onSwipeEnd: onSwipe,
+      child: Padding(
+        padding: const EdgeInsets.all(64),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(8),
+            onTap: () {},
+            child: Ink(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                border: Border.all(color: Theme.of(context).primaryColorDark),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: AspectRatio(
+                aspectRatio: 2.5 / 3.5,
+                child: Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Image.asset("assets/images/logo.png"),
+                ),
               ),
             ),
           ),
