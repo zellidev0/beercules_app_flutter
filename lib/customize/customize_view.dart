@@ -39,8 +39,6 @@ class CustomizeView extends ConsumerWidget {
                       .where((element) => !element.isBasicRule)
                       .toList()[index]
                       .key,
-                  onTapUp: (TapUpDetails details) {},
-                  onTapDown: (TapDownDetails details) {},
                   onTap: () => controller.showModal(
                     cardKey: model.configCards
                         .where((element) => !element.isBasicRule)

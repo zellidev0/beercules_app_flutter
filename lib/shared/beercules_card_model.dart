@@ -42,6 +42,12 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
     );
   }
 
+  void setCurrentToConfig() {
+    state = state.copyWith(
+      currentGameCards: state.configCards,
+    );
+  }
+
   void decreaseCurrentGameCardsAmount({required String cardKey}) {
     state = state.copyWith(
         currentGameCards: state.currentGameCards
@@ -57,9 +63,8 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
   }) {
     state = state.copyWith(
         configCards: state.configCards
-            .map((BeerculesCard card) => card.key == cardKey
-                ? card.copyWith(amount: amount)
-                : card)
+            .map((BeerculesCard card) =>
+                card.key == cardKey ? card.copyWith(amount: amount) : card)
             .toList());
   }
 }

@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:beercules/common.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,6 +30,10 @@ class GameController extends StateNotifier<GameModel> {
                 beerculesCardsProvider.state.currentGameCards,
                 beerculesCardsProvider.defaultBeerculesCards,
               ),
+              showConfigIsDefaultMessage: !listEquals(
+                beerculesCardsProvider.state.currentGameCards,
+                beerculesCardsProvider.defaultBeerculesCards,
+              ),
             )) {
     listener =
         _beerculesCardsProvider.addListener((BeerculesCardProviderModel model) {
@@ -49,8 +55,17 @@ class GameController extends StateNotifier<GameModel> {
     _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardKey: cardKey);
   }
 
-  void newGame() {
-    _beerculesCardsProvider.setCurrentToDefault();
+  void newGame({required BuildContext context}) {
+    if (state.showConfigIsDefaultMessage) {
+      _beerculesCardsProvider.setCurrentToConfig();
+      showSnackbar(
+        context: context,
+        message: 'game_view.customize_cards_used'.tr(),
+        duration: const Duration(seconds: 3),
+      );
+    } else {
+      _beerculesCardsProvider.setCurrentToDefault();
+    }
     pop();
   }
 
@@ -70,7 +85,10 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   void pop() {
-    state = state.copyWith(showContinueDialog: false);
+    state = state.copyWith(
+      showContinueDialog: false,
+      showConfigIsDefaultMessage: false,
+    );
     _navigationService.pop();
   }
 }

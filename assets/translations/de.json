@@ -22,6 +22,7 @@
     "rule_3_description" : "Du swipest die Karte weg und dein Nachbar ist dran"
   },
   "game_view": {
+    "customize_cards_used": "Du spielst mit deinen persönlichen Karten Einstellungen.",
     "continue": {
       "question": "Möchtest du dein letztes Spiel weiterspielen?",
       "header": "Fortsetzen?",

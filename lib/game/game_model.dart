@@ -1,4 +1,3 @@
-
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,5 +9,6 @@ class GameModel with _$GameModel {
     required List<BeerculesCard> cards,
     required double cardTransformSeed,
     required bool showContinueDialog,
+    required bool showConfigIsDefaultMessage,
   }) = _GameModel;
 }

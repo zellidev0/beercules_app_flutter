@@ -6,7 +6,6 @@ import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
@@ -23,12 +22,13 @@ class GameView extends ConsumerWidget {
     if (model.showContinueDialog) {
       Future.delayed(Duration.zero, () {
         buildAndShowDialog(
-          context: context,
-          onConfirmPressed: controller.pop,
-          onCancelPressed: controller.newGame,
-          confirmTextResource: 'game_view.continue.yes',
-          declineTextResource: 'game_view.continue.no',
-        );
+            context: context,
+            onConfirmPressed: controller.pop,
+            onCancelPressed: () => controller.newGame(context: context),
+            confirmTextResource: 'game_view.continue.yes',
+            declineTextResource: 'game_view.continue.no',
+            headerResource: 'game_view.continue.header',
+            descriptionResource: 'game_view.continue.question');
       });
     }
 

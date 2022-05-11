@@ -7,6 +7,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+void showSnackbar({
+  required BuildContext context,
+  required String message,
+  Duration duration = const Duration(seconds: 1),
+}) {
+  final snackBar = SnackBar(
+    backgroundColor: Theme.of(context).colorScheme.primary,
+    content: Text(message),
+    duration: duration,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
 Widget buildButton({
   required VoidCallback? onPressed,
   required String textResource,
@@ -93,14 +106,16 @@ Widget buildBasicCard({
       ),
     );
 
-void buildAndShowDialog({
+Future<void> buildAndShowDialog({
   required BuildContext context,
   required VoidCallback onConfirmPressed,
   required VoidCallback onCancelPressed,
   required String confirmTextResource,
+  required String headerResource,
+  required String descriptionResource,
   required String declineTextResource,
-}) {
-  showDialog(
+}) async {
+  await showDialog(
     useSafeArea: false,
     context: context,
     builder: (_) => Material(
@@ -125,13 +140,13 @@ void buildAndShowDialog({
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
-                        'game_view.continue.header'.tr(),
+                        headerResource.tr(),
                         style: TextStyles.header2,
                       ),
                     ),
                     const SizedBox(height: 32),
                     Text(
-                      'game_view.continue.question'.tr(),
+                      descriptionResource.tr(),
                       style: TextStyles.body1,
                       textAlign: TextAlign.center,
                     ),

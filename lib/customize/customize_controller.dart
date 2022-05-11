@@ -1,7 +1,9 @@
 import 'dart:core';
-import 'package:collection/collection.dart';
+
+import 'package:beercules/common.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -67,18 +69,14 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
               1) %
           6,
     );
+    _beerculesCardsProvider.setCurrentToConfig();
   }
 
   void restoreDefault({
     required BuildContext context,
   }) {
     _beerculesCardsProvider.setConfigToDefault();
-    final snackBar = SnackBar(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      content: const Text('config_view.restoredDefault').tr(),
-      duration: const Duration(seconds: 1),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    showSnackbar(context: context, message: 'config_view.restoredDefault'.tr());
   }
 
   void pop() {
