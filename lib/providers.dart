@@ -38,10 +38,10 @@ class Providers {
         BeerculesCardProvider(
       beerculesCards: {
         "ABSTIMMUNG": 3,
-        "ALLE_FUER_EINEN": 0,
+        "ALLE_FUER_EINEN": 1,
         "AUFZAEHLUNG": 3,
-        "BEER_LOVE": 3,
-        "BIERGOTT": 2,
+        "BEER_LOVE": 2,
+        "BIERGOTT": 3,
         "DECKEL_DRAUF": 2,
         "DREI_GESCHENKE_VON_HERZEN": 1,
         "EIN_GESCHENK_VON_HERZEN": 1,
@@ -49,14 +49,14 @@ class Providers {
         "FILMRISS": 2,
         "FRAGENKOENIG": 4,
         "HAENDE_HOCH": 2,
-        "ICH_HAB_NOCH_NIE": 4,
-        "ICH_PACKE_MEINEN_KOFFER": 0,
+        "ICH_HAB_NOCH_NIE": 2,
+        "ICH_PACKE_MEINEN_KOFFER": 1,
         "KETTENREAKTION": 1,
         "KNUTSCHKARTE": 1,
         "LINKS": 1,
         "MENS_HEALTH": 1,
         "OHREN_SPITZEN": 2,
-        "OPFERGLAS": 0,
+        "OPFERGLAS": 4,
         "RECHTS": 1,
         "REIMSCHWEIN": 2,
         "RICHTUNGSWECHSEL": 2,
@@ -104,7 +104,6 @@ class Providers {
       navigationService: ref.read(providers.navigationServiceProvider),
       beerculesCardsProvider:
           ref.read(providers.beerculesCardProvider.notifier),
-          
     ),
   );
 }
