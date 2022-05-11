@@ -65,14 +65,16 @@ class GameView extends ConsumerWidget {
             .mapIndexed(
               (GameModelCard card, int index) => Transform.rotate(
                 angle: index.toDouble() + model.cardTransformSeed,
-                child: Transform.translate(
-                  offset: Offset(model.cardTransformSeed,
-                      index.toDouble() + model.cardTransformSeed),
-                  child: _buildCardBackground(
-                    context: context,
-                    card: card,
-                    controller: controller,
-                    model: model,
+                child: RepaintBoundary(
+                  child: Transform.translate(
+                    offset: Offset(model.cardTransformSeed,
+                        index.toDouble() + model.cardTransformSeed),
+                    child: _buildCardBackground(
+                      context: context,
+                      card: card,
+                      controller: controller,
+                      model: model,
+                    ),
                   ),
                 ),
               ),
