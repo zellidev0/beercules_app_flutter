@@ -59,17 +59,15 @@ class HomeView extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: buildIconButtonWithText(
+                child: buildButton(
                   textResource: "home_view.button.rules",
-                  icon: Icons.rule,
                   onPressed: controller.goToRulesView,
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: buildIconButtonWithText(
+                child: buildButton(
                   textResource: "home_view.button.customize",
-                  icon: Icons.settings,
                   onPressed: controller.goToCustomizeView,
                 ),
               ),
