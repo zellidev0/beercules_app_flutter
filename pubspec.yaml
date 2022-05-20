@@ -20,11 +20,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.17.0
   auto_size_text: ^3.0.0
+  flutter_html: ^2.2.1
   flutter_swipable:
     git:
       url: https://github.com/Akhil111993/swipable_fix_overflow
       ref: master
-  flutter_svg: ^1.0.3
+  flutter_svg: ^0.23.0+1
 
 dev_dependencies:
   build_runner: ^2.1.8
@@ -40,3 +41,4 @@ flutter:
     - assets/images/
     - assets/instructions/
     - assets/lotties/
+    - assets/legal/

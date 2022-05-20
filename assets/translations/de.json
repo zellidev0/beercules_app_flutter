@@ -1,4 +1,7 @@
 {
+  "general" : {
+    "legal_notice_path": "legal_notice_de.html"
+  },
   "home_view": {
     "title": "Beercules",
     "sub_title": "Das göttliche Partyspiel",
