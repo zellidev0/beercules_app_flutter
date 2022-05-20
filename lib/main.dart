@@ -72,8 +72,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EasyLocalization(
         supportedLocales: const <Locale>[Locale('en'), Locale('de')],
-        fallbackLocale: const Locale('de'),
-        startLocale: const Locale('de'),
+        fallbackLocale: const Locale('en'),
         path: 'assets/translations',
         useOnlyLangCode: true,
         child: BeamerProvider(
