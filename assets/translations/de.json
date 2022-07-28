@@ -1,6 +1,30 @@
 {
-  "general" : {
-    "legal_notice_path": "legal_notice_de.html"
+  "general": {
+    "legal_notice_path": "legal_notice_de.html",
+    "app_name": "Beercules",
+    "app_slogan": "Das göttliche Partyspiel"
+  },
+  "landing_view": {
+    "best_app_slogan": "Das beste Partyspiel seit es Partyspiele gibt!",
+    "reviews": {
+      "title": "Bewertungen",
+      "review1": {
+        "reviewAuthor": "B. Sinz",
+        "reviewText": "Das beste Trinkspiel,\ndirekt nach Rage Cage \uD83D\uDE1C"
+      },
+      "review2": {
+        "reviewAuthor": "A. Meier",
+        "reviewText": "Macht sau viel Spass\n und hat man immer dabei."
+      },
+      "review3": {
+        "reviewAuthor": "L. Baumert",
+        "reviewText": "Bis auf den Kater danach\n echt zu empfehlen"
+      },
+      "review4": {
+        "reviewAuthor": "V. Michaels",
+        ,"reviewText": "Immer wieder zu empfehlen\n und immer wieder lustig."
+      }
+    }
   },
   "home_view": {
     "title": "Beercules",
@@ -12,17 +36,17 @@
     }
   },
   "config_view": {
-    "restoredDefault":"Die Anzahl der einzelnen Karten wurde auf den Standard zurückgesetzt!"
+    "restoredDefault": "Die Anzahl der einzelnen Karten wurde auf den Standard zurückgesetzt!"
   },
   "rules_view": {
     "go_to_game": "\uD83C\uDF89 Party jetzt \uD83C\uDF89",
-    "title" : "Spielablauf",
-    "rule_1_title" : "1. Hinsetzen",
-    "rule_1_description" : "Alle Spieler setzen sich in einen Kreis",
-    "rule_2_title" : "2. Karte befolgen",
-    "rule_2_description" : "Ein Spieler beginnt und befolgt die erste Karte",
-    "rule_3_title" : "3. Weitergeben",
-    "rule_3_description" : "Du swipest die Karte weg und dein Nachbar ist dran"
+    "title": "Spielablauf",
+    "rule_1_title": "1. Hinsetzen",
+    "rule_1_description": "Alle Spieler setzen sich in einen Kreis",
+    "rule_2_title": "2. Karte befolgen",
+    "rule_2_description": "Ein Spieler beginnt und befolgt die erste Karte",
+    "rule_3_title": "3. Weitergeben",
+    "rule_3_description": "Du swipest die Karte weg und dein Nachbar ist dran"
   },
   "game_view": {
     "customize_cards_used": "Du spielst mit deinen persönlichen Karten Einstellungen.",

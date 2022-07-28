@@ -1,6 +1,30 @@
 {
   "general" : {
-    "legal_notice_path": "legal_notice_en.html"
+    "legal_notice_path": "legal_notice_en.html",
+    "app_name": "Beercules",
+    "app_slogan": "Play like a god"
+  },
+  "landing_view": {
+    "best_app_slogan": "The best party game since party games existed!",
+    "reviews": {
+      "title": "Reviews",
+      "review1": {
+        "reviewAuthor": "B. Sinz",
+        "reviewText": "The best drinking game,\nexcept for Rage Cage \uD83D\uDE1C"
+      },
+      "review2": {
+        "reviewAuthor": "A. Meier",
+        "reviewText": "Makes a lot of fun\n and is always with me."
+      },
+      "review3": {
+        "reviewAuthor": "L. Baumert",
+        "reviewText": "Except for the headache\n a great game"
+      },
+      "review4": {
+        "reviewAuthor": "V. Michaels",
+        "reviewText": "Always great\n and always recommended"
+      }
+    }
   },
   "home_view": {
     "title": "Beercules",
