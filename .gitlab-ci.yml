@@ -1,11 +1,21 @@
-image: node:latest
 
-cache:
-  paths:
-    - node_modules/
-    - app/bower_components
+build_website:
+  image: cirrusci/flutter:latest
+  stage: deploy
+  environment: Production
+  only:
+    - main
+  script:
+    - cd app
+    - flutter clean
+    - flutter pub get
+    - flutter build web --release
+  artifacts:
+    paths:
+      - build/web
 
 deploy_website:
+  image: node:latest
   stage: deploy
   environment: Production
   only:
@@ -15,5 +25,6 @@ deploy_website:
     - npm install -g bower
     - npm install
     - bower install --allow-root
+    - cd build/web
     - firebase use --token $FIREBASE_DEPLOY_KEY production
-    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_DEPLOY_KEY
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_DEPLOY_KEY --only hosting

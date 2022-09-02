@@ -7,10 +7,12 @@ import 'package:beercules/navigation_service.dart';
 import 'package:beercules/rules/rules_view.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+
 import 'firebase_options.dart';
 
 late BeamerDelegate globalBeamerDelegate;
@@ -112,6 +114,20 @@ class MyApp extends StatelessWidget {
           routerDelegate: _beamerDelegate,
           child: Builder(
             builder: (BuildContext context) => MaterialApp.router(
+              builder: (context, child) => ResponsiveWrapper.builder(
+                child,
+                maxWidth: 1200,
+                minWidth: 480,
+                defaultScale: true,
+                breakpoints: [
+                  const ResponsiveBreakpoint.resize(480, name: MOBILE),
+                  const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                  const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+                ],
+                background: Container(
+                  color: Theme.of(context).colorScheme.background,
+                ),
+              ),
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(
                   seedColor: BeerculesColors.primary,

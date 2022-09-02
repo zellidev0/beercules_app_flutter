@@ -27,6 +27,7 @@ dependencies:
       ref: master
   flutter_svg: ^0.23.0+1
   url_launcher: ^6.1.5
+  responsive_framework: ^0.2.0
 
 dev_dependencies:
   build_runner: ^2.1.8
