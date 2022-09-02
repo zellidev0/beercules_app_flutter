@@ -10,7 +10,6 @@ build_website:
   only:
     - main
   script:
-    - cd app
     - flutter clean
     - flutter pub get
     - flutter build web --release
