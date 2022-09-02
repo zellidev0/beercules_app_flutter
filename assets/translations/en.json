@@ -1,8 +1,10 @@
 {
   "general" : {
     "legal_notice_path": "legal_notice_en.html",
+    "legal_google_play_notice": "Google Play and the Google Play logo are trademarks of Google LLC.",
     "app_name": "Beercules",
-    "app_slogan": "Play like a god"
+    "app_slogan": "Play like a god",
+    "app_description": "Beercules is the ultimate drinking game for you.\n Whether to pre-drink or to get the party started. With over 60 cards, you will have the best evening of your life.\n"
   },
   "landing_view": {
     "best_app_slogan": "The best party game since party games existed!",
