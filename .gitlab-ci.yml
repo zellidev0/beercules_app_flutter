@@ -1,7 +1,11 @@
 
+stages:
+  - build
+  - deploy
+
 build_website:
   image: cirrusci/flutter:latest
-  stage: deploy
+  stage: build
   environment: Production
   only:
     - main
