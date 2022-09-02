@@ -26,6 +26,7 @@ dependencies:
       url: https://github.com/Akhil111993/swipable_fix_overflow
       ref: master
   flutter_svg: ^0.23.0+1
+  url_launcher: ^6.1.5
 
 dev_dependencies:
   build_runner: ^2.1.8

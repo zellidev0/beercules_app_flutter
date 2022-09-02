@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "95241181319",
+    "firebase_url": "https://beercules-trinkspiel.firebaseio.com",
+    "project_id": "beercules-trinkspiel",
+    "storage_bucket": "beercules-trinkspiel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95241181319:android:31951af88c22e98f",
+        "android_client_info": {
+          "package_name": "com.jzellner98.thedrinkinggame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95241181319-op1turm6ojgi16ss980p222mr2q5ncr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2PMls4ztksBWJO7-4wE-Q4mIs92S9dhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95241181319-op1turm6ojgi16ss980p222mr2q5ncr5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "95241181319-qvoamur49rnafljptqr58otvcr4vni7a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zellnapps.beercules",
+                "app_store_id": "1469757352"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2447211869280891~3427661368"
+    }
+  ],
+  "configuration_version": "1"
+}

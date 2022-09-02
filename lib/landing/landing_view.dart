@@ -4,6 +4,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:js' as js;
+
 
 class LandingView extends ConsumerWidget {
   const LandingView({Key? key}) : super(key: key);
@@ -120,7 +123,9 @@ class LandingView extends ConsumerWidget {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             child: SizedBox(height: height, child: badge),
-            onTap: () {},
+            onTap: () async {
+              js.context.callMethod('open', ['https://beerculestrinkspiel.page.link/app']);
+            },
           ),
         ),
       );
