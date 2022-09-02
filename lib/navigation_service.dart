@@ -6,6 +6,7 @@ class NavigationService {
   static const String rulesRouteUri = '/rules';
   static const String customizeRouteUri = '/customize';
   static const String landingRouteUri = '/landing';
+  static const String baseUri = '/';
 
   Future<void> navigateToNamed({
     required String uri,
