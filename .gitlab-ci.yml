@@ -25,6 +25,5 @@ deploy_website:
     - main
   script:
     - npm install -g firebase-tools
-    - cd build/web
     - echo $FIREBASE_DEPLOY_KEY > "$HOME"/gcloud.json
     - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --only hosting --token $FIREBASE_TOKEN
