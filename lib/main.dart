@@ -40,26 +40,29 @@ Future<Widget> buildApp() async {
 }
 
 BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
-      initialPath: NavigationService.landingRouteUri,
+      initialPath: NavigationService.homeRouteUri,
       guards: [
         BeamGuard(
-          pathPatterns: [],
+          // for witch path patterns to check
+          pathPatterns: [NavigationService.landingRouteUri],
           // perform the check on all patterns that **don't** have a match in pathPatterns
           guardNonMatching: true,
           // return false to redirect
           check: (context, location) => !kIsWeb,
           // where to redirect on a false check
-          beamToNamed: (origin, target) => NavigationService.landingRouteUri,
+          beamToNamed: (origin, target) {
+            return NavigationService.landingRouteUri;
+          },
         ),
-        BeamGuard(
-          pathPatterns: [NavigationService.baseUri],
-          // perform the check on all patterns that **don't** have a match in pathPatterns
-          guardNonMatching: false,
-          // return false to redirect
-          check: (context, location) => false,
-          // where to redirect on a false check
-          beamToNamed: (origin, target) => NavigationService.landingRouteUri,
-        ),
+        // BeamGuard(
+        //   pathPatterns: [NavigationService.baseUri],
+        //   // perform the check on all patterns that **don't** have a match in pathPatterns
+        //   guardNonMatching: false,
+        //   // return false to redirect
+        //   check: (context, location) => false,
+        //   // where to redirect on a false check
+        //   beamToNamed: (origin, target) => NavigationService.landingRouteUri,
+        // ),
       ],
       locationBuilder: RoutesLocationBuilder(
         routes: {
