@@ -54,15 +54,15 @@ BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
             return NavigationService.landingRouteUri;
           },
         ),
-        // BeamGuard(
-        //   pathPatterns: [NavigationService.baseUri],
-        //   // perform the check on all patterns that **don't** have a match in pathPatterns
-        //   guardNonMatching: false,
-        //   // return false to redirect
-        //   check: (context, location) => false,
-        //   // where to redirect on a false check
-        //   beamToNamed: (origin, target) => NavigationService.landingRouteUri,
-        // ),
+        BeamGuard(
+          pathPatterns: [NavigationService.landingRouteUri],
+          // perform the check on all patterns that **don't** have a match in pathPatterns
+          guardNonMatching: false,
+          // return false to redirect
+          check: (context, location) => kIsWeb,
+          // where to redirect on a false check
+          beamToNamed: (origin, target) => NavigationService.homeRouteUri,
+        ),
       ],
       locationBuilder: RoutesLocationBuilder(
         routes: {

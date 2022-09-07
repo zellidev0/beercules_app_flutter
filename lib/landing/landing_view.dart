@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:js' as js;
-
 
 class LandingView extends ConsumerWidget {
   const LandingView({Key? key}) : super(key: key);
@@ -123,9 +121,9 @@ class LandingView extends ConsumerWidget {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             child: SizedBox(height: height, child: badge),
-            onTap: () async {
-              js.context.callMethod('open', ['https://beerculestrinkspiel.page.link/app']);
-            },
+            onTap: () async => await launchUrl(
+                Uri.parse('https://beerculestrinkspiel.page.link/app'),
+              ),
           ),
         ),
       );
