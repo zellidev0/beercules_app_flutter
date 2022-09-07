@@ -27,7 +27,7 @@ Widget buildButton({
     _buildButton(
       child: Text(
         textResource,
-        style: TextStyles.body1,
+        style: TextStyles.body2,
       ).tr(),
       onPressed: onPressed,
     );
@@ -249,6 +249,6 @@ Widget _buildButton({
         ),
         onPressed: onPressed,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(16.0),
           child: child,
         ));
