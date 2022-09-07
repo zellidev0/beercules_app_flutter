@@ -125,14 +125,14 @@ class MyApp extends StatelessWidget {
                   const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
                 ],
                 background: Container(
-                  color: Theme.of(context).colorScheme.background,
+                  color: BeerculesColors.backgroundColor,
                 ),
               ),
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(
                   seedColor: BeerculesColors.primary,
                   secondary: BeerculesColors.accent,
-                  background: BeerculesColors.primary.withAlpha(150),
+                  background: BeerculesColors.backgroundColor,
                 ),
               ),
               debugShowCheckedModeBanner: false,

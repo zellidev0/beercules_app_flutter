@@ -23,7 +23,7 @@ class LandingView extends ConsumerWidget {
                 flexibleSpace: FlexibleSpaceBar(title: _buildAppBarContent()),
                 elevation: 0,
                 backgroundColor: Colors.transparent,
-                pinned: true,
+                pinned: false,
                 floating: false,
                 expandedHeight: MediaQuery.of(context).size.height * 0.15,
               ),
@@ -53,7 +53,7 @@ class LandingView extends ConsumerWidget {
 
   Widget _buildLegal() => Text(
         'general.legal_google_play_notice'.tr(),
-        style: TextStyles.body1.copyWith(color: Colors.white.withOpacity(0.4)),
+        style: TextStyles.body4.copyWith(color: Colors.white.withOpacity(0.4)),
       ).tr();
 
   Widget _divider() => const Padding(

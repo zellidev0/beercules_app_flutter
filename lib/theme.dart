@@ -4,20 +4,8 @@ class BeerculesColors {
   static const Color primary = Color.fromARGB(255, 33, 150, 243);//#2196f3
   static const Color primaryButton = Color.fromARGB(255, 33, 168, 243); //#f3e721
   static const Color accent = Color.fromARGB(255,255,211, 66); //
+  static const Color backgroundColor = Color.fromARGB(255, 123, 191, 246);
 
-// static const ColorScheme colorscheme = ColorScheme(
-//   primary: BeerculesColors.primary,
-//   secondary: BeerculesColors.secondary,
-//   surface: BeerculesColors.surface,
-//   background: BeerculesColors.backgroundBlack,
-//   error: BeerculesColors.error,
-//   onPrimary: BeerculesColors.onPrimary,
-//   onSecondary: BeerculesColors.onSecondary,
-//   onSurface: BeerculesColors.onSurface,
-//   onBackground: BeerculesColors.onBackground,
-//   onError: BeerculesColors.onError,
-//   brightness: Brightness.light,
-// );
 }
 
 class TextStyles {
