@@ -29,7 +29,7 @@ void main() async {
 
 Future<Widget> buildApp() async {
   ProviderContainer providerContainer = ProviderContainer();
-  globalBeamerDelegate = createBeamerDelegate(read: providerContainer.read);
+  globalBeamerDelegate = createBeamerDelegate();
   return UncontrolledProviderScope(
     container: providerContainer,
     child: MyApp(
@@ -39,7 +39,7 @@ Future<Widget> buildApp() async {
   );
 }
 
-BeamerDelegate createBeamerDelegate({required Reader read}) => BeamerDelegate(
+BeamerDelegate createBeamerDelegate() => BeamerDelegate(
       initialPath: NavigationService.homeRouteUri,
       guards: [
         BeamGuard(
