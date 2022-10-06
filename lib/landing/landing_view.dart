@@ -100,10 +100,12 @@ class LandingView extends ConsumerWidget {
               _buildBadge(
                 height: 80,
                 badge: Image.asset("assets/legal/google-play-badge.png"),
+                isIos: false,
               ),
               _buildBadge(
                 height: 56,
                 badge: SvgPicture.asset("assets/legal/app-store-badge.svg"),
+                isIos: true,
               ),
               const Spacer(),
             ],
@@ -115,6 +117,7 @@ class LandingView extends ConsumerWidget {
   Expanded _buildBadge({
     required double height,
     required Widget badge,
+    required bool isIos,
   }) =>
       Expanded(
         child: MouseRegion(
@@ -122,8 +125,10 @@ class LandingView extends ConsumerWidget {
           child: GestureDetector(
             child: SizedBox(height: height, child: badge),
             onTap: () async => await launchUrl(
-                Uri.parse('https://beerculestrinkspiel.page.link/app'),
-              ),
+              isIos
+                  ? Uri.parse('https://apps.apple.com/us/app/beercules/id1469757352')
+                  : Uri.parse('https://play.google.com/store/apps/details?id=com.jzellner98.thedrinkinggame'),
+            ),
           ),
         ),
       );
