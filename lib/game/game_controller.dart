@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:core';
 import 'dart:math';
 
 import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bc_dialog.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
@@ -9,6 +11,7 @@ import 'package:beercules/services/navigation_service/navigation_service_routes.
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GameController extends StateNotifier<GameModel> {
@@ -59,13 +62,12 @@ class GameController extends StateNotifier<GameModel> {
     super.dispose();
   }
 
-  Future<void> dismissCard({required final BuildContext context}) async {
+  Future<void> dismissCard() async {
     _navigationService.pop<void>();
     if (state.cards
         .where((final GameModelCard element) => !element.played)
         .isEmpty) {
-      await buildAndShowDialog(
-        context: context,
+      showDialog(
         onConfirmPressed: newGame,
         onCancelPressed: () {
           newGame();
@@ -122,4 +124,34 @@ class GameController extends StateNotifier<GameModel> {
     state = state.copyWith(showContinueDialog: false);
     _navigationService.pop<void>();
   }
+
+  void showDialog({
+    required final void Function() onConfirmPressed,
+    required final Null Function() onCancelPressed,
+    required final String confirmTextResource,
+    required final String declineTextResource,
+    required final String headerResource,
+    required final String descriptionResource,
+  }) =>
+      unawaited(
+        _navigationService
+            .showPopup<void>(
+              BcDialog(
+                onConfirmPressed: newGame,
+                onCancelPressed: () {
+                  newGame();
+                  goBackToHome();
+                },
+                confirmTextResource: 'game_view.finish.yes',
+                declineTextResource: 'game_view.finish.no',
+                headerResource: 'game_view.finish.header',
+                descriptionResource: 'game_view.finish.question',
+              ),
+            )
+            .match(
+              (final Object error) => debugPrint(error.toString()),
+              (final _) {},
+            )
+            .run(),
+      );
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:beercules/common/common.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/game/game_controller.dart';
@@ -20,9 +22,8 @@ class GameView extends ConsumerWidget {
     final GameModel model = ref.watch(providers.gameController);
 
     if (model.showContinueDialog) {
-      Future<void>.delayed(Duration.zero, () async {
-        await buildAndShowDialog(
-          context: context,
+      scheduleMicrotask(
+        () => controller.showDialog(
           onConfirmPressed: controller.pop,
           onCancelPressed: () {
             controller
@@ -33,8 +34,8 @@ class GameView extends ConsumerWidget {
           declineTextResource: 'game_view.continue.no',
           headerResource: 'game_view.continue.header',
           descriptionResource: 'game_view.continue.question',
-        );
-      });
+        ),
+      );
     }
 
     return ScaffoldWidget(
@@ -114,7 +115,7 @@ class GameView extends ConsumerWidget {
         context: context,
         builder: (final _) => buildCardForeground(
           context: context,
-          onTap: () => controller.dismissCard(context: context),
+          onTap: controller.dismissCard,
           showLogo: card.isBasicRule,
           showSkullAnimation: card.isVictimGlass &&
               model.cards

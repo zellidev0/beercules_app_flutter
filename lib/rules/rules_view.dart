@@ -1,4 +1,5 @@
 import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bacis_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
@@ -25,7 +26,9 @@ class RulesView extends ConsumerWidget {
           children: <Widget>[
             _buildTopRow(navigationService: navigationService),
             Expanded(
-              child: buildBasicCard(
+              child: BasicCard(
+                onTap: null,
+                color: Colors.black12,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -65,8 +68,6 @@ class RulesView extends ConsumerWidget {
                     ).tr(),
                   ],
                 ),
-                onTap: null,
-                color: Colors.black12,
               ),
             ),
             buildButton(
