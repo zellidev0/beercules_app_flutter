@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bacis_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
@@ -113,8 +114,7 @@ class GameView extends ConsumerWidget {
       controller.decreaseCardAmount(cardId: card.id);
       await showDialog<void>(
         context: context,
-        builder: (final _) => buildCardForeground(
-          context: context,
+        builder: (final _) => CardForeground(
           onTap: controller.dismissCard,
           showLogo: card.isBasicRule,
           showSkullAnimation: card.isVictimGlass &&

@@ -1,4 +1,5 @@
 import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bacis_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/customize/customize_card.dart';
 import 'package:beercules/customize/customize_controller.dart';
@@ -106,11 +107,10 @@ class CardDetailsView extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          buildCardForeground(
+          CardForeground(
             onTap: controller.pop,
             showLogo: selected.isBasicRule,
             resourceKey: selected.key,
-            context: context,
             showSkullAnimation: false,
           ),
           ColoredBox(
