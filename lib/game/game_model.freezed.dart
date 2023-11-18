@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'game_model.dart';
 
@@ -12,26 +12,7 @@ part of 'game_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GameModelTearOff {
-  const _$GameModelTearOff();
-
-  _GameModel call(
-      {required List<GameModelCard> cards,
-      required double cardTransformSeed,
-      required bool showContinueDialog}) {
-    return _GameModel(
-      cards: cards,
-      cardTransformSeed: cardTransformSeed,
-      showContinueDialog: showContinueDialog,
-    );
-  }
-}
-
-/// @nodoc
-const $GameModel = _$GameModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GameModel {
@@ -47,7 +28,8 @@ mixin _$GameModel {
 /// @nodoc
 abstract class $GameModelCopyWith<$Res> {
   factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
-      _$GameModelCopyWithImpl<$Res>;
+      _$GameModelCopyWithImpl<$Res, GameModel>;
+  @useResult
   $Res call(
       {List<GameModelCard> cards,
       double cardTransformSeed,
@@ -55,42 +37,47 @@ abstract class $GameModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
+class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
+    implements $GameModelCopyWith<$Res> {
   _$GameModelCopyWithImpl(this._value, this._then);
 
-  final GameModel _value;
   // ignore: unused_field
-  final $Res Function(GameModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cards = freezed,
-    Object? cardTransformSeed = freezed,
-    Object? showContinueDialog = freezed,
+    Object? cards = null,
+    Object? cardTransformSeed = null,
+    Object? showContinueDialog = null,
   }) {
     return _then(_value.copyWith(
-      cards: cards == freezed
+      cards: null == cards
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<GameModelCard>,
-      cardTransformSeed: cardTransformSeed == freezed
+      cardTransformSeed: null == cardTransformSeed
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
               as double,
-      showContinueDialog: showContinueDialog == freezed
+      showContinueDialog: null == showContinueDialog
           ? _value.showContinueDialog
           : showContinueDialog // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
-  factory _$GameModelCopyWith(
-          _GameModel value, $Res Function(_GameModel) then) =
-      __$GameModelCopyWithImpl<$Res>;
+abstract class _$$GameModelImplCopyWith<$Res>
+    implements $GameModelCopyWith<$Res> {
+  factory _$$GameModelImplCopyWith(
+          _$GameModelImpl value, $Res Function(_$GameModelImpl) then) =
+      __$$GameModelImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<GameModelCard> cards,
       double cardTransformSeed,
@@ -98,30 +85,30 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
-    implements _$GameModelCopyWith<$Res> {
-  __$GameModelCopyWithImpl(_GameModel _value, $Res Function(_GameModel) _then)
-      : super(_value, (v) => _then(v as _GameModel));
+class __$$GameModelImplCopyWithImpl<$Res>
+    extends _$GameModelCopyWithImpl<$Res, _$GameModelImpl>
+    implements _$$GameModelImplCopyWith<$Res> {
+  __$$GameModelImplCopyWithImpl(
+      _$GameModelImpl _value, $Res Function(_$GameModelImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GameModel get _value => super._value as _GameModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cards = freezed,
-    Object? cardTransformSeed = freezed,
-    Object? showContinueDialog = freezed,
+    Object? cards = null,
+    Object? cardTransformSeed = null,
+    Object? showContinueDialog = null,
   }) {
-    return _then(_GameModel(
-      cards: cards == freezed
-          ? _value.cards
+    return _then(_$GameModelImpl(
+      cards: null == cards
+          ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<GameModelCard>,
-      cardTransformSeed: cardTransformSeed == freezed
+      cardTransformSeed: null == cardTransformSeed
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
               as double,
-      showContinueDialog: showContinueDialog == freezed
+      showContinueDialog: null == showContinueDialog
           ? _value.showContinueDialog
           : showContinueDialog // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -131,14 +118,21 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GameModel implements _GameModel {
-  _$_GameModel(
-      {required this.cards,
+class _$GameModelImpl implements _GameModel {
+  _$GameModelImpl(
+      {required final List<GameModelCard> cards,
       required this.cardTransformSeed,
-      required this.showContinueDialog});
+      required this.showContinueDialog})
+      : _cards = cards;
 
+  final List<GameModelCard> _cards;
   @override
-  final List<GameModelCard> cards;
+  List<GameModelCard> get cards {
+    if (_cards is EqualUnmodifiableListView) return _cards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cards);
+  }
+
   @override
   final double cardTransformSeed;
   @override
@@ -153,32 +147,33 @@ class _$_GameModel implements _GameModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GameModel &&
-            const DeepCollectionEquality().equals(other.cards, cards) &&
-            const DeepCollectionEquality()
-                .equals(other.cardTransformSeed, cardTransformSeed) &&
-            const DeepCollectionEquality()
-                .equals(other.showContinueDialog, showContinueDialog));
+            other is _$GameModelImpl &&
+            const DeepCollectionEquality().equals(other._cards, _cards) &&
+            (identical(other.cardTransformSeed, cardTransformSeed) ||
+                other.cardTransformSeed == cardTransformSeed) &&
+            (identical(other.showContinueDialog, showContinueDialog) ||
+                other.showContinueDialog == showContinueDialog));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(cards),
-      const DeepCollectionEquality().hash(cardTransformSeed),
-      const DeepCollectionEquality().hash(showContinueDialog));
+      const DeepCollectionEquality().hash(_cards),
+      cardTransformSeed,
+      showContinueDialog);
 
   @JsonKey(ignore: true)
   @override
-  _$GameModelCopyWith<_GameModel> get copyWith =>
-      __$GameModelCopyWithImpl<_GameModel>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
+      __$$GameModelImplCopyWithImpl<_$GameModelImpl>(this, _$identity);
 }
 
 abstract class _GameModel implements GameModel {
   factory _GameModel(
-      {required List<GameModelCard> cards,
-      required double cardTransformSeed,
-      required bool showContinueDialog}) = _$_GameModel;
+      {required final List<GameModelCard> cards,
+      required final double cardTransformSeed,
+      required final bool showContinueDialog}) = _$GameModelImpl;
 
   @override
   List<GameModelCard> get cards;
@@ -188,34 +183,9 @@ abstract class _GameModel implements GameModel {
   bool get showContinueDialog;
   @override
   @JsonKey(ignore: true)
-  _$GameModelCopyWith<_GameModel> get copyWith =>
+  _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$GameModelCardTearOff {
-  const _$GameModelCardTearOff();
-
-  _GameModelCard call(
-      {required String id,
-      required String key,
-      required bool isBasicRule,
-      required bool isVictimGlass,
-      required String victimGlassKey,
-      required bool played}) {
-    return _GameModelCard(
-      id: id,
-      key: key,
-      isBasicRule: isBasicRule,
-      isVictimGlass: isVictimGlass,
-      victimGlassKey: victimGlassKey,
-      played: played,
-    );
-  }
-}
-
-/// @nodoc
-const $GameModelCard = _$GameModelCardTearOff();
 
 /// @nodoc
 mixin _$GameModelCard {
@@ -235,7 +205,8 @@ mixin _$GameModelCard {
 abstract class $GameModelCardCopyWith<$Res> {
   factory $GameModelCardCopyWith(
           GameModelCard value, $Res Function(GameModelCard) then) =
-      _$GameModelCardCopyWithImpl<$Res>;
+      _$GameModelCardCopyWithImpl<$Res, GameModelCard>;
+  @useResult
   $Res call(
       {String id,
       String key,
@@ -246,59 +217,62 @@ abstract class $GameModelCardCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameModelCardCopyWithImpl<$Res>
+class _$GameModelCardCopyWithImpl<$Res, $Val extends GameModelCard>
     implements $GameModelCardCopyWith<$Res> {
   _$GameModelCardCopyWithImpl(this._value, this._then);
 
-  final GameModelCard _value;
   // ignore: unused_field
-  final $Res Function(GameModelCard) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? key = freezed,
-    Object? isBasicRule = freezed,
-    Object? isVictimGlass = freezed,
-    Object? victimGlassKey = freezed,
-    Object? played = freezed,
+    Object? id = null,
+    Object? key = null,
+    Object? isBasicRule = null,
+    Object? isVictimGlass = null,
+    Object? victimGlassKey = null,
+    Object? played = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      key: key == freezed
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      isBasicRule: isBasicRule == freezed
+      isBasicRule: null == isBasicRule
           ? _value.isBasicRule
           : isBasicRule // ignore: cast_nullable_to_non_nullable
               as bool,
-      isVictimGlass: isVictimGlass == freezed
+      isVictimGlass: null == isVictimGlass
           ? _value.isVictimGlass
           : isVictimGlass // ignore: cast_nullable_to_non_nullable
               as bool,
-      victimGlassKey: victimGlassKey == freezed
+      victimGlassKey: null == victimGlassKey
           ? _value.victimGlassKey
           : victimGlassKey // ignore: cast_nullable_to_non_nullable
               as String,
-      played: played == freezed
+      played: null == played
           ? _value.played
           : played // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$GameModelCardCopyWith<$Res>
+abstract class _$$GameModelCardImplCopyWith<$Res>
     implements $GameModelCardCopyWith<$Res> {
-  factory _$GameModelCardCopyWith(
-          _GameModelCard value, $Res Function(_GameModelCard) then) =
-      __$GameModelCardCopyWithImpl<$Res>;
+  factory _$$GameModelCardImplCopyWith(
+          _$GameModelCardImpl value, $Res Function(_$GameModelCardImpl) then) =
+      __$$GameModelCardImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String key,
@@ -309,47 +283,45 @@ abstract class _$GameModelCardCopyWith<$Res>
 }
 
 /// @nodoc
-class __$GameModelCardCopyWithImpl<$Res>
-    extends _$GameModelCardCopyWithImpl<$Res>
-    implements _$GameModelCardCopyWith<$Res> {
-  __$GameModelCardCopyWithImpl(
-      _GameModelCard _value, $Res Function(_GameModelCard) _then)
-      : super(_value, (v) => _then(v as _GameModelCard));
+class __$$GameModelCardImplCopyWithImpl<$Res>
+    extends _$GameModelCardCopyWithImpl<$Res, _$GameModelCardImpl>
+    implements _$$GameModelCardImplCopyWith<$Res> {
+  __$$GameModelCardImplCopyWithImpl(
+      _$GameModelCardImpl _value, $Res Function(_$GameModelCardImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GameModelCard get _value => super._value as _GameModelCard;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? key = freezed,
-    Object? isBasicRule = freezed,
-    Object? isVictimGlass = freezed,
-    Object? victimGlassKey = freezed,
-    Object? played = freezed,
+    Object? id = null,
+    Object? key = null,
+    Object? isBasicRule = null,
+    Object? isVictimGlass = null,
+    Object? victimGlassKey = null,
+    Object? played = null,
   }) {
-    return _then(_GameModelCard(
-      id: id == freezed
+    return _then(_$GameModelCardImpl(
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      key: key == freezed
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      isBasicRule: isBasicRule == freezed
+      isBasicRule: null == isBasicRule
           ? _value.isBasicRule
           : isBasicRule // ignore: cast_nullable_to_non_nullable
               as bool,
-      isVictimGlass: isVictimGlass == freezed
+      isVictimGlass: null == isVictimGlass
           ? _value.isVictimGlass
           : isVictimGlass // ignore: cast_nullable_to_non_nullable
               as bool,
-      victimGlassKey: victimGlassKey == freezed
+      victimGlassKey: null == victimGlassKey
           ? _value.victimGlassKey
           : victimGlassKey // ignore: cast_nullable_to_non_nullable
               as String,
-      played: played == freezed
+      played: null == played
           ? _value.played
           : played // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -359,8 +331,8 @@ class __$GameModelCardCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GameModelCard implements _GameModelCard {
-  _$_GameModelCard(
+class _$GameModelCardImpl implements _GameModelCard {
+  _$GameModelCardImpl(
       {required this.id,
       required this.key,
       required this.isBasicRule,
@@ -390,42 +362,37 @@ class _$_GameModelCard implements _GameModelCard {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GameModelCard &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.key, key) &&
-            const DeepCollectionEquality()
-                .equals(other.isBasicRule, isBasicRule) &&
-            const DeepCollectionEquality()
-                .equals(other.isVictimGlass, isVictimGlass) &&
-            const DeepCollectionEquality()
-                .equals(other.victimGlassKey, victimGlassKey) &&
-            const DeepCollectionEquality().equals(other.played, played));
+            other is _$GameModelCardImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.isBasicRule, isBasicRule) ||
+                other.isBasicRule == isBasicRule) &&
+            (identical(other.isVictimGlass, isVictimGlass) ||
+                other.isVictimGlass == isVictimGlass) &&
+            (identical(other.victimGlassKey, victimGlassKey) ||
+                other.victimGlassKey == victimGlassKey) &&
+            (identical(other.played, played) || other.played == played));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(key),
-      const DeepCollectionEquality().hash(isBasicRule),
-      const DeepCollectionEquality().hash(isVictimGlass),
-      const DeepCollectionEquality().hash(victimGlassKey),
-      const DeepCollectionEquality().hash(played));
+      runtimeType, id, key, isBasicRule, isVictimGlass, victimGlassKey, played);
 
   @JsonKey(ignore: true)
   @override
-  _$GameModelCardCopyWith<_GameModelCard> get copyWith =>
-      __$GameModelCardCopyWithImpl<_GameModelCard>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GameModelCardImplCopyWith<_$GameModelCardImpl> get copyWith =>
+      __$$GameModelCardImplCopyWithImpl<_$GameModelCardImpl>(this, _$identity);
 }
 
 abstract class _GameModelCard implements GameModelCard {
   factory _GameModelCard(
-      {required String id,
-      required String key,
-      required bool isBasicRule,
-      required bool isVictimGlass,
-      required String victimGlassKey,
-      required bool played}) = _$_GameModelCard;
+      {required final String id,
+      required final String key,
+      required final bool isBasicRule,
+      required final bool isVictimGlass,
+      required final String victimGlassKey,
+      required final bool played}) = _$GameModelCardImpl;
 
   @override
   String get id;
@@ -441,6 +408,6 @@ abstract class _GameModelCard implements GameModelCard {
   bool get played;
   @override
   @JsonKey(ignore: true)
-  _$GameModelCardCopyWith<_GameModelCard> get copyWith =>
+  _$$GameModelCardImplCopyWith<_$GameModelCardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

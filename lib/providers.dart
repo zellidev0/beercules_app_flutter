@@ -2,29 +2,21 @@ import 'package:beercules/customize/customize_controller.dart';
 import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
+import 'package:beercules/services/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:riverpod/riverpod.dart';
 
 import 'home/home_controller.dart';
 import 'home/home_model.dart';
-import 'navigation_service.dart';
 
 final Providers providers = Providers();
 
 class Providers {
-  final Provider<NavigationService> navigationServiceProvider =
-      _navigationServiceProvider();
-
-  static Provider<NavigationService> _navigationServiceProvider() =>
-      Provider<NavigationService>(
-        (ProviderRef<NavigationService> ref) => NavigationService(),
-      );
-
   final StateNotifierProvider<HomeController, HomeModel> homeController =
       StateNotifierProvider<HomeController, HomeModel>(
     (StateNotifierProviderRef<HomeController, HomeModel> ref) => HomeController(
       navigationService: ref.read(
-        providers.navigationServiceProvider,
+        navigationServiceProvider,
       ),
       model: HomeModel(),
     ),
@@ -88,9 +80,7 @@ class Providers {
       StateNotifierProvider<CustomizeController, CustomizeModel>(
     (StateNotifierProviderRef<CustomizeController, CustomizeModel> ref) =>
         CustomizeController(
-      navigationService: ref.read(
-        providers.navigationServiceProvider,
-      ),
+      navigationService: ref.read(navigationServiceProvider),
       beerculesCardsProvider:
           ref.read(providers.beerculesCardProvider.notifier),
     ),
@@ -101,7 +91,7 @@ class Providers {
       AutoDisposeStateNotifierProvider<GameController, GameModel>(
     (AutoDisposeStateNotifierProviderRef<GameController, GameModel> ref) =>
         GameController(
-      navigationService: ref.read(providers.navigationServiceProvider),
+      navigationService: ref.read(navigationServiceProvider),
       beerculesCardsProvider:
           ref.read(providers.beerculesCardProvider.notifier),
     ),

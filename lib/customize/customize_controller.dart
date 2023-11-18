@@ -1,7 +1,7 @@
 import 'dart:core';
 
 import 'package:beercules/common.dart';
-import 'package:beercules/navigation_service.dart';
+import 'package:beercules/services/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -42,7 +42,7 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     super.dispose();
   }
 
-  void goBackToHome() => _navigationService.beamBack();
+  void goBackToHome() => _navigationService.goBack();
 
   showModal({
     required BuildContext context,

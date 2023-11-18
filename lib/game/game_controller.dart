@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:beercules/common.dart';
 import 'package:beercules/navigation_service.dart';
+import 'package:beercules/services/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,8 +54,8 @@ class GameController extends StateNotifier<GameModel> {
     super.dispose();
   }
 
-  void dismissCard({required BuildContext context}) async {
-    await _navigationService.pop();
+  void dismissCard({required BuildContext context}) {
+    _navigationService.pop();
     if (state.cards.where((element) => !element.played).isEmpty) {
       buildAndShowDialog(
         context: context,
@@ -113,8 +114,7 @@ class GameController extends StateNotifier<GameModel> {
 
   void goBackToHome() {
     _navigationService.navigateToNamed(
-      uri: NavigationService.homeRouteUri,
-      beamBackOnPop: false,
+      NavigationServiceRoutes.homeRouteUri,
     );
   }
 

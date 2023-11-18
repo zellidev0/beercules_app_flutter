@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'customize_model.dart';
 
@@ -12,24 +12,7 @@ part of 'customize_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CustomizeModelTearOff {
-  const _$CustomizeModelTearOff();
-
-  _CustomizeModel call(
-      {required String? selectedCardKey,
-      required List<BeerculesCard> configCards}) {
-    return _CustomizeModel(
-      selectedCardKey: selectedCardKey,
-      configCards: configCards,
-    );
-  }
-}
-
-/// @nodoc
-const $CustomizeModel = _$CustomizeModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CustomizeModel {
@@ -45,70 +28,72 @@ mixin _$CustomizeModel {
 abstract class $CustomizeModelCopyWith<$Res> {
   factory $CustomizeModelCopyWith(
           CustomizeModel value, $Res Function(CustomizeModel) then) =
-      _$CustomizeModelCopyWithImpl<$Res>;
+      _$CustomizeModelCopyWithImpl<$Res, CustomizeModel>;
+  @useResult
   $Res call({String? selectedCardKey, List<BeerculesCard> configCards});
 }
 
 /// @nodoc
-class _$CustomizeModelCopyWithImpl<$Res>
+class _$CustomizeModelCopyWithImpl<$Res, $Val extends CustomizeModel>
     implements $CustomizeModelCopyWith<$Res> {
   _$CustomizeModelCopyWithImpl(this._value, this._then);
 
-  final CustomizeModel _value;
   // ignore: unused_field
-  final $Res Function(CustomizeModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? selectedCardKey = freezed,
-    Object? configCards = freezed,
+    Object? configCards = null,
   }) {
     return _then(_value.copyWith(
-      selectedCardKey: selectedCardKey == freezed
+      selectedCardKey: freezed == selectedCardKey
           ? _value.selectedCardKey
           : selectedCardKey // ignore: cast_nullable_to_non_nullable
               as String?,
-      configCards: configCards == freezed
+      configCards: null == configCards
           ? _value.configCards
           : configCards // ignore: cast_nullable_to_non_nullable
               as List<BeerculesCard>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$CustomizeModelCopyWith<$Res>
+abstract class _$$CustomizeModelImplCopyWith<$Res>
     implements $CustomizeModelCopyWith<$Res> {
-  factory _$CustomizeModelCopyWith(
-          _CustomizeModel value, $Res Function(_CustomizeModel) then) =
-      __$CustomizeModelCopyWithImpl<$Res>;
+  factory _$$CustomizeModelImplCopyWith(_$CustomizeModelImpl value,
+          $Res Function(_$CustomizeModelImpl) then) =
+      __$$CustomizeModelImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? selectedCardKey, List<BeerculesCard> configCards});
 }
 
 /// @nodoc
-class __$CustomizeModelCopyWithImpl<$Res>
-    extends _$CustomizeModelCopyWithImpl<$Res>
-    implements _$CustomizeModelCopyWith<$Res> {
-  __$CustomizeModelCopyWithImpl(
-      _CustomizeModel _value, $Res Function(_CustomizeModel) _then)
-      : super(_value, (v) => _then(v as _CustomizeModel));
+class __$$CustomizeModelImplCopyWithImpl<$Res>
+    extends _$CustomizeModelCopyWithImpl<$Res, _$CustomizeModelImpl>
+    implements _$$CustomizeModelImplCopyWith<$Res> {
+  __$$CustomizeModelImplCopyWithImpl(
+      _$CustomizeModelImpl _value, $Res Function(_$CustomizeModelImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _CustomizeModel get _value => super._value as _CustomizeModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? selectedCardKey = freezed,
-    Object? configCards = freezed,
+    Object? configCards = null,
   }) {
-    return _then(_CustomizeModel(
-      selectedCardKey: selectedCardKey == freezed
+    return _then(_$CustomizeModelImpl(
+      selectedCardKey: freezed == selectedCardKey
           ? _value.selectedCardKey
           : selectedCardKey // ignore: cast_nullable_to_non_nullable
               as String?,
-      configCards: configCards == freezed
-          ? _value.configCards
+      configCards: null == configCards
+          ? _value._configCards
           : configCards // ignore: cast_nullable_to_non_nullable
               as List<BeerculesCard>,
     ));
@@ -117,13 +102,21 @@ class __$CustomizeModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CustomizeModel implements _CustomizeModel {
-  _$_CustomizeModel({required this.selectedCardKey, required this.configCards});
+class _$CustomizeModelImpl implements _CustomizeModel {
+  _$CustomizeModelImpl(
+      {required this.selectedCardKey,
+      required final List<BeerculesCard> configCards})
+      : _configCards = configCards;
 
   @override
   final String? selectedCardKey;
+  final List<BeerculesCard> _configCards;
   @override
-  final List<BeerculesCard> configCards;
+  List<BeerculesCard> get configCards {
+    if (_configCards is EqualUnmodifiableListView) return _configCards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_configCards);
+  }
 
   @override
   String toString() {
@@ -134,29 +127,29 @@ class _$_CustomizeModel implements _CustomizeModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CustomizeModel &&
+            other is _$CustomizeModelImpl &&
+            (identical(other.selectedCardKey, selectedCardKey) ||
+                other.selectedCardKey == selectedCardKey) &&
             const DeepCollectionEquality()
-                .equals(other.selectedCardKey, selectedCardKey) &&
-            const DeepCollectionEquality()
-                .equals(other.configCards, configCards));
+                .equals(other._configCards, _configCards));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(selectedCardKey),
-      const DeepCollectionEquality().hash(configCards));
+  int get hashCode => Object.hash(runtimeType, selectedCardKey,
+      const DeepCollectionEquality().hash(_configCards));
 
   @JsonKey(ignore: true)
   @override
-  _$CustomizeModelCopyWith<_CustomizeModel> get copyWith =>
-      __$CustomizeModelCopyWithImpl<_CustomizeModel>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$CustomizeModelImplCopyWith<_$CustomizeModelImpl> get copyWith =>
+      __$$CustomizeModelImplCopyWithImpl<_$CustomizeModelImpl>(
+          this, _$identity);
 }
 
 abstract class _CustomizeModel implements CustomizeModel {
   factory _CustomizeModel(
-      {required String? selectedCardKey,
-      required List<BeerculesCard> configCards}) = _$_CustomizeModel;
+      {required final String? selectedCardKey,
+      required final List<BeerculesCard> configCards}) = _$CustomizeModelImpl;
 
   @override
   String? get selectedCardKey;
@@ -164,6 +157,6 @@ abstract class _CustomizeModel implements CustomizeModel {
   List<BeerculesCard> get configCards;
   @override
   @JsonKey(ignore: true)
-  _$CustomizeModelCopyWith<_CustomizeModel> get copyWith =>
+  _$$CustomizeModelImplCopyWith<_$CustomizeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

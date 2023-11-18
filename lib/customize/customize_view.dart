@@ -118,7 +118,7 @@ class CardDetailsView extends ConsumerWidget {
                             (element) => element.key == model.selectedCardKey)
                         .amount
                         .toString(),
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
               ],

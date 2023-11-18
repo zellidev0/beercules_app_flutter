@@ -1,6 +1,6 @@
 import 'package:beercules/navigation_service.dart';
-import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
+import 'package:beercules/services/navigation_service.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class RulesView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final NavigationService navigationService =
-        ref.read(providers.navigationServiceProvider);
+        ref.read(navigationServiceProvider);
 
     return ScaffoldWidget(
       child: Padding(
@@ -71,7 +71,7 @@ class RulesView extends ConsumerWidget {
             ),
             buildButton(
               onPressed: () => navigationService.navigateToNamed(
-                uri: NavigationService.gameRouteUri,
+                NavigationServiceRoutes.gameRouteUri,
               ),
               textResource: "rules_view.go_to_game",
             )
@@ -87,7 +87,7 @@ class RulesView extends ConsumerWidget {
       Row(
         children: [
           buildIconButton(
-            onPressed: navigationService.beamBack,
+            onPressed: navigationService.goBack,
             icon: Icons.arrow_back_ios_rounded,
           ),
           const Spacer(),
