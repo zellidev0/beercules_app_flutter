@@ -1,4 +1,4 @@
-import 'package:beercules/common.dart';
+import 'package:beercules/common/common.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/providers.dart';

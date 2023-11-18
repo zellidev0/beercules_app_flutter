@@ -7,19 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 
-void showSnackbar({
-  required final BuildContext context,
-  required final String message,
-  final Duration duration = const Duration(seconds: 3),
-}) {
-  final SnackBar snackBar = SnackBar(
-    backgroundColor: Theme.of(context).colorScheme.primary,
-    content: Text(message),
-    duration: duration,
-  );
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-}
-
 Widget buildButton({
   required final VoidCallback? onPressed,
   required final String textResource,

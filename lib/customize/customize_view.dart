@@ -1,4 +1,4 @@
-import 'package:beercules/common.dart';
+import 'package:beercules/common/common.dart';
 import 'package:beercules/customize/customize_card.dart';
 import 'package:beercules/customize/customize_controller.dart';
 import 'package:beercules/customize/customize_model.dart';

@@ -1,8 +1,7 @@
 import 'dart:core';
 
-import 'package:beercules/common.dart';
 import 'package:beercules/customize/customize_model.dart';
-import 'package:beercules/services/navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -79,7 +78,7 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     required final BuildContext context,
   }) {
     _beerculesCardsProvider.setConfigToDefault();
-    showSnackbar(context: context, message: 'config_view.restoredDefault'.tr());
+    _navigationService.showSnackBar('config_view.restoredDefault'.tr());
   }
 
   void pop() {

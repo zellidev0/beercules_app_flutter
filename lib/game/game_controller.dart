@@ -1,10 +1,11 @@
 import 'dart:core';
 import 'dart:math';
 
-import 'package:beercules/common.dart';
+import 'package:beercules/common/common.dart';
 import 'package:beercules/game/game_model.dart';
-import 'package:beercules/navigation_service.dart';
-import 'package:beercules/services/navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
+
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -95,10 +96,7 @@ class GameController extends StateNotifier<GameModel> {
     required final BuildContext context,
   }) {
     if (_beerculesCardsProvider.configDiffersFromDefault()) {
-      showSnackbar(
-        context: context,
-        message: 'game_view.customize_cards_used'.tr(),
-      );
+      _navigationService.showSnackBar('game_view.customize_cards_used'.tr());
     }
   }
 

@@ -1,4 +1,4 @@
-import 'package:beercules/common.dart';
+import 'package:beercules/common/common.dart';
 import 'package:beercules/home/home_controller.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';

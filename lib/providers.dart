@@ -4,7 +4,7 @@ import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/home/home_controller.dart';
 import 'package:beercules/home/home_model.dart';
-import 'package:beercules/services/navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -15,9 +15,7 @@ class Providers {
       StateNotifierProvider<HomeController, HomeModel>(
     (final StateNotifierProviderRef<HomeController, HomeModel> ref) =>
         HomeController(
-      navigationService: ref.read(
-        navigationServiceProvider,
-      ),
+      navigationService: ref.read(navigationServiceProvider),
       model: HomeModel(),
     ),
   );

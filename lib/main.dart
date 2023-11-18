@@ -1,5 +1,5 @@
 import 'package:beercules/firebase_options.dart';
-import 'package:beercules/services/navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';

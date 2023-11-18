@@ -4,8 +4,8 @@ import 'package:beercules/customize/customize_view.dart';
 import 'package:beercules/game/game_view.dart';
 import 'package:beercules/home/home_view.dart';
 import 'package:beercules/landing/landing_view.dart';
-import 'package:beercules/navigation_service.dart';
 import 'package:beercules/rules/rules_view.dart';
+import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
