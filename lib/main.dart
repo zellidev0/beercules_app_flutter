@@ -57,30 +57,3 @@ Future<Widget> buildApp() async => ProviderScope(
         ),
       ),
     );
-
-// BeamerDelegate createBeamerDelegate() => BeamerDelegate(
-//       initialPath: NavigationServiceRoutes.homeRouteUri,
-//       guards: [
-//         BeamGuard(
-//           // for witch path patterns to check
-//           pathPatterns: [NavigationServiceRoutes.landingRouteUri],
-//           // perform the check on all patterns that **don't** have a match in pathPatterns
-//           guardNonMatching: true,
-//           // return false to redirect
-//           check: (context, location) => !kIsWeb,
-//           // where to redirect on a false check
-//           beamToNamed: (origin, target) {
-//             return NavigationServiceRoutes.landingRouteUri;
-//           },
-//         ),
-//         BeamGuard(
-//           pathPatterns: [NavigationServiceRoutes.landingRouteUri],
-//           // perform the check on all patterns that **don't** have a match in pathPatterns
-//           guardNonMatching: false,
-//           // return false to redirect
-//           check: (context, location) => kIsWeb,
-//           // where to redirect on a false check
-//           beamToNamed: (origin, target) => NavigationServiceRoutes.h,
-//         ),
-//       ],
-//     );

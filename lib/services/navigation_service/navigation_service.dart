@@ -35,6 +35,15 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
       debugLogDiagnostics: kDebugMode,
       initialLocation: NavigationServiceRoutes.homeRouteUri,
       navigatorKey: rootNavigatorKey,
+      redirect: (final BuildContext context, final GoRouterState state) {
+        if (!kIsWeb && state.path == NavigationServiceRoutes.landingRouteUri) {
+          return NavigationServiceRoutes.landingRouteUri;
+        }
+        if (kIsWeb && state.path == NavigationServiceRoutes.landingRouteUri) {
+          return NavigationServiceRoutes.homeRouteUri;
+        }
+        return null;
+      },
       onException: (
         final BuildContext context,
         final GoRouterState state,
