@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:beercules/common/widgets/bacis_card.dart';
+import 'package:beercules/common/widgets/basic_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';

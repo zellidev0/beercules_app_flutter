@@ -1,8 +1,8 @@
-import 'package:beercules/common/widgets/bacis_card.dart';
+import 'package:beercules/common/widgets/basic_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
-import 'package:beercules/customize/customize_card.dart';
 import 'package:beercules/customize/customize_controller.dart';
 import 'package:beercules/customize/customize_model.dart';
+import 'package:beercules/customize/widgets/customize_card.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
