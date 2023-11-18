@@ -9,16 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomizeView extends ConsumerWidget {
-  const CustomizeView({Key? key}) : super(key: key);
+  const CustomizeView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(final BuildContext context, final WidgetRef ref) {
     final CustomizeController controller =
         ref.read(providers.customizeController.notifier);
     final CustomizeModel model = ref.read(providers.customizeController);
     return ScaffoldWidget(
       child: Column(
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 16, 32, 0),
             child: _buildTopRow(
@@ -28,21 +28,25 @@ class CustomizeView extends ConsumerWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16),
               child: GridView.builder(
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                 ),
-                itemBuilder: (_, index) => CustomizeCard(
+                itemBuilder: (final _, final int index) => CustomizeCard(
                   cardKey: model.configCards
-                      .where((element) => !element.isBasicRule)
+                      .where(
+                        (final BeerculesCard element) => !element.isBasicRule,
+                      )
                       .toList()[index]
                       .key,
-                  onTap: () => controller.showModal(
+                  onTap: () async => controller.showModal<void>(
                     cardKey: model.configCards
-                        .where((element) => !element.isBasicRule)
+                        .where(
+                          (final BeerculesCard element) => !element.isBasicRule,
+                        )
                         .toList()[index]
                         .key,
                     context: context,
@@ -50,7 +54,9 @@ class CustomizeView extends ConsumerWidget {
                   ),
                 ),
                 itemCount: model.configCards
-                    .where((element) => !element.isBasicRule)
+                    .where(
+                      (final BeerculesCard element) => !element.isBasicRule,
+                    )
                     .toList()
                     .length,
               ),
@@ -62,11 +68,11 @@ class CustomizeView extends ConsumerWidget {
   }
 
   Widget _buildTopRow({
-    required CustomizeController controller,
-    required BuildContext context,
+    required final CustomizeController controller,
+    required final BuildContext context,
   }) =>
       Row(
-        children: [
+        children: <Widget>[
           buildIconButton(
             onPressed: controller.goBackToHome,
             icon: Icons.arrow_back_ios_rounded,
@@ -82,40 +88,43 @@ class CustomizeView extends ConsumerWidget {
 
 class CardDetailsView extends ConsumerWidget {
   const CardDetailsView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    CustomizeController controller =
+  Widget build(final BuildContext context, final WidgetRef ref) {
+    final CustomizeController controller =
         ref.read(providers.customizeController.notifier);
-    CustomizeModel model = ref.watch(providers.customizeController);
-    BeerculesCard selected = model.configCards
-        .firstWhere((element) => element.key == model.selectedCardKey);
+    final CustomizeModel model = ref.watch(providers.customizeController);
+    final BeerculesCard selected = model.configCards.firstWhere(
+      (final BeerculesCard element) => element.key == model.selectedCardKey,
+    );
     return GestureDetector(
-      onTap: () => controller.pop(),
+      onTap: controller.pop,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget>[
           buildCardForeground(
-            onTap: () => controller.pop(),
+            onTap: controller.pop,
             showLogo: selected.isBasicRule,
             resourceKey: selected.key,
             context: context,
             showSkullAnimation: false,
           ),
-          Container(
+          ColoredBox(
             color: Colors.transparent,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 FloatingActionButton(
                   onPressed: controller.modifyCardAmount,
                   child: Text(
                     model.configCards
                         .firstWhere(
-                            (element) => element.key == model.selectedCardKey)
+                          (final BeerculesCard element) =>
+                              element.key == model.selectedCardKey,
+                        )
                         .amount
                         .toString(),
                     style: Theme.of(context).textTheme.bodyMedium,

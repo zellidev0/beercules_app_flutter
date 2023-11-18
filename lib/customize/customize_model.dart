@@ -6,7 +6,7 @@ part 'customize_model.freezed.dart';
 @freezed
 class CustomizeModel with _$CustomizeModel {
   factory CustomizeModel({
-    required String? selectedCardKey,
-    required List<BeerculesCard> configCards,
+    required final String? selectedCardKey,
+    required final List<BeerculesCard> configCards,
   }) = _CustomizeModel;
 }

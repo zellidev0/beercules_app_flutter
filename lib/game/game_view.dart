@@ -10,22 +10,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
 
 class GameView extends ConsumerWidget {
-  const GameView({Key? key}) : super(key: key);
+  const GameView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(final BuildContext context, final WidgetRef ref) {
     final GameController controller =
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
 
     if (model.showContinueDialog) {
-      Future.delayed(Duration.zero, () {
-        buildAndShowDialog(
+      Future<void>.delayed(Duration.zero, () async {
+        await buildAndShowDialog(
           context: context,
           onConfirmPressed: controller.pop,
           onCancelPressed: () {
-            controller.newGame();
-            controller.showCustomizedCardActiveSnackbar(context: context);
+            controller
+              ..newGame()
+              ..showCustomizedCardActiveSnackbar(context: context);
           },
           confirmTextResource: 'game_view.continue.yes',
           declineTextResource: 'game_view.continue.no',
@@ -40,7 +41,7 @@ class GameView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Stack(
           alignment: Alignment.topCenter,
-          children: [
+          children: <Widget>[
             _buildCardStack(
               model: model,
               context: context,
@@ -57,70 +58,71 @@ class GameView extends ConsumerWidget {
   }
 
   Widget _buildCardStack({
-    required GameModel model,
-    required BuildContext context,
-    required GameController controller,
-  }) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: model.cards
-          .mapIndexed(
-            (int index, GameModelCard card) => Transform.rotate(
-              angle: index.toDouble() + model.cardTransformSeed,
-              child: RepaintBoundary(
-                child: card.played
-                    ? Container()
-                    : _buildCardBackground(
-                        context: context,
-                        card: card,
-                        controller: controller,
-                        model: model,
-                      ),
+    required final GameModel model,
+    required final BuildContext context,
+    required final GameController controller,
+  }) =>
+      Stack(
+        alignment: Alignment.bottomCenter,
+        children: model.cards
+            .mapIndexed(
+              (final int index, final GameModelCard card) => Transform.rotate(
+                angle: index.toDouble() + model.cardTransformSeed,
+                child: RepaintBoundary(
+                  child: card.played
+                      ? Container()
+                      : _buildCardBackground(
+                          context: context,
+                          card: card,
+                          controller: controller,
+                          model: model,
+                        ),
+                ),
               ),
-            ),
-          )
-          .toList(),
-    );
-  }
+            )
+            .toList(),
+      );
 
   Row _buildTopRow({
-    required GameController controller,
-    required GameModel model,
+    required final GameController controller,
+    required final GameModel model,
   }) =>
       Row(
-        children: [
+        children: <Widget>[
           buildIconButton(
             onPressed: controller.goBackToHome,
             icon: Icons.arrow_back_ios_rounded,
           ),
           const Spacer(),
           Text(
-            model.cards.where((_) => !_.played).length.toString(),
+            model.cards.where((final _) => !_.played).length.toString(),
             style: TextStyles.header4,
           ),
         ],
       );
 
   Widget _buildCardBackground({
-    required BuildContext context,
-    required GameModelCard card,
-    required GameModel model,
-    required GameController controller,
+    required final BuildContext context,
+    required final GameModelCard card,
+    required final GameModel model,
+    required final GameController controller,
   }) {
-    void onSwipe(_, __) {
+    Future<void> onSwipe(final _, final __) async {
       controller.decreaseCardAmount(cardId: card.id);
-      showDialog(
+      await showDialog<void>(
         context: context,
-        builder: (_) => buildCardForeground(
+        builder: (final _) => buildCardForeground(
           context: context,
           onTap: () => controller.dismissCard(context: context),
           showLogo: card.isBasicRule,
           showSkullAnimation: card.isVictimGlass &&
-              model.cards.where((_) => _.isVictimGlass && !_.played).length ==
+              model.cards
+                      .where((final _) => _.isVictimGlass && !_.played)
+                      .length ==
                   1,
           resourceKey: card.isVictimGlass &&
                   model.cards
-                          .where((_) => _.isVictimGlass && !_.played)
+                          .where((final _) => _.isVictimGlass && !_.played)
                           .length ==
                       1
               ? card.victimGlassKey
@@ -148,8 +150,8 @@ class GameView extends ConsumerWidget {
               child: AspectRatio(
                 aspectRatio: 2.5 / 3.5,
                 child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Image.asset("assets/images/logo.png"),
+                  padding: const EdgeInsets.all(32),
+                  child: Image.asset('assets/images/logo.png'),
                 ),
               ),
             ),

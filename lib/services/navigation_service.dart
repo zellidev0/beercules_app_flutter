@@ -7,9 +7,10 @@ import 'package:beercules/landing/landing_view.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/rules/rules_view.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,68 +23,63 @@ abstract interface class NavigationService {
   void push(final String uri);
   void replaceWith(final Uri uri);
   void replaceWithNamed(final Uri uri);
+  void showSnackBar(final String message);
+  TaskEither<Object, Option<T>> showPopup<T>(final Widget popup);
 }
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
 
 @riverpod
-GoRouter goRouter(final GoRouterRef ref) {
-  return GoRouter(
-    debugLogDiagnostics: kDebugMode,
-    initialLocation: NavigationServiceRoutes.homeRouteUri.toString(),
-    navigatorKey: rootNavigatorKey,
-    onException: (
-      final BuildContext context,
-      final GoRouterState state,
-      final GoRouter router,
-    ) {
-      debugPrint('GoRouter exception: ${state.error}');
-    },
-    routes: <RouteBase>[
-      GoRoute(
-        path: NavigationServiceRoutes.homeRouteUri.toString(),
-        builder: (final BuildContext context, final __) => Consumer(
-          builder: (final _, final WidgetRef ref, final __) {
-            return const HomeView();
-          },
+GoRouter goRouter(final GoRouterRef ref) => GoRouter(
+      debugLogDiagnostics: kDebugMode,
+      initialLocation: NavigationServiceRoutes.homeRouteUri,
+      navigatorKey: rootNavigatorKey,
+      onException: (
+        final BuildContext context,
+        final GoRouterState state,
+        final GoRouter router,
+      ) {
+        debugPrint('GoRouter exception: ${state.error}');
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: NavigationServiceRoutes.homeRouteUri,
+          builder: (final BuildContext context, final __) => Consumer(
+            builder: (final _, final WidgetRef ref, final __) =>
+                const HomeView(),
+          ),
         ),
-      ),
-      GoRoute(
-        path: NavigationServiceRoutes.gameRouteUri.toString(),
-        builder: (final BuildContext context, final __) => Consumer(
-          builder: (final _, final WidgetRef ref, final __) {
-            return const GameView();
-          },
+        GoRoute(
+          path: NavigationServiceRoutes.gameRouteUri,
+          builder: (final BuildContext context, final __) => Consumer(
+            builder: (final _, final WidgetRef ref, final __) =>
+                const GameView(),
+          ),
         ),
-      ),
-      GoRoute(
-        path: NavigationServiceRoutes.rulesRouteUri.toString(),
-        builder: (final BuildContext context, final __) => Consumer(
-          builder: (final _, final WidgetRef ref, final __) {
-            return const RulesView();
-          },
+        GoRoute(
+          path: NavigationServiceRoutes.rulesRouteUri,
+          builder: (final BuildContext context, final __) => Consumer(
+            builder: (final _, final WidgetRef ref, final __) =>
+                const RulesView(),
+          ),
         ),
-      ),
-      GoRoute(
-        path: NavigationServiceRoutes.customizeRouteUri.toString(),
-        builder: (final BuildContext context, final __) => Consumer(
-          builder: (final _, final WidgetRef ref, final __) {
-            return const CustomizeView();
-          },
+        GoRoute(
+          path: NavigationServiceRoutes.customizeRouteUri,
+          builder: (final BuildContext context, final __) => Consumer(
+            builder: (final _, final WidgetRef ref, final __) =>
+                const CustomizeView(),
+          ),
         ),
-      ),
-      GoRoute(
-        path: NavigationServiceRoutes.landingRouteUri.toString(),
-        builder: (final BuildContext context, final __) => Consumer(
-          builder: (final _, final WidgetRef ref, final __) {
-            return const LandingView();
-          },
+        GoRoute(
+          path: NavigationServiceRoutes.landingRouteUri,
+          builder: (final BuildContext context, final __) => Consumer(
+            builder: (final _, final WidgetRef ref, final __) =>
+                const LandingView(),
+          ),
         ),
-      ),
-    ],
-  );
-}
+      ],
+    );
 
 @riverpod
 NavigationService navigationService(final NavigationServiceRef ref) =>
@@ -124,31 +120,35 @@ class GoRouterNavigationService implements NavigationService {
         _goRouter.replace(uri.toString()),
       );
 
-  // @override
-  // TaskEither<Object, Option<T>> showPopup<T>({required final Widget popup}) =>
-  //     optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
-  //       () => TaskEither<Object, Option<T>>(
-  //         () async =>
-  //             left('Error when searching for context - navigation service'),
-  //       ),
-  //       (final BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
-  //         () async => optionOf(
-  //           await showDialog<T>(
-  //             context: context,
-  //             builder: (final _) => popup,
-  //           ),
-  //         ),
-  //         (final Object error, final _) => error,
-  //       ),
-  //     );
+  @override
+  TaskEither<Object, Option<T>> showPopup<T>(final Widget popup) =>
+      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
+        () => TaskEither<Object, Option<T>>(
+          () async =>
+              left('Error when searching for context - navigation service'),
+        ),
+        (final BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
+          () async => optionOf(
+            await showDialog<T>(
+              context: context,
+              builder: (final _) => popup,
+            ),
+          ),
+          (final Object error, final _) => error,
+        ),
+      );
 
-  // @override
-  // void showSnackBar({required final String message}) =>
-  //     optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
-  //       () {},
-  //       (final BuildContext context) =>
-  //           ScaffoldMessenger.of(context).showSnackBar(
-  //         buildHomodeaSnackBar(message: message),
-  //       ),
-  //     );
+  @override
+  void showSnackBar(final String message) =>
+      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
+        () {},
+        (final BuildContext context) =>
+            ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            content: Text(message),
+            duration: const Duration(seconds: 3),
+          ),
+        ),
+      );
 }

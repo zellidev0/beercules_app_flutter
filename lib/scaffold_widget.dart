@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWidget extends StatelessWidget {
@@ -6,15 +7,15 @@ class ScaffoldWidget extends StatelessWidget {
   final bool useSafeAre;
 
   const ScaffoldWidget({
-    Key? key,
     required this.child,
+    super.key,
     this.appBar,
     this.useSafeAre = true,
-  }) : super(key: key);
+  });
 
   @override
-  Widget build(BuildContext context) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+  Widget build(final BuildContext context) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
         child: Material(
           child: Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
@@ -25,4 +26,9 @@ class ScaffoldWidget extends StatelessWidget {
           ),
         ),
       );
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<bool>('useSafeAre', useSafeAre));
+  }
 }

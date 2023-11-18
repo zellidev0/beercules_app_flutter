@@ -1,3 +1,4 @@
+import 'package:beercules/common.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/services/navigation_service.dart';
@@ -6,13 +7,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../common.dart';
-
 class RulesView extends ConsumerWidget {
-  const RulesView({Key? key}) : super(key: key);
+  const RulesView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(final BuildContext context, final WidgetRef ref) {
     final NavigationService navigationService =
         ref.read(navigationServiceProvider);
 
@@ -21,14 +20,13 @@ class RulesView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: <Widget>[
             _buildTopRow(navigationService: navigationService),
             Expanded(
               child: buildBasicCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     const Text(
                       'rules_view.title',
                       style: TextStyles.header2,
@@ -73,8 +71,8 @@ class RulesView extends ConsumerWidget {
               onPressed: () => navigationService.push(
                 NavigationServiceRoutes.gameRouteUri,
               ),
-              textResource: "rules_view.go_to_game",
-            )
+              textResource: 'rules_view.go_to_game',
+            ),
           ],
         ),
       ),
@@ -82,10 +80,10 @@ class RulesView extends ConsumerWidget {
   }
 
   Row _buildTopRow({
-    required NavigationService navigationService,
+    required final NavigationService navigationService,
   }) =>
       Row(
-        children: [
+        children: <Widget>[
           buildIconButton(
             onPressed: navigationService.goBack,
             icon: Icons.arrow_back_ios_rounded,

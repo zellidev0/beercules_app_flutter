@@ -5,20 +5,20 @@ part 'game_model.freezed.dart';
 @freezed
 class GameModel with _$GameModel {
   factory GameModel({
-    required List<GameModelCard> cards,
-    required double cardTransformSeed,
-    required bool showContinueDialog,
+    required final List<GameModelCard> cards,
+    required final double cardTransformSeed,
+    required final bool showContinueDialog,
   }) = _GameModel;
 }
 
 @freezed
 class GameModelCard with _$GameModelCard {
   factory GameModelCard({
-    required String id,
-    required String key,
-    required bool isBasicRule,
-    required bool isVictimGlass,
-    required String victimGlassKey,
-    required bool played,
+    required final String id,
+    required final String key,
+    required final bool isBasicRule,
+    required final bool isVictimGlass,
+    required final String victimGlassKey,
+    required final bool played,
   }) = _GameModelCard;
 }

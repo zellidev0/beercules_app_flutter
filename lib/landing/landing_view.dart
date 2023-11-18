@@ -7,43 +7,47 @@ import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LandingView extends ConsumerWidget {
-  const LandingView({Key? key}) : super(key: key);
+  const LandingView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => ScaffoldWidget(
+  Widget build(final BuildContext context, final WidgetRef ref) =>
+      ScaffoldWidget(
         useSafeAre: false,
         child: ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
           child: CustomScrollView(
-            slivers: [
+            slivers: <Widget>[
               SliverAppBar(
                 toolbarHeight: 80,
                 flexibleSpace: FlexibleSpaceBar(title: _buildAppBarContent()),
                 elevation: 0,
                 backgroundColor: Colors.transparent,
-                pinned: false,
-                floating: false,
                 expandedHeight: MediaQuery.of(context).size.height * 0.15,
               ),
               SliverList(
-                  delegate: SliverChildListDelegate([
-                LayoutBuilder(
-                  builder: (context, constraints) => Column(
-                    children: [
-                      _buildSloganAndMockup(
-                        constraints: constraints,
-                        context: context,
-                      ),
-                      _divider(),
-                      _buildFeatures(),
-                      _divider(),
-                      _buildReviews(),
-                      _buildLegal(),
-                      const SizedBox(height: 16),
-                    ],
+                delegate: SliverChildListDelegate(<Widget>[
+                  LayoutBuilder(
+                    builder: (
+                      final BuildContext context,
+                      final BoxConstraints constraints,
+                    ) =>
+                        Column(
+                      children: <Widget>[
+                        _buildSloganAndMockup(
+                          constraints: constraints,
+                          context: context,
+                        ),
+                        _divider(),
+                        _buildFeatures(),
+                        _divider(),
+                        _buildReviews(),
+                        _buildLegal(),
+                        const SizedBox(height: 16),
+                      ],
+                    ),
                   ),
-                ),
-              ]))
+                ]),
+              ),
             ],
           ),
         ),
@@ -62,7 +66,7 @@ class LandingView extends ConsumerWidget {
   Widget _buildReviews() => SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: [
+          children: <Widget>[
             buildReviewCard(
               textResource: 'landing_view.reviews.review1.reviewText',
               authorResource: 'landing_view.reviews.review1.reviewAuthor',
@@ -86,7 +90,7 @@ class LandingView extends ConsumerWidget {
 
   Widget _buildFeatures() => Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 128, vertical: 32),
             child: Text(
@@ -95,16 +99,16 @@ class LandingView extends ConsumerWidget {
             ).tr(),
           ),
           Row(
-            children: [
+            children: <Widget>[
               const Spacer(),
               _buildBadge(
                 height: 80,
-                badge: Image.asset("assets/legal/google-play-badge.png"),
+                badge: Image.asset('assets/legal/google-play-badge.png'),
                 isIos: false,
               ),
               _buildBadge(
                 height: 56,
-                badge: SvgPicture.asset("assets/legal/app-store-badge.svg"),
+                badge: SvgPicture.asset('assets/legal/app-store-badge.svg'),
                 isIos: true,
               ),
               const Spacer(),
@@ -115,93 +119,95 @@ class LandingView extends ConsumerWidget {
       );
 
   Expanded _buildBadge({
-    required double height,
-    required Widget badge,
-    required bool isIos,
+    required final double height,
+    required final Widget badge,
+    required final bool isIos,
   }) =>
       Expanded(
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             child: SizedBox(height: height, child: badge),
-            onTap: () async => await launchUrl(
+            onTap: () async => launchUrl(
               isIos
-                  ? Uri.parse('https://apps.apple.com/us/app/beercules/id1469757352')
-                  : Uri.parse('https://play.google.com/store/apps/details?id=com.jzellner98.thedrinkinggame'),
+                  ? Uri.parse(
+                      'https://apps.apple.com/us/app/beercules/id1469757352',
+                    )
+                  : Uri.parse(
+                      'https://play.google.com/store/apps/details?id=com.jzellner98.thedrinkinggame',
+                    ),
             ),
           ),
         ),
       );
 
   Widget _buildSloganAndMockup({
-    required BoxConstraints constraints,
-    required BuildContext context,
+    required final BoxConstraints constraints,
+    required final BuildContext context,
   }) =>
       Container(
         constraints: constraints.copyWith(
           maxHeight: MediaQuery.of(context).size.height,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(44.0),
+          padding: const EdgeInsets.all(44),
           child: Row(
-            children: [
+            children: <Widget>[
               Text(
                 'landing_view.best_app_slogan'.tr(),
                 style: TextStyles.header1,
               ).tr(),
-              Image.asset("assets/mockups/mockup2.png"),
-            ].map((_) => Expanded(child: _)).toList(),
+              Image.asset('assets/mockups/mockup2.png'),
+            ].map((final _) => Expanded(child: _)).toList(),
           ),
         ),
       );
 
   Widget _buildAppBarContent() => Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: <Widget>[
           SizedBox(
             width: 64,
-            child: Image.asset("assets/images/logo.png"),
+            child: Image.asset('assets/images/logo.png'),
           ),
           Text('general.app_name'.tr(), style: TextStyles.header1).tr(),
         ],
       );
 
   Widget buildReviewCard({
-    required String textResource,
-    required String authorResource,
-    bool halfStar = false,
+    required final String textResource,
+    required final String authorResource,
+    final bool halfStar = false,
   }) =>
       Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(32),
         child: Card(
           elevation: 16,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           color: Colors.blue,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ...List.generate(
+                    children: <Widget>[
+                      ...List<Icon>.generate(
                         halfStar ? 4 : 5,
-                        (index) => const Icon(Icons.star, color: Colors.white),
-                      )
-                          .map(
-                            (e) => Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: e,
-                            ),
-                          )
-                          .toList(),
+                        (final int index) =>
+                            const Icon(Icons.star, color: Colors.white),
+                      ).map<Widget>(
+                        (final Icon e) => Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: e,
+                        ),
+                      ),
                       if (halfStar)
-                        const Icon(Icons.star_half, color: Colors.white)
+                        const Icon(Icons.star_half, color: Colors.white),
                     ],
                   ),
                 ),

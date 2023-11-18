@@ -1,17 +1,16 @@
 import 'dart:core';
 
+import 'package:beercules/home/home_model.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/services/navigation_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'home_model.dart';
 
 class HomeController extends StateNotifier<HomeModel> {
   final NavigationService _navigationService;
 
   HomeController({
-    required NavigationService navigationService,
-    required HomeModel model,
+    required final NavigationService navigationService,
+    required final HomeModel model,
   })  : _navigationService = navigationService,
         super(model);
 

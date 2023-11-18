@@ -2,6 +2,7 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:beercules/common.dart';
+import 'package:beercules/game/game_model.dart';
 import 'package:beercules/navigation_service.dart';
 import 'package:beercules/services/navigation_service.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
@@ -9,41 +10,44 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'game_model.dart';
-
 class GameController extends StateNotifier<GameModel> {
   final NavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
   RemoveListener? listener;
 
   GameController({
-    required NavigationService navigationService,
-    required BeerculesCardProvider beerculesCardsProvider,
-    GameModel? model,
+    required final NavigationService navigationService,
+    required final BeerculesCardProvider beerculesCardsProvider,
+    final GameModel? model,
   })  : _navigationService = navigationService,
         _beerculesCardsProvider = beerculesCardsProvider,
-        super(model ??
-            GameModel(
-              cards: [],
-              cardTransformSeed: Random().nextInt(10).toDouble(),
-              showContinueDialog:
-                  !beerculesCardsProvider.currentGameHasBeenStarted(),
-            )) {
-    listener =
-        _beerculesCardsProvider.addListener((BeerculesCardProviderModel model) {
+        super(
+          model ??
+              GameModel(
+                cards: <GameModelCard>[],
+                cardTransformSeed: Random().nextInt(10).toDouble(),
+                showContinueDialog:
+                    !beerculesCardsProvider.currentGameHasBeenStarted(),
+              ),
+        ) {
+    listener = _beerculesCardsProvider
+        .addListener((final BeerculesCardProviderModel model) {
       state = state.copyWith(
         cards: initCards(
-            seed: state.cardTransformSeed.toInt(),
-            cards: model.currentGameCards
-                .map((card) => GameModelCard(
-                      key: card.key,
-                      isBasicRule: card.isBasicRule,
-                      isVictimGlass: card.isVictimGlass,
-                      victimGlassKey: 'OPFERGLAS_LAST',
-                      played: card.played,
-                      id: card.id,
-                    ))
-                .toList()),
+          seed: state.cardTransformSeed.toInt(),
+          cards: model.currentGameCards
+              .map(
+                (final BeerculesPlayCard card) => GameModelCard(
+                  key: card.key,
+                  isBasicRule: card.isBasicRule,
+                  isVictimGlass: card.isVictimGlass,
+                  victimGlassKey: 'OPFERGLAS_LAST',
+                  played: card.played,
+                  id: card.id,
+                ),
+              )
+              .toList(),
+        ),
       );
     });
   }
@@ -54,14 +58,14 @@ class GameController extends StateNotifier<GameModel> {
     super.dispose();
   }
 
-  void dismissCard({required BuildContext context}) {
-    _navigationService.pop();
-    if (state.cards.where((element) => !element.played).isEmpty) {
-      buildAndShowDialog(
+  Future<void> dismissCard({required final BuildContext context}) async {
+    _navigationService.pop<void>();
+    if (state.cards
+        .where((final GameModelCard element) => !element.played)
+        .isEmpty) {
+      await buildAndShowDialog(
         context: context,
-        onConfirmPressed: () {
-          newGame();
-        },
+        onConfirmPressed: newGame,
         onCancelPressed: () {
           newGame();
           goBackToHome();
@@ -74,7 +78,7 @@ class GameController extends StateNotifier<GameModel> {
     }
   }
 
-  void decreaseCardAmount({required String cardId}) {
+  void decreaseCardAmount({required final String cardId}) {
     _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardId: cardId);
   }
 
@@ -88,29 +92,29 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   void showCustomizedCardActiveSnackbar({
-    required BuildContext context,
+    required final BuildContext context,
   }) {
     if (_beerculesCardsProvider.configDiffersFromDefault()) {
       showSnackbar(
         context: context,
         message: 'game_view.customize_cards_used'.tr(),
-        duration: const Duration(seconds: 3),
       );
     }
   }
 
   static List<GameModelCard> initCards({
-    required int seed,
-    required List<GameModelCard> cards,
-  }) {
-    return [
-      ...shuffle(
-        seed,
-        cards.where((element) => !element.isBasicRule).toList(),
-      ),
-      ...cards.where((element) => element.isBasicRule).toList(),
-    ];
-  }
+    required final int seed,
+    required final List<GameModelCard> cards,
+  }) =>
+      <GameModelCard>[
+        ...shuffle(
+          seed,
+          cards
+              .where((final GameModelCard element) => !element.isBasicRule)
+              .toList(),
+        ),
+        ...cards.where((final GameModelCard element) => element.isBasicRule),
+      ];
 
   void goBackToHome() {
     _navigationService.push(NavigationServiceRoutes.homeRouteUri);
@@ -118,6 +122,6 @@ class GameController extends StateNotifier<GameModel> {
 
   void pop() {
     state = state.copyWith(showContinueDialog: false);
-    _navigationService.pop();
+    _navigationService.pop<void>();
   }
 }

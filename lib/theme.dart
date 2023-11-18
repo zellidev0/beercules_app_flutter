@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BeerculesColors {
-  static const Color primary = Color.fromARGB(255, 33, 150, 243);//#2196f3
-  static const Color primaryButton = Color.fromARGB(255, 33, 168, 243); //#f3e721
-  static const Color accent = Color.fromARGB(255,255,211, 66); //
+  static const Color primary = Color.fromARGB(255, 33, 150, 243); //#2196f3
+  static const Color primaryButton =
+      Color.fromARGB(255, 33, 168, 243); //#f3e721
+  static const Color accent = Color.fromARGB(255, 255, 211, 66); //
   static const Color backgroundColor = Color.fromARGB(255, 123, 191, 246);
-
 }
 
 class TextStyles {

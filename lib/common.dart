@@ -8,11 +8,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 
 void showSnackbar({
-  required BuildContext context,
-  required String message,
-  Duration duration = const Duration(seconds: 3),
+  required final BuildContext context,
+  required final String message,
+  final Duration duration = const Duration(seconds: 3),
 }) {
-  final snackBar = SnackBar(
+  final SnackBar snackBar = SnackBar(
     backgroundColor: Theme.of(context).colorScheme.primary,
     content: Text(message),
     duration: duration,
@@ -21,8 +21,8 @@ void showSnackbar({
 }
 
 Widget buildButton({
-  required VoidCallback? onPressed,
-  required String textResource,
+  required final VoidCallback? onPressed,
+  required final String textResource,
 }) =>
     _buildButton(
       child: Text(
@@ -32,11 +32,11 @@ Widget buildButton({
       onPressed: onPressed,
     );
 
-List<T> shuffle<T>(int seed, List<T> items) {
-  var random = Random(seed);
-  for (var i = items.length - 1; i > 0; i--) {
-    var n = random.nextInt(i + 1);
-    var temp = items[i];
+List<T> shuffle<T>(final int seed, final List<T> items) {
+  final Random random = Random(seed);
+  for (int i = items.length - 1; i > 0; i--) {
+    final int n = random.nextInt(i + 1);
+    final T temp = items[i];
     items[i] = items[n];
     items[n] = temp;
   }
@@ -45,8 +45,8 @@ List<T> shuffle<T>(int seed, List<T> items) {
 }
 
 Widget buildIconButton({
-  required VoidCallback onPressed,
-  required IconData icon,
+  required final VoidCallback onPressed,
+  required final IconData icon,
 }) =>
     _buildButton(
       child: Icon(icon),
@@ -54,9 +54,9 @@ Widget buildIconButton({
     );
 
 Widget buildIconButtonWithText({
-  required VoidCallback onPressed,
-  required String textResource,
-  required IconData icon,
+  required final VoidCallback onPressed,
+  required final String textResource,
+  required final IconData icon,
 }) =>
     _buildButton(
       child: Text(
@@ -67,27 +67,29 @@ Widget buildIconButtonWithText({
     );
 
 Widget buildBasicCard({
-  required Widget child,
-  required VoidCallback? onTap,
-  required Color color,
+  required final Widget child,
+  required final VoidCallback? onTap,
+  required final Color color,
 }) =>
     GestureDetector(
       onTap: onTap,
       child: Material(
         color: Colors.transparent,
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               ClipRRect(
-                borderRadius: BorderRadius.circular(16.0),
+                borderRadius: BorderRadius.circular(16),
                 child: AspectRatio(
                   aspectRatio: 2.5 / 3.5,
-                  child: Container(
+                  child: ColoredBox(
                     color: color,
                     child: Padding(
-                        padding: const EdgeInsets.all(32.0), child: child),
+                      padding: const EdgeInsets.all(32),
+                      child: child,
+                    ),
                   ),
                 ),
               ),
@@ -98,36 +100,36 @@ Widget buildBasicCard({
     );
 
 Future<void> buildAndShowDialog({
-  required BuildContext context,
-  required VoidCallback onConfirmPressed,
-  required VoidCallback onCancelPressed,
-  required String confirmTextResource,
-  required String headerResource,
-  required String descriptionResource,
-  required String declineTextResource,
+  required final BuildContext context,
+  required final VoidCallback onConfirmPressed,
+  required final VoidCallback onCancelPressed,
+  required final String confirmTextResource,
+  required final String headerResource,
+  required final String descriptionResource,
+  required final String declineTextResource,
 }) async {
-  await showDialog(
+  await showDialog<void>(
     useSafeArea: false,
     context: context,
-    builder: (_) => Material(
+    builder: (final _) => Material(
       color: Colors.black.withAlpha(100),
       child: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
+          children: <Widget>[
+            DecoratedBox(
               decoration: BoxDecoration(
-                  color:
-                      Theme.of(context).colorScheme.background.withAlpha(255),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(16),
-                  )),
+                color: Theme.of(context).colorScheme.background.withAlpha(255),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(16),
+                ),
+              ),
               child: Padding(
-                padding: const EdgeInsets.all(32.0),
+                padding: const EdgeInsets.all(32),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
@@ -147,7 +149,7 @@ Future<void> buildAndShowDialog({
                       onCancelPressed: onCancelPressed,
                       confirmTextResource: confirmTextResource,
                       declineTextResource: declineTextResource,
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -160,14 +162,14 @@ Future<void> buildAndShowDialog({
 }
 
 Row _buildDialogButtons({
-  required VoidCallback onConfirmPressed,
-  required VoidCallback onCancelPressed,
-  required String confirmTextResource,
-  required String declineTextResource,
+  required final VoidCallback onConfirmPressed,
+  required final VoidCallback onCancelPressed,
+  required final String confirmTextResource,
+  required final String declineTextResource,
 }) =>
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
+      children: <Widget>[
         Expanded(
           child: buildButton(
             onPressed: onConfirmPressed,
@@ -185,16 +187,15 @@ Row _buildDialogButtons({
     );
 
 Widget buildCardForeground({
-  required BuildContext context,
-  required VoidCallback onTap,
-  required bool showLogo,
-  required String resourceKey,
-  required bool showSkullAnimation,
+  required final BuildContext context,
+  required final VoidCallback onTap,
+  required final bool showLogo,
+  required final String resourceKey,
+  required final bool showSkullAnimation,
 }) =>
     buildBasicCard(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
             child: AspectRatio(
@@ -210,13 +211,13 @@ Widget buildCardForeground({
           FittedBox(
             fit: BoxFit.fitHeight,
             child: Text(
-              "game_view.instructions.$resourceKey.title",
+              'game_view.instructions.$resourceKey.title',
               style: TextStyles.header2,
             ).tr(),
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            "game_view.instructions.$resourceKey.description".tr(),
+            'game_view.instructions.$resourceKey.description'.tr(),
             maxLines: 10,
             style: TextStyles.body1,
             textAlign: TextAlign.center,
@@ -228,27 +229,28 @@ Widget buildCardForeground({
     );
 
 Widget _getForegroundPic({
-  required String imageKey,
-  required bool showLogo,
+  required final String imageKey,
+  required final bool showLogo,
 }) =>
     showLogo
-        ? Image.asset("assets/images/logo.png")
-        : SvgPicture.asset("assets/instructions/${imageKey}_pic.svg");
+        ? Image.asset('assets/images/logo.png')
+        : SvgPicture.asset('assets/instructions/${imageKey}_pic.svg');
 
 Widget _buildButton({
-  required Widget child,
-  required VoidCallback? onPressed,
+  required final Widget child,
+  required final VoidCallback? onPressed,
 }) =>
     ElevatedButton(
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
           ),
         ),
-        onPressed: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: child,
-        ));
+      ),
+      onPressed: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: child,
+      ),
+    );
