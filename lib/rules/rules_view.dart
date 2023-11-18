@@ -1,4 +1,3 @@
-import 'package:beercules/common/common.dart';
 import 'package:beercules/common/widgets/bacis_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/scaffold_widget.dart';
@@ -70,7 +69,7 @@ class RulesView extends ConsumerWidget {
                 ),
               ),
             ),
-            buildButton(
+            BcButton.text(
               onPressed: () => navigationService.push(
                 NavigationServiceRoutes.gameRouteUri,
               ),

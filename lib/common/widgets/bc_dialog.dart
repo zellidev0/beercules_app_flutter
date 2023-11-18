@@ -1,4 +1,4 @@
-import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
@@ -81,14 +81,14 @@ class BcDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Expanded(
-            child: buildButton(
+            child: BcButton.text(
               onPressed: onConfirmPressed,
               textResource: confirmTextResource,
             ),
           ),
           const SizedBox(width: 32),
           Expanded(
-            child: buildButton(
+            child: BcButton.text(
               onPressed: onCancelPressed,
               textResource: declineTextResource,
             ),

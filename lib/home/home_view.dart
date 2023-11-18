@@ -1,4 +1,4 @@
-import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/home/home_controller.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
@@ -89,7 +89,7 @@ class HomeView extends ConsumerWidget {
 
   Widget _buildButtons({required final HomeController controller}) => Column(
         children: <Widget>[
-          buildButton(
+          BcButton.text(
             textResource: 'home_view.button.go_drinking',
             onPressed: controller.goToGameView,
           ),
@@ -98,14 +98,14 @@ class HomeView extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: buildButton(
+                child: BcButton.text(
                   textResource: 'home_view.button.rules',
                   onPressed: controller.goToRulesView,
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: buildButton(
+                child: BcButton.text(
                   textResource: 'home_view.button.customize',
                   onPressed: controller.goToCustomizeView,
                 ),

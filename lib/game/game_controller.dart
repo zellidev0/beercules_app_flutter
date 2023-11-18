@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:math';
 
-import 'package:beercules/common/common.dart';
 import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/bc_dialog.dart';
 import 'package:beercules/game/game_model.dart';
