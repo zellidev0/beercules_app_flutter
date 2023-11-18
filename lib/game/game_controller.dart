@@ -66,7 +66,7 @@ class GameController extends StateNotifier<GameModel> {
     if (state.cards
         .where((final GameModelCard element) => !element.played)
         .isEmpty) {
-      showDialog(
+      showFinishDialog(
         onConfirmPressed: newGame,
         onCancelPressed: () {
           newGame();
@@ -122,7 +122,7 @@ class GameController extends StateNotifier<GameModel> {
     _navigationService.pop<void>();
   }
 
-  void showDialog({
+  void showFinishDialog({
     required final void Function() onConfirmPressed,
     required final Null Function() onCancelPressed,
     required final String confirmTextResource,
@@ -134,15 +134,12 @@ class GameController extends StateNotifier<GameModel> {
         _navigationService
             .showPopup<void>(
               BcDialog(
-                onConfirmPressed: newGame,
-                onCancelPressed: () {
-                  newGame();
-                  goBackToHome();
-                },
-                confirmTextResource: 'game_view.finish.yes',
-                declineTextResource: 'game_view.finish.no',
-                headerResource: 'game_view.finish.header',
-                descriptionResource: 'game_view.finish.question',
+                onConfirmPressed: onConfirmPressed,
+                onCancelPressed: onCancelPressed,
+                confirmTextResource: confirmTextResource,
+                declineTextResource: declineTextResource,
+                headerResource: headerResource,
+                descriptionResource: descriptionResource,
               ),
             )
             .match(

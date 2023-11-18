@@ -23,7 +23,7 @@ class GameView extends ConsumerWidget {
 
     if (model.showContinueDialog) {
       scheduleMicrotask(
-        () => controller.showDialog(
+        () => controller.showFinishDialog(
           onConfirmPressed: controller.pop,
           onCancelPressed: () {
             controller
