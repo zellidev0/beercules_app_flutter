@@ -116,9 +116,7 @@ class GameController extends StateNotifier<GameModel> {
         ...cards.where((final GameModelCard element) => element.isBasicRule),
       ];
 
-  void goBackToHome() {
-    _navigationService.push(NavigationServiceRoutes.homeRouteUri);
-  }
+  void goBackToHome() => _navigationService.goBack();
 
   void pop() {
     state = state.copyWith(showContinueDialog: false);
