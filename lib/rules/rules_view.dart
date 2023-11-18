@@ -1,4 +1,5 @@
 import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
@@ -85,9 +86,9 @@ class RulesView extends ConsumerWidget {
   }) =>
       Row(
         children: <Widget>[
-          buildIconButton(
+          BcButton(
             onPressed: navigationService.goBack,
-            icon: Icons.arrow_back_ios_rounded,
+            child: const Icon(Icons.arrow_back_ios_rounded),
           ),
           const Spacer(),
         ],

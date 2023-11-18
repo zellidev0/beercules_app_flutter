@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,12 @@ Widget buildButton({
   required final VoidCallback? onPressed,
   required final String textResource,
 }) =>
-    _buildButton(
+    BcButton(
+      onPressed: onPressed,
       child: Text(
         textResource,
         style: TextStyles.body2,
       ).tr(),
-      onPressed: onPressed,
     );
 
 List<T> shuffle<T>(final int seed, final List<T> items) {
@@ -31,26 +32,17 @@ List<T> shuffle<T>(final int seed, final List<T> items) {
   return items;
 }
 
-Widget buildIconButton({
-  required final VoidCallback onPressed,
-  required final IconData icon,
-}) =>
-    _buildButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-    );
-
 Widget buildIconButtonWithText({
   required final VoidCallback onPressed,
   required final String textResource,
   required final IconData icon,
 }) =>
-    _buildButton(
+    BcButton(
+      onPressed: onPressed,
       child: Text(
         textResource,
         style: TextStyles.body1,
       ).tr(),
-      onPressed: onPressed,
     );
 
 Widget buildBasicCard({
@@ -222,22 +214,3 @@ Widget _getForegroundPic({
     showLogo
         ? Image.asset('assets/images/logo.png')
         : SvgPicture.asset('assets/instructions/${imageKey}_pic.svg');
-
-Widget _buildButton({
-  required final Widget child,
-  required final VoidCallback? onPressed,
-}) =>
-    ElevatedButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      ),
-      onPressed: onPressed,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: child,
-      ),
-    );

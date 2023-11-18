@@ -1,4 +1,5 @@
 import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/customize/customize_card.dart';
 import 'package:beercules/customize/customize_controller.dart';
 import 'package:beercules/customize/customize_model.dart';
@@ -73,14 +74,14 @@ class CustomizeView extends ConsumerWidget {
   }) =>
       Row(
         children: <Widget>[
-          buildIconButton(
+          BcButton(
             onPressed: controller.goBackToHome,
-            icon: Icons.arrow_back_ios_rounded,
+            child: const Icon(Icons.arrow_back_ios_rounded),
           ),
           const Spacer(),
-          buildIconButton(
+          BcButton(
             onPressed: () => controller.restoreDefault(context: context),
-            icon: Icons.restore,
+            child: const Icon(Icons.restore),
           ),
         ],
       );

@@ -1,4 +1,5 @@
 import 'package:beercules/common/common.dart';
+import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/providers.dart';
@@ -89,9 +90,9 @@ class GameView extends ConsumerWidget {
   }) =>
       Row(
         children: <Widget>[
-          buildIconButton(
+          BcButton(
             onPressed: controller.goBackToHome,
-            icon: Icons.arrow_back_ios_rounded,
+            child: const Icon(Icons.arrow_back_ios_rounded),
           ),
           const Spacer(),
           Text(
