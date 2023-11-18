@@ -70,7 +70,7 @@ class RulesView extends ConsumerWidget {
               ),
             ),
             buildButton(
-              onPressed: () => navigationService.navigateToNamed(
+              onPressed: () => navigationService.push(
                 NavigationServiceRoutes.gameRouteUri,
               ),
               textResource: "rules_view.go_to_game",

@@ -113,9 +113,7 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   void goBackToHome() {
-    _navigationService.navigateToNamed(
-      NavigationServiceRoutes.homeRouteUri,
-    );
+    _navigationService.push(NavigationServiceRoutes.homeRouteUri);
   }
 
   void pop() {

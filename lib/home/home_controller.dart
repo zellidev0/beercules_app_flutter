@@ -15,15 +15,15 @@ class HomeController extends StateNotifier<HomeModel> {
   })  : _navigationService = navigationService,
         super(model);
 
-  Future<void> goToGameView() async => _navigationService.navigateToNamed(
+  Future<void> goToGameView() async => _navigationService.push(
         NavigationServiceRoutes.gameRouteUri,
       );
 
-  Future<void> goToRulesView() async => _navigationService.navigateToNamed(
+  Future<void> goToRulesView() async => _navigationService.push(
         NavigationServiceRoutes.rulesRouteUri,
       );
 
-  Future<void> goToCustomizeView() async => _navigationService.navigateToNamed(
+  Future<void> goToCustomizeView() async => _navigationService.push(
         NavigationServiceRoutes.customizeRouteUri,
       );
 }

@@ -18,12 +18,10 @@ part 'navigation_service.g.dart';
 abstract interface class NavigationService {
   void closeDialog<T>({required final T? data});
   void goBack({final Uri? fallbackUri});
-  void navigateToNamed(final String uri);
   void pop<T>({final T? data});
   void push(final String uri);
   void replaceWith(final Uri uri);
   void replaceWithNamed(final Uri uri);
-  void reset(final Uri uri);
 }
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -106,12 +104,9 @@ class GoRouterNavigationService implements NavigationService {
     if (_goRouter.canPop()) {
       _goRouter.pop();
     } else if (fallbackUri != null) {
-      reset(fallbackUri);
+      _goRouter.go(fallbackUri.toString());
     }
   }
-
-  @override
-  void navigateToNamed(final String uri) => push(uri);
 
   @override
   void pop<T>({final T? data}) => _goRouter.pop(data);
@@ -128,9 +123,6 @@ class GoRouterNavigationService implements NavigationService {
   void replaceWithNamed(final Uri uri) => unawaited(
         _goRouter.replace(uri.toString()),
       );
-
-  @override
-  void reset(final Uri uri) => _goRouter.go(uri.toString());
 
   // @override
   // TaskEither<Object, Option<T>> showPopup<T>({required final Widget popup}) =>
