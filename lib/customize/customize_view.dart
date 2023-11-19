@@ -6,6 +6,7 @@ import 'package:beercules/customize/widgets/customize_card.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,7 +22,7 @@ class CustomizeView extends ConsumerWidget {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 16, 32, 0),
+            padding: const EdgeInsets.all(24).copyWith(bottom: 0),
             child: _buildTopRow(
               controller: controller,
               context: context,
@@ -29,12 +30,14 @@ class CustomizeView extends ConsumerWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               child: GridView.builder(
-                physics: const ClampingScrollPhysics(),
-                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
+                  childAspectRatio: 2.5 / 3.5,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
                 ),
                 itemBuilder: (final _, final int index) => CustomizeCard(
                   cardKey: model.configCards
@@ -102,39 +105,45 @@ class CardDetailsView extends ConsumerWidget {
     );
     return GestureDetector(
       onTap: controller.pop,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          CardForeground(
-            onTap: controller.pop,
-            showLogo: selected.isBasicRule,
-            resourceKey: selected.key,
-            showSkullAnimation: false,
-          ),
-          ColoredBox(
-            color: Colors.transparent,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                FloatingActionButton(
-                  onPressed: controller.modifyCardAmount,
-                  child: Text(
-                    model.configCards
-                        .firstWhere(
-                          (final BeerculesCard element) =>
-                              element.key == model.selectedCardKey,
-                        )
-                        .amount
-                        .toString(),
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            CardForeground(
+              onTap: controller.pop,
+              showLogo: selected.isBasicRule,
+              resourceKey: selected.key,
+              showSkullAnimation: false,
             ),
-          ),
-          Container(height: 64, color: Colors.transparent),
-        ],
+            const SizedBox(height: 32),
+            ColoredBox(
+              color: Colors.transparent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FloatingActionButton(
+                    onPressed: controller.modifyCardAmount,
+                    child: Text(
+                      model.configCards
+                          .firstWhere(
+                            (final BeerculesCard element) =>
+                                element.key == model.selectedCardKey,
+                          )
+                          .amount
+                          .toString(),
+                      style: TextStyles.header3.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(height: 64, color: Colors.transparent),
+          ],
+        ),
       ),
     );
   }

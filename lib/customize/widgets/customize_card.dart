@@ -15,38 +15,41 @@ class CustomizeCard extends StatelessWidget {
         _onTap = onTap;
 
   @override
-  Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.all(4),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Expanded(
-              child: Stack(
-                children: <Widget>[
-                  SvgPicture.asset(
-                    'assets/instructions/${_cardKey}_pic.svg',
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10000000),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: _onTap,
-                      ),
+  Widget build(final BuildContext context) => Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        color: BeerculesColors.primary,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: _onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Expanded(
+                  flex: 3,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: SvgPicture.asset(
+                      'assets/instructions/${_cardKey}_pic.svg',
                     ),
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: Text(
+                    'game_view.instructions.$_cardKey.title',
+                    style: TextStyles.body5,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ).tr(),
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
-            Text(
-              'game_view.instructions.$_cardKey.title',
-              style: TextStyles.body4,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ).tr(),
-          ],
+          ),
         ),
       );
 }
