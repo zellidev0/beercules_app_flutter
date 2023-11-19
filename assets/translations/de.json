@@ -44,11 +44,11 @@
     "go_to_game": "\uD83C\uDF89 Party jetzt \uD83C\uDF89",
     "title": "Spielablauf",
     "rule_1_title": "1. Hinsetzen",
-    "rule_1_description": "Alle Spieler setzen sich in einen Kreis",
+    "rule_1_description": "Alle Spieler setzen sich in einen Kreis.",
     "rule_2_title": "2. Karte befolgen",
-    "rule_2_description": "Ein Spieler beginnt und befolgt die erste Karte",
+    "rule_2_description": "Ein Spieler beginnt, swiped eine Karte und ließt sie laut vor. Dann befolgt er die erste Anweisung wie beschrieben.",
     "rule_3_title": "3. Weitergeben",
-    "rule_3_description": "Du swipest die Karte weg und dein Nachbar ist dran"
+    "rule_3_description": "Wenn die Anweisung erfüllt ist, ist der Nachbar dran."
   },
   "game_view": {
     "customize_cards_used": "Du spielst mit deinen persönlichen Karten Einstellungen.",

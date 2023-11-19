@@ -44,11 +44,11 @@
     "go_to_game": "\uD83C\uDF89 Party now \uD83C\uDF89",
     "title" : "How to",
     "rule_1_title" : "1. Sit down",
-    "rule_1_description" : "All players sit in a circle",
+    "rule_1_description" : "All players sit in a circle.",
     "rule_2_title" : "2. Do it",
-    "rule_2_description" : "One player starts takes a card and follows the instruction",
+    "rule_2_description" : "One player starts taking a card by swiping it away. He reads the instruction out aloud and follows it.",
     "rule_3_title" : "3. Next one",
-    "rule_3_description" : "Swipe away your card and it's your neighbor's turn"
+    "rule_3_description" : "After completing the cards action, it's your neighbor's turn."
   },
   "game_view": {
     "customize_cards_used": "You play with your configured card settings.",
