@@ -22,26 +22,23 @@ class BasicCard extends StatelessWidget {
         onTap: onTap,
         child: Material(
           color: Colors.transparent,
-          child: Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: AspectRatio(
-                    aspectRatio: 2.5 / 3.5,
-                    child: ColoredBox(
-                      color: color,
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: child,
-                      ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: AspectRatio(
+                  aspectRatio: 2.5 / 3.5,
+                  child: ColoredBox(
+                    color: color,
+                    child: Padding(
+                      padding: const EdgeInsets.all(32),
+                      child: child,
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
