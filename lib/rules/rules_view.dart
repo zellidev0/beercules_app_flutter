@@ -1,7 +1,6 @@
-import 'package:beercules/common/constants.dart';
-import 'package:beercules/common/widgets/basic_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/common/widgets/bc_icon_button.dart';
+import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';

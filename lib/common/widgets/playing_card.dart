@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
@@ -6,47 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 
-class PlayingCardContainer extends StatelessWidget {
-  const PlayingCardContainer({
-    required this.child,
-    this.onTap,
-    super.key,
-  });
-  final Widget child;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(final BuildContext context) => Material(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: InkWell(
-          onTap: onTap,
-          child: Card(
-            margin: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            color: BeerculesColors.primary,
-            child: AspectRatio(
-              aspectRatio: 2.5 / 3.5,
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: child,
-              ),
-            ),
-          ),
-        ),
-      );
-  @override
-  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(ObjectFlagProperty<VoidCallback?>.has('onTap', onTap));
-  }
-}
-
-class CardForeground extends StatelessWidget {
-  const CardForeground({
+class PlayingCard extends StatelessWidget {
+  const PlayingCard({
     required this.onTap,
     required this.showLogo,
     required this.resourceKey,

@@ -1,6 +1,7 @@
 import 'package:beercules/common/constants.dart';
-import 'package:beercules/common/widgets/basic_card.dart';
+
 import 'package:beercules/common/widgets/bc_icon_button.dart';
+import 'package:beercules/common/widgets/playing_card.dart';
 import 'package:beercules/customize/customize_controller.dart';
 import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/customize/widgets/customize_card.dart';
@@ -9,7 +10,6 @@ import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomizeView extends ConsumerWidget {
@@ -81,7 +81,7 @@ class CardDetailsView extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            CardForeground(
+            PlayingCard(
               onTap: _onTap,
               showLogo: selected.isBasicRule,
               resourceKey: selected.key,
