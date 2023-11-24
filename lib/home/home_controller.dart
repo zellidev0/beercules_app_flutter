@@ -1,8 +1,9 @@
-import 'dart:core';
+import 'dart:async';
 
 import 'package:beercules/home/home_model.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeController extends StateNotifier<HomeModel> {
@@ -14,15 +15,18 @@ class HomeController extends StateNotifier<HomeModel> {
   })  : _navigationService = navigationService,
         super(model);
 
-  Future<void> goToGameView() async => _navigationService.push(
+  void goToGameView() => _navigationService.push(
         NavigationServiceRoutes.gameRouteUri,
       );
 
-  Future<void> goToRulesView() async => _navigationService.push(
+  void goToRulesView() => _navigationService.push(
         NavigationServiceRoutes.rulesRouteUri,
       );
 
-  Future<void> goToCustomizeView() async => _navigationService.push(
+  void goToCustomizeView() => _navigationService.push(
         NavigationServiceRoutes.customizeRouteUri,
       );
+
+  void showModalLegalNotice({required final Widget widget}) =>
+      unawaited(_navigationService.showModal<void>(widget).run());
 }

@@ -25,6 +25,7 @@ abstract interface class NavigationService {
   void replaceWithNamed(final Uri uri);
   void showSnackBar(final String message);
   TaskEither<Object, Option<T>> showPopup<T>(final Widget popup);
+  TaskEither<Object, Option<T>> showModal<T>(final Widget widget);
 }
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -158,6 +159,24 @@ class GoRouterNavigationService implements NavigationService {
             content: Text(message),
             duration: const Duration(seconds: 3),
           ),
+        ),
+      );
+
+  @override
+  TaskEither<Object, Option<T>> showModal<T>(final Widget widget) =>
+      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
+        () => TaskEither<Object, Option<T>>(
+          () async =>
+              left('Error when searching for context - navigation service'),
+        ),
+        (final BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
+          () async => optionOf(
+            await showModalBottomSheet<T>(
+              context: context,
+              builder: (final _) => widget,
+            ),
+          ),
+          (final Object error, final _) => error,
         ),
       );
 }

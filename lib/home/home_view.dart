@@ -1,4 +1,5 @@
 import 'package:beercules/common/widgets/bc_button.dart';
+import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/home/home_controller.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
@@ -19,22 +20,52 @@ class HomeView extends ConsumerWidget {
     return ScaffoldWidget(
       child: Stack(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: _buildInfoIconButton(),
+          Align(
+            alignment: Alignment.topRight,
+            child: BcIconButton(
+              onPressed: () => controller.showModalLegalNotice(
+                widget: buildLegalNotice(),
+              ),
+              icon: Icons.info,
             ),
           ),
           Column(
             children: <Widget>[
-              _buildTitle(),
+              const Text(
+                'home_view.title',
+                style: TextStyles.header1,
+              ).tr(),
               const SizedBox(height: 8),
-              _buildSubTitle(),
+              const Text(
+                'home_view.sub_title',
+                style: TextStyles.header3,
+              ).tr(),
               const SizedBox(height: 32),
-              _buildLogo(controller: controller),
+              Image.asset('assets/images/logo.png'),
               const SizedBox(height: 32),
-              _buildButtons(controller: controller),
+              BcButton(
+                textResource: 'home_view.button.go_drinking',
+                onPressed: controller.goToGameView,
+              ),
+              const SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: BcButton(
+                      textResource: 'home_view.button.rules',
+                      onPressed: controller.goToRulesView,
+                    ),
+                  ),
+                  const SizedBox(width: 32),
+                  Expanded(
+                    child: BcButton(
+                      textResource: 'home_view.button.customize',
+                      onPressed: controller.goToCustomizeView,
+                    ),
+                  ),
+                ],
+              ),
               const Spacer(),
             ],
           ),
@@ -43,72 +74,21 @@ class HomeView extends ConsumerWidget {
     );
   }
 
-  Widget _buildInfoIconButton() => Builder(
-        builder: (final BuildContext context) => IconButton(
-          color: Theme.of(context).colorScheme.primary,
-          splashColor: Theme.of(context).colorScheme.onPrimary,
-          splashRadius: 16,
-          onPressed: () async {
-            final String legalNotice = await rootBundle.loadString(
-              'assets/legal/${"general.legal_notice_path".tr()}',
-            );
-            // ignore:  use_build_context_synchronously, inference_failure_on_function_invocation
-            await showModalBottomSheet(
-              builder: (final BuildContext context) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: SingleChildScrollView(
-                  child: Html(
-                    data: legalNotice,
-                  ),
-                ),
-              ),
-              context: context,
-            );
-          },
-          icon: const Icon(
-            Icons.info,
-          ),
+  Widget buildLegalNotice() => FutureBuilder<String>(
+        // ignore: discarded_futures
+        future: rootBundle.loadString(
+          'assets/legal/${"general.legal_notice_path".tr()}',
         ),
-      );
-
-  Widget _buildTitle() => const Text(
-        'home_view.title',
-        style: TextStyles.header1,
-      ).tr();
-
-  Widget _buildSubTitle() => const Text(
-        'home_view.sub_title',
-        style: TextStyles.header3,
-      ).tr();
-
-  Widget _buildLogo({required final HomeController controller}) =>
-      Image.asset('assets/images/logo.png');
-
-  Widget _buildButtons({required final HomeController controller}) => Column(
-        children: <Widget>[
-          BcButton(
-            textResource: 'home_view.button.go_drinking',
-            onPressed: controller.goToGameView,
-          ),
-          const SizedBox(height: 32),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: BcButton(
-                  textResource: 'home_view.button.rules',
-                  onPressed: controller.goToRulesView,
-                ),
+        builder: (final _, final AsyncSnapshot<String> snapshot) =>
+            switch (snapshot.connectionState) {
+          ConnectionState.waiting => const CircularProgressIndicator(),
+          _ => Padding(
+              padding: const EdgeInsets.all(8),
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Html(data: snapshot.data),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: BcButton(
-                  textResource: 'home_view.button.customize',
-                  onPressed: controller.goToCustomizeView,
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+        },
       );
 }

@@ -18,15 +18,13 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
   CustomizeController({
     required final NavigationService navigationService,
     required final BeerculesCardProvider beerculesCardsProvider,
-    final CustomizeModel? model,
   })  : _navigationService = navigationService,
         _beerculesCardsProvider = beerculesCardsProvider,
         super(
-          model ??
-              CustomizeModel(
-                selectedCardKey: null,
-                configCards: <BeerculesCard>[],
-              ),
+          CustomizeModel(
+            selectedCardKey: null,
+            configCards: <BeerculesCard>[],
+          ),
         ) {
     listener = _beerculesCardsProvider
         .addListener((final BeerculesCardProviderModel s) {
