@@ -1,3 +1,4 @@
+import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/widgets/basic_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/common/widgets/bc_icon_button.dart';
@@ -20,13 +21,12 @@ class RulesView extends ConsumerWidget {
 
     return ScaffoldWidget(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+        padding: Constants.pagePadding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             _buildTopRow(navigationService: navigationService),
             BasicCard(
-              onTap: null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -88,7 +88,6 @@ class RulesView extends ConsumerWidget {
             onPressed: navigationService.goBack,
             icon: Icons.arrow_back_ios_rounded,
           ),
-          const Spacer(),
         ],
       );
 }

@@ -9,7 +9,7 @@ import 'package:lottie/lottie.dart';
 class BasicCard extends StatelessWidget {
   const BasicCard({
     required this.child,
-    required this.onTap,
+    this.onTap,
     super.key,
   });
   final Widget child;
