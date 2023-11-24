@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 class ScaffoldWidget extends StatelessWidget {
   final Widget child;
-  final AppBar? appBar;
+
   final bool _useSafeAre;
   final EdgeInsets _padding;
 
   const ScaffoldWidget({
     required this.child,
     super.key,
-    this.appBar,
     final bool useSafeAre = true,
     final EdgeInsets padding = Constants.pagePadding,
   })  : _padding = padding,
@@ -28,7 +27,6 @@ class ScaffoldWidget extends StatelessWidget {
                 child: _useSafeAre ? SafeArea(child: child) : child,
               ),
             ),
-            appBar: appBar,
           ),
         ),
       );
