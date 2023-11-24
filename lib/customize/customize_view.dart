@@ -1,3 +1,4 @@
+import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/widgets/basic_card.dart';
 import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/customize/customize_controller.dart';
@@ -8,6 +9,7 @@ import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomizeView extends ConsumerWidget {
@@ -20,15 +22,16 @@ class CustomizeView extends ConsumerWidget {
     final CustomizeModel model = ref.read(providers.customizeController);
 
     return ScaffoldWidget(
-      child: Column(
-        children: <Widget>[
-          _buildTopRow(
-            controller: controller,
-            context: context,
+      padding: EdgeInsets.zero,
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: <Widget>[
+          SliverPersistentHeader(
+            delegate: SliverHeaderDelegateComponent(controller: controller),
           ),
-          Flexible(
-            child: GridView.builder(
-              physics: const BouncingScrollPhysics(),
+          SliverPadding(
+            padding: Constants.pagePadding.copyWith(top: 0),
+            sliver: SliverGrid.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 childAspectRatio: 2.5 / 3.5,
@@ -36,70 +39,42 @@ class CustomizeView extends ConsumerWidget {
                 mainAxisSpacing: 8,
               ),
               itemBuilder: (final _, final int index) => CustomizeCard(
-                cardKey: model.configCards
-                    .where(
-                      (final BeerculesCard element) => !element.isBasicRule,
-                    )
-                    .toList()[index]
-                    .key,
-                onTap: () async => controller.showModal<void>(
-                  cardKey: model.configCards
-                      .where(
-                        (final BeerculesCard element) => !element.isBasicRule,
-                      )
-                      .toList()[index]
-                      .key,
-                  context: context,
-                  widget: const CardDetailsView(),
+                cardKey: model.configCards[index].key,
+                onTap: () async => controller.showCard(
+                  cardKey: model.configCards[index].key,
+                  widget: CardDetailsView(
+                    onTap: controller.pop,
+                    onButtonTap: controller.modifyCardAmount,
+                  ),
                 ),
               ),
-              itemCount: model.configCards
-                  .where(
-                    (final BeerculesCard element) => !element.isBasicRule,
-                  )
-                  .toList()
-                  .length,
+              itemCount: model.configCards.length,
             ),
           ),
         ],
       ),
     );
   }
-
-  Widget _buildTopRow({
-    required final CustomizeController controller,
-    required final BuildContext context,
-  }) =>
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          BcIconButton(
-            onPressed: controller.goBackToHome,
-            icon: Icons.arrow_back_ios_rounded,
-          ),
-          BcIconButton(
-            onPressed: controller.restoreDefault,
-            icon: Icons.restore,
-          ),
-        ],
-      );
 }
 
 class CardDetailsView extends ConsumerWidget {
+  final VoidCallback _onTap;
+  final VoidCallback _onButtonTap;
   const CardDetailsView({
+    required final VoidCallback onTap,
+    required final VoidCallback onButtonTap,
     super.key,
-  });
+  })  : _onTap = onTap,
+        _onButtonTap = onButtonTap;
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final CustomizeController controller =
-        ref.read(providers.customizeController.notifier);
     final CustomizeModel model = ref.watch(providers.customizeController);
     final BeerculesCard selected = model.configCards.firstWhere(
       (final BeerculesCard element) => element.key == model.selectedCardKey,
     );
     return GestureDetector(
-      onTap: controller.pop,
+      onTap: _onTap,
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -107,7 +82,7 @@ class CardDetailsView extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             CardForeground(
-              onTap: controller.pop,
+              onTap: _onTap,
               showLogo: selected.isBasicRule,
               resourceKey: selected.key,
               showSkullAnimation: false,
@@ -119,7 +94,7 @@ class CardDetailsView extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   FloatingActionButton(
-                    onPressed: controller.modifyCardAmount,
+                    onPressed: _onButtonTap,
                     child: Text(
                       model.configCards
                           .firstWhere(
@@ -142,4 +117,46 @@ class CardDetailsView extends ConsumerWidget {
       ),
     );
   }
+}
+
+class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
+  final CustomizeController controller;
+
+  const SliverHeaderDelegateComponent({
+    required this.controller,
+  });
+
+  @override
+  Widget build(
+    final BuildContext context,
+    final double shrinkOffset,
+    final bool overlapsContent,
+  ) =>
+      Padding(
+        padding: Constants.pagePadding,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            BcIconButton(
+              onPressed: controller.goBackToHome,
+              icon: Icons.arrow_back_ios_rounded,
+            ),
+            BcIconButton(
+              onPressed: controller.restoreDefault,
+              icon: Icons.restore,
+            ),
+          ],
+        ),
+      );
+
+  @override
+  double get maxExtent => _height;
+
+  @override
+  double get minExtent => _height;
+
+  double get _height => kToolbarHeight + Constants.pagePadding.top;
+
+  @override
+  bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
 }

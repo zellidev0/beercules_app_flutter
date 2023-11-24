@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:core';
 
 import 'package:beercules/customize/customize_model.dart';
-import 'package:beercules/services/navigation_service/navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart'
+    hide navigationService;
 import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -30,7 +32,8 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
         .addListener((final BeerculesCardProviderModel s) {
       state = state.copyWith(
         selectedCardKey: state.selectedCardKey,
-        configCards: s.configCards,
+        configCards:
+            s.configCards.whereNot((final _) => _.isBasicRule).toList(),
       );
     });
   }
@@ -43,18 +46,12 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
 
   void goBackToHome() => _navigationService.goBack();
 
-  Future<void> showModal<T>({
-    required final BuildContext context,
+  void showCard({
     required final String cardKey,
     required final Widget widget,
-  }) async {
+  }) {
+    unawaited(_navigationService.showPopup<void>(widget).run());
     state = state.copyWith(selectedCardKey: cardKey);
-    await showModalBottomSheet<T>(
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      context: context,
-      builder: (final BuildContext innerContext) => widget,
-    );
   }
 
   void modifyCardAmount() {
