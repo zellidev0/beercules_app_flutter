@@ -74,7 +74,7 @@ class CardDetailsView extends ConsumerWidget {
       (final BeerculesCard element) => element.key == model.selectedCardKey,
     );
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         PlayingCard(
           onTap: _onTap,
