@@ -16,7 +16,7 @@ class RulesView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     final NavigationService navigationService =
-        ref.read(navigationServiceProvider);
+        ref.read(goRouterNavigationServiceProvider);
 
     return ScaffoldWidget(
       child: Column(

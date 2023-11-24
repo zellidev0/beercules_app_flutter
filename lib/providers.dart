@@ -15,7 +15,7 @@ class Providers {
       StateNotifierProvider<HomeController, HomeModel>(
     (final StateNotifierProviderRef<HomeController, HomeModel> ref) =>
         HomeController(
-      navigationService: ref.read(navigationServiceProvider),
+      navigationService: ref.read(goRouterNavigationServiceProvider),
       model: HomeModel(),
     ),
   );
@@ -81,7 +81,7 @@ class Providers {
       StateNotifierProvider<CustomizeController, CustomizeModel>(
     (final StateNotifierProviderRef<CustomizeController, CustomizeModel> ref) =>
         CustomizeController(
-      navigationService: ref.read(navigationServiceProvider),
+      navigationService: ref.read(goRouterNavigationServiceProvider),
       beerculesCardsProvider:
           ref.read(providers.beerculesCardProvider.notifier),
     ),
@@ -94,7 +94,7 @@ class Providers {
       final AutoDisposeStateNotifierProviderRef<GameController, GameModel> ref,
     ) =>
         GameController(
-      navigationService: ref.read(navigationServiceProvider),
+      navigationService: ref.read(goRouterNavigationServiceProvider),
       beerculesCardsProvider:
           ref.read(providers.beerculesCardProvider.notifier),
     ),

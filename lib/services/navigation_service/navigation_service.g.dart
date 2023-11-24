@@ -21,7 +21,7 @@ final goRouterProvider = AutoDisposeProvider<GoRouter>.internal(
 
 typedef GoRouterRef = AutoDisposeProviderRef<GoRouter>;
 String _$goRouterNavigationServiceHash() =>
-    r'55b1e06d52e801bb9ff27adfb61be56aeb805477';
+    r'97bfaa132095e2cde01821ed47d21aff461b3adb';
 
 /// See also [goRouterNavigationService].
 @ProviderFor(goRouterNavigationService)
