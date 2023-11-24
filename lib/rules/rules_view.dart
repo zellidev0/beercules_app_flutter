@@ -25,7 +25,13 @@ class RulesView extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            _buildTopRow(navigationService: navigationService),
+            Align(
+              alignment: Alignment.topLeft,
+              child: BcIconButton(
+                onPressed: navigationService.goBack,
+                icon: Icons.arrow_back_ios_rounded,
+              ),
+            ),
             BasicCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,16 +84,4 @@ class RulesView extends ConsumerWidget {
       ),
     );
   }
-
-  Row _buildTopRow({
-    required final NavigationService navigationService,
-  }) =>
-      Row(
-        children: <Widget>[
-          BcIconButton(
-            onPressed: navigationService.goBack,
-            icon: Icons.arrow_back_ios_rounded,
-          ),
-        ],
-      );
 }
