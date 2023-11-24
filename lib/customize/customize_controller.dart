@@ -74,14 +74,10 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
       ..setCurrentToConfig();
   }
 
-  void restoreDefault({
-    required final BuildContext context,
-  }) {
-    _beerculesCardsProvider.setConfigToDefault();
+  void restoreDefault() {
+    _beerculesCardsProvider.resetToDefaultCards();
     _navigationService.showSnackBar('config_view.restoredDefault'.tr());
   }
 
-  void pop() {
-    _navigationService.pop<void>();
-  }
+  void pop() => _navigationService.pop<void>();
 }

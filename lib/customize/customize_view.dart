@@ -18,52 +18,47 @@ class CustomizeView extends ConsumerWidget {
     final CustomizeController controller =
         ref.read(providers.customizeController.notifier);
     final CustomizeModel model = ref.read(providers.customizeController);
+
     return ScaffoldWidget(
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(24).copyWith(bottom: 0),
-            child: _buildTopRow(
-              controller: controller,
-              context: context,
-            ),
+          _buildTopRow(
+            controller: controller,
+            context: context,
           ),
           Flexible(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              child: GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 2.5 / 3.5,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                itemBuilder: (final _, final int index) => CustomizeCard(
+            child: GridView.builder(
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 2.5 / 3.5,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              itemBuilder: (final _, final int index) => CustomizeCard(
+                cardKey: model.configCards
+                    .where(
+                      (final BeerculesCard element) => !element.isBasicRule,
+                    )
+                    .toList()[index]
+                    .key,
+                onTap: () async => controller.showModal<void>(
                   cardKey: model.configCards
                       .where(
                         (final BeerculesCard element) => !element.isBasicRule,
                       )
                       .toList()[index]
                       .key,
-                  onTap: () async => controller.showModal<void>(
-                    cardKey: model.configCards
-                        .where(
-                          (final BeerculesCard element) => !element.isBasicRule,
-                        )
-                        .toList()[index]
-                        .key,
-                    context: context,
-                    widget: const CardDetailsView(),
-                  ),
+                  context: context,
+                  widget: const CardDetailsView(),
                 ),
-                itemCount: model.configCards
-                    .where(
-                      (final BeerculesCard element) => !element.isBasicRule,
-                    )
-                    .toList()
-                    .length,
               ),
+              itemCount: model.configCards
+                  .where(
+                    (final BeerculesCard element) => !element.isBasicRule,
+                  )
+                  .toList()
+                  .length,
             ),
           ),
         ],
@@ -76,14 +71,14 @@ class CustomizeView extends ConsumerWidget {
     required final BuildContext context,
   }) =>
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           BcIconButton(
             onPressed: controller.goBackToHome,
             icon: Icons.arrow_back_ios_rounded,
           ),
-          const Spacer(),
           BcIconButton(
-            onPressed: () => controller.restoreDefault(context: context),
+            onPressed: controller.restoreDefault,
             icon: Icons.restore,
           ),
         ],

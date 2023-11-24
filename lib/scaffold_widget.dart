@@ -1,17 +1,20 @@
-import 'package:flutter/foundation.dart';
+import 'package:beercules/common/constants.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWidget extends StatelessWidget {
   final Widget child;
   final AppBar? appBar;
-  final bool useSafeAre;
+  final bool _useSafeAre;
+  final EdgeInsets _padding;
 
   const ScaffoldWidget({
     required this.child,
     super.key,
     this.appBar,
-    this.useSafeAre = true,
-  });
+    final bool useSafeAre = true,
+    final EdgeInsets padding = Constants.pagePadding,
+  })  : _padding = padding,
+        _useSafeAre = useSafeAre;
 
   @override
   Widget build(final BuildContext context) => MediaQuery(
@@ -19,16 +22,14 @@ class ScaffoldWidget extends StatelessWidget {
         child: Material(
           child: Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
-            body: Center(
-              child: useSafeAre ? SafeArea(child: child) : child,
+            body: Padding(
+              padding: _padding,
+              child: Center(
+                child: _useSafeAre ? SafeArea(child: child) : child,
+              ),
             ),
             appBar: appBar,
           ),
         ),
       );
-  @override
-  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<bool>('useSafeAre', useSafeAre));
-  }
 }

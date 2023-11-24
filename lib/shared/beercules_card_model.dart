@@ -74,7 +74,7 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
     );
   }
 
-  void setConfigToDefault() {
+  void resetToDefaultCards() {
     state = state.copyWith(
       configCards: defaultBeerculesCards,
     );

@@ -26,20 +26,17 @@ class HomeView extends ConsumerWidget {
               child: _buildInfoIconButton(),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              children: <Widget>[
-                _buildTitle(),
-                const SizedBox(height: 8),
-                _buildSubTitle(),
-                const SizedBox(height: 32),
-                _buildLogo(controller: controller),
-                const SizedBox(height: 32),
-                _buildButtons(controller: controller),
-                const Spacer(),
-              ],
-            ),
+          Column(
+            children: <Widget>[
+              _buildTitle(),
+              const SizedBox(height: 8),
+              _buildSubTitle(),
+              const SizedBox(height: 32),
+              _buildLogo(controller: controller),
+              const SizedBox(height: 32),
+              _buildButtons(controller: controller),
+              const Spacer(),
+            ],
           ),
         ],
       ),

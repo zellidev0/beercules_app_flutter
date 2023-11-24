@@ -39,25 +39,22 @@ class GameView extends ConsumerWidget {
     }
 
     return ScaffoldWidget(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            _buildCardStack(
-              model: model,
-              context: context,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          _buildCardStack(
+            model: model,
+            context: context,
+            controller: controller,
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: _buildTopRow(
               controller: controller,
+              model: model,
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: _buildTopRow(
-                controller: controller,
-                model: model,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

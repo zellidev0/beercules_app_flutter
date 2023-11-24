@@ -20,67 +20,64 @@ class RulesView extends ConsumerWidget {
         ref.read(navigationServiceProvider);
 
     return ScaffoldWidget(
-      child: Padding(
-        padding: Constants.pagePadding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topLeft,
-              child: BcIconButton(
-                onPressed: navigationService.goBack,
-                icon: Icons.arrow_back_ios_rounded,
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topLeft,
+            child: BcIconButton(
+              onPressed: navigationService.goBack,
+              icon: Icons.arrow_back_ios_rounded,
             ),
-            BasicCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const Text(
-                    'rules_view.title',
-                    style: TextStyles.header2,
-                  ).tr(),
-                  const SizedBox(height: 32),
-                  const Text(
-                    'rules_view.rule_1_title',
-                    style: TextStyles.header3,
-                  ).tr(),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'rules_view.rule_1_description',
-                    style: TextStyles.body4,
-                  ).tr(),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'rules_view.rule_2_title',
-                    style: TextStyles.header3,
-                  ).tr(),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'rules_view.rule_2_description',
-                    style: TextStyles.body4,
-                  ).tr(),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'rules_view.rule_3_title',
-                    style: TextStyles.header3,
-                  ).tr(),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'rules_view.rule_3_description',
-                    style: TextStyles.body4,
-                  ).tr(),
-                ],
-              ),
+          ),
+          BasicCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'rules_view.title',
+                  style: TextStyles.header2,
+                ).tr(),
+                const SizedBox(height: 32),
+                const Text(
+                  'rules_view.rule_1_title',
+                  style: TextStyles.header3,
+                ).tr(),
+                const SizedBox(height: 4),
+                const Text(
+                  'rules_view.rule_1_description',
+                  style: TextStyles.body4,
+                ).tr(),
+                const SizedBox(height: 24),
+                const Text(
+                  'rules_view.rule_2_title',
+                  style: TextStyles.header3,
+                ).tr(),
+                const SizedBox(height: 4),
+                const Text(
+                  'rules_view.rule_2_description',
+                  style: TextStyles.body4,
+                ).tr(),
+                const SizedBox(height: 24),
+                const Text(
+                  'rules_view.rule_3_title',
+                  style: TextStyles.header3,
+                ).tr(),
+                const SizedBox(height: 4),
+                const Text(
+                  'rules_view.rule_3_description',
+                  style: TextStyles.body4,
+                ).tr(),
+              ],
             ),
-            BcButton(
-              onPressed: () => navigationService.push(
-                NavigationServiceRoutes.gameRouteUri,
-              ),
-              textResource: 'rules_view.go_to_game',
+          ),
+          BcButton(
+            onPressed: () => navigationService.push(
+              NavigationServiceRoutes.gameRouteUri,
             ),
-          ],
-        ),
+            textResource: 'rules_view.go_to_game',
+          ),
+        ],
       ),
     );
   }
