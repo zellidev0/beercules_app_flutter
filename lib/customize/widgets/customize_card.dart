@@ -18,6 +18,7 @@ class CustomizeCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => PlayingCardContainer(
         padding: const EdgeInsets.all(16),
+        onTap: _onTap,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
