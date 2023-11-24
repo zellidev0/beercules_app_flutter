@@ -6,7 +6,7 @@ part of 'navigation_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'acd03d5ac52f9c341dc1ac3fecaecb4d06736a36';
+String _$goRouterHash() => r'7184a7e23ade60d112804856e00c6c0dd14882d5';
 
 /// See also [goRouter].
 @ProviderFor(goRouter)
@@ -20,21 +20,23 @@ final goRouterProvider = AutoDisposeProvider<GoRouter>.internal(
 );
 
 typedef GoRouterRef = AutoDisposeProviderRef<GoRouter>;
-String _$navigationServiceHash() => r'76729f754a512c54a1d4f1c95ba264464ed08c13';
+String _$goRouterNavigationServiceHash() =>
+    r'55b1e06d52e801bb9ff27adfb61be56aeb805477';
 
-/// See also [navigationService].
-@ProviderFor(navigationService)
-final navigationServiceProvider =
+/// See also [goRouterNavigationService].
+@ProviderFor(goRouterNavigationService)
+final goRouterNavigationServiceProvider =
     AutoDisposeProvider<NavigationService>.internal(
-  navigationService,
-  name: r'navigationServiceProvider',
+  goRouterNavigationService,
+  name: r'goRouterNavigationServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$navigationServiceHash,
+      : _$goRouterNavigationServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef NavigationServiceRef = AutoDisposeProviderRef<NavigationService>;
+typedef GoRouterNavigationServiceRef
+    = AutoDisposeProviderRef<NavigationService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
