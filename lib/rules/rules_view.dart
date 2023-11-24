@@ -21,52 +21,49 @@ class RulesView extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             _buildTopRow(navigationService: navigationService),
-            Expanded(
-              child: BasicCard(
-                onTap: null,
-                color: Colors.black12,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Text(
-                      'rules_view.title',
-                      style: TextStyles.header2,
-                    ).tr(),
-                    const SizedBox(height: 32),
-                    const Text(
-                      'rules_view.rule_1_title',
-                      style: TextStyles.header3,
-                    ).tr(),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'rules_view.rule_1_description',
-                      style: TextStyles.body4,
-                    ).tr(),
-                    const SizedBox(height: 24),
-                    const Text(
-                      'rules_view.rule_2_title',
-                      style: TextStyles.header3,
-                    ).tr(),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'rules_view.rule_2_description',
-                      style: TextStyles.body4,
-                    ).tr(),
-                    const SizedBox(height: 24),
-                    const Text(
-                      'rules_view.rule_3_title',
-                      style: TextStyles.header3,
-                    ).tr(),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'rules_view.rule_3_description',
-                      style: TextStyles.body4,
-                    ).tr(),
-                  ],
-                ),
+            BasicCard(
+              onTap: null,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Text(
+                    'rules_view.title',
+                    style: TextStyles.header2,
+                  ).tr(),
+                  const SizedBox(height: 32),
+                  const Text(
+                    'rules_view.rule_1_title',
+                    style: TextStyles.header3,
+                  ).tr(),
+                  const SizedBox(height: 4),
+                  const Text(
+                    'rules_view.rule_1_description',
+                    style: TextStyles.body4,
+                  ).tr(),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'rules_view.rule_2_title',
+                    style: TextStyles.header3,
+                  ).tr(),
+                  const SizedBox(height: 4),
+                  const Text(
+                    'rules_view.rule_2_description',
+                    style: TextStyles.body4,
+                  ).tr(),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'rules_view.rule_3_title',
+                    style: TextStyles.header3,
+                  ).tr(),
+                  const SizedBox(height: 4),
+                  const Text(
+                    'rules_view.rule_3_description',
+                    style: TextStyles.body4,
+                  ).tr(),
+                ],
               ),
             ),
             BcButton.text(

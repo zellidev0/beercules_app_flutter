@@ -10,44 +10,38 @@ class BasicCard extends StatelessWidget {
   const BasicCard({
     required this.child,
     required this.onTap,
-    required this.color,
     super.key,
   });
   final Widget child;
   final VoidCallback? onTap;
-  final Color color;
 
   @override
-  Widget build(final BuildContext context) => GestureDetector(
-        onTap: onTap,
-        child: Material(
-          color: Colors.transparent,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: AspectRatio(
-                  aspectRatio: 2.5 / 3.5,
-                  child: ColoredBox(
-                    color: color,
-                    child: Padding(
-                      padding: const EdgeInsets.all(32),
-                      child: child,
-                    ),
-                  ),
-                ),
+  Widget build(final BuildContext context) => Material(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: InkWell(
+          onTap: onTap,
+          child: Card(
+            margin: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            color: BeerculesColors.primary,
+            child: AspectRatio(
+              aspectRatio: 2.5 / 3.5,
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: child,
               ),
-            ],
+            ),
           ),
         ),
       );
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(ColorProperty('color', color))
-      ..add(ObjectFlagProperty<VoidCallback?>.has('onTap', onTap));
+    properties.add(ObjectFlagProperty<VoidCallback?>.has('onTap', onTap));
   }
 }
 
@@ -65,37 +59,44 @@ class CardForeground extends StatelessWidget {
   final bool showSkullAnimation;
 
   @override
-  Widget build(final BuildContext context) => BasicCard(
-        onTap: onTap,
-        color: Theme.of(context).colorScheme.primary,
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.all(24),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: showSkullAnimation
-                    ? Lottie.asset('assets/lotties/skull_animation.json')
-                    : showLogo
-                        ? Image.asset('assets/images/logo.png')
-                        : SvgPicture.asset(
-                            'assets/instructions/${resourceKey}_pic.svg',
-                          ),
+            BasicCard(
+              onTap: onTap,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: showSkullAnimation
+                          ? Lottie.asset('assets/lotties/skull_animation.json')
+                          : showLogo
+                              ? Image.asset('assets/images/logo.png')
+                              : SvgPicture.asset(
+                                  'assets/instructions/${resourceKey}_pic.svg',
+                                ),
+                    ),
+                  ),
+                  FittedBox(
+                    fit: BoxFit.fitHeight,
+                    child: Text(
+                      'game_view.instructions.$resourceKey.title',
+                      style: TextStyles.header2,
+                    ).tr(),
+                  ),
+                  const SizedBox(height: 16),
+                  AutoSizeText(
+                    'game_view.instructions.$resourceKey.description'.tr(),
+                    maxLines: 10,
+                    style: TextStyles.body1,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-            ),
-            FittedBox(
-              fit: BoxFit.fitHeight,
-              child: Text(
-                'game_view.instructions.$resourceKey.title',
-                style: TextStyles.header2,
-              ).tr(),
-            ),
-            const SizedBox(height: 16),
-            AutoSizeText(
-              'game_view.instructions.$resourceKey.description'.tr(),
-              maxLines: 10,
-              style: TextStyles.body1,
-              textAlign: TextAlign.center,
             ),
           ],
         ),

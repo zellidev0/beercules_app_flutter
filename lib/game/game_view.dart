@@ -42,16 +42,19 @@ class GameView extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.center,
           children: <Widget>[
             _buildCardStack(
               model: model,
               context: context,
               controller: controller,
             ),
-            _buildTopRow(
-              controller: controller,
-              model: model,
+            Align(
+              alignment: Alignment.topCenter,
+              child: _buildTopRow(
+                controller: controller,
+                model: model,
+              ),
             ),
           ],
         ),
@@ -65,7 +68,7 @@ class GameView extends ConsumerWidget {
     required final GameController controller,
   }) =>
       Stack(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.center,
         children: model.cards
             .mapIndexed(
               (final int index, final GameModelCard card) => Transform.rotate(
@@ -108,57 +111,50 @@ class GameView extends ConsumerWidget {
     required final GameModelCard card,
     required final GameModel model,
     required final GameController controller,
-  }) {
-    Future<void> onSwipe(final _, final __) async {
-      controller.decreaseCardAmount(cardId: card.id);
-      await showDialog<void>(
-        context: context,
-        builder: (final _) => CardForeground(
-          onTap: controller.dismissCard,
-          showLogo: card.isBasicRule,
-          showSkullAnimation: card.isVictimGlass &&
-              model.cards
-                      .where((final _) => _.isVictimGlass && !_.played)
-                      .length ==
-                  1,
-          resourceKey: card.isVictimGlass &&
-                  model.cards
-                          .where((final _) => _.isVictimGlass && !_.played)
-                          .length ==
-                      1
-              ? card.victimGlassKey
-              : card.key,
-        ),
-      );
-    }
-
-    return Swipable(
-      threshold: 4,
-      onSwipeEnd: onSwipe,
-      child: Padding(
+  }) =>
+      Padding(
         padding: const EdgeInsets.all(64),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(8),
-            onTap: () {},
-            child: Ink(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                border: Border.all(color: Theme.of(context).primaryColorDark),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: AspectRatio(
-                aspectRatio: 2.5 / 3.5,
-                child: Padding(
-                  padding: const EdgeInsets.all(32),
+        child: AspectRatio(
+          aspectRatio: 2.5 / 3.5,
+          child: Swipable(
+            threshold: 4,
+            onSwipeEnd: (final _, final __) async {
+              controller.decreaseCardAmount(cardId: card.id);
+              await showDialog<void>(
+                context: context,
+                builder: (final _) => CardForeground(
+                  onTap: controller.dismissCard,
+                  showLogo: card.isBasicRule,
+                  showSkullAnimation: card.isVictimGlass &&
+                      model.cards
+                              .where((final _) => _.isVictimGlass && !_.played)
+                              .length ==
+                          1,
+                  resourceKey: card.isVictimGlass &&
+                          model.cards
+                                  .where(
+                                      (final _) => _.isVictimGlass && !_.played)
+                                  .length ==
+                              1
+                      ? card.victimGlassKey
+                      : card.key,
+                ),
+              );
+            },
+            child: Material(
+              color: Colors.transparent,
+              child: Ink(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Theme.of(context).primaryColorDark),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: BasicCard(
+                  onTap: () {},
                   child: Image.asset('assets/images/logo.png'),
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
