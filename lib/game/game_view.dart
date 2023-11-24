@@ -146,7 +146,7 @@ class GameView extends ConsumerWidget {
                   border: Border.all(color: Theme.of(context).primaryColorDark),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: BasicCard(
+                child: PlayingCardContainer(
                   onTap: () {},
                   child: Image.asset('assets/images/logo.png'),
                 ),

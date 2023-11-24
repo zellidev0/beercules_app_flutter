@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 
-class BasicCard extends StatelessWidget {
-  const BasicCard({
+class PlayingCardContainer extends StatelessWidget {
+  const PlayingCardContainer({
     required this.child,
     this.onTap,
     super.key,
@@ -64,7 +64,7 @@ class CardForeground extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            BasicCard(
+            PlayingCardContainer(
               onTap: onTap,
               child: Column(
                 children: <Widget>[

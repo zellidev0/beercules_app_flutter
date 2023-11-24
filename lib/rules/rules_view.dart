@@ -30,7 +30,7 @@ class RulesView extends ConsumerWidget {
               icon: Icons.arrow_back_ios_rounded,
             ),
           ),
-          BasicCard(
+          PlayingCardContainer(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
