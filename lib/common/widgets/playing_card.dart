@@ -12,7 +12,7 @@ class PlayingCard extends StatelessWidget {
     required this.onTap,
     required this.showLogo,
     required this.resourceKey,
-    required this.showSkullAnimation,
+    this.showSkullAnimation = false,
     super.key,
   });
   final VoidCallback onTap;

@@ -73,48 +73,24 @@ class CardDetailsView extends ConsumerWidget {
     final BeerculesCard selected = model.configCards.firstWhere(
       (final BeerculesCard element) => element.key == model.selectedCardKey,
     );
-    return GestureDetector(
-      onTap: _onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            PlayingCard(
-              onTap: _onTap,
-              showLogo: selected.isBasicRule,
-              resourceKey: selected.key,
-              showSkullAnimation: false,
-            ),
-            const SizedBox(height: 32),
-            ColoredBox(
-              color: Colors.transparent,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  FloatingActionButton(
-                    onPressed: _onButtonTap,
-                    child: Text(
-                      model.configCards
-                          .firstWhere(
-                            (final BeerculesCard element) =>
-                                element.key == model.selectedCardKey,
-                          )
-                          .amount
-                          .toString(),
-                      style: TextStyles.header3.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(height: 64, color: Colors.transparent),
-          ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        PlayingCard(
+          onTap: _onTap,
+          showLogo: selected.isBasicRule,
+          resourceKey: selected.key,
         ),
-      ),
+        FloatingActionButton(
+          onPressed: _onButtonTap,
+          child: Text(
+            selected.amount.toString(),
+            style: TextStyles.header3.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
