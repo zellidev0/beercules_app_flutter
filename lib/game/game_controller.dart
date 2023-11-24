@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:math';
-
+import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/bc_dialog.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
-
-import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

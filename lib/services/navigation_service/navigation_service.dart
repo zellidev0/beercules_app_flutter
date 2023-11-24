@@ -92,7 +92,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
     );
 
 @riverpod
-NavigationService navigationService(final NavigationServiceRef ref) =>
+NavigationService goRouterNavigationService(final NavigationServiceRef ref) =>
     GoRouterNavigationService(goRouter: ref.watch(goRouterProvider));
 
 class GoRouterNavigationService implements NavigationService {

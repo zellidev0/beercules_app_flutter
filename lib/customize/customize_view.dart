@@ -1,3 +1,4 @@
+import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/common/constants.dart';
 
 import 'package:beercules/common/widgets/bc_icon_button.dart';
@@ -7,7 +8,6 @@ import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/customize/widgets/customize_card.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
-import 'package:beercules/shared/beercules_card_model.dart';
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

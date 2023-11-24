@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'dart:core';
-
+import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/customize/customize_model.dart';
-import 'package:beercules/services/navigation_service/navigation_service.dart'
-    hide navigationService;
-import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

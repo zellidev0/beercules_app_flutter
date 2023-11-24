@@ -1,4 +1,4 @@
-import 'package:beercules/shared/beercules_card_model.dart';
+import 'package:beercules/common/beercules_card_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customize_model.freezed.dart';
