@@ -1,15 +1,15 @@
 import 'package:beercules/theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PlayingCardContainer extends StatelessWidget {
+  final Widget _child;
+  final VoidCallback? _onTap;
   const PlayingCardContainer({
-    required this.child,
-    this.onTap,
+    required final Widget child,
+    final void Function()? onTap,
     super.key,
-  });
-  final Widget child;
-  final VoidCallback? onTap;
+  })  : _onTap = onTap,
+        _child = child;
 
   @override
   Widget build(final BuildContext context) => Material(
@@ -17,7 +17,7 @@ class PlayingCardContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: InkWell(
-          onTap: onTap,
+          onTap: _onTap,
           child: Card(
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
@@ -28,15 +28,10 @@ class PlayingCardContainer extends StatelessWidget {
               aspectRatio: 2.5 / 3.5,
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: child,
+                child: _child,
               ),
             ),
           ),
         ),
       );
-  @override
-  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(ObjectFlagProperty<VoidCallback?>.has('onTap', onTap));
-  }
 }

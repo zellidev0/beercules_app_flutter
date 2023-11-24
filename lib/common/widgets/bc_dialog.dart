@@ -1,31 +1,37 @@
+import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BcDialog extends StatelessWidget {
+  final VoidCallback _onConfirmPressed;
+  final VoidCallback _onCancelPressed;
+  final String _confirmTextResource;
+  final String _headerResource;
+  final String _descriptionResource;
+  final String _declineTextResource;
+
   const BcDialog({
-    required this.onConfirmPressed,
-    required this.onCancelPressed,
-    required this.confirmTextResource,
-    required this.headerResource,
-    required this.descriptionResource,
-    required this.declineTextResource,
+    required final void Function() onConfirmPressed,
+    required final void Function() onCancelPressed,
+    required final String confirmTextResource,
+    required final String headerResource,
+    required final String descriptionResource,
+    required final String declineTextResource,
     super.key,
-  });
-  final VoidCallback onConfirmPressed;
-  final VoidCallback onCancelPressed;
-  final String confirmTextResource;
-  final String headerResource;
-  final String descriptionResource;
-  final String declineTextResource;
+  })  : _declineTextResource = declineTextResource,
+        _descriptionResource = descriptionResource,
+        _headerResource = headerResource,
+        _confirmTextResource = confirmTextResource,
+        _onCancelPressed = onCancelPressed,
+        _onConfirmPressed = onConfirmPressed;
 
   @override
   Widget build(final BuildContext context) => Material(
         color: Colors.black.withAlpha(100),
         child: Padding(
-          padding: const EdgeInsets.all(32),
+          padding: Constants.pagePadding,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -38,29 +44,29 @@ class BcDialog extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(32),
+                  padding: Constants.pagePadding,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FittedBox(
                         fit: BoxFit.fitWidth,
                         child: Text(
-                          headerResource.tr(),
+                          _headerResource.tr(),
                           style: TextStyles.header2,
                         ),
                       ),
                       const SizedBox(height: 32),
                       Text(
-                        descriptionResource.tr(),
+                        _descriptionResource.tr(),
                         style: TextStyles.body1,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 32),
                       _buildDialogButtons(
-                        onConfirmPressed: onConfirmPressed,
-                        onCancelPressed: onCancelPressed,
-                        confirmTextResource: confirmTextResource,
-                        declineTextResource: declineTextResource,
+                        onConfirmPressed: _onConfirmPressed,
+                        onCancelPressed: _onCancelPressed,
+                        confirmTextResource: _confirmTextResource,
+                        declineTextResource: _declineTextResource,
                       ),
                     ],
                   ),
@@ -95,25 +101,4 @@ class BcDialog extends StatelessWidget {
           ),
         ],
       );
-  @override
-  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(
-        ObjectFlagProperty<VoidCallback>.has(
-          'onCancelPressed',
-          onCancelPressed,
-        ),
-      )
-      ..add(
-        ObjectFlagProperty<VoidCallback>.has(
-          'onConfirmPressed',
-          onConfirmPressed,
-        ),
-      )
-      ..add(StringProperty('confirmTextResource', confirmTextResource))
-      ..add(StringProperty('headerResource', headerResource))
-      ..add(StringProperty('descriptionResource', descriptionResource))
-      ..add(StringProperty('declineTextResource', declineTextResource));
-  }
 }

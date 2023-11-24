@@ -7,9 +7,6 @@ class BcIconButton extends GestureDetector {
     super.key,
   }) : super(
           onTap: onPressed,
-          child: Icon(
-            icon,
-            color: Colors.white,
-          ),
+          child: Icon(icon, color: Colors.white),
         );
 }
