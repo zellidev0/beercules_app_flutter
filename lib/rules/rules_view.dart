@@ -1,5 +1,6 @@
 import 'package:beercules/common/widgets/basic_card.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
+import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
@@ -66,7 +67,7 @@ class RulesView extends ConsumerWidget {
                 ],
               ),
             ),
-            BcButton.text(
+            BcButton(
               onPressed: () => navigationService.push(
                 NavigationServiceRoutes.gameRouteUri,
               ),
@@ -83,9 +84,9 @@ class RulesView extends ConsumerWidget {
   }) =>
       Row(
         children: <Widget>[
-          BcButton(
+          BcIconButton(
             onPressed: navigationService.goBack,
-            child: const Icon(Icons.arrow_back_ios_rounded),
+            icon: Icons.arrow_back_ios_rounded,
           ),
           const Spacer(),
         ],

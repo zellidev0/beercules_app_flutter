@@ -89,7 +89,7 @@ class HomeView extends ConsumerWidget {
 
   Widget _buildButtons({required final HomeController controller}) => Column(
         children: <Widget>[
-          BcButton.text(
+          BcButton(
             textResource: 'home_view.button.go_drinking',
             onPressed: controller.goToGameView,
           ),
@@ -98,14 +98,14 @@ class HomeView extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: BcButton.text(
+                child: BcButton(
                   textResource: 'home_view.button.rules',
                   onPressed: controller.goToRulesView,
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: BcButton.text(
+                child: BcButton(
                   textResource: 'home_view.button.customize',
                   onPressed: controller.goToCustomizeView,
                 ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:beercules/common/widgets/basic_card.dart';
-import 'package:beercules/common/widgets/bc_button.dart';
+import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/providers.dart';
@@ -94,9 +94,9 @@ class GameView extends ConsumerWidget {
   }) =>
       Row(
         children: <Widget>[
-          BcButton(
+          BcIconButton(
             onPressed: controller.goBackToHome,
-            child: const Icon(Icons.arrow_back_ios_rounded),
+            icon: Icons.arrow_back_ios_rounded,
           ),
           const Spacer(),
           Text(
@@ -133,7 +133,8 @@ class GameView extends ConsumerWidget {
                   resourceKey: card.isVictimGlass &&
                           model.cards
                                   .where(
-                                      (final _) => _.isVictimGlass && !_.played)
+                                    (final _) => _.isVictimGlass && !_.played,
+                                  )
                                   .length ==
                               1
                       ? card.victimGlassKey

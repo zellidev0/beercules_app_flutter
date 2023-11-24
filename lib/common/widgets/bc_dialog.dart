@@ -81,14 +81,14 @@ class BcDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Expanded(
-            child: BcButton.text(
+            child: BcButton(
               onPressed: onConfirmPressed,
               textResource: confirmTextResource,
             ),
           ),
           const SizedBox(width: 32),
           Expanded(
-            child: BcButton.text(
+            child: BcButton(
               onPressed: onCancelPressed,
               textResource: declineTextResource,
             ),
