@@ -122,7 +122,7 @@ class GameView extends ConsumerWidget {
               await showDialog<void>(
                 context: context,
                 builder: (final _) => PlayingCard(
-                  onTap: controller.dismissCard,
+                  onTap: () => controller.dismissCard(cardId: card.id),
                   showLogo: card.isBasicRule,
                   showSkullAnimation: card.isVictimGlass &&
                       model.cards

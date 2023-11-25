@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$GameModel {
   List<GameModelCard> get cards => throw _privateConstructorUsedError;
-  double get cardTransformSeed => throw _privateConstructorUsedError;
+  int get cardTransformSeed => throw _privateConstructorUsedError;
   bool get showContinueDialog => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,7 @@ abstract class $GameModelCopyWith<$Res> {
   @useResult
   $Res call(
       {List<GameModelCard> cards,
-      double cardTransformSeed,
+      int cardTransformSeed,
       bool showContinueDialog});
 }
 
@@ -61,7 +61,7 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
       cardTransformSeed: null == cardTransformSeed
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       showContinueDialog: null == showContinueDialog
           ? _value.showContinueDialog
           : showContinueDialog // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$$GameModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<GameModelCard> cards,
-      double cardTransformSeed,
+      int cardTransformSeed,
       bool showContinueDialog});
 }
 
@@ -107,7 +107,7 @@ class __$$GameModelImplCopyWithImpl<$Res>
       cardTransformSeed: null == cardTransformSeed
           ? _value.cardTransformSeed
           : cardTransformSeed // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       showContinueDialog: null == showContinueDialog
           ? _value.showContinueDialog
           : showContinueDialog // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ class _$GameModelImpl implements _GameModel {
   }
 
   @override
-  final double cardTransformSeed;
+  final int cardTransformSeed;
   @override
   final bool showContinueDialog;
 
@@ -172,13 +172,13 @@ class _$GameModelImpl implements _GameModel {
 abstract class _GameModel implements GameModel {
   factory _GameModel(
       {required final List<GameModelCard> cards,
-      required final double cardTransformSeed,
+      required final int cardTransformSeed,
       required final bool showContinueDialog}) = _$GameModelImpl;
 
   @override
   List<GameModelCard> get cards;
   @override
-  double get cardTransformSeed;
+  int get cardTransformSeed;
   @override
   bool get showContinueDialog;
   @override

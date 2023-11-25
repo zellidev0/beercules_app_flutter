@@ -19,23 +19,21 @@ class GameController extends StateNotifier<GameModel> {
   GameController({
     required final NavigationService navigationService,
     required final BeerculesCardProvider beerculesCardsProvider,
-    final GameModel? model,
   })  : _navigationService = navigationService,
         _beerculesCardsProvider = beerculesCardsProvider,
         super(
-          model ??
-              GameModel(
-                cards: <GameModelCard>[],
-                cardTransformSeed: Random().nextInt(10).toDouble(),
-                showContinueDialog:
-                    !beerculesCardsProvider.currentGameHasBeenStarted(),
-              ),
+          GameModel(
+            cards: <GameModelCard>[],
+            cardTransformSeed: Random().nextInt(10),
+            showContinueDialog:
+                !beerculesCardsProvider.currentGameHasBeenStarted(),
+          ),
         ) {
     listener = _beerculesCardsProvider
         .addListener((final BeerculesCardProviderModel model) {
       state = state.copyWith(
         cards: initCards(
-          seed: state.cardTransformSeed.toInt(),
+          seed: state.cardTransformSeed,
           cards: model.currentGameCards
               .map(
                 (final BeerculesPlayCard card) => GameModelCard(
@@ -59,7 +57,15 @@ class GameController extends StateNotifier<GameModel> {
     super.dispose();
   }
 
-  Future<void> dismissCard() async {
+  Future<void> dismissCard({required final String cardId}) async {
+    // state = state.copyWith(
+    //   cards: state.cards
+    //       .map(
+    //         (final GameModelCard element) =>
+    //             element.id == cardId ? element.copyWith(played: true) : element,
+    //       )
+    //       .toList(),
+    // );
     _navigationService.pop<void>();
     if (state.cards
         .where((final GameModelCard element) => !element.played)
