@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card.dart';
@@ -66,14 +67,14 @@ class GameView extends ConsumerWidget {
     required final GameController controller,
   }) =>
       Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         children: model.cards
             .mapIndexed(
               (final int index, final GameModelCard card) => Transform.rotate(
                 angle: index.toDouble() + model.cardTransformSeed,
                 child: RepaintBoundary(
                   child: card.played
-                      ? Container()
+                      ? const SizedBox.shrink()
                       : _buildCardBackground(
                           context: context,
                           card: card,
@@ -140,16 +141,23 @@ class GameView extends ConsumerWidget {
                 ),
               );
             },
-            child: Material(
-              color: Colors.transparent,
-              child: Ink(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).primaryColorDark),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: PlayingCardContainer(
-                  onTap: () {},
-                  child: Image.asset('assets/images/logo.png'),
+            child: Transform.translate(
+              offset: Offset(
+                100,
+                100 + Random(card.id.hashCode).nextInt(20).toDouble(),
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: Ink(
+                  decoration: BoxDecoration(
+                    border:
+                        Border.all(color: Theme.of(context).primaryColorDark),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: PlayingCardContainer(
+                    onTap: () {},
+                    child: Image.asset('assets/images/logo.png'),
+                  ),
                 ),
               ),
             ),

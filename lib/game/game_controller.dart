@@ -37,7 +37,6 @@ class GameController extends StateNotifier<GameModel> {
         cards: initCards(
           seed: state.cardTransformSeed.toInt(),
           cards: model.currentGameCards
-              // .take(1)
               .map(
                 (final BeerculesPlayCard card) => GameModelCard(
                   key: card.key,
