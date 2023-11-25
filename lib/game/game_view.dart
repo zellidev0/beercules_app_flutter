@@ -111,41 +111,42 @@ class GameView extends ConsumerWidget {
     required final GameModel model,
     required final GameController controller,
   }) =>
-      Padding(
-        padding: const EdgeInsets.all(64),
-        child: AspectRatio(
-          aspectRatio: 2.5 / 3.5,
-          child: Swipable(
-            threshold: 4,
-            onSwipeEnd: (final _, final __) async {
-              controller.decreaseCardAmount(cardId: card.id);
-              await showDialog<void>(
-                context: context,
-                builder: (final _) => PlayingCard(
-                  onTap: () => controller.dismissCard(cardId: card.id),
-                  showLogo: card.isBasicRule,
-                  showSkullAnimation: card.isVictimGlass &&
-                      model.cards
-                              .where((final _) => _.isVictimGlass && !_.played)
-                              .length ==
-                          1,
-                  resourceKey: card.isVictimGlass &&
-                          model.cards
-                                  .where(
-                                    (final _) => _.isVictimGlass && !_.played,
-                                  )
-                                  .length ==
-                              1
-                      ? card.victimGlassKey
-                      : card.key,
-                ),
-              );
-            },
-            child: Transform.translate(
-              offset: Offset(
-                100,
-                100 + Random(card.id.hashCode).nextInt(20).toDouble(),
-              ),
+      Transform.translate(
+        offset: Offset(
+          64,
+          44 + Random(card.id.hashCode).nextInt(20).toDouble(),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(64),
+          child: AspectRatio(
+            aspectRatio: 2.5 / 3.5,
+            child: Swipable(
+              threshold: 4,
+              onSwipeEnd: (final _, final __) async {
+                controller.decreaseCardAmount(cardId: card.id);
+                await showDialog<void>(
+                  context: context,
+                  builder: (final _) => PlayingCard(
+                    onTap: () => controller.dismissCard(cardId: card.id),
+                    showLogo: card.isBasicRule,
+                    showSkullAnimation: card.isVictimGlass &&
+                        model.cards
+                                .where(
+                                    (final _) => _.isVictimGlass && !_.played)
+                                .length ==
+                            1,
+                    resourceKey: card.isVictimGlass &&
+                            model.cards
+                                    .where(
+                                      (final _) => _.isVictimGlass && !_.played,
+                                    )
+                                    .length ==
+                                1
+                        ? card.victimGlassKey
+                        : card.key,
+                  ),
+                );
+              },
               child: Material(
                 color: Colors.transparent,
                 child: Ink(
