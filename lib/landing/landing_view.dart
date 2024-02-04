@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LandingView extends ConsumerWidget {
-  static const double desktopThreshold = 800;
+  static const double desktopThreshold = 1200;
   const LandingView({super.key});
 
   @override
