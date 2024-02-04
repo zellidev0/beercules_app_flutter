@@ -7,48 +7,74 @@ import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LandingView extends ConsumerWidget {
+  static const double desktopThreshold = 800;
   const LandingView({super.key});
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) =>
-      ScaffoldWidget(
-        useSafeAre: false,
-        child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverAppBar(
-                toolbarHeight: 80,
-                flexibleSpace: FlexibleSpaceBar(title: _buildAppBarContent()),
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                expandedHeight: MediaQuery.of(context).size.height * 0.15,
-              ),
-              SliverList(
-                delegate: SliverChildListDelegate(<Widget>[
-                  LayoutBuilder(
-                    builder: (
-                      final BuildContext context,
-                      final BoxConstraints constraints,
-                    ) =>
-                        Column(
-                      children: <Widget>[
-                        _buildSloganAndMockup(
-                          constraints: constraints,
-                          context: context,
-                        ),
-                        _divider(),
-                        _buildFeatures(),
-                        _divider(),
-                        _buildReviews(),
-                        _buildLegal(),
-                        const SizedBox(height: 16),
-                      ],
+      LayoutBuilder(
+        builder: (
+          final BuildContext context,
+          final BoxConstraints constraints,
+        ) =>
+            ScaffoldWidget(
+          useSafeAre: false,
+          padding: EdgeInsets.zero,
+          child: ScrollConfiguration(
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  sliver: SliverAppBar(
+                    toolbarHeight: 80,
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: _buildAppBarContent(),
                     ),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    expandedHeight: MediaQuery.of(context).size.height * 0.15,
                   ),
-                ]),
-              ),
-            ],
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal:
+                        constraints.maxWidth < desktopThreshold ? 32 : 400,
+                    vertical: 32,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(<Widget>[
+                      _buildSloganAndMockup(
+                        constraints: constraints,
+                        context: context,
+                      ),
+                      _divider(),
+                      _buildFeatures(),
+                      _divider(),
+                    ]),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate(<Widget>[
+                    _buildReviews(),
+                  ]),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal:
+                        constraints.maxWidth < desktopThreshold ? 32 : 64,
+                    vertical: 32,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(<Widget>[
+                      _buildLegal(),
+                      const SizedBox(height: 16),
+                    ]),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -63,71 +89,79 @@ class LandingView extends ConsumerWidget {
         child: Divider(color: Colors.white70),
       );
 
-  Widget _buildReviews() => SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
+  Widget _buildReviews() => Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: <Widget>[
+              buildReviewCard(
+                textResource: 'landing_view.reviews.review1.reviewText',
+                authorResource: 'landing_view.reviews.review1.reviewAuthor',
+              ),
+              buildReviewCard(
+                textResource: 'landing_view.reviews.review2.reviewText',
+                authorResource: 'landing_view.reviews.review2.reviewAuthor',
+              ),
+              buildReviewCard(
+                textResource: 'landing_view.reviews.review3.reviewText',
+                authorResource: 'landing_view.reviews.review3.reviewAuthor',
+                halfStar: true,
+              ),
+              buildReviewCard(
+                textResource: 'landing_view.reviews.review4.reviewText',
+                authorResource: 'landing_view.reviews.review4.reviewAuthor',
+              ),
+            ],
+          ),
+        ),
+      );
+
+  Widget _buildFeatures() => LayoutBuilder(
+        builder: (final _, final BoxConstraints constraints) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            buildReviewCard(
-              textResource: 'landing_view.reviews.review1.reviewText',
-              authorResource: 'landing_view.reviews.review1.reviewAuthor',
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: constraints.maxWidth < desktopThreshold ? 16 : 128,
+                vertical: 32,
+              ),
+              child: Text(
+                'general.app_description'.tr(),
+                style: TextStyles.header4.copyWith(fontWeight: FontWeight.w400),
+                textAlign: TextAlign.center,
+              ).tr(),
             ),
-            buildReviewCard(
-              textResource: 'landing_view.reviews.review2.reviewText',
-              authorResource: 'landing_view.reviews.review2.reviewAuthor',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                _buildBadge(
+                  badge: SvgPicture.asset(
+                    'assets/legal/google-play-badge.svg',
+                  ),
+                  isIos: false,
+                ),
+                _buildBadge(
+                  badge: SvgPicture.asset(
+                    'assets/legal/app-store-badge.svg',
+                  ),
+                  isIos: true,
+                ),
+              ],
             ),
-            buildReviewCard(
-              textResource: 'landing_view.reviews.review3.reviewText',
-              authorResource: 'landing_view.reviews.review3.reviewAuthor',
-              halfStar: true,
-            ),
-            buildReviewCard(
-              textResource: 'landing_view.reviews.review4.reviewText',
-              authorResource: 'landing_view.reviews.review4.reviewAuthor',
-            ),
+            const SizedBox(height: 32),
           ],
         ),
       );
 
-  Widget _buildFeatures() => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 128, vertical: 32),
-            child: Text(
-              'general.app_description'.tr(),
-              style: TextStyles.header4.copyWith(fontWeight: FontWeight.w400),
-            ).tr(),
-          ),
-          Row(
-            children: <Widget>[
-              const Spacer(),
-              _buildBadge(
-                height: 80,
-                badge: Image.asset('assets/legal/google-play-badge.png'),
-                isIos: false,
-              ),
-              _buildBadge(
-                height: 56,
-                badge: SvgPicture.asset('assets/legal/app-store-badge.svg'),
-                isIos: true,
-              ),
-              const Spacer(),
-            ],
-          ),
-          const SizedBox(height: 32),
-        ],
-      );
-
-  Expanded _buildBadge({
-    required final double height,
+  Widget _buildBadge({
     required final Widget badge,
     required final bool isIos,
   }) =>
-      Expanded(
+      Flexible(
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
-            child: SizedBox(height: height, child: badge),
+            child: badge,
             onTap: () async => launchUrl(
               isIos
                   ? Uri.parse(
@@ -144,24 +178,41 @@ class LandingView extends ConsumerWidget {
   Widget _buildSloganAndMockup({
     required final BoxConstraints constraints,
     required final BuildContext context,
-  }) =>
-      Container(
-        constraints: constraints.copyWith(
-          maxHeight: MediaQuery.of(context).size.height,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(44),
-          child: Row(
-            children: <Widget>[
-              Text(
-                'landing_view.best_app_slogan'.tr(),
-                style: TextStyles.header1,
-              ).tr(),
-              Image.asset('assets/mockups/mockup2.png'),
-            ].map((final _) => Expanded(child: _)).toList(),
+  }) {
+    if (constraints.maxWidth < desktopThreshold) {
+      return Column(
+        children: <Widget>[
+          Text(
+            'landing_view.best_app_slogan'.tr(),
+            style: TextStyles.header1,
+            textAlign: TextAlign.center,
+          ).tr(),
+          const SizedBox(height: 32),
+          Image.asset(
+            'assets/mockups/mockup2.png',
+            height: MediaQuery.of(context).size.height * 0.4,
           ),
+          const SizedBox(height: 40),
+        ],
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(44),
+        child: Row(
+          children: <Widget>[
+            Text(
+              'landing_view.best_app_slogan'.tr(),
+              style: TextStyles.header1,
+            ).tr(),
+            Image.asset(
+              'assets/mockups/mockup2.png',
+              height: MediaQuery.of(context).size.height * 0.5,
+            ),
+          ].map((final _) => Expanded(child: _)).toList(),
         ),
       );
+    }
+  }
 
   Widget _buildAppBarContent() => Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +221,15 @@ class LandingView extends ConsumerWidget {
             width: 64,
             child: Image.asset('assets/images/logo.png'),
           ),
-          Text('general.app_name'.tr(), style: TextStyles.header1).tr(),
+          Flexible(
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                'general.app_name'.tr(),
+                style: TextStyles.header1,
+              ).tr(),
+            ),
+          ),
         ],
       );
 
