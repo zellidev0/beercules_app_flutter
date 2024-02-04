@@ -132,7 +132,8 @@ class GameView extends ConsumerWidget {
                     showSkullAnimation: card.isVictimGlass &&
                         model.cards
                                 .where(
-                                    (final _) => _.isVictimGlass && !_.played)
+                                  (final _) => _.isVictimGlass && !_.played,
+                                )
                                 .length ==
                             1,
                     resourceKey: card.isVictimGlass &&
