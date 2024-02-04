@@ -37,10 +37,10 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
       initialLocation: NavigationServiceRoutes.homeRouteUri,
       navigatorKey: rootNavigatorKey,
       redirect: (final BuildContext context, final GoRouterState state) {
-        if (!kIsWeb && state.path == NavigationServiceRoutes.landingRouteUri) {
+        if (kIsWeb) {
           return NavigationServiceRoutes.landingRouteUri;
         }
-        if (kIsWeb && state.path == NavigationServiceRoutes.landingRouteUri) {
+        if (!kIsWeb && state.path == NavigationServiceRoutes.landingRouteUri) {
           return NavigationServiceRoutes.homeRouteUri;
         }
         return null;
