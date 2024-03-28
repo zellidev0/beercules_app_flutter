@@ -19,14 +19,14 @@ dependencies:
     sdk: flutter
   flutter_html: ^3.0.0-beta.2
   flutter_riverpod: ^2.0.2
-  flutter_svg: ^0.23.0+1
+  flutter_svg: ^2.0.10+1
   flutter_swipable:
     git:
       url: https://github.com/Akhil111993/swipable_fix_overflow
       ref: master
   fpdart: ^1.1.0
   freezed_annotation: ^2.1.0
-  go_router: ^12.1.1
+  go_router: ^13.2.0
   lottie: ^2.6.0
   responsive_framework: ^1.1.1
   riverpod: ^2.3.6
@@ -36,6 +36,7 @@ dependencies:
 dev_dependencies:
   austerity: ^1.1.0
   build_runner: ^2.4.4
+  flutter_gen: ^5.3.1
   flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter
@@ -52,3 +53,9 @@ flutter:
     - assets/legal/
     - assets/mockups/
     - assets/backgrounds/
+
+flutter_gen:
+  output: lib/gen/ # Optional (default: lib/gen/)
+  line_length: 80 # Optional (default: 80)
+  integrations:
+    flutter_svg: true
