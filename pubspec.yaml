@@ -1,9 +1,8 @@
 name: beercules
 description: Beercules
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-version: 2.1.0+26
+publish_to: 'none'
+version: 4.0.0
+build: 30
 
 environment:
   flutter: ">=3.13.4 <4.0.0"
