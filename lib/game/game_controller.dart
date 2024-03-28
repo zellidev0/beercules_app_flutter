@@ -59,14 +59,6 @@ class GameController extends StateNotifier<GameModel> {
   }
 
   Future<void> dismissCard({required final String cardId}) async {
-    // state = state.copyWith(
-    //   cards: state.cards
-    //       .map(
-    //         (final GameModelCard element) =>
-    //             element.id == cardId ? element.copyWith(played: true) : element,
-    //       )
-    //       .toList(),
-    // );
     _navigationService.pop<void>();
     if (state.cards
         .where((final GameModelCard element) => !element.played)
