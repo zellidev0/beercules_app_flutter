@@ -1,3 +1,5 @@
+import 'package:beercules/gen/assets.gen.dart';
+import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -80,7 +82,7 @@ class LandingView extends ConsumerWidget {
       );
 
   Widget _buildLegal() => Text(
-        'general.legal_google_play_notice'.tr(),
+        LocaleKeys.general_legal_google_play_notice,
         style: TextStyles.body4.copyWith(color: Colors.white.withOpacity(0.4)),
       ).tr();
 
@@ -95,21 +97,29 @@ class LandingView extends ConsumerWidget {
           child: Row(
             children: <Widget>[
               buildReviewCard(
-                textResource: 'landing_view.reviews.review1.reviewText',
-                authorResource: 'landing_view.reviews.review1.reviewAuthor',
+                text: LocaleKeys.landing_view_reviews_review1_reviewText.tr(),
+                author:
+                    LocaleKeys.landing_view_reviews_review1_reviewAuthor.tr(),
               ),
               buildReviewCard(
-                textResource: 'landing_view.reviews.review2.reviewText',
-                authorResource: 'landing_view.reviews.review2.reviewAuthor',
+                text: LocaleKeys.landing_view_reviews_review2_reviewText.tr(),
+                author:
+                    LocaleKeys.landing_view_reviews_review2_reviewAuthor.tr(),
               ),
               buildReviewCard(
-                textResource: 'landing_view.reviews.review3.reviewText',
-                authorResource: 'landing_view.reviews.review3.reviewAuthor',
+                text: LocaleKeys.landing_view_reviews_review3_reviewText.tr(),
+                author:
+                    LocaleKeys.landing_view_reviews_review3_reviewAuthor.tr(),
+              ),
+              buildReviewCard(
+                text: 'landing_view.reviews.review3.reviewText',
+                author: 'landing_view.reviews.review3.reviewAuthor',
                 halfStar: true,
               ),
               buildReviewCard(
-                textResource: 'landing_view.reviews.review4.reviewText',
-                authorResource: 'landing_view.reviews.review4.reviewAuthor',
+                text: LocaleKeys.landing_view_reviews_review4_reviewText.tr(),
+                author:
+                    LocaleKeys.landing_view_reviews_review4_reviewAuthor.tr(),
               ),
             ],
           ),
@@ -126,7 +136,7 @@ class LandingView extends ConsumerWidget {
                 vertical: 32,
               ),
               child: Text(
-                'general.app_description'.tr(),
+                LocaleKeys.general_app_description.tr(),
                 style: TextStyles.header4.copyWith(fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
               ).tr(),
@@ -135,15 +145,11 @@ class LandingView extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 _buildBadge(
-                  badge: SvgPicture.asset(
-                    'assets/legal/google-play-badge.svg',
-                  ),
+                  badge: Assets.legal.googlePlayBadge.svg(),
                   isIos: false,
                 ),
                 _buildBadge(
-                  badge: SvgPicture.asset(
-                    'assets/legal/app-store-badge.svg',
-                  ),
+                  badge: Assets.legal.appStoreBadge.svg(),
                   isIos: true,
                 ),
               ],
@@ -183,13 +189,12 @@ class LandingView extends ConsumerWidget {
       return Column(
         children: <Widget>[
           Text(
-            'landing_view.best_app_slogan'.tr(),
+            LocaleKeys.landing_view_best_app_slogan.tr(),
             style: TextStyles.header1,
             textAlign: TextAlign.center,
           ).tr(),
           const SizedBox(height: 32),
-          Image.asset(
-            'assets/mockups/mockup2.png',
+          Assets.mockups.mockup2.image(
             height: MediaQuery.of(context).size.height * 0.4,
           ),
           const SizedBox(height: 40),
@@ -201,11 +206,10 @@ class LandingView extends ConsumerWidget {
         child: Row(
           children: <Widget>[
             Text(
-              'landing_view.best_app_slogan'.tr(),
+              LocaleKeys.landing_view_best_app_slogan.tr(),
               style: TextStyles.header1,
             ).tr(),
-            Image.asset(
-              'assets/mockups/mockup2.png',
+            Assets.mockups.mockup2.image(
               height: MediaQuery.of(context).size.height * 0.5,
             ),
           ].map((final _) => Expanded(child: _)).toList(),
@@ -219,13 +223,13 @@ class LandingView extends ConsumerWidget {
         children: <Widget>[
           SizedBox(
             width: 64,
-            child: Image.asset('assets/images/logo.png'),
+            child: Assets.images.logo.image(),
           ),
           Flexible(
             child: FittedBox(
               fit: BoxFit.fitWidth,
-              child: Text(
-                'general.app_name'.tr(),
+              child: const Text(
+                LocaleKeys.general_app_name,
                 style: TextStyles.header1,
               ).tr(),
             ),
@@ -234,8 +238,8 @@ class LandingView extends ConsumerWidget {
       );
 
   Widget buildReviewCard({
-    required final String textResource,
-    required final String authorResource,
+    required final String text,
+    required final String author,
     final bool halfStar = false,
   }) =>
       Padding(
@@ -271,18 +275,18 @@ class LandingView extends ConsumerWidget {
                   ),
                 ),
                 Text(
-                  textResource.tr(),
+                  text,
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: TextStyles.body1,
-                ).tr(),
+                ),
                 const SizedBox(height: 8),
                 Text(
-                  authorResource.tr(),
+                  author,
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: TextStyles.body5,
-                ).tr(),
+                ),
               ],
             ),
           ),

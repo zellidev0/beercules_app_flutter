@@ -46,7 +46,7 @@ class HomeView extends ConsumerWidget {
               Assets.images.logo.image(),
               const SizedBox(height: 32),
               BcButton(
-                textResource: LocaleKeys.home_view_button_go_drinking,
+                text: LocaleKeys.home_view_button_go_drinking.tr(),
                 onPressed: controller.goToGameView,
               ),
               const SizedBox(height: 32),
@@ -55,14 +55,14 @@ class HomeView extends ConsumerWidget {
                 children: <Widget>[
                   Expanded(
                     child: BcButton(
-                      textResource: LocaleKeys.home_view_button_rules,
+                      text: LocaleKeys.home_view_button_rules.tr(),
                       onPressed: controller.goToRulesView,
                     ),
                   ),
                   const SizedBox(width: 32),
                   Expanded(
                     child: BcButton(
-                      textResource: LocaleKeys.home_view_button_customize,
+                      text: LocaleKeys.home_view_button_customize.tr(),
                       onPressed: controller.goToCustomizeView,
                     ),
                   ),

@@ -12,11 +12,11 @@ part of 'customize_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CustomizeModel {
-  String? get selectedCardKey => throw _privateConstructorUsedError;
+  BeerculesCardType? get selectedCardKey => throw _privateConstructorUsedError;
   List<BeerculesCard> get configCards => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,8 @@ abstract class $CustomizeModelCopyWith<$Res> {
           CustomizeModel value, $Res Function(CustomizeModel) then) =
       _$CustomizeModelCopyWithImpl<$Res, CustomizeModel>;
   @useResult
-  $Res call({String? selectedCardKey, List<BeerculesCard> configCards});
+  $Res call(
+      {BeerculesCardType? selectedCardKey, List<BeerculesCard> configCards});
 }
 
 /// @nodoc
@@ -53,7 +54,7 @@ class _$CustomizeModelCopyWithImpl<$Res, $Val extends CustomizeModel>
       selectedCardKey: freezed == selectedCardKey
           ? _value.selectedCardKey
           : selectedCardKey // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as BeerculesCardType?,
       configCards: null == configCards
           ? _value.configCards
           : configCards // ignore: cast_nullable_to_non_nullable
@@ -70,7 +71,8 @@ abstract class _$$CustomizeModelImplCopyWith<$Res>
       __$$CustomizeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? selectedCardKey, List<BeerculesCard> configCards});
+  $Res call(
+      {BeerculesCardType? selectedCardKey, List<BeerculesCard> configCards});
 }
 
 /// @nodoc
@@ -91,7 +93,7 @@ class __$$CustomizeModelImplCopyWithImpl<$Res>
       selectedCardKey: freezed == selectedCardKey
           ? _value.selectedCardKey
           : selectedCardKey // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as BeerculesCardType?,
       configCards: null == configCards
           ? _value._configCards
           : configCards // ignore: cast_nullable_to_non_nullable
@@ -109,7 +111,7 @@ class _$CustomizeModelImpl implements _CustomizeModel {
       : _configCards = configCards;
 
   @override
-  final String? selectedCardKey;
+  final BeerculesCardType? selectedCardKey;
   final List<BeerculesCard> _configCards;
   @override
   List<BeerculesCard> get configCards {
@@ -124,7 +126,7 @@ class _$CustomizeModelImpl implements _CustomizeModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CustomizeModelImpl &&
@@ -148,11 +150,11 @@ class _$CustomizeModelImpl implements _CustomizeModel {
 
 abstract class _CustomizeModel implements CustomizeModel {
   factory _CustomizeModel(
-      {required final String? selectedCardKey,
+      {required final BeerculesCardType? selectedCardKey,
       required final List<BeerculesCard> configCards}) = _$CustomizeModelImpl;
 
   @override
-  String? get selectedCardKey;
+  BeerculesCardType? get selectedCardKey;
   @override
   List<BeerculesCard> get configCards;
   @override

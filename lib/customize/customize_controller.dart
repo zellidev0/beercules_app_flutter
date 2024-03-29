@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:core';
 import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/customize/customize_model.dart';
+import 'package:beercules/gen/locale_keys.g.dart';
+import 'package:beercules/providers.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -43,7 +45,7 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
   void goBackToHome() => _navigationService.goBack();
 
   void showCard({
-    required final String cardKey,
+    required final BeerculesCardType cardKey,
     required final Widget widget,
   }) {
     unawaited(_navigationService.showPopup<void>(widget).run());
@@ -53,7 +55,7 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
   void modifyCardAmount() {
     _beerculesCardsProvider
       ..modifyConfigGameCardsAmount(
-        cardKey: state.selectedCardKey ?? '',
+        cardKey: state.selectedCardKey,
         amount: ((_beerculesCardsProvider.state.configCards
                         .firstWhereOrNull(
                           (final BeerculesCard card) =>
@@ -69,7 +71,9 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
 
   void restoreDefault() {
     _beerculesCardsProvider.resetToDefaultCards();
-    _navigationService.showSnackBar('config_view.restoredDefault'.tr());
+    _navigationService.showSnackBar(
+      LocaleKeys.config_view_restoredDefault.tr(),
+    );
   }
 
   void pop() => _navigationService.pop<void>();

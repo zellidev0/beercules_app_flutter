@@ -1,29 +1,28 @@
 import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/theme.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class BcDialog extends StatelessWidget {
   final VoidCallback _onConfirmPressed;
   final VoidCallback _onCancelPressed;
-  final String _confirmTextResource;
-  final String _headerResource;
-  final String _descriptionResource;
-  final String _declineTextResource;
+  final String _confirmText;
+  final String _headerText;
+  final String _descriptionText;
+  final String _declineText;
 
   const BcDialog({
     required final void Function() onConfirmPressed,
     required final void Function() onCancelPressed,
-    required final String confirmTextResource,
-    required final String headerResource,
-    required final String descriptionResource,
-    required final String declineTextResource,
+    required final String confirmText,
+    required final String headerText,
+    required final String descriptionText,
+    required final String declineText,
     super.key,
-  })  : _declineTextResource = declineTextResource,
-        _descriptionResource = descriptionResource,
-        _headerResource = headerResource,
-        _confirmTextResource = confirmTextResource,
+  })  : _declineText = declineText,
+        _descriptionText = descriptionText,
+        _headerText = headerText,
+        _confirmText = confirmText,
         _onCancelPressed = onCancelPressed,
         _onConfirmPressed = onConfirmPressed;
 
@@ -51,13 +50,13 @@ class BcDialog extends StatelessWidget {
                       FittedBox(
                         fit: BoxFit.fitWidth,
                         child: Text(
-                          _headerResource.tr(),
+                          _headerText,
                           style: TextStyles.header2,
                         ),
                       ),
                       const SizedBox(height: 32),
                       Text(
-                        _descriptionResource.tr(),
+                        _descriptionText,
                         style: TextStyles.body1,
                         textAlign: TextAlign.center,
                       ),
@@ -65,8 +64,8 @@ class BcDialog extends StatelessWidget {
                       _buildDialogButtons(
                         onConfirmPressed: _onConfirmPressed,
                         onCancelPressed: _onCancelPressed,
-                        confirmTextResource: _confirmTextResource,
-                        declineTextResource: _declineTextResource,
+                        confirmText: _confirmText,
+                        declineText: _declineText,
                       ),
                     ],
                   ),
@@ -80,8 +79,8 @@ class BcDialog extends StatelessWidget {
   Row _buildDialogButtons({
     required final VoidCallback onConfirmPressed,
     required final VoidCallback onCancelPressed,
-    required final String confirmTextResource,
-    required final String declineTextResource,
+    required final String confirmText,
+    required final String declineText,
   }) =>
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -89,14 +88,14 @@ class BcDialog extends StatelessWidget {
           Expanded(
             child: BcButton(
               onPressed: onConfirmPressed,
-              textResource: confirmTextResource,
+              text: confirmText,
             ),
           ),
           const SizedBox(width: 32),
           Expanded(
             child: BcButton(
               onPressed: onCancelPressed,
-              textResource: declineTextResource,
+              text: declineText,
             ),
           ),
         ],

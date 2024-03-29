@@ -6,6 +6,7 @@ import 'package:beercules/common/widgets/playing_card.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
+import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
@@ -32,10 +33,10 @@ class GameView extends ConsumerWidget {
               ..newGame()
               ..showCustomizedCardActiveSnackbar(context: context);
           },
-          confirmTextResource: 'game_view.continue.yes',
-          declineTextResource: 'game_view.continue.no',
-          headerResource: 'game_view.continue.header',
-          descriptionResource: 'game_view.continue.question',
+          confirmText: 'game_view.continue.yes',
+          declineText: 'game_view.continue.no',
+          headerText: 'game_view.continue.header',
+          descriptionText: 'game_view.continue.question',
         ),
       );
     }
@@ -128,23 +129,16 @@ class GameView extends ConsumerWidget {
                   context: context,
                   builder: (final _) => PlayingCard(
                     onTap: () => controller.dismissCard(cardId: card.id),
-                    showLogo: card.isBasicRule,
-                    showSkullAnimation: card.isVictimGlass &&
+                    showLogo: card.type.isBasicRule(),
+                    isLastVictimGlass: card.type.isVictimGlass() &&
                         model.cards
                                 .where(
-                                  (final _) => _.isVictimGlass && !_.played,
+                                  (final _) =>
+                                      _.type.isVictimGlass() && !_.played,
                                 )
                                 .length ==
                             1,
-                    resourceKey: card.isVictimGlass &&
-                            model.cards
-                                    .where(
-                                      (final _) => _.isVictimGlass && !_.played,
-                                    )
-                                    .length ==
-                                1
-                        ? card.victimGlassKey
-                        : card.key,
+                    cardType: card.type,
                   ),
                 );
               },
@@ -158,7 +152,7 @@ class GameView extends ConsumerWidget {
                   ),
                   child: PlayingCardContainer(
                     onTap: () {},
-                    child: Image.asset('assets/images/logo.png'),
+                    child: Assets.images.logo.image(),
                   ),
                 ),
               ),

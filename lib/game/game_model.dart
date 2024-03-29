@@ -1,3 +1,4 @@
+import 'package:beercules/providers.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'game_model.freezed.dart';
@@ -15,10 +16,7 @@ class GameModel with _$GameModel {
 class GameModelCard with _$GameModelCard {
   factory GameModelCard({
     required final String id,
-    required final String key,
-    required final bool isBasicRule,
-    required final bool isVictimGlass,
-    required final String victimGlassKey,
+    required final BeerculesCardType type,
     required final bool played,
   }) = _GameModelCard;
 }

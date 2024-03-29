@@ -12,11 +12,11 @@ part of 'beercules_card_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BeerculesCard {
-  String get key => throw _privateConstructorUsedError;
+  BeerculesCardType get key => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   bool get isBasicRule => throw _privateConstructorUsedError;
   bool get isVictimGlass => throw _privateConstructorUsedError;
@@ -32,7 +32,11 @@ abstract class $BeerculesCardCopyWith<$Res> {
           BeerculesCard value, $Res Function(BeerculesCard) then) =
       _$BeerculesCardCopyWithImpl<$Res, BeerculesCard>;
   @useResult
-  $Res call({String key, int amount, bool isBasicRule, bool isVictimGlass});
+  $Res call(
+      {BeerculesCardType key,
+      int amount,
+      bool isBasicRule,
+      bool isVictimGlass});
 }
 
 /// @nodoc
@@ -57,7 +61,7 @@ class _$BeerculesCardCopyWithImpl<$Res, $Val extends BeerculesCard>
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as BeerculesCardType,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -82,7 +86,11 @@ abstract class _$$BeerculesCardImplCopyWith<$Res>
       __$$BeerculesCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String key, int amount, bool isBasicRule, bool isVictimGlass});
+  $Res call(
+      {BeerculesCardType key,
+      int amount,
+      bool isBasicRule,
+      bool isVictimGlass});
 }
 
 /// @nodoc
@@ -105,7 +113,7 @@ class __$$BeerculesCardImplCopyWithImpl<$Res>
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as BeerculesCardType,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -134,7 +142,7 @@ class _$BeerculesCardImpl
       required this.isVictimGlass});
 
   @override
-  final String key;
+  final BeerculesCardType key;
   @override
   final int amount;
   @override
@@ -159,7 +167,7 @@ class _$BeerculesCardImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BeerculesCardImpl &&
@@ -184,13 +192,13 @@ class _$BeerculesCardImpl
 
 abstract class _BeerculesCard implements BeerculesCard {
   factory _BeerculesCard(
-      {required final String key,
+      {required final BeerculesCardType key,
       required final int amount,
       required final bool isBasicRule,
       required final bool isVictimGlass}) = _$BeerculesCardImpl;
 
   @override
-  String get key;
+  BeerculesCardType get key;
   @override
   int get amount;
   @override
@@ -206,7 +214,7 @@ abstract class _BeerculesCard implements BeerculesCard {
 /// @nodoc
 mixin _$BeerculesPlayCard {
   String get id => throw _privateConstructorUsedError;
-  String get key => throw _privateConstructorUsedError;
+  BeerculesCardType get key => throw _privateConstructorUsedError;
   bool get played => throw _privateConstructorUsedError;
   bool get isBasicRule => throw _privateConstructorUsedError;
   bool get isVictimGlass => throw _privateConstructorUsedError;
@@ -224,7 +232,7 @@ abstract class $BeerculesPlayCardCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String key,
+      BeerculesCardType key,
       bool played,
       bool isBasicRule,
       bool isVictimGlass});
@@ -257,7 +265,7 @@ class _$BeerculesPlayCardCopyWithImpl<$Res, $Val extends BeerculesPlayCard>
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as BeerculesCardType,
       played: null == played
           ? _value.played
           : played // ignore: cast_nullable_to_non_nullable
@@ -284,7 +292,7 @@ abstract class _$$BeerculesPlayCardImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String key,
+      BeerculesCardType key,
       bool played,
       bool isBasicRule,
       bool isVictimGlass});
@@ -315,7 +323,7 @@ class __$$BeerculesPlayCardImplCopyWithImpl<$Res>
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as BeerculesCardType,
       played: null == played
           ? _value.played
           : played // ignore: cast_nullable_to_non_nullable
@@ -347,7 +355,7 @@ class _$BeerculesPlayCardImpl
   @override
   final String id;
   @override
-  final String key;
+  final BeerculesCardType key;
   @override
   final bool played;
   @override
@@ -373,7 +381,7 @@ class _$BeerculesPlayCardImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BeerculesPlayCardImpl &&
@@ -401,7 +409,7 @@ class _$BeerculesPlayCardImpl
 abstract class _BeerculesPlayCard implements BeerculesPlayCard {
   factory _BeerculesPlayCard(
       {required final String id,
-      required final String key,
+      required final BeerculesCardType key,
       required final bool played,
       required final bool isBasicRule,
       required final bool isVictimGlass}) = _$BeerculesPlayCardImpl;
@@ -409,7 +417,7 @@ abstract class _BeerculesPlayCard implements BeerculesPlayCard {
   @override
   String get id;
   @override
-  String get key;
+  BeerculesCardType get key;
   @override
   bool get played;
   @override
@@ -561,7 +569,7 @@ class _$BeerculesCardProviderModelImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BeerculesCardProviderModelImpl &&

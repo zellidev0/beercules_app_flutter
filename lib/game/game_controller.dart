@@ -5,6 +5,7 @@ import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/bc_dialog.dart';
 import 'package:beercules/game/game_model.dart';
+import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,10 +39,7 @@ class GameController extends StateNotifier<GameModel> {
               // .take(3)
               .map(
                 (final BeerculesPlayCard card) => GameModelCard(
-                  key: card.key,
-                  isBasicRule: card.isBasicRule,
-                  isVictimGlass: card.isVictimGlass,
-                  victimGlassKey: 'OPFERGLAS_LAST',
+                  type: card.key,
                   played: card.played,
                   id: card.id,
                 ),
@@ -69,10 +67,10 @@ class GameController extends StateNotifier<GameModel> {
           newGame();
           goBackToHome();
         },
-        confirmTextResource: 'game_view.finish.yes',
-        declineTextResource: 'game_view.finish.no',
-        headerResource: 'game_view.finish.header',
-        descriptionResource: 'game_view.finish.question',
+        confirmText: LocaleKeys.game_view_finish_yes.tr(),
+        declineText: LocaleKeys.game_view_finish_no.tr(),
+        headerText: LocaleKeys.game_view_finish_header.tr(),
+        descriptionText: LocaleKeys.game_view_finish_question.tr(),
       );
     }
   }
@@ -94,7 +92,9 @@ class GameController extends StateNotifier<GameModel> {
     required final BuildContext context,
   }) {
     if (_beerculesCardsProvider.configDiffersFromDefault()) {
-      _navigationService.showSnackBar('game_view.customize_cards_used'.tr());
+      _navigationService.showSnackBar(
+        LocaleKeys.game_view_customize_cards_used.tr(),
+      );
     }
   }
 
@@ -106,10 +106,13 @@ class GameController extends StateNotifier<GameModel> {
         ...shuffle(
           seed,
           cards
-              .where((final GameModelCard element) => !element.isBasicRule)
+              .where(
+                (final GameModelCard element) => !element.type.isBasicRule(),
+              )
               .toList(),
         ),
-        ...cards.where((final GameModelCard element) => element.isBasicRule),
+        ...cards
+            .where((final GameModelCard element) => element.type.isBasicRule()),
       ];
 
   void goBackToHome() => _navigationService.goBack();
@@ -122,10 +125,10 @@ class GameController extends StateNotifier<GameModel> {
   void showFinishDialog({
     required final void Function() onConfirmPressed,
     required final Null Function() onCancelPressed,
-    required final String confirmTextResource,
-    required final String declineTextResource,
-    required final String headerResource,
-    required final String descriptionResource,
+    required final String confirmText,
+    required final String declineText,
+    required final String headerText,
+    required final String descriptionText,
   }) =>
       unawaited(
         _navigationService
@@ -133,10 +136,10 @@ class GameController extends StateNotifier<GameModel> {
               BcDialog(
                 onConfirmPressed: onConfirmPressed,
                 onCancelPressed: onCancelPressed,
-                confirmTextResource: confirmTextResource,
-                declineTextResource: declineTextResource,
-                headerResource: headerResource,
-                descriptionResource: descriptionResource,
+                confirmText: confirmText,
+                declineText: declineText,
+                headerText: headerText,
+                descriptionText: descriptionText,
               ),
             )
             .match(

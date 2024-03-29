@@ -12,7 +12,7 @@ part of 'game_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GameModel {
@@ -144,7 +144,7 @@ class _$GameModelImpl implements _GameModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GameModelImpl &&
@@ -190,10 +190,7 @@ abstract class _GameModel implements GameModel {
 /// @nodoc
 mixin _$GameModelCard {
   String get id => throw _privateConstructorUsedError;
-  String get key => throw _privateConstructorUsedError;
-  bool get isBasicRule => throw _privateConstructorUsedError;
-  bool get isVictimGlass => throw _privateConstructorUsedError;
-  String get victimGlassKey => throw _privateConstructorUsedError;
+  BeerculesCardType get type => throw _privateConstructorUsedError;
   bool get played => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -207,13 +204,7 @@ abstract class $GameModelCardCopyWith<$Res> {
           GameModelCard value, $Res Function(GameModelCard) then) =
       _$GameModelCardCopyWithImpl<$Res, GameModelCard>;
   @useResult
-  $Res call(
-      {String id,
-      String key,
-      bool isBasicRule,
-      bool isVictimGlass,
-      String victimGlassKey,
-      bool played});
+  $Res call({String id, BeerculesCardType type, bool played});
 }
 
 /// @nodoc
@@ -230,10 +221,7 @@ class _$GameModelCardCopyWithImpl<$Res, $Val extends GameModelCard>
   @override
   $Res call({
     Object? id = null,
-    Object? key = null,
-    Object? isBasicRule = null,
-    Object? isVictimGlass = null,
-    Object? victimGlassKey = null,
+    Object? type = null,
     Object? played = null,
   }) {
     return _then(_value.copyWith(
@@ -241,22 +229,10 @@ class _$GameModelCardCopyWithImpl<$Res, $Val extends GameModelCard>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      isBasicRule: null == isBasicRule
-          ? _value.isBasicRule
-          : isBasicRule // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isVictimGlass: null == isVictimGlass
-          ? _value.isVictimGlass
-          : isVictimGlass // ignore: cast_nullable_to_non_nullable
-              as bool,
-      victimGlassKey: null == victimGlassKey
-          ? _value.victimGlassKey
-          : victimGlassKey // ignore: cast_nullable_to_non_nullable
-              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as BeerculesCardType,
       played: null == played
           ? _value.played
           : played // ignore: cast_nullable_to_non_nullable
@@ -273,13 +249,7 @@ abstract class _$$GameModelCardImplCopyWith<$Res>
       __$$GameModelCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String key,
-      bool isBasicRule,
-      bool isVictimGlass,
-      String victimGlassKey,
-      bool played});
+  $Res call({String id, BeerculesCardType type, bool played});
 }
 
 /// @nodoc
@@ -294,10 +264,7 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? key = null,
-    Object? isBasicRule = null,
-    Object? isVictimGlass = null,
-    Object? victimGlassKey = null,
+    Object? type = null,
     Object? played = null,
   }) {
     return _then(_$GameModelCardImpl(
@@ -305,22 +272,10 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      isBasicRule: null == isBasicRule
-          ? _value.isBasicRule
-          : isBasicRule // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isVictimGlass: null == isVictimGlass
-          ? _value.isVictimGlass
-          : isVictimGlass // ignore: cast_nullable_to_non_nullable
-              as bool,
-      victimGlassKey: null == victimGlassKey
-          ? _value.victimGlassKey
-          : victimGlassKey // ignore: cast_nullable_to_non_nullable
-              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as BeerculesCardType,
       played: null == played
           ? _value.played
           : played // ignore: cast_nullable_to_non_nullable
@@ -333,50 +288,32 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
 
 class _$GameModelCardImpl implements _GameModelCard {
   _$GameModelCardImpl(
-      {required this.id,
-      required this.key,
-      required this.isBasicRule,
-      required this.isVictimGlass,
-      required this.victimGlassKey,
-      required this.played});
+      {required this.id, required this.type, required this.played});
 
   @override
   final String id;
   @override
-  final String key;
-  @override
-  final bool isBasicRule;
-  @override
-  final bool isVictimGlass;
-  @override
-  final String victimGlassKey;
+  final BeerculesCardType type;
   @override
   final bool played;
 
   @override
   String toString() {
-    return 'GameModelCard(id: $id, key: $key, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass, victimGlassKey: $victimGlassKey, played: $played)';
+    return 'GameModelCard(id: $id, type: $type, played: $played)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GameModelCardImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.key, key) || other.key == key) &&
-            (identical(other.isBasicRule, isBasicRule) ||
-                other.isBasicRule == isBasicRule) &&
-            (identical(other.isVictimGlass, isVictimGlass) ||
-                other.isVictimGlass == isVictimGlass) &&
-            (identical(other.victimGlassKey, victimGlassKey) ||
-                other.victimGlassKey == victimGlassKey) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.played, played) || other.played == played));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, key, isBasicRule, isVictimGlass, victimGlassKey, played);
+  int get hashCode => Object.hash(runtimeType, id, type, played);
 
   @JsonKey(ignore: true)
   @override
@@ -388,22 +325,13 @@ class _$GameModelCardImpl implements _GameModelCard {
 abstract class _GameModelCard implements GameModelCard {
   factory _GameModelCard(
       {required final String id,
-      required final String key,
-      required final bool isBasicRule,
-      required final bool isVictimGlass,
-      required final String victimGlassKey,
+      required final BeerculesCardType type,
       required final bool played}) = _$GameModelCardImpl;
 
   @override
   String get id;
   @override
-  String get key;
-  @override
-  bool get isBasicRule;
-  @override
-  bool get isVictimGlass;
-  @override
-  String get victimGlassKey;
+  BeerculesCardType get type;
   @override
   bool get played;
   @override
