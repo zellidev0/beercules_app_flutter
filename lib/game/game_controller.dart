@@ -6,20 +6,20 @@ import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/bc_dialog.dart';
 import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
+import 'package:beercules/game/services/game_navigation_service.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GameController extends GameControllerInterface {
-  final NavigationService _navigationService;
+  final GameNavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
   RemoveListener? cardsChangedListener;
 
   GameController({
-    required final NavigationService navigationService,
+    required final GameNavigationService navigationService,
     required final BeerculesCardProvider beerculesCardsProvider,
   })  : _navigationService = navigationService,
         _beerculesCardsProvider = beerculesCardsProvider,
