@@ -6,6 +6,7 @@ import 'package:beercules/game/game_model.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/home/home_controller.dart';
+import 'package:beercules/home/home_controller_interface.dart';
 import 'package:beercules/home/home_model.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -15,9 +16,10 @@ import 'package:riverpod/riverpod.dart';
 final Providers providers = Providers();
 
 class Providers {
-  final StateNotifierProvider<HomeController, HomeModel> homeController =
-      StateNotifierProvider<HomeController, HomeModel>(
-    (final StateNotifierProviderRef<HomeController, HomeModel> ref) =>
+  final StateNotifierProvider<HomeControllerInterface, HomeModel>
+      homeController =
+      StateNotifierProvider<HomeControllerInterface, HomeModel>(
+    (final StateNotifierProviderRef<HomeControllerInterface, HomeModel> ref) =>
         HomeController(
       navigationService: ref.read(goRouterNavigationServiceProvider),
       model: HomeModel(),

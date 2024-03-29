@@ -2,7 +2,7 @@ import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/home/home_controller.dart';
+import 'package:beercules/home/home_controller_interface.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
@@ -17,7 +17,7 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final HomeController controller =
+    final HomeControllerInterface controller =
         ref.read(providers.homeController.notifier);
     return ScaffoldWidget(
       child: Stack(
