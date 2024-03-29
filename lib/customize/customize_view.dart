@@ -39,9 +39,9 @@ class CustomizeView extends ConsumerWidget {
                 mainAxisSpacing: 8,
               ),
               itemBuilder: (final _, final int index) => CustomizeCard(
-                cardKey: model.configCards[index].key,
+                cardKey: model.configCards[index].type,
                 onTap: () async => controller.showCard(
-                  cardKey: model.configCards[index].key,
+                  cardType: model.configCards[index].type,
                   widget: CardDetailsView(
                     onTap: controller.pop,
                     onButtonTap: controller.modifyCardAmount,
@@ -71,7 +71,7 @@ class CardDetailsView extends ConsumerWidget {
   Widget build(final BuildContext context, final WidgetRef ref) {
     final CustomizeModel model = ref.watch(providers.customizeController);
     final BeerculesCard selected = model.configCards.firstWhere(
-      (final BeerculesCard element) => element.key == model.selectedCardKey,
+      (final BeerculesCard card) => card.type == model.selectedCardType,
     );
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,7 +79,7 @@ class CardDetailsView extends ConsumerWidget {
         PlayingCard(
           onTap: _onTap,
           showLogo: selected.isBasicRule,
-          cardType: selected.key,
+          cardType: selected.type,
         ),
         FloatingActionButton(
           onPressed: _onButtonTap,

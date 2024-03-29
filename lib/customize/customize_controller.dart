@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class CustomizeController extends StateNotifier<CustomizeModel> {
   final NavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
-  RemoveListener? listener;
+  RemoveListener? removeListener;
 
   CustomizeController({
     required final NavigationService navigationService,
@@ -22,44 +22,44 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
         _beerculesCardsProvider = beerculesCardsProvider,
         super(
           CustomizeModel(
-            selectedCardKey: null,
+            selectedCardType: null,
             configCards: <BeerculesCard>[],
           ),
         ) {
-    listener = _beerculesCardsProvider
-        .addListener((final BeerculesCardProviderModel s) {
+    removeListener = _beerculesCardsProvider
+        .addListener((final BeerculesCardProviderModel model) {
       state = state.copyWith(
-        selectedCardKey: state.selectedCardKey,
+        selectedCardType: state.selectedCardType,
         configCards:
-            s.configCards.whereNot((final _) => _.isBasicRule).toList(),
+            model.configCards.whereNot((final _) => _.isBasicRule).toList(),
       );
     });
   }
 
   @override
   void dispose() {
-    listener?.call();
+    removeListener?.call();
     super.dispose();
   }
 
   void goBackToHome() => _navigationService.goBack();
 
   void showCard({
-    required final BeerculesCardType cardKey,
+    required final BeerculesCardType cardType,
     required final Widget widget,
   }) {
     unawaited(_navigationService.showPopup<void>(widget).run());
-    state = state.copyWith(selectedCardKey: cardKey);
+    state = state.copyWith(selectedCardType: cardType);
   }
 
   void modifyCardAmount() {
     _beerculesCardsProvider
       ..modifyConfigGameCardsAmount(
-        cardKey: state.selectedCardKey,
+        cardType: state.selectedCardType,
         amount: ((_beerculesCardsProvider.state.configCards
                         .firstWhereOrNull(
                           (final BeerculesCard card) =>
-                              card.key == state.selectedCardKey,
+                              card.type == state.selectedCardType,
                         )
                         ?.amount ??
                     0) +

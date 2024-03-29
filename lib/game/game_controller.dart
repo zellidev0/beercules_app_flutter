@@ -15,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class GameController extends StateNotifier<GameModel> {
   final NavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
-  RemoveListener? listener;
+  RemoveListener? cardsChangedListener;
 
   GameController({
     required final NavigationService navigationService,
@@ -26,40 +26,38 @@ class GameController extends StateNotifier<GameModel> {
           GameModel(
             cards: <GameModelCard>[],
             cardTransformSeed: Random().nextInt(10),
-            showContinueDialog:
+            shouldShowContinueDialog:
                 !beerculesCardsProvider.currentGameHasBeenStarted(),
           ),
         ) {
-    listener = _beerculesCardsProvider
+    cardsChangedListener = _beerculesCardsProvider
         .addListener((final BeerculesCardProviderModel model) {
       state = state.copyWith(
         cards: initCards(
           seed: state.cardTransformSeed,
-          cards: model.currentGameCards
-              // .take(3)
-              .map(
-                (final BeerculesPlayCard card) => GameModelCard(
-                  type: card.key,
-                  played: card.played,
-                  id: card.id,
-                ),
-              )
-              .toList(),
+          cards: model.currentGameCards.map(_mapToGameModelCard).toList(),
         ),
       );
     });
   }
 
+  GameModelCard _mapToGameModelCard(final BeerculesPlayCard card) =>
+      GameModelCard(
+        type: card.key,
+        wasPlayed: card.played,
+        id: card.id,
+      );
+
   @override
   void dispose() {
-    listener?.call();
+    cardsChangedListener?.call();
     super.dispose();
   }
 
   Future<void> dismissCard({required final String cardId}) async {
     _navigationService.pop<void>();
     if (state.cards
-        .where((final GameModelCard element) => !element.played)
+        .where((final GameModelCard card) => !card.wasPlayed)
         .isEmpty) {
       showFinishDialog(
         onConfirmPressed: newGame,
@@ -88,9 +86,7 @@ class GameController extends StateNotifier<GameModel> {
     pop();
   }
 
-  void showCustomizedCardActiveSnackbar({
-    required final BuildContext context,
-  }) {
+  void showCustomizedCardActiveSnackbar() {
     if (_beerculesCardsProvider.configDiffersFromDefault()) {
       _navigationService.showSnackBar(
         LocaleKeys.game_view_customize_cards_used.tr(),
@@ -106,19 +102,16 @@ class GameController extends StateNotifier<GameModel> {
         ...shuffle(
           seed,
           cards
-              .where(
-                (final GameModelCard element) => !element.type.isBasicRule(),
-              )
+              .where((final GameModelCard card) => !card.type.isBasicRule())
               .toList(),
         ),
-        ...cards
-            .where((final GameModelCard element) => element.type.isBasicRule()),
+        ...cards.where((final GameModelCard card) => card.type.isBasicRule()),
       ];
 
   void goBackToHome() => _navigationService.goBack();
 
   void pop() {
-    state = state.copyWith(showContinueDialog: false);
+    state = state.copyWith(shouldShowContinueDialog: false);
     _navigationService.pop<void>();
   }
 
@@ -133,7 +126,7 @@ class GameController extends StateNotifier<GameModel> {
       unawaited(
         _navigationService
             .showPopup<void>(
-              BcDialog(
+              CustomDialog(
                 onConfirmPressed: onConfirmPressed,
                 onCancelPressed: onCancelPressed,
                 confirmText: confirmText,

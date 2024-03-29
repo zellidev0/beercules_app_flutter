@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BeerculesCard {
-  BeerculesCardType get key => throw _privateConstructorUsedError;
+  BeerculesCardType get type => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   bool get isBasicRule => throw _privateConstructorUsedError;
   bool get isVictimGlass => throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ abstract class $BeerculesCardCopyWith<$Res> {
       _$BeerculesCardCopyWithImpl<$Res, BeerculesCard>;
   @useResult
   $Res call(
-      {BeerculesCardType key,
+      {BeerculesCardType type,
       int amount,
       bool isBasicRule,
       bool isVictimGlass});
@@ -52,15 +52,15 @@ class _$BeerculesCardCopyWithImpl<$Res, $Val extends BeerculesCard>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = null,
+    Object? type = null,
     Object? amount = null,
     Object? isBasicRule = null,
     Object? isVictimGlass = null,
   }) {
     return _then(_value.copyWith(
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as BeerculesCardType,
       amount: null == amount
           ? _value.amount
@@ -87,7 +87,7 @@ abstract class _$$BeerculesCardImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BeerculesCardType key,
+      {BeerculesCardType type,
       int amount,
       bool isBasicRule,
       bool isVictimGlass});
@@ -104,15 +104,15 @@ class __$$BeerculesCardImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = null,
+    Object? type = null,
     Object? amount = null,
     Object? isBasicRule = null,
     Object? isVictimGlass = null,
   }) {
     return _then(_$BeerculesCardImpl(
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as BeerculesCardType,
       amount: null == amount
           ? _value.amount
@@ -136,13 +136,13 @@ class _$BeerculesCardImpl
     with DiagnosticableTreeMixin
     implements _BeerculesCard {
   _$BeerculesCardImpl(
-      {required this.key,
+      {required this.type,
       required this.amount,
       required this.isBasicRule,
       required this.isVictimGlass});
 
   @override
-  final BeerculesCardType key;
+  final BeerculesCardType type;
   @override
   final int amount;
   @override
@@ -152,7 +152,7 @@ class _$BeerculesCardImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BeerculesCard(key: $key, amount: $amount, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass)';
+    return 'BeerculesCard(type: $type, amount: $amount, isBasicRule: $isBasicRule, isVictimGlass: $isVictimGlass)';
   }
 
   @override
@@ -160,7 +160,7 @@ class _$BeerculesCardImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'BeerculesCard'))
-      ..add(DiagnosticsProperty('key', key))
+      ..add(DiagnosticsProperty('type', type))
       ..add(DiagnosticsProperty('amount', amount))
       ..add(DiagnosticsProperty('isBasicRule', isBasicRule))
       ..add(DiagnosticsProperty('isVictimGlass', isVictimGlass));
@@ -171,7 +171,7 @@ class _$BeerculesCardImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BeerculesCardImpl &&
-            (identical(other.key, key) || other.key == key) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.isBasicRule, isBasicRule) ||
                 other.isBasicRule == isBasicRule) &&
@@ -181,7 +181,7 @@ class _$BeerculesCardImpl
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, key, amount, isBasicRule, isVictimGlass);
+      Object.hash(runtimeType, type, amount, isBasicRule, isVictimGlass);
 
   @JsonKey(ignore: true)
   @override
@@ -192,13 +192,13 @@ class _$BeerculesCardImpl
 
 abstract class _BeerculesCard implements BeerculesCard {
   factory _BeerculesCard(
-      {required final BeerculesCardType key,
+      {required final BeerculesCardType type,
       required final int amount,
       required final bool isBasicRule,
       required final bool isVictimGlass}) = _$BeerculesCardImpl;
 
   @override
-  BeerculesCardType get key;
+  BeerculesCardType get type;
   @override
   int get amount;
   @override

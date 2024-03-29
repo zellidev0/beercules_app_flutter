@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CustomizeModel {
-  BeerculesCardType? get selectedCardKey => throw _privateConstructorUsedError;
+  BeerculesCardType? get selectedCardType => throw _privateConstructorUsedError;
   List<BeerculesCard> get configCards => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +31,7 @@ abstract class $CustomizeModelCopyWith<$Res> {
       _$CustomizeModelCopyWithImpl<$Res, CustomizeModel>;
   @useResult
   $Res call(
-      {BeerculesCardType? selectedCardKey, List<BeerculesCard> configCards});
+      {BeerculesCardType? selectedCardType, List<BeerculesCard> configCards});
 }
 
 /// @nodoc
@@ -47,13 +47,13 @@ class _$CustomizeModelCopyWithImpl<$Res, $Val extends CustomizeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedCardKey = freezed,
+    Object? selectedCardType = freezed,
     Object? configCards = null,
   }) {
     return _then(_value.copyWith(
-      selectedCardKey: freezed == selectedCardKey
-          ? _value.selectedCardKey
-          : selectedCardKey // ignore: cast_nullable_to_non_nullable
+      selectedCardType: freezed == selectedCardType
+          ? _value.selectedCardType
+          : selectedCardType // ignore: cast_nullable_to_non_nullable
               as BeerculesCardType?,
       configCards: null == configCards
           ? _value.configCards
@@ -72,7 +72,7 @@ abstract class _$$CustomizeModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BeerculesCardType? selectedCardKey, List<BeerculesCard> configCards});
+      {BeerculesCardType? selectedCardType, List<BeerculesCard> configCards});
 }
 
 /// @nodoc
@@ -86,13 +86,13 @@ class __$$CustomizeModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedCardKey = freezed,
+    Object? selectedCardType = freezed,
     Object? configCards = null,
   }) {
     return _then(_$CustomizeModelImpl(
-      selectedCardKey: freezed == selectedCardKey
-          ? _value.selectedCardKey
-          : selectedCardKey // ignore: cast_nullable_to_non_nullable
+      selectedCardType: freezed == selectedCardType
+          ? _value.selectedCardType
+          : selectedCardType // ignore: cast_nullable_to_non_nullable
               as BeerculesCardType?,
       configCards: null == configCards
           ? _value._configCards
@@ -106,12 +106,12 @@ class __$$CustomizeModelImplCopyWithImpl<$Res>
 
 class _$CustomizeModelImpl implements _CustomizeModel {
   _$CustomizeModelImpl(
-      {required this.selectedCardKey,
+      {required this.selectedCardType,
       required final List<BeerculesCard> configCards})
       : _configCards = configCards;
 
   @override
-  final BeerculesCardType? selectedCardKey;
+  final BeerculesCardType? selectedCardType;
   final List<BeerculesCard> _configCards;
   @override
   List<BeerculesCard> get configCards {
@@ -122,7 +122,7 @@ class _$CustomizeModelImpl implements _CustomizeModel {
 
   @override
   String toString() {
-    return 'CustomizeModel(selectedCardKey: $selectedCardKey, configCards: $configCards)';
+    return 'CustomizeModel(selectedCardType: $selectedCardType, configCards: $configCards)';
   }
 
   @override
@@ -130,14 +130,14 @@ class _$CustomizeModelImpl implements _CustomizeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CustomizeModelImpl &&
-            (identical(other.selectedCardKey, selectedCardKey) ||
-                other.selectedCardKey == selectedCardKey) &&
+            (identical(other.selectedCardType, selectedCardType) ||
+                other.selectedCardType == selectedCardType) &&
             const DeepCollectionEquality()
                 .equals(other._configCards, _configCards));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedCardKey,
+  int get hashCode => Object.hash(runtimeType, selectedCardType,
       const DeepCollectionEquality().hash(_configCards));
 
   @JsonKey(ignore: true)
@@ -150,11 +150,11 @@ class _$CustomizeModelImpl implements _CustomizeModel {
 
 abstract class _CustomizeModel implements CustomizeModel {
   factory _CustomizeModel(
-      {required final BeerculesCardType? selectedCardKey,
+      {required final BeerculesCardType? selectedCardType,
       required final List<BeerculesCard> configCards}) = _$CustomizeModelImpl;
 
   @override
-  BeerculesCardType? get selectedCardKey;
+  BeerculesCardType? get selectedCardType;
   @override
   List<BeerculesCard> get configCards;
   @override
