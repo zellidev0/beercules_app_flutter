@@ -7,10 +7,12 @@ import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/gen/assets.gen.dart';
+import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
 import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
@@ -33,10 +35,10 @@ class GameView extends ConsumerWidget {
               ..newGame()
               ..showCustomizedCardActiveSnackbar(context: context);
           },
-          confirmText: 'game_view.continue.yes',
-          declineText: 'game_view.continue.no',
-          headerText: 'game_view.continue.header',
-          descriptionText: 'game_view.continue.question',
+          confirmText: LocaleKeys.game_view_finish_yes.tr(),
+          declineText: LocaleKeys.game_view_finish_no.tr(),
+          headerText: LocaleKeys.game_view_finish_header.tr(),
+          descriptionText: LocaleKeys.game_view_finish_question.tr(),
         ),
       );
     }
