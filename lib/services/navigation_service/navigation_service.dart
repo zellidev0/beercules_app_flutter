@@ -8,8 +8,6 @@ import 'package:beercules/rules/rules_view.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -55,38 +53,25 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
       routes: <RouteBase>[
         GoRoute(
           path: NavigationServiceRoutes.homeRouteUri,
-          builder: (final BuildContext context, final __) => Consumer(
-            builder: (final _, final WidgetRef ref, final __) =>
-                const HomeView(),
-          ),
+          builder: (final BuildContext context, final __) => const HomeView(),
         ),
         GoRoute(
           path: NavigationServiceRoutes.gameRouteUri,
-          builder: (final BuildContext context, final __) => Consumer(
-            builder: (final _, final WidgetRef ref, final __) =>
-                const GameView(),
-          ),
+          builder: (final BuildContext context, final __) => const GameView(),
         ),
         GoRoute(
           path: NavigationServiceRoutes.rulesRouteUri,
-          builder: (final BuildContext context, final __) => Consumer(
-            builder: (final _, final WidgetRef ref, final __) =>
-                const RulesView(),
-          ),
+          builder: (final BuildContext context, final __) => const RulesView(),
         ),
         GoRoute(
           path: NavigationServiceRoutes.customizeRouteUri,
-          builder: (final BuildContext context, final __) => Consumer(
-            builder: (final _, final WidgetRef ref, final __) =>
-                const CustomizeView(),
-          ),
+          builder: (final BuildContext context, final __) =>
+              const CustomizeView(),
         ),
         GoRoute(
           path: NavigationServiceRoutes.landingRouteUri,
-          builder: (final BuildContext context, final __) => Consumer(
-            builder: (final _, final WidgetRef ref, final __) =>
-                const LandingView(),
-          ),
+          builder: (final BuildContext context, final __) =>
+              const LandingView(),
         ),
       ],
     );

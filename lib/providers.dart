@@ -70,7 +70,7 @@ class Providers {
           .entries
           .map(
             (final MapEntry<BeerculesCardType, int> entry) => BeerculesCard(
-              key: entry.key,
+              type: entry.key,
               amount: entry.value,
               isBasicRule: entry.key == BeerculesCardType.basicRule1 ||
                   entry.key == BeerculesCardType.basicRule2 ||

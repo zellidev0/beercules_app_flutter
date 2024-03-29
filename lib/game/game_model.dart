@@ -8,7 +8,7 @@ class GameModel with _$GameModel {
   factory GameModel({
     required final List<GameModelCard> cards,
     required final int cardTransformSeed,
-    required final bool showContinueDialog,
+    required final bool shouldShowContinueDialog,
   }) = _GameModel;
 }
 
@@ -17,6 +17,6 @@ class GameModelCard with _$GameModelCard {
   factory GameModelCard({
     required final String id,
     required final BeerculesCardType type,
-    required final bool played,
+    required final bool wasPlayed,
   }) = _GameModelCard;
 }

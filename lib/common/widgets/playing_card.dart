@@ -3,7 +3,6 @@ import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/theme.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
 

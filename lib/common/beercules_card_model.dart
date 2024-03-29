@@ -8,7 +8,7 @@ part 'beercules_card_model.freezed.dart';
 @freezed
 class BeerculesCard with _$BeerculesCard {
   factory BeerculesCard({
-    required final BeerculesCardType key,
+    required final BeerculesCardType type,
     required final int amount,
     required final bool isBasicRule,
     required final bool isVictimGlass,
@@ -60,11 +60,11 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
           .expand((final _) => _)
           .map(
             (final List<Object> card) => BeerculesPlayCard(
-              key: (card[1] as BeerculesCard).key,
+              key: (card[1] as BeerculesCard).type,
               played: false,
               isBasicRule: (card[1] as BeerculesCard).isBasicRule,
               isVictimGlass: (card[1] as BeerculesCard).isVictimGlass,
-              id: (card[1] as BeerculesCard).key.toString() +
+              id: (card[1] as BeerculesCard).type.toString() +
                   card[0].toString(),
             ),
           )
@@ -100,14 +100,14 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
   }
 
   void modifyConfigGameCardsAmount({
-    required final BeerculesCardType? cardKey,
+    required final BeerculesCardType? cardType,
     required final int amount,
   }) {
     state = state.copyWith(
       configCards: state.configCards
           .map(
             (final BeerculesCard card) =>
-                card.key == cardKey ? card.copyWith(amount: amount) : card,
+                card.type == cardType ? card.copyWith(amount: amount) : card,
           )
           .toList(),
     );

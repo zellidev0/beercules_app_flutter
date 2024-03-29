@@ -26,14 +26,14 @@ class GameView extends ConsumerWidget {
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
 
-    if (model.showContinueDialog) {
+    if (model.shouldShowContinueDialog) {
       scheduleMicrotask(
         () => controller.showFinishDialog(
           onConfirmPressed: controller.pop,
           onCancelPressed: () {
             controller
               ..newGame()
-              ..showCustomizedCardActiveSnackbar(context: context);
+              ..showCustomizedCardActiveSnackbar();
           },
           confirmText: LocaleKeys.game_view_finish_yes.tr(),
           declineText: LocaleKeys.game_view_finish_no.tr(),
@@ -76,7 +76,7 @@ class GameView extends ConsumerWidget {
               (final int index, final GameModelCard card) => Transform.rotate(
                 angle: index.toDouble() + model.cardTransformSeed,
                 child: RepaintBoundary(
-                  child: card.played
+                  child: card.wasPlayed
                       ? const SizedBox.shrink()
                       : _buildCardBackground(
                           context: context,
@@ -102,7 +102,7 @@ class GameView extends ConsumerWidget {
           ),
           const Spacer(),
           Text(
-            model.cards.where((final _) => !_.played).length.toString(),
+            model.cards.where((final _) => !_.wasPlayed).length.toString(),
             style: TextStyles.header4,
           ),
         ],
@@ -136,7 +136,7 @@ class GameView extends ConsumerWidget {
                         model.cards
                                 .where(
                                   (final _) =>
-                                      _.type.isVictimGlass() && !_.played,
+                                      _.type.isVictimGlass() && !_.wasPlayed,
                                 )
                                 .length ==
                             1,
