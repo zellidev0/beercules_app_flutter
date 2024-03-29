@@ -2,15 +2,15 @@ import 'dart:async';
 
 import 'package:beercules/home/home_controller_interface.dart';
 import 'package:beercules/home/home_model.dart';
-import 'package:beercules/services/navigation_service/navigation_service.dart';
+import 'package:beercules/home/services/home_navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeController extends HomeControllerInterface {
-  final NavigationService _navigationService;
+  final HomeNavigationService _navigationService;
 
   HomeController({
-    required final NavigationService navigationService,
+    required final HomeNavigationService navigationService,
     required final HomeModel model,
   })  : _navigationService = navigationService,
         super(model);

@@ -2,8 +2,9 @@ import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
+import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
-import 'package:beercules/services/navigation_service/navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 
 import 'package:beercules/theme.dart';
@@ -16,7 +17,7 @@ class RulesView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final NavigationService navigationService =
+    final NavigationServiceAggregator navigationService =
         ref.read(goRouterNavigationServiceProvider);
 
     return ScaffoldWidget(

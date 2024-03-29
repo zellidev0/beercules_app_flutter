@@ -3,21 +3,21 @@ import 'dart:core';
 import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/customize/customize_controller_interface.dart';
 import 'package:beercules/customize/customize_model.dart';
+import 'package:beercules/customize/services/customize_navigation_service.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/providers.dart';
-import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomizeController extends CustomizeControllerInterface {
-  final NavigationService _navigationService;
+  final CustomizeNavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
   RemoveListener? removeListener;
 
   CustomizeController({
-    required final NavigationService navigationService,
+    required final CustomizeNavigationService navigationService,
     required final BeerculesCardProvider beerculesCardsProvider,
   })  : _navigationService = navigationService,
         _beerculesCardsProvider = beerculesCardsProvider,

@@ -5,15 +5,26 @@ import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
+import 'package:beercules/go_router.dart';
 import 'package:beercules/home/home_controller.dart';
 import 'package:beercules/home/home_controller_interface.dart';
 import 'package:beercules/home/home_model.dart';
-import 'package:beercules/services/navigation_service/navigation_service.dart';
+import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
+import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'providers.g.dart';
 
 final Providers providers = Providers();
+
+@riverpod
+NavigationServiceAggregator goRouterNavigationService(
+  final GoRouterNavigationServiceRef ref,
+) =>
+    GoRouterNavigationService(goRouter: ref.watch(goRouterProvider));
 
 class Providers {
   final StateNotifierProvider<HomeControllerInterface, HomeModel>
