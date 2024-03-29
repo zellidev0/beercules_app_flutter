@@ -1,10 +1,9 @@
 import 'package:beercules/theme.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class BcButton extends ElevatedButton {
   BcButton({
-    required final String textResource,
+    required final String text,
     required super.onPressed,
     super.key,
   }) : super(
@@ -18,9 +17,9 @@ class BcButton extends ElevatedButton {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
-              textResource,
+              text,
               style: TextStyles.body2,
-            ).tr(),
+            ),
           ),
         );
 }

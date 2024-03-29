@@ -1,25 +1,25 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
+import 'package:beercules/gen/assets.gen.dart';
+import 'package:beercules/providers.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 
 class PlayingCard extends StatelessWidget {
   final VoidCallback _onTap;
   final bool _showLogo;
-  final String _resourceKey;
-  final bool _showSkullAnimation;
+  final BeerculesCardType cartType;
+  final bool _isLastVictimGlass;
   const PlayingCard({
     required final void Function() onTap,
     required final bool showLogo,
-    required final String resourceKey,
-    final bool showSkullAnimation = false,
+    required final BeerculesCardType cardType,
+    final bool isLastVictimGlass = false,
     super.key,
-  })  : _showSkullAnimation = showSkullAnimation,
-        _resourceKey = resourceKey,
+  })  : _isLastVictimGlass = isLastVictimGlass,
+        cartType = cardType,
         _showLogo = showLogo,
         _onTap = onTap;
 
@@ -37,25 +37,27 @@ class PlayingCard extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
                     child: AspectRatio(
                       aspectRatio: 1,
-                      child: _showSkullAnimation
-                          ? Lottie.asset('assets/lotties/skull_animation.json')
+                      child: _isLastVictimGlass
+                          ? Assets.lotties.skullAnimation.lottie()
                           : _showLogo
-                              ? Image.asset('assets/images/logo.png')
-                              : SvgPicture.asset(
-                                  'assets/instructions/${_resourceKey}_pic.svg',
-                                ),
+                              ? Assets.images.logo.image()
+                              : cartType.asset(),
                     ),
                   ),
                   FittedBox(
                     fit: BoxFit.fitHeight,
                     child: Text(
-                      'game_view.instructions.$_resourceKey.title',
+                      cartType.localizedTitle(
+                        isLastVictimGlass: _isLastVictimGlass,
+                      ),
                       style: TextStyles.header2,
-                    ).tr(),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   AutoSizeText(
-                    'game_view.instructions.$_resourceKey.description'.tr(),
+                    cartType.localizedDescription(
+                      isLastVictimGlass: _isLastVictimGlass,
+                    ),
                     maxLines: 10,
                     style: TextStyles.body1,
                     textAlign: TextAlign.center,

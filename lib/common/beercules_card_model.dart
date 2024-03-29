@@ -1,3 +1,4 @@
+import 'package:beercules/providers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,7 +8,7 @@ part 'beercules_card_model.freezed.dart';
 @freezed
 class BeerculesCard with _$BeerculesCard {
   factory BeerculesCard({
-    required final String key,
+    required final BeerculesCardType key,
     required final int amount,
     required final bool isBasicRule,
     required final bool isVictimGlass,
@@ -18,7 +19,7 @@ class BeerculesCard with _$BeerculesCard {
 class BeerculesPlayCard with _$BeerculesPlayCard {
   factory BeerculesPlayCard({
     required final String id,
-    required final String key,
+    required final BeerculesCardType key,
     required final bool played,
     required final bool isBasicRule,
     required final bool isVictimGlass,
@@ -63,7 +64,8 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
               played: false,
               isBasicRule: (card[1] as BeerculesCard).isBasicRule,
               isVictimGlass: (card[1] as BeerculesCard).isVictimGlass,
-              id: (card[1] as BeerculesCard).key + card[0].toString(),
+              id: (card[1] as BeerculesCard).key.toString() +
+                  card[0].toString(),
             ),
           )
           .toList();
@@ -98,7 +100,7 @@ class BeerculesCardProvider extends StateNotifier<BeerculesCardProviderModel> {
   }
 
   void modifyConfigGameCardsAmount({
-    required final String cardKey,
+    required final BeerculesCardType? cardKey,
     required final int amount,
   }) {
     state = state.copyWith(

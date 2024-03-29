@@ -79,7 +79,7 @@ class CardDetailsView extends ConsumerWidget {
         PlayingCard(
           onTap: _onTap,
           showLogo: selected.isBasicRule,
-          resourceKey: selected.key,
+          cardType: selected.key,
         ),
         FloatingActionButton(
           onPressed: _onButtonTap,

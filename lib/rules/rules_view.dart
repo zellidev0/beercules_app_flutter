@@ -1,6 +1,7 @@
 import 'package:beercules/common/widgets/bc_button.dart';
 import 'package:beercules/common/widgets/bc_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
+import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
@@ -34,37 +35,37 @@ class RulesView extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text(
-                  'rules_view.title',
+                  LocaleKeys.rules_view_title,
                   style: TextStyles.header2,
                 ).tr(),
                 const SizedBox(height: 32),
                 const Text(
-                  'rules_view.rule_1_title',
+                  LocaleKeys.rules_view_rule_1_title,
                   style: TextStyles.header3,
                 ).tr(),
                 const SizedBox(height: 4),
                 const Text(
-                  'rules_view.rule_1_description',
+                  LocaleKeys.rules_view_rule_1_description,
                   style: TextStyles.body4,
                 ).tr(),
                 const SizedBox(height: 24),
                 const Text(
-                  'rules_view.rule_2_title',
+                  LocaleKeys.rules_view_rule_2_title,
                   style: TextStyles.header3,
                 ).tr(),
                 const SizedBox(height: 4),
                 const Text(
-                  'rules_view.rule_2_description',
+                  LocaleKeys.rules_view_rule_2_description,
                   style: TextStyles.body4,
                 ).tr(),
                 const SizedBox(height: 24),
                 const Text(
-                  'rules_view.rule_3_title',
+                  LocaleKeys.rules_view_rule_3_title,
                   style: TextStyles.header3,
                 ).tr(),
                 const SizedBox(height: 4),
                 const Text(
-                  'rules_view.rule_3_description',
+                  LocaleKeys.rules_view_rule_3_description,
                   style: TextStyles.body4,
                 ).tr(),
               ],
@@ -74,7 +75,7 @@ class RulesView extends ConsumerWidget {
             onPressed: () => navigationService.push(
               NavigationServiceRoutes.gameRouteUri,
             ),
-            textResource: 'rules_view.go_to_game',
+            text: LocaleKeys.rules_view_go_to_game.tr(),
           ),
         ],
       ),

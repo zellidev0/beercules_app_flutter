@@ -10,6 +10,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
 
 class $AssetsBackgroundsGen {
   const $AssetsBackgroundsGen();
@@ -224,10 +225,11 @@ class $AssetsLottiesGen {
   const $AssetsLottiesGen();
 
   /// File path: assets/lotties/skull_animation.json
-  String get skullAnimation => 'assets/lotties/skull_animation.json';
+  LottieGenImage get skullAnimation =>
+      const LottieGenImage('assets/lotties/skull_animation.json');
 
   /// List of all assets
-  List<String> get values => [skullAnimation];
+  List<LottieGenImage> get values => [skullAnimation];
 }
 
 class $AssetsMockupsGen {
@@ -407,6 +409,65 @@ class SvgGenImage {
       colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class LottieGenImage {
+  const LottieGenImage(this._assetName);
+
+  final String _assetName;
+
+  LottieBuilder lottie({
+    Animation<double>? controller,
+    bool? animate,
+    FrameRate? frameRate,
+    bool? repeat,
+    bool? reverse,
+    LottieDelegates? delegates,
+    LottieOptions? options,
+    void Function(LottieComposition)? onLoaded,
+    LottieImageProviderFactory? imageProviderFactory,
+    Key? key,
+    AssetBundle? bundle,
+    Widget Function(BuildContext, Widget, LottieComposition?)? frameBuilder,
+    ImageErrorWidgetBuilder? errorBuilder,
+    double? width,
+    double? height,
+    BoxFit? fit,
+    AlignmentGeometry? alignment,
+    String? package,
+    bool? addRepaintBoundary,
+    FilterQuality? filterQuality,
+    void Function(String)? onWarning,
+  }) {
+    return Lottie.asset(
+      _assetName,
+      controller: controller,
+      animate: animate,
+      frameRate: frameRate,
+      repeat: repeat,
+      reverse: reverse,
+      delegates: delegates,
+      options: options,
+      onLoaded: onLoaded,
+      imageProviderFactory: imageProviderFactory,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      errorBuilder: errorBuilder,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      package: package,
+      addRepaintBoundary: addRepaintBoundary,
+      filterQuality: filterQuality,
+      onWarning: onWarning,
     );
   }
 
