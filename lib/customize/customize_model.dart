@@ -1,5 +1,4 @@
-import 'package:beercules/common/beercules_card_model.dart';
-import 'package:beercules/providers.dart';
+import 'package:beercules/common/beercules_card_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customize_model.freezed.dart';
@@ -8,6 +7,14 @@ part 'customize_model.freezed.dart';
 class CustomizeModel with _$CustomizeModel {
   factory CustomizeModel({
     required final BeerculesCardType? selectedCardType,
-    required final List<BeerculesCard> configCards,
+    required final List<CustomizeModelCard> configCards,
   }) = _CustomizeModel;
+}
+
+@freezed
+class CustomizeModelCard with _$CustomizeModelCard {
+  factory CustomizeModelCard({
+    required final BeerculesCardType type,
+    required final int amount,
+  }) = _CustomizeModelCard;
 }

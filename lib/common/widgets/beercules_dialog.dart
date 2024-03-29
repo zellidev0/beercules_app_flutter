@@ -1,9 +1,9 @@
 import 'package:beercules/common/constants.dart';
-import 'package:beercules/common/widgets/bc_button.dart';
+import 'package:beercules/common/widgets/beercules_button.dart';
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
 
-class CustomDialog extends StatelessWidget {
+class BeerculesDialog extends StatelessWidget {
   final VoidCallback _onConfirmPressed;
   final VoidCallback _onCancelPressed;
   final String _confirmText;
@@ -11,7 +11,7 @@ class CustomDialog extends StatelessWidget {
   final String _descriptionText;
   final String _declineText;
 
-  const CustomDialog({
+  const BeerculesDialog({
     required final void Function() onConfirmPressed,
     required final void Function() onCancelPressed,
     required final String confirmText,
@@ -86,14 +86,14 @@ class CustomDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Expanded(
-            child: BcButton(
+            child: BeerculesButton(
               onPressed: onConfirmPressed,
               text: confirmText,
             ),
           ),
           const SizedBox(width: 32),
           Expanded(
-            child: BcButton(
+            child: BeerculesButton(
               onPressed: onCancelPressed,
               text: declineText,
             ),

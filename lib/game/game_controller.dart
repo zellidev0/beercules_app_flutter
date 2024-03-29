@@ -1,57 +1,73 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:math';
-import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/common/utils.dart';
-import 'package:beercules/common/widgets/bc_dialog.dart';
+import 'package:beercules/common/widgets/beercules_dialog.dart';
 import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/game/services/game_navigation_service.dart';
+import 'package:beercules/game/services/game_persistence_service.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GameController extends GameControllerInterface {
   final GameNavigationService _navigationService;
-  final BeerculesCardProvider _beerculesCardsProvider;
-  RemoveListener? cardsChangedListener;
+  final GamePersistenceService _persistenceService;
+  StreamSubscription<List<GamePersistenceServiceCard>>?
+      currentCardsStreamSubscription;
 
   GameController({
     required final GameNavigationService navigationService,
-    required final BeerculesCardProvider beerculesCardsProvider,
+    required final GamePersistenceService persistenceService,
   })  : _navigationService = navigationService,
-        _beerculesCardsProvider = beerculesCardsProvider,
+        _persistenceService = persistenceService,
         super(
           GameModel(
             cards: <GameModelCard>[],
             cardTransformSeed: Random().nextInt(10),
             shouldShowContinueDialog:
-                !beerculesCardsProvider.currentGameHasBeenStarted(),
+                !persistenceService.currentGameHasBeenStarted(),
           ),
         ) {
-    cardsChangedListener = _beerculesCardsProvider
-        .addListener((final BeerculesCardProviderModel model) {
+    currentCardsStreamSubscription = _persistenceService
+        .currentCardsChangeStream
+        .listen((final List<GamePersistenceServiceCard> model) {
       state = state.copyWith(
         cards: initCards(
           seed: state.cardTransformSeed,
-          cards: model.currentGameCards.map(_mapToGameModelCard).toList(),
+          cards: model.map(_mapToGameModelCard).toList(),
         ),
       );
     });
+    if (state.shouldShowContinueDialog) {
+      scheduleMicrotask(
+        () => showFinishDialog(
+          onConfirmPressed: pop,
+          onCancelPressed: () {
+            newGame();
+            showCustomizedCardActiveSnackbar();
+          },
+          confirmText: LocaleKeys.game_view_continue_yes.tr(),
+          declineText: LocaleKeys.game_view_continue_no.tr(),
+          headerText: LocaleKeys.game_view_continue_header.tr(),
+          descriptionText: LocaleKeys.game_view_continue_question.tr(),
+        ),
+      );
+    }
   }
 
-  GameModelCard _mapToGameModelCard(final BeerculesPlayCard card) =>
+  GameModelCard _mapToGameModelCard(final GamePersistenceServiceCard card) =>
       GameModelCard(
-        type: card.key,
-        wasPlayed: card.played,
+        type: card.type,
+        wasPlayed: card.wasPlayed,
         id: card.id,
       );
 
   @override
   void dispose() {
-    cardsChangedListener?.call();
+    unawaited(currentCardsStreamSubscription?.cancel());
     super.dispose();
   }
 
@@ -77,22 +93,22 @@ class GameController extends GameControllerInterface {
 
   @override
   void decreaseCardAmount({required final String cardId}) {
-    _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardId: cardId);
+    _persistenceService.decreaseCurrentGameCardsAmount(cardId: cardId);
   }
 
   @override
   void newGame() {
-    if (_beerculesCardsProvider.configDiffersFromDefault()) {
-      _beerculesCardsProvider.setCurrentToConfig();
+    if (_persistenceService.configDiffersFromDefault()) {
+      _persistenceService.resetToConfig();
     } else {
-      _beerculesCardsProvider.setCurrentToDefault();
+      _persistenceService.setCurrentToDefault();
     }
     pop();
   }
 
   @override
   void showCustomizedCardActiveSnackbar() {
-    if (_beerculesCardsProvider.configDiffersFromDefault()) {
+    if (_persistenceService.configDiffersFromDefault()) {
       _navigationService.showSnackBar(
         LocaleKeys.game_view_customize_cards_used.tr(),
       );
@@ -125,7 +141,7 @@ class GameController extends GameControllerInterface {
   @override
   void showFinishDialog({
     required final void Function() onConfirmPressed,
-    required final Null Function() onCancelPressed,
+    required final void Function() onCancelPressed,
     required final String confirmText,
     required final String declineText,
     required final String headerText,
@@ -134,7 +150,7 @@ class GameController extends GameControllerInterface {
       unawaited(
         _navigationService
             .showPopup<void>(
-              CustomDialog(
+              BeerculesDialog(
                 onConfirmPressed: onConfirmPressed,
                 onCancelPressed: onCancelPressed,
                 confirmText: confirmText,

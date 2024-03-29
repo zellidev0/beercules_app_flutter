@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/gen/assets.gen.dart';
-import 'package:beercules/providers.dart';
 import 'package:beercules/theme.dart';
 
 import 'package:flutter/material.dart';
