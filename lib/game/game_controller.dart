@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:beercules/common/beercules_card_model.dart';
 import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/bc_dialog.dart';
+import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/services/navigation_service/navigation_service.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GameController extends StateNotifier<GameModel> {
+class GameController extends GameControllerInterface {
   final NavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
   RemoveListener? cardsChangedListener;
@@ -54,6 +55,7 @@ class GameController extends StateNotifier<GameModel> {
     super.dispose();
   }
 
+  @override
   Future<void> dismissCard({required final String cardId}) async {
     _navigationService.pop<void>();
     if (state.cards
@@ -73,10 +75,12 @@ class GameController extends StateNotifier<GameModel> {
     }
   }
 
+  @override
   void decreaseCardAmount({required final String cardId}) {
     _beerculesCardsProvider.decreaseCurrentGameCardsAmount(cardId: cardId);
   }
 
+  @override
   void newGame() {
     if (_beerculesCardsProvider.configDiffersFromDefault()) {
       _beerculesCardsProvider.setCurrentToConfig();
@@ -86,6 +90,7 @@ class GameController extends StateNotifier<GameModel> {
     pop();
   }
 
+  @override
   void showCustomizedCardActiveSnackbar() {
     if (_beerculesCardsProvider.configDiffersFromDefault()) {
       _navigationService.showSnackBar(
@@ -108,13 +113,16 @@ class GameController extends StateNotifier<GameModel> {
         ...cards.where((final GameModelCard card) => card.type.isBasicRule()),
       ];
 
+  @override
   void goBackToHome() => _navigationService.goBack();
 
+  @override
   void pop() {
     state = state.copyWith(shouldShowContinueDialog: false);
     _navigationService.pop<void>();
   }
 
+  @override
   void showFinishDialog({
     required final void Function() onConfirmPressed,
     required final Null Function() onCancelPressed,

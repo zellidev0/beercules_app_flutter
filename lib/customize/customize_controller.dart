@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 import 'package:beercules/common/beercules_card_model.dart';
+import 'package:beercules/customize/customize_controller_interface.dart';
 import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/providers.dart';
@@ -10,7 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomizeController extends StateNotifier<CustomizeModel> {
+class CustomizeController extends CustomizeControllerInterface {
   final NavigationService _navigationService;
   final BeerculesCardProvider _beerculesCardsProvider;
   RemoveListener? removeListener;
@@ -42,8 +43,10 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     super.dispose();
   }
 
+  @override
   void goBackToHome() => _navigationService.goBack();
 
+  @override
   void showCard({
     required final BeerculesCardType cardType,
     required final Widget widget,
@@ -52,6 +55,7 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     state = state.copyWith(selectedCardType: cardType);
   }
 
+  @override
   void modifyCardAmount() {
     _beerculesCardsProvider
       ..modifyConfigGameCardsAmount(
@@ -69,6 +73,7 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
       ..setCurrentToConfig();
   }
 
+  @override
   void restoreDefault() {
     _beerculesCardsProvider.resetToDefaultCards();
     _navigationService.showSnackBar(
@@ -76,5 +81,6 @@ class CustomizeController extends StateNotifier<CustomizeModel> {
     );
   }
 
+  @override
   void pop() => _navigationService.pop<void>();
 }
