@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BcIconButton extends GestureDetector {
-  BcIconButton({
+class BeerculesIconButton extends GestureDetector {
+  BeerculesIconButton({
     required final IconData icon,
     required final VoidCallback onPressed,
     super.key,

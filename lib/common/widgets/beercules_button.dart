@@ -1,8 +1,8 @@
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
 
-class BcButton extends ElevatedButton {
-  BcButton({
+class BeerculesButton extends ElevatedButton {
+  BeerculesButton({
     required final String text,
     required super.onPressed,
     super.key,

@@ -1,5 +1,5 @@
-import 'package:beercules/common/widgets/bc_button.dart';
-import 'package:beercules/common/widgets/bc_icon_button.dart';
+import 'package:beercules/common/widgets/beercules_button.dart';
+import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/providers.dart';
@@ -26,7 +26,7 @@ class RulesView extends ConsumerWidget {
         children: <Widget>[
           Align(
             alignment: Alignment.topLeft,
-            child: BcIconButton(
+            child: BeerculesIconButton(
               onPressed: navigationService.goBack,
               icon: Icons.arrow_back_ios_rounded,
             ),
@@ -72,7 +72,7 @@ class RulesView extends ConsumerWidget {
               ],
             ),
           ),
-          BcButton(
+          BeerculesButton(
             onPressed: () => navigationService.push(
               NavigationServiceRoutes.gameRouteUri,
             ),

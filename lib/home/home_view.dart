@@ -1,5 +1,5 @@
-import 'package:beercules/common/widgets/bc_button.dart';
-import 'package:beercules/common/widgets/bc_icon_button.dart';
+import 'package:beercules/common/widgets/beercules_button.dart';
+import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/home/home_controller_interface.dart';
@@ -24,7 +24,7 @@ class HomeView extends ConsumerWidget {
         children: <Widget>[
           Align(
             alignment: Alignment.topRight,
-            child: BcIconButton(
+            child: BeerculesIconButton(
               onPressed: () => controller.showModalLegalNotice(
                 widget: buildLegalNotice(),
               ),
@@ -45,7 +45,7 @@ class HomeView extends ConsumerWidget {
               const SizedBox(height: 32),
               Assets.images.logo.image(),
               const SizedBox(height: 32),
-              BcButton(
+              BeerculesButton(
                 text: LocaleKeys.home_view_button_go_drinking.tr(),
                 onPressed: controller.goToGameView,
               ),
@@ -54,14 +54,14 @@ class HomeView extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
-                    child: BcButton(
+                    child: BeerculesButton(
                       text: LocaleKeys.home_view_button_rules.tr(),
                       onPressed: controller.goToRulesView,
                     ),
                   ),
                   const SizedBox(width: 32),
                   Expanded(
-                    child: BcButton(
+                    child: BeerculesButton(
                       text: LocaleKeys.home_view_button_customize.tr(),
                       onPressed: controller.goToCustomizeView,
                     ),

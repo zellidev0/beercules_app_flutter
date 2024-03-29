@@ -1,5 +1,5 @@
+import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/customize/customize_model.dart';
-import 'package:beercules/providers.dart';
 import 'package:flutter/widgets.dart';
 import 'package:riverpod/riverpod.dart';
 

@@ -1,45 +1,53 @@
 import 'dart:async';
 import 'dart:core';
-import 'package:beercules/common/beercules_card_model.dart';
+import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/customize/customize_controller_interface.dart';
 import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/customize/services/customize_navigation_service.dart';
+import 'package:beercules/customize/services/customize_persistence_service.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/providers.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomizeController extends CustomizeControllerInterface {
   final CustomizeNavigationService _navigationService;
-  final BeerculesCardProvider _beerculesCardsProvider;
-  RemoveListener? removeListener;
+  final CustomizePersistenceService _persistenceService;
+  StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
+      persistenceServiceSubscription;
 
   CustomizeController({
     required final CustomizeNavigationService navigationService,
-    required final BeerculesCardProvider beerculesCardsProvider,
+    required final CustomizePersistenceService persistenceService,
   })  : _navigationService = navigationService,
-        _beerculesCardsProvider = beerculesCardsProvider,
+        _persistenceService = persistenceService,
         super(
           CustomizeModel(
             selectedCardType: null,
-            configCards: <BeerculesCard>[],
+            configCards: <CustomizeModelCard>[],
           ),
         ) {
-    removeListener = _beerculesCardsProvider
-        .addListener((final BeerculesCardProviderModel model) {
+    persistenceServiceSubscription = _persistenceService.configCardsChangeStream
+        .listen(
+            (final List<CustomizePersistenceServiceModelCard> updatedCards) {
       state = state.copyWith(
-        selectedCardType: state.selectedCardType,
-        configCards:
-            model.configCards.whereNot((final _) => _.isBasicRule).toList(),
+        configCards: updatedCards
+            .whereNot((final _) => _.type.isBasicRule())
+            .map(
+              (final CustomizePersistenceServiceModelCard card) =>
+                  CustomizeModelCard(
+                type: card.type,
+                amount: card.amount,
+              ),
+            )
+            .toList(),
       );
     });
   }
 
   @override
   void dispose() {
-    removeListener?.call();
+    unawaited(persistenceServiceSubscription?.cancel());
     super.dispose();
   }
 
@@ -57,12 +65,12 @@ class CustomizeController extends CustomizeControllerInterface {
 
   @override
   void modifyCardAmount() {
-    _beerculesCardsProvider
+    _persistenceService
       ..modifyConfigGameCardsAmount(
         cardType: state.selectedCardType,
-        amount: ((_beerculesCardsProvider.state.configCards
+        amount: ((state.configCards
                         .firstWhereOrNull(
-                          (final BeerculesCard card) =>
+                          (final CustomizeModelCard card) =>
                               card.type == state.selectedCardType,
                         )
                         ?.amount ??
@@ -70,12 +78,12 @@ class CustomizeController extends CustomizeControllerInterface {
                 1) %
             6,
       )
-      ..setCurrentToConfig();
+      ..resetToConfig();
   }
 
   @override
   void restoreDefault() {
-    _beerculesCardsProvider.resetToDefaultCards();
+    _persistenceService.resetToDefaultCards();
     _navigationService.showSnackBar(
       LocaleKeys.config_view_restoredDefault.tr(),
     );

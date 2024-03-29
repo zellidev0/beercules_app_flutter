@@ -1,18 +1,15 @@
-import 'dart:async';
 import 'dart:math';
 
-import 'package:beercules/common/widgets/bc_icon_button.dart';
+import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
-import 'package:beercules/game/game_controller.dart';
+import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/gen/assets.gen.dart';
-import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
@@ -22,26 +19,9 @@ class GameView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final GameController controller =
+    final GameControllerInterface controller =
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
-
-    if (model.shouldShowContinueDialog) {
-      scheduleMicrotask(
-        () => controller.showFinishDialog(
-          onConfirmPressed: controller.pop,
-          onCancelPressed: () {
-            controller
-              ..newGame()
-              ..showCustomizedCardActiveSnackbar();
-          },
-          confirmText: LocaleKeys.game_view_finish_yes.tr(),
-          declineText: LocaleKeys.game_view_finish_no.tr(),
-          headerText: LocaleKeys.game_view_finish_header.tr(),
-          descriptionText: LocaleKeys.game_view_finish_question.tr(),
-        ),
-      );
-    }
 
     return ScaffoldWidget(
       child: Stack(
@@ -67,7 +47,7 @@ class GameView extends ConsumerWidget {
   Widget _buildCardStack({
     required final GameModel model,
     required final BuildContext context,
-    required final GameController controller,
+    required final GameControllerInterface controller,
   }) =>
       Stack(
         alignment: Alignment.topCenter,
@@ -91,12 +71,12 @@ class GameView extends ConsumerWidget {
       );
 
   Row _buildTopRow({
-    required final GameController controller,
+    required final GameControllerInterface controller,
     required final GameModel model,
   }) =>
       Row(
         children: <Widget>[
-          BcIconButton(
+          BeerculesIconButton(
             onPressed: controller.goBackToHome,
             icon: Icons.arrow_back_ios_rounded,
           ),
@@ -112,7 +92,7 @@ class GameView extends ConsumerWidget {
     required final BuildContext context,
     required final GameModelCard card,
     required final GameModel model,
-    required final GameController controller,
+    required final GameControllerInterface controller,
   }) =>
       Transform.translate(
         offset: Offset(

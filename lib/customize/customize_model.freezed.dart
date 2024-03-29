@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CustomizeModel {
   BeerculesCardType? get selectedCardType => throw _privateConstructorUsedError;
-  List<BeerculesCard> get configCards => throw _privateConstructorUsedError;
+  List<CustomizeModelCard> get configCards =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CustomizeModelCopyWith<CustomizeModel> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $CustomizeModelCopyWith<$Res> {
       _$CustomizeModelCopyWithImpl<$Res, CustomizeModel>;
   @useResult
   $Res call(
-      {BeerculesCardType? selectedCardType, List<BeerculesCard> configCards});
+      {BeerculesCardType? selectedCardType,
+      List<CustomizeModelCard> configCards});
 }
 
 /// @nodoc
@@ -58,7 +60,7 @@ class _$CustomizeModelCopyWithImpl<$Res, $Val extends CustomizeModel>
       configCards: null == configCards
           ? _value.configCards
           : configCards // ignore: cast_nullable_to_non_nullable
-              as List<BeerculesCard>,
+              as List<CustomizeModelCard>,
     ) as $Val);
   }
 }
@@ -72,7 +74,8 @@ abstract class _$$CustomizeModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BeerculesCardType? selectedCardType, List<BeerculesCard> configCards});
+      {BeerculesCardType? selectedCardType,
+      List<CustomizeModelCard> configCards});
 }
 
 /// @nodoc
@@ -97,7 +100,7 @@ class __$$CustomizeModelImplCopyWithImpl<$Res>
       configCards: null == configCards
           ? _value._configCards
           : configCards // ignore: cast_nullable_to_non_nullable
-              as List<BeerculesCard>,
+              as List<CustomizeModelCard>,
     ));
   }
 }
@@ -107,14 +110,14 @@ class __$$CustomizeModelImplCopyWithImpl<$Res>
 class _$CustomizeModelImpl implements _CustomizeModel {
   _$CustomizeModelImpl(
       {required this.selectedCardType,
-      required final List<BeerculesCard> configCards})
+      required final List<CustomizeModelCard> configCards})
       : _configCards = configCards;
 
   @override
   final BeerculesCardType? selectedCardType;
-  final List<BeerculesCard> _configCards;
+  final List<CustomizeModelCard> _configCards;
   @override
-  List<BeerculesCard> get configCards {
+  List<CustomizeModelCard> get configCards {
     if (_configCards is EqualUnmodifiableListView) return _configCards;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_configCards);
@@ -150,15 +153,152 @@ class _$CustomizeModelImpl implements _CustomizeModel {
 
 abstract class _CustomizeModel implements CustomizeModel {
   factory _CustomizeModel(
-      {required final BeerculesCardType? selectedCardType,
-      required final List<BeerculesCard> configCards}) = _$CustomizeModelImpl;
+          {required final BeerculesCardType? selectedCardType,
+          required final List<CustomizeModelCard> configCards}) =
+      _$CustomizeModelImpl;
 
   @override
   BeerculesCardType? get selectedCardType;
   @override
-  List<BeerculesCard> get configCards;
+  List<CustomizeModelCard> get configCards;
   @override
   @JsonKey(ignore: true)
   _$$CustomizeModelImplCopyWith<_$CustomizeModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CustomizeModelCard {
+  BeerculesCardType get type => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CustomizeModelCardCopyWith<CustomizeModelCard> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CustomizeModelCardCopyWith<$Res> {
+  factory $CustomizeModelCardCopyWith(
+          CustomizeModelCard value, $Res Function(CustomizeModelCard) then) =
+      _$CustomizeModelCardCopyWithImpl<$Res, CustomizeModelCard>;
+  @useResult
+  $Res call({BeerculesCardType type, int amount});
+}
+
+/// @nodoc
+class _$CustomizeModelCardCopyWithImpl<$Res, $Val extends CustomizeModelCard>
+    implements $CustomizeModelCardCopyWith<$Res> {
+  _$CustomizeModelCardCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? amount = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as BeerculesCardType,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CustomizeModelCardImplCopyWith<$Res>
+    implements $CustomizeModelCardCopyWith<$Res> {
+  factory _$$CustomizeModelCardImplCopyWith(_$CustomizeModelCardImpl value,
+          $Res Function(_$CustomizeModelCardImpl) then) =
+      __$$CustomizeModelCardImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({BeerculesCardType type, int amount});
+}
+
+/// @nodoc
+class __$$CustomizeModelCardImplCopyWithImpl<$Res>
+    extends _$CustomizeModelCardCopyWithImpl<$Res, _$CustomizeModelCardImpl>
+    implements _$$CustomizeModelCardImplCopyWith<$Res> {
+  __$$CustomizeModelCardImplCopyWithImpl(_$CustomizeModelCardImpl _value,
+      $Res Function(_$CustomizeModelCardImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? amount = null,
+  }) {
+    return _then(_$CustomizeModelCardImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as BeerculesCardType,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CustomizeModelCardImpl implements _CustomizeModelCard {
+  _$CustomizeModelCardImpl({required this.type, required this.amount});
+
+  @override
+  final BeerculesCardType type;
+  @override
+  final int amount;
+
+  @override
+  String toString() {
+    return 'CustomizeModelCard(type: $type, amount: $amount)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CustomizeModelCardImpl &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.amount, amount) || other.amount == amount));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, type, amount);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CustomizeModelCardImplCopyWith<_$CustomizeModelCardImpl> get copyWith =>
+      __$$CustomizeModelCardImplCopyWithImpl<_$CustomizeModelCardImpl>(
+          this, _$identity);
+}
+
+abstract class _CustomizeModelCard implements CustomizeModelCard {
+  factory _CustomizeModelCard(
+      {required final BeerculesCardType type,
+      required final int amount}) = _$CustomizeModelCardImpl;
+
+  @override
+  BeerculesCardType get type;
+  @override
+  int get amount;
+  @override
+  @JsonKey(ignore: true)
+  _$$CustomizeModelCardImplCopyWith<_$CustomizeModelCardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
