@@ -7,7 +7,6 @@ import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
@@ -25,8 +24,8 @@ class GameView extends ConsumerWidget {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          ...model.cards.mapIndexed(
-            (final int index, final GameModelCard card) => Transform.rotate(
+          ...model.cards.map(
+            (final GameModelCard card) => Transform.rotate(
               angle: card.transformationAngle.toDouble(),
               child: card.wasPlayed
                   ? const SizedBox.shrink()
