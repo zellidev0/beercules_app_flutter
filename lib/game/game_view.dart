@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:beercules/common/widgets/beercules_icon_button.dart';
-import 'package:beercules/common/widgets/playing_card.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
@@ -55,16 +54,14 @@ class GameView extends ConsumerWidget {
             .mapIndexed(
               (final int index, final GameModelCard card) => Transform.rotate(
                 angle: index.toDouble() + model.cardTransformSeed,
-                child: RepaintBoundary(
-                  child: card.wasPlayed
-                      ? const SizedBox.shrink()
-                      : _buildCardBackground(
-                          context: context,
-                          card: card,
-                          controller: controller,
-                          model: model,
-                        ),
-                ),
+                child: card.wasPlayed
+                    ? const SizedBox.shrink()
+                    : _buildCardBackground(
+                        context: context,
+                        card: card,
+                        controller: controller,
+                        model: model,
+                      ),
               ),
             )
             .toList(),
@@ -103,38 +100,23 @@ class GameView extends ConsumerWidget {
           padding: const EdgeInsets.all(64),
           child: AspectRatio(
             aspectRatio: 2.5 / 3.5,
-            child: Swipable(
-              threshold: 4,
-              onSwipeEnd: (final _, final __) async {
-                controller.decreaseCardAmount(cardId: card.id);
-                await showDialog<void>(
-                  context: context,
-                  builder: (final _) => PlayingCard(
-                    onTap: () => controller.dismissCard(cardId: card.id),
-                    showLogo: card.type.isBasicRule(),
-                    isLastVictimGlass: card.type.isVictimGlass() &&
-                        model.cards
-                                .where(
-                                  (final _) =>
-                                      _.type.isVictimGlass() && !_.wasPlayed,
-                                )
-                                .length ==
-                            1,
-                    cardType: card.type,
-                  ),
-                );
-              },
-              child: Material(
-                color: Colors.transparent,
-                child: Ink(
-                  decoration: BoxDecoration(
-                    border:
-                        Border.all(color: Theme.of(context).primaryColorDark),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: PlayingCardContainer(
-                    onTap: () {},
-                    child: Assets.images.logo.image(),
+            child: RepaintBoundary(
+              child: Swipable(
+                threshold: 4,
+                onSwipeEnd: (final _, final __) async =>
+                    controller.selectCard(card: card),
+                child: Material(
+                  color: Colors.transparent,
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      border:
+                          Border.all(color: Theme.of(context).primaryColorDark),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: PlayingCardContainer(
+                      onTap: () {},
+                      child: Assets.images.logo.image(),
+                    ),
                   ),
                 ),
               ),

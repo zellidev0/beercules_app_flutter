@@ -6,7 +6,7 @@ abstract class GameControllerInterface extends StateNotifier<GameModel> {
 
   void pop();
   void dismissCard({required final String cardId});
-  void decreaseCardAmount({required final String cardId});
+  Future<void> selectCard({required final GameModelCard card});
   void goBackToHome();
   void showFinishDialog({
     required final void Function() onConfirmPressed,
