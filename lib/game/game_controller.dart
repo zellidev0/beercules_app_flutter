@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:math';
-import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/beercules_dialog.dart';
 import 'package:beercules/common/widgets/playing_card.dart';
 import 'package:beercules/game/game_model.dart';
@@ -36,9 +35,7 @@ class GameControllerImplementation extends GameController {
     currentCardsStreamSubscription = _persistenceService
         .currentCardsChangeStream
         .listen((final List<GamePersistenceServiceCard> model) {
-      final List<GameModelCard> cards = initCards(
-        cards: model.map(_mapToGameModelCard).toList(),
-      );
+      final List<GameModelCard> cards = model.map(_mapToGameModelCard).toList();
       state = state.copyWith(
         cards: cards,
         amountOfCardsLeft:
@@ -135,19 +132,6 @@ class GameControllerImplementation extends GameController {
       );
     }
   }
-
-  static List<GameModelCard> initCards({
-    required final List<GameModelCard> cards,
-  }) =>
-      <GameModelCard>[
-        ...shuffle(
-          cardTransformSeed,
-          cards
-              .where((final GameModelCard card) => !card.type.isBasicRule())
-              .toList(),
-        ),
-        ...cards.where((final GameModelCard card) => card.type.isBasicRule()),
-      ];
 
   @override
   void goBackToHome() => _navigationService.goBack();
