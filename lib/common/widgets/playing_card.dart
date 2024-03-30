@@ -33,7 +33,7 @@ class PlayingCard extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(72, 0, 72, 16),
+                    padding: const EdgeInsets.fromLTRB(72, 12, 72, 16),
                     child: AspectRatio(
                       aspectRatio: 1,
                       child: _isLastVictimGlass
@@ -43,6 +43,7 @@ class PlayingCard extends StatelessWidget {
                               : cartType.asset(),
                     ),
                   ),
+                  const SizedBox(height: 16),
                   FittedBox(
                     fit: BoxFit.fitHeight,
                     child: Text(
@@ -52,7 +53,7 @@ class PlayingCard extends StatelessWidget {
                       style: TextStyles.header2,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   AutoSizeText(
                     cartType.localizedDescription(
                       isLastVictimGlass: _isLastVictimGlass,
