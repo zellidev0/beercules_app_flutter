@@ -1,28 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'providers.dart';
+part of 'persistence_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterNavigationServiceHash() =>
-    r'03f47de3384902e820ea064ae44135f1096dffa4';
+String _$persistenceServiceHash() =>
+    r'7594e3b1d97d34454e8bcf88f8e6636c108a71ca';
 
-/// See also [goRouterNavigationService].
-@ProviderFor(goRouterNavigationService)
-final goRouterNavigationServiceProvider =
-    AutoDisposeProvider<NavigationServiceAggregator>.internal(
-  goRouterNavigationService,
-  name: r'goRouterNavigationServiceProvider',
+/// See also [persistenceService].
+@ProviderFor(persistenceService)
+final persistenceServiceProvider =
+    Provider<PersistenceServiceAggregator>.internal(
+  persistenceService,
+  name: r'persistenceServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$goRouterNavigationServiceHash,
+      : _$persistenceServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef GoRouterNavigationServiceRef
-    = AutoDisposeProviderRef<NavigationServiceAggregator>;
+typedef PersistenceServiceRef = ProviderRef<PersistenceServiceAggregator>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

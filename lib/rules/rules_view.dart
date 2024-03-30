@@ -2,8 +2,8 @@ import 'package:beercules/common/widgets/beercules_button.dart';
 import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
+import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 

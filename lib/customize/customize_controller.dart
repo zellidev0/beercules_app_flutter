@@ -9,25 +9,22 @@ import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class CustomizeControllerImplementation extends CustomizeController {
-  final CustomizeNavigationService _navigationService;
-  final CustomizePersistenceService _persistenceService;
+part 'customize_controller.g.dart';
+
+@riverpod
+class CustomizeControllerImplementation
+    extends _$CustomizeControllerImplementation implements CustomizeController {
   StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
       persistenceServiceSubscription;
 
-  CustomizeControllerImplementation({
+  @override
+  CustomizeModel build({
     required final CustomizeNavigationService navigationService,
     required final CustomizePersistenceService persistenceService,
-  })  : _navigationService = navigationService,
-        _persistenceService = persistenceService,
-        super(
-          CustomizeModel(
-            selectedCardType: null,
-            configCards: <CustomizeModelCard>[],
-          ),
-        ) {
-    persistenceServiceSubscription = _persistenceService.configCardsChangeStream
+  }) {
+    persistenceServiceSubscription = persistenceService.configCardsChangeStream
         .listen(
             (final List<CustomizePersistenceServiceModelCard> updatedCards) {
       state = state.copyWith(
@@ -43,29 +40,30 @@ class CustomizeControllerImplementation extends CustomizeController {
             .toList(),
       );
     });
+    ref.onDispose(() {
+      unawaited(persistenceServiceSubscription?.cancel());
+    });
+    return CustomizeModel(
+      selectedCardType: null,
+      configCards: <CustomizeModelCard>[],
+    );
   }
 
   @override
-  void dispose() {
-    unawaited(persistenceServiceSubscription?.cancel());
-    super.dispose();
-  }
-
-  @override
-  void goBackToHome() => _navigationService.goBack();
+  void goBackToHome() => navigationService.goBack();
 
   @override
   void showCard({
     required final BeerculesCardType cardType,
     required final Widget widget,
   }) {
-    unawaited(_navigationService.showPopup<void>(widget).run());
+    unawaited(navigationService.showPopup<void>(widget).run());
     state = state.copyWith(selectedCardType: cardType);
   }
 
   @override
   void modifyCardAmount() {
-    _persistenceService
+    persistenceService
       ..modifyConfigGameCardsAmount(
         cardType: state.selectedCardType,
         amount: ((state.configCards
@@ -83,12 +81,12 @@ class CustomizeControllerImplementation extends CustomizeController {
 
   @override
   void restoreDefault() {
-    _persistenceService.resetToDefaultCards();
-    _navigationService.showSnackBar(
+    persistenceService.resetToDefaultCards();
+    navigationService.showSnackBar(
       LocaleKeys.config_view_restoredDefault.tr(),
     );
   }
 
   @override
-  void pop() => _navigationService.pop<void>();
+  void pop() => navigationService.pop<void>();
 }

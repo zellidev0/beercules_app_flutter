@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
 import 'package:beercules/game/game_model.dart';
+import 'package:beercules/game/game_providers.dart';
 import 'package:beercules/gen/assets.gen.dart';
-import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +16,8 @@ class GameView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final GameController controller =
-        ref.read(providers.gameController.notifier);
-    final GameModel model = ref.watch(providers.gameController);
+    final GameController controller = ref.read(gameControllerProvider);
+    final GameModel model = ref.watch(gameModelProvider);
 
     return ScaffoldWidget(
       child: Stack(
@@ -107,9 +106,7 @@ class _GameCardState extends State<GameCard> {
       );
 }
 
-abstract class GameController extends StateNotifier<GameModel> {
-  GameController(super._state);
-
+abstract class GameController {
   void pop();
   void dismissCard({required final String cardId});
   Future<void> selectCard({required final GameModelCard card});

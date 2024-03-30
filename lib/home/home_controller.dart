@@ -5,32 +5,35 @@ import 'package:beercules/home/home_view.dart';
 import 'package:beercules/home/services/home_navigation_service.dart';
 import 'package:beercules/home/widgets/legal_notice.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class HomeControllerImplementation extends HomeController {
-  final HomeNavigationService _navigationService;
+part 'home_controller.g.dart';
 
-  HomeControllerImplementation({
+@riverpod
+class HomeControllerImplementation extends _$HomeControllerImplementation
+    implements HomeController {
+  @override
+  HomeModel build({
     required final HomeNavigationService navigationService,
-    required final HomeModel model,
-  })  : _navigationService = navigationService,
-        super(model);
+  }) =>
+      HomeModel();
 
   @override
-  void goToGameView() => _navigationService.push(
+  void goToGameView() => navigationService.push(
         NavigationServiceRoutes.gameRouteUri,
       );
 
   @override
-  void goToRulesView() => _navigationService.push(
+  void goToRulesView() => navigationService.push(
         NavigationServiceRoutes.rulesRouteUri,
       );
 
   @override
-  void goToCustomizeView() => _navigationService.push(
+  void goToCustomizeView() => navigationService.push(
         NavigationServiceRoutes.customizeRouteUri,
       );
 
   @override
   void showModalLegalNotice() =>
-      unawaited(_navigationService.showModal<void>(const LegalNotice()).run());
+      unawaited(navigationService.showModal<void>(const LegalNotice()).run());
 }
