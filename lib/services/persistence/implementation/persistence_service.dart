@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:beercules/common/beercules_card_type.dart';
+import 'package:beercules/common/utils.dart';
 import 'package:beercules/customize/services/customize_persistence_service.dart';
 import 'package:beercules/game/services/game_persistence_service.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
@@ -8,36 +10,49 @@ import 'package:beercules/services/persistence/persistence_service_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 
+typedef ConfigCard = PersistenceServiceModelConfigCard;
+typedef ActiveGameCard = PersistenceServiceModelActiveGameCard;
+
 class PersistenceService extends PersistenceServiceAggregator {
-  final List<PersistenceServiceModelConfigCard> defaultBeerculesCards;
+  final List<ConfigCard> defaultBeerculesCards;
   final BehaviorSubject<List<CustomizePersistenceServiceModelCard>>
       configCardsChangeSubject;
   final BehaviorSubject<List<GamePersistenceServiceCard>>
       currentCardsChangeSubject;
 
   PersistenceService({
-    required final List<PersistenceServiceModelConfigCard> beerculesCards,
-  })  : defaultBeerculesCards = beerculesCards,
+    required final List<ConfigCard> initialCards,
+  })  : defaultBeerculesCards = initialCards,
         configCardsChangeSubject =
             BehaviorSubject<List<CustomizePersistenceServiceModelCard>>(),
         currentCardsChangeSubject =
             BehaviorSubject<List<GamePersistenceServiceCard>>(),
         super(
           PersistenceServiceModel(
-            configCards: beerculesCards,
-            currentGameCards: _toPersistenceServiceModelCard(beerculesCards),
+            configCards: initialCards,
+            currentGameCards: _initCurrentCards(initialCards),
           ),
         ) {
     emitStateChange();
     addListener((final _) => emitStateChange());
   }
 
+  static List<ConfigCard> shuffleCards({
+    required final List<ConfigCard> cards,
+  }) =>
+      <ConfigCard>[
+        ...shuffle(
+          Random().nextInt(10),
+          cards.where((final _) => !_.type.isBasicRule()).toList(),
+        ),
+        ...cards.where((final _) => _.type.isBasicRule()),
+      ];
+
   void emitStateChange() {
     configCardsChangeSubject.add(
       state.configCards
           .map(
-            (final PersistenceServiceModelConfigCard card) =>
-                CustomizePersistenceServiceModelCard(
+            (final ConfigCard card) => CustomizePersistenceServiceModelCard(
               type: card.type,
               amount: card.amount,
             ),
@@ -47,8 +62,7 @@ class PersistenceService extends PersistenceServiceAggregator {
     currentCardsChangeSubject.add(
       state.currentGameCards
           .map(
-            (final PersistenceServiceModelActiveGameCard card) =>
-                GamePersistenceServiceCard(
+            (final ActiveGameCard card) => GamePersistenceServiceCard(
               id: card.id,
               type: card.type,
               wasPlayed: card.wasPlayed,
@@ -58,41 +72,41 @@ class PersistenceService extends PersistenceServiceAggregator {
     );
   }
 
-  static List<PersistenceServiceModelActiveGameCard>
-      _toPersistenceServiceModelCard(
-    final List<PersistenceServiceModelConfigCard> configCards,
-  ) =>
-          configCards
-              .map(
-                (final PersistenceServiceModelConfigCard card) => List<
-                    ({
-                      PersistenceServiceModelConfigCard card,
-                      int index
-                    })>.generate(
-                  card.amount,
-                  (final int index) => (index: index, card: card),
-                ),
-              )
-              .expand((final _) => _)
-              .map(
-                (
-                  final ({
-                    PersistenceServiceModelConfigCard card,
-                    int index
-                  }) card,
-                ) =>
-                    PersistenceServiceModelActiveGameCard(
-                  type: card.card.type,
-                  wasPlayed: false,
-                  id: card.card.type.toString() + card.index.toString(),
-                ),
-              )
-              .toList();
+  static List<ActiveGameCard> _initCurrentCards(
+    final List<ConfigCard> cards,
+  ) {
+    final List<ActiveGameCard> newCards = cards
+        .map(
+          (final ConfigCard card) =>
+              List<({ConfigCard card, int index})>.generate(
+            card.amount,
+            (final int index) => (index: index, card: card),
+          ),
+        )
+        .expand((final _) => _)
+        .map(
+          (final ({ConfigCard card, int index}) card) => ActiveGameCard(
+            type: card.card.type,
+            wasPlayed: false,
+            id: card.card.type.toString() + card.index.toString(),
+          ),
+        )
+        .toList();
+    return <ActiveGameCard>[
+      ...shuffle(
+        Random().nextInt(100),
+        newCards
+            .where((final ActiveGameCard card) => !card.type.isBasicRule())
+            .toList(),
+      ),
+      ...newCards.where((final ActiveGameCard card) => card.type.isBasicRule()),
+    ];
+  }
 
   @override
   void setCurrentToDefault() {
     state = state.copyWith(
-      currentGameCards: _toPersistenceServiceModelCard(defaultBeerculesCards),
+      currentGameCards: _initCurrentCards(defaultBeerculesCards),
     );
   }
 
@@ -106,7 +120,7 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   void resetToConfig() {
     state = state.copyWith(
-      currentGameCards: _toPersistenceServiceModelCard(state.configCards),
+      currentGameCards: _initCurrentCards(state.configCards),
     );
   }
 
@@ -115,7 +129,7 @@ class PersistenceService extends PersistenceServiceAggregator {
     state = state.copyWith(
       currentGameCards: state.currentGameCards
           .map(
-            (final PersistenceServiceModelActiveGameCard card) =>
+            (final ActiveGameCard card) =>
                 card.id == cardId ? card.copyWith(wasPlayed: true) : card,
           )
           .toList(),
@@ -130,7 +144,7 @@ class PersistenceService extends PersistenceServiceAggregator {
     state = state.copyWith(
       configCards: state.configCards
           .map(
-            (final PersistenceServiceModelConfigCard card) =>
+            (final ConfigCard card) =>
                 card.type == cardType ? card.copyWith(amount: amount) : card,
           )
           .toList(),
