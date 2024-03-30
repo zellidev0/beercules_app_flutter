@@ -1,12 +1,19 @@
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
 
-class BeerculesButton extends ElevatedButton {
-  BeerculesButton({
-    required final String text,
-    required super.onPressed,
+class BeerculesButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const BeerculesButton({
+    required this.text,
+    required this.onPressed,
     super.key,
-  }) : super(
+  });
+
+  @override
+  Widget build(final BuildContext context) => RepaintBoundary(
+        child: ElevatedButton(
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
@@ -14,6 +21,7 @@ class BeerculesButton extends ElevatedButton {
               ),
             ),
           ),
+          onPressed: onPressed,
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
@@ -21,5 +29,6 @@ class BeerculesButton extends ElevatedButton {
               style: TextStyles.body2,
             ),
           ),
-        );
+        ),
+      );
 }
