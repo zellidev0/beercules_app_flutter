@@ -8,8 +8,6 @@ import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeView extends ConsumerWidget {
@@ -25,9 +23,7 @@ class HomeView extends ConsumerWidget {
           Align(
             alignment: Alignment.topRight,
             child: BeerculesIconButton(
-              onPressed: () => controller.showModalLegalNotice(
-                widget: buildLegalNotice(),
-              ),
+              onPressed: controller.showModalLegalNotice,
               icon: Icons.info,
             ),
           ),
@@ -75,24 +71,6 @@ class HomeView extends ConsumerWidget {
       ),
     );
   }
-
-  Widget buildLegalNotice() => FutureBuilder<String>(
-        // ignore: discarded_futures
-        future: rootBundle.loadString(
-          'assets/legal/${"general.legal_notice_path".tr()}',
-        ),
-        builder: (final _, final AsyncSnapshot<String> snapshot) =>
-            switch (snapshot.connectionState) {
-          ConnectionState.waiting => const CircularProgressIndicator(),
-          _ => Padding(
-              padding: const EdgeInsets.all(8),
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Html(data: snapshot.data),
-              ),
-            ),
-        },
-      );
 }
 
 abstract class HomeController extends StateNotifier<HomeModel> {
@@ -101,5 +79,5 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   void goToCustomizeView();
   void goToGameView();
   void goToRulesView();
-  void showModalLegalNotice({required final Widget widget});
+  void showModalLegalNotice();
 }
