@@ -25,16 +25,13 @@ class GameView extends ConsumerWidget {
         alignment: Alignment.center,
         children: <Widget>[
           ...model.cards.map(
-            (final GameModelCard card) => Transform.rotate(
-              angle: card.transformationAngle.toDouble(),
-              child: card.wasPlayed
-                  ? const SizedBox.shrink()
-                  : GameCard(
-                      card: card,
-                      onSelectCard: (final GameModelCard card) async =>
-                          controller.selectCard(card: card),
-                    ),
-            ),
+            (final GameModelCard card) => card.wasPlayed
+                ? const SizedBox.shrink()
+                : GameCard(
+                    card: card,
+                    onSelectCard: (final GameModelCard card) async =>
+                        controller.selectCard(card: card),
+                  ),
           ),
           Align(
             alignment: Alignment.topCenter,
@@ -82,31 +79,35 @@ class _GameCardState extends State<GameCard> {
   }
 
   @override
-  Widget build(final BuildContext context) => Transform.translate(
-        offset: Offset(
-          64,
-          44 + _randomTranslation.toDouble(),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(64),
-          child: AspectRatio(
-            aspectRatio: 2.5 / 3.5,
-            child: RepaintBoundary(
-              child: Swipable(
-                threshold: 4,
-                onSwipeEnd: (final _, final __) async =>
-                    widget.onSelectCard(widget.card),
-                child: Material(
-                  color: Colors.transparent,
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Theme.of(context).primaryColorDark),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: PlayingCardContainer(
-                      onTap: () {},
-                      child: Assets.images.logo.image(),
+  Widget build(final BuildContext context) => Transform.rotate(
+        angle: widget.card.transformationAngle.toDouble(),
+        child: Transform.translate(
+          offset: Offset(
+            64,
+            44 + _randomTranslation.toDouble(),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(64),
+            child: AspectRatio(
+              aspectRatio: 2.5 / 3.5,
+              child: RepaintBoundary(
+                child: Swipable(
+                  threshold: 4,
+                  onSwipeEnd: (final _, final __) async =>
+                      widget.onSelectCard(widget.card),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Ink(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: PlayingCardContainer(
+                        onTap: () {},
+                        child: Assets.images.logo.image(),
+                      ),
                     ),
                   ),
                 ),
