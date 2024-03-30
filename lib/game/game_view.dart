@@ -25,72 +25,52 @@ class GameView extends ConsumerWidget {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          _buildCardStack(
-            model: model,
-            context: context,
-            controller: controller,
+          ...model.cards.mapIndexed(
+            (final int index, final GameModelCard card) => Transform.rotate(
+              angle: card.transformationAngle.toDouble(),
+              child: card.wasPlayed
+                  ? const SizedBox.shrink()
+                  : GameCard(
+                      card: card,
+                      onSelectCard: (final GameModelCard card) async =>
+                          controller.selectCard(card: card),
+                    ),
+            ),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child: _buildTopRow(
-              controller: controller,
-              model: model,
+            child: Row(
+              children: <Widget>[
+                BeerculesIconButton(
+                  onPressed: controller.goBackToHome,
+                  icon: Icons.arrow_back_ios_rounded,
+                ),
+                const Spacer(),
+                Text(
+                  model.amountOfCardsLeft.toString(),
+                  style: TextStyles.header4,
+                ),
+              ],
             ),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildCardStack({
-    required final GameModel model,
-    required final BuildContext context,
-    required final GameController controller,
-  }) =>
-      Stack(
-        alignment: Alignment.topCenter,
-        children: model.cards
-            .mapIndexed(
-              (final int index, final GameModelCard card) => Transform.rotate(
-                angle: index.toDouble() + model.cardTransformSeed,
-                child: card.wasPlayed
-                    ? const SizedBox.shrink()
-                    : _buildCardBackground(
-                        context: context,
-                        card: card,
-                        controller: controller,
-                        model: model,
-                      ),
-              ),
-            )
-            .toList(),
-      );
+class GameCard extends StatelessWidget {
+  const GameCard({
+    required this.card,
+    required this.onSelectCard,
+    super.key,
+  });
 
-  Row _buildTopRow({
-    required final GameController controller,
-    required final GameModel model,
-  }) =>
-      Row(
-        children: <Widget>[
-          BeerculesIconButton(
-            onPressed: controller.goBackToHome,
-            icon: Icons.arrow_back_ios_rounded,
-          ),
-          const Spacer(),
-          Text(
-            model.cards.where((final _) => !_.wasPlayed).length.toString(),
-            style: TextStyles.header4,
-          ),
-        ],
-      );
+  final GameModelCard card;
+  final void Function(GameModelCard card) onSelectCard;
 
-  Widget _buildCardBackground({
-    required final BuildContext context,
-    required final GameModelCard card,
-    required final GameModel model,
-    required final GameController controller,
-  }) =>
-      Transform.translate(
+  @override
+  Widget build(final BuildContext context) => Transform.translate(
         offset: Offset(
           64,
           44 + Random(card.id.hashCode).nextInt(20).toDouble(),
@@ -102,8 +82,7 @@ class GameView extends ConsumerWidget {
             child: RepaintBoundary(
               child: Swipable(
                 threshold: 4,
-                onSwipeEnd: (final _, final __) async =>
-                    controller.selectCard(card: card),
+                onSwipeEnd: (final _, final __) async => onSelectCard(card),
                 child: Material(
                   color: Colors.transparent,
                   child: Ink(

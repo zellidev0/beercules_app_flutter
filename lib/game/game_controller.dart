@@ -27,6 +27,7 @@ class GameControllerImplementation extends GameController {
         super(
           GameModel(
             cards: <GameModelCard>[],
+            amountOfCardsLeft: 0,
             cardTransformSeed: Random().nextInt(10),
             shouldShowContinueDialog:
                 !persistenceService.currentGameHasBeenStarted(),
@@ -35,11 +36,14 @@ class GameControllerImplementation extends GameController {
     currentCardsStreamSubscription = _persistenceService
         .currentCardsChangeStream
         .listen((final List<GamePersistenceServiceCard> model) {
+      final List<GameModelCard> cards = initCards(
+        seed: state.cardTransformSeed,
+        cards: model.map(_mapToGameModelCard).toList(),
+      );
       state = state.copyWith(
-        cards: initCards(
-          seed: state.cardTransformSeed,
-          cards: model.map(_mapToGameModelCard).toList(),
-        ),
+        cards: cards,
+        amountOfCardsLeft:
+            cards.where((final GameModelCard card) => !card.wasPlayed).length,
       );
     });
     if (state.shouldShowContinueDialog) {
@@ -61,6 +65,7 @@ class GameControllerImplementation extends GameController {
 
   GameModelCard _mapToGameModelCard(final GamePersistenceServiceCard card) =>
       GameModelCard(
+        transformationAngle: state.cardTransformSeed + card.id.hashCode,
         type: card.type,
         wasPlayed: card.wasPlayed,
         id: card.id,
