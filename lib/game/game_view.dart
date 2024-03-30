@@ -95,20 +95,9 @@ class _GameCardState extends State<GameCard> {
                   threshold: 4,
                   onSwipeEnd: (final _, final __) async =>
                       widget.onSelectCard(widget.card),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Ink(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).primaryColorDark,
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: PlayingCardContainer(
-                        onTap: () {},
-                        child: Assets.images.logo.image(),
-                      ),
-                    ),
+                  child: PlayingCardContainer(
+                    onTap: () {},
+                    child: Assets.images.logo.image(),
                   ),
                 ),
               ),
