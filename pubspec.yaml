@@ -43,7 +43,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.1.1
   go_router_builder: ^2.4.1
-  riverpod_generator: ^2.2.3
+  riverpod_generator: ^2.3.11
 
 
 flutter:

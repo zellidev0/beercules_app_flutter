@@ -11,29 +11,23 @@ import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class GameControllerImplementation extends GameController {
+part 'game_controller.g.dart';
+
+@riverpod
+class GameControllerImplementation extends _$GameControllerImplementation
+    implements GameController {
   static final int cardTransformSeed = Random().nextInt(10);
-  final GameNavigationService _navigationService;
-  final GamePersistenceService _persistenceService;
   StreamSubscription<List<GamePersistenceServiceCard>>?
       currentCardsStreamSubscription;
 
-  GameControllerImplementation({
+  @override
+  GameModel build({
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
-  })  : _navigationService = navigationService,
-        _persistenceService = persistenceService,
-        super(
-          GameModel(
-            cards: <GameModelCard>[],
-            amountOfCardsLeft: 0,
-            shouldShowContinueDialog:
-                !persistenceService.currentGameHasBeenStarted(),
-          ),
-        ) {
-    currentCardsStreamSubscription = _persistenceService
-        .currentCardsChangeStream
+  }) {
+    currentCardsStreamSubscription = persistenceService.currentCardsChangeStream
         .listen((final List<GamePersistenceServiceCard> model) {
       final List<GameModelCard> cards = model.map(_mapToGameModelCard).toList();
       state = state.copyWith(
@@ -42,7 +36,9 @@ class GameControllerImplementation extends GameController {
             cards.where((final GameModelCard card) => !card.wasPlayed).length,
       );
     });
-    if (state.shouldShowContinueDialog) {
+    final bool shouldShowContinueDialog =
+        !persistenceService.currentGameHasBeenStarted();
+    if (shouldShowContinueDialog) {
       scheduleMicrotask(
         () => showFinishDialog(
           onConfirmPressed: pop,
@@ -57,6 +53,14 @@ class GameControllerImplementation extends GameController {
         ),
       );
     }
+    ref.onDispose(() {
+      unawaited(currentCardsStreamSubscription?.cancel());
+    });
+    return GameModel(
+      cards: <GameModelCard>[],
+      amountOfCardsLeft: 0,
+      shouldShowContinueDialog: shouldShowContinueDialog,
+    );
   }
 
   GameModelCard _mapToGameModelCard(final GamePersistenceServiceCard card) =>
@@ -68,14 +72,8 @@ class GameControllerImplementation extends GameController {
       );
 
   @override
-  void dispose() {
-    unawaited(currentCardsStreamSubscription?.cancel());
-    super.dispose();
-  }
-
-  @override
   Future<void> dismissCard({required final String cardId}) async {
-    _navigationService.pop<void>();
+    navigationService.pop<void>();
     if (state.cards
         .where((final GameModelCard card) => !card.wasPlayed)
         .isEmpty) {
@@ -95,8 +93,8 @@ class GameControllerImplementation extends GameController {
 
   @override
   Future<void> selectCard({required final GameModelCard card}) async {
-    _persistenceService.decreaseCurrentGameCardsAmount(cardId: card.id);
-    await _navigationService
+    persistenceService.decreaseCurrentGameCardsAmount(cardId: card.id);
+    await navigationService
         .showPopup<void>(
           PlayingCard(
             onTap: () => dismissCard(cardId: card.id),
@@ -116,30 +114,30 @@ class GameControllerImplementation extends GameController {
 
   @override
   void newGame() {
-    if (_persistenceService.configDiffersFromDefault()) {
-      _persistenceService.resetToConfig();
+    if (persistenceService.configDiffersFromDefault()) {
+      persistenceService.resetToConfig();
     } else {
-      _persistenceService.setCurrentToDefault();
+      persistenceService.setCurrentToDefault();
     }
     pop();
   }
 
   @override
   void showCustomizedCardActiveSnackbar() {
-    if (_persistenceService.configDiffersFromDefault()) {
-      _navigationService.showSnackBar(
+    if (persistenceService.configDiffersFromDefault()) {
+      navigationService.showSnackBar(
         LocaleKeys.game_view_customize_cards_used.tr(),
       );
     }
   }
 
   @override
-  void goBackToHome() => _navigationService.goBack();
+  void goBackToHome() => navigationService.goBack();
 
   @override
   void pop() {
     state = state.copyWith(shouldShowContinueDialog: false);
-    _navigationService.pop<void>();
+    navigationService.pop<void>();
   }
 
   @override
@@ -152,7 +150,7 @@ class GameControllerImplementation extends GameController {
     required final String descriptionText,
   }) =>
       unawaited(
-        _navigationService
+        navigationService
             .showPopup<void>(
               BeerculesDialog(
                 onConfirmPressed: onConfirmPressed,

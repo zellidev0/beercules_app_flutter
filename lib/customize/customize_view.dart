@@ -3,8 +3,8 @@ import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card.dart';
 import 'package:beercules/customize/customize_model.dart';
+import 'package:beercules/customize/customize_providers.dart';
 import 'package:beercules/customize/widgets/customize_card.dart';
-import 'package:beercules/providers.dart';
 import 'package:beercules/scaffold_widget.dart';
 import 'package:beercules/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +16,8 @@ class CustomizeView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     final CustomizeController controller =
-        ref.read(providers.customizeController.notifier);
-    final CustomizeModel model = ref.watch(providers.customizeController);
+        ref.read(customizeControllerProvider);
+    final CustomizeModel model = ref.watch(customizeModelProvider);
 
     return ScaffoldWidget(
       padding: EdgeInsets.zero,
@@ -67,7 +67,7 @@ class CardDetailsView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final CustomizeModel model = ref.watch(providers.customizeController);
+    final CustomizeModel model = ref.watch(customizeModelProvider);
     final CustomizeModelCard selected = model.configCards.firstWhere(
       (final CustomizeModelCard card) => card.type == model.selectedCardType,
     );
@@ -135,9 +135,7 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
 }
 
-abstract class CustomizeController extends StateNotifier<CustomizeModel> {
-  CustomizeController(super._state);
-
+abstract class CustomizeController {
   void goBackToHome();
   void showCard({
     required final BeerculesCardType cardType,
