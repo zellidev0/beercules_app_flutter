@@ -59,7 +59,7 @@ class GameView extends ConsumerWidget {
   }
 }
 
-class GameCard extends StatelessWidget {
+class GameCard extends StatefulWidget {
   const GameCard({
     required this.card,
     required this.onSelectCard,
@@ -70,10 +70,23 @@ class GameCard extends StatelessWidget {
   final void Function(GameModelCard card) onSelectCard;
 
   @override
+  State<GameCard> createState() => _GameCardState();
+}
+
+class _GameCardState extends State<GameCard> {
+  late final Random _random;
+
+  @override
+  void initState() {
+    super.initState();
+    _random = Random(widget.card.id.hashCode);
+  }
+
+  @override
   Widget build(final BuildContext context) => Transform.translate(
         offset: Offset(
           64,
-          44 + Random(card.id.hashCode).nextInt(20).toDouble(),
+          44 + _random.nextInt(20).toDouble(),
         ),
         child: Padding(
           padding: const EdgeInsets.all(64),
@@ -82,7 +95,8 @@ class GameCard extends StatelessWidget {
             child: RepaintBoundary(
               child: Swipable(
                 threshold: 4,
-                onSwipeEnd: (final _, final __) async => onSelectCard(card),
+                onSwipeEnd: (final _, final __) async =>
+                    widget.onSelectCard(widget.card),
                 child: Material(
                   color: Colors.transparent,
                   child: Ink(
