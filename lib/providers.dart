@@ -44,7 +44,7 @@ class Providers {
           ref,
     ) =>
         PersistenceService(
-      beerculesCards: <BeerculesCardType, int>{
+      initialCards: <BeerculesCardType, int>{
         BeerculesCardType.abstimmung: 3,
         BeerculesCardType.alleFuerEinen: 1,
         BeerculesCardType.aufzaehlung: 3,

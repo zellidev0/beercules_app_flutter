@@ -73,19 +73,19 @@ class GameCard extends StatefulWidget {
 }
 
 class _GameCardState extends State<GameCard> {
-  late final Random _random;
+  late final int _randomTranslation;
 
   @override
   void initState() {
     super.initState();
-    _random = Random(widget.card.id.hashCode);
+    _randomTranslation = Random(widget.card.id.hashCode).nextInt(20);
   }
 
   @override
   Widget build(final BuildContext context) => Transform.translate(
         offset: Offset(
           64,
-          44 + _random.nextInt(20).toDouble(),
+          44 + _randomTranslation.toDouble(),
         ),
         child: Padding(
           padding: const EdgeInsets.all(64),
