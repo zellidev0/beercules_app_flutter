@@ -42,6 +42,7 @@ class CustomizeView extends StatelessWidget {
                   onTap: () async => controller.showCard(
                     cardType: model.configCards[index].type,
                     widget: CardDetailsView(
+                      card: model.configCards[index],
                       onTap: controller.pop,
                       onButtonTap: controller.modifyCardAmount,
                     ),
@@ -60,41 +61,35 @@ class CustomizeView extends StatelessWidget {
 class CardDetailsView extends StatelessWidget {
   final VoidCallback _onTap;
   final VoidCallback _onButtonTap;
+  final CustomizeModelCard _card;
   const CardDetailsView({
     required final VoidCallback onTap,
     required final VoidCallback onButtonTap,
+    required final CustomizeModelCard card,
     super.key,
   })  : _onTap = onTap,
-        _onButtonTap = onButtonTap;
+        _onButtonTap = onButtonTap,
+        _card = card;
 
   @override
-  Widget build(final BuildContext context) =>
-      BlocBuilder<CustomizeController, CustomizeModel>(
-        builder: (final BuildContext context, final CustomizeModel model) {
-          final CustomizeModelCard selected = model.configCards.firstWhere(
-            (final CustomizeModelCard card) =>
-                card.type == model.selectedCardType,
-          );
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              PlayingCard(
-                onTap: _onTap,
-                showLogo: selected.type.isBasicRule(),
-                cardType: selected.type,
+  Widget build(final BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          PlayingCard(
+            onTap: _onTap,
+            showLogo: _card.type.isBasicRule(),
+            cardType: _card.type,
+          ),
+          FloatingActionButton(
+            onPressed: _onButtonTap,
+            child: Text(
+              _card.amount.toString(),
+              style: TextStyles.header3.copyWith(
+                color: Theme.of(context).colorScheme.primary,
               ),
-              FloatingActionButton(
-                onPressed: _onButtonTap,
-                child: Text(
-                  selected.amount.toString(),
-                  style: TextStyles.header3.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
+            ),
+          ),
+        ],
       );
 }
 
