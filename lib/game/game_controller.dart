@@ -4,8 +4,8 @@ import 'dart:math';
 import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/beercules_dialog.dart';
 import 'package:beercules/common/widgets/playing_card.dart';
-import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
+import 'package:beercules/game/game_view.dart';
 import 'package:beercules/game/services/game_navigation_service.dart';
 import 'package:beercules/game/services/game_persistence_service.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
@@ -13,13 +13,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class GameController extends GameControllerInterface {
+class GameControllerImplementation extends GameController {
   final GameNavigationService _navigationService;
   final GamePersistenceService _persistenceService;
   StreamSubscription<List<GamePersistenceServiceCard>>?
       currentCardsStreamSubscription;
 
-  GameController({
+  GameControllerImplementation({
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
   })  : _navigationService = navigationService,

@@ -5,8 +5,8 @@ import 'package:beercules/game/game_controller.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/go_router.dart';
 import 'package:beercules/home/home_controller.dart';
-import 'package:beercules/home/home_controller_interface.dart';
 import 'package:beercules/home/home_model.dart';
+import 'package:beercules/home/home_view.dart';
 import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
 import 'package:beercules/services/persistence/implementation/persistence_service.dart';
@@ -26,11 +26,10 @@ NavigationServiceAggregator goRouterNavigationService(
     GoRouterNavigationService(goRouter: ref.watch(goRouterProvider));
 
 class Providers {
-  final StateNotifierProvider<HomeControllerInterface, HomeModel>
-      homeController =
-      StateNotifierProvider<HomeControllerInterface, HomeModel>(
-    (final StateNotifierProviderRef<HomeControllerInterface, HomeModel> ref) =>
-        HomeController(
+  final StateNotifierProvider<HomeController, HomeModel> homeController =
+      StateNotifierProvider<HomeController, HomeModel>(
+    (final StateNotifierProviderRef<HomeController, HomeModel> ref) =>
+        HomeControllerImplementation(
       navigationService: ref.read(goRouterNavigationServiceProvider),
       model: HomeModel(),
     ),
@@ -92,23 +91,27 @@ class Providers {
     ),
   );
 
-  final StateNotifierProvider<CustomizeController, CustomizeModel>
+  final StateNotifierProvider<CustomizeControllerImplementation, CustomizeModel>
       customizeController =
-      StateNotifierProvider<CustomizeController, CustomizeModel>(
-    (final StateNotifierProviderRef<CustomizeController, CustomizeModel> ref) =>
-        CustomizeController(
+      StateNotifierProvider<CustomizeControllerImplementation, CustomizeModel>(
+    (final StateNotifierProviderRef<CustomizeControllerImplementation,
+                CustomizeModel>
+            ref) =>
+        CustomizeControllerImplementation(
       navigationService: ref.read(goRouterNavigationServiceProvider),
       persistenceService: ref.read(providers.beerculesCardProvider.notifier),
     ),
   );
 
-  final AutoDisposeStateNotifierProvider<GameController, GameModel>
-      gameController =
-      AutoDisposeStateNotifierProvider<GameController, GameModel>(
+  final AutoDisposeStateNotifierProvider<GameControllerImplementation,
+          GameModel> gameController =
+      AutoDisposeStateNotifierProvider<GameControllerImplementation, GameModel>(
     (
-      final AutoDisposeStateNotifierProviderRef<GameController, GameModel> ref,
+      final AutoDisposeStateNotifierProviderRef<GameControllerImplementation,
+              GameModel>
+          ref,
     ) =>
-        GameController(
+        GameControllerImplementation(
       navigationService: ref.read(goRouterNavigationServiceProvider),
       persistenceService: ref.read(providers.beerculesCardProvider.notifier),
     ),

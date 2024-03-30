@@ -1,7 +1,7 @@
+import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card.dart';
-import 'package:beercules/customize/customize_controller_interface.dart';
 import 'package:beercules/customize/customize_model.dart';
 import 'package:beercules/customize/widgets/customize_card.dart';
 import 'package:beercules/providers.dart';
@@ -15,7 +15,7 @@ class CustomizeView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final CustomizeControllerInterface controller =
+    final CustomizeController controller =
         ref.read(providers.customizeController.notifier);
     final CustomizeModel model = ref.watch(providers.customizeController);
 
@@ -94,7 +94,7 @@ class CardDetailsView extends ConsumerWidget {
 }
 
 class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
-  final CustomizeControllerInterface controller;
+  final CustomizeController controller;
 
   const SliverHeaderDelegateComponent({
     required this.controller,
@@ -133,4 +133,17 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
+}
+
+abstract class CustomizeController extends StateNotifier<CustomizeModel> {
+  CustomizeController(super._state);
+
+  void goBackToHome();
+  void showCard({
+    required final BeerculesCardType cardType,
+    required final Widget widget,
+  });
+  void modifyCardAmount();
+  void restoreDefault();
+  void pop();
 }

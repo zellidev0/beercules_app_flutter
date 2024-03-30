@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:beercules/common/widgets/beercules_icon_button.dart';
 import 'package:beercules/common/widgets/playing_card_container.dart';
-import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/providers.dart';
@@ -18,7 +17,7 @@ class GameView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final GameControllerInterface controller =
+    final GameController controller =
         ref.read(providers.gameController.notifier);
     final GameModel model = ref.watch(providers.gameController);
 
@@ -46,7 +45,7 @@ class GameView extends ConsumerWidget {
   Widget _buildCardStack({
     required final GameModel model,
     required final BuildContext context,
-    required final GameControllerInterface controller,
+    required final GameController controller,
   }) =>
       Stack(
         alignment: Alignment.topCenter,
@@ -68,7 +67,7 @@ class GameView extends ConsumerWidget {
       );
 
   Row _buildTopRow({
-    required final GameControllerInterface controller,
+    required final GameController controller,
     required final GameModel model,
   }) =>
       Row(
@@ -89,7 +88,7 @@ class GameView extends ConsumerWidget {
     required final BuildContext context,
     required final GameModelCard card,
     required final GameModel model,
-    required final GameControllerInterface controller,
+    required final GameController controller,
   }) =>
       Transform.translate(
         offset: Offset(
@@ -124,4 +123,23 @@ class GameView extends ConsumerWidget {
           ),
         ),
       );
+}
+
+abstract class GameController extends StateNotifier<GameModel> {
+  GameController(super._state);
+
+  void pop();
+  void dismissCard({required final String cardId});
+  Future<void> selectCard({required final GameModelCard card});
+  void goBackToHome();
+  void showFinishDialog({
+    required final void Function() onConfirmPressed,
+    required final void Function() onCancelPressed,
+    required final String confirmText,
+    required final String declineText,
+    required final String headerText,
+    required final String descriptionText,
+  });
+  void newGame();
+  void showCustomizedCardActiveSnackbar();
 }
