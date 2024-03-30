@@ -12,33 +12,40 @@ import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'game_controller.g.dart';
-
-@riverpod
-class GameControllerImplementation extends _$GameControllerImplementation
-    implements GameController {
+class GameControllerImplementation extends GameController {
   static final int cardTransformSeed = Random().nextInt(10);
   StreamSubscription<List<GamePersistenceServiceCard>>?
       currentCardsStreamSubscription;
+  final GameNavigationService navigationService;
+  final GamePersistenceService persistenceService;
 
   @override
-  GameModel build({
-    required final GameNavigationService navigationService,
-    required final GamePersistenceService persistenceService,
-  }) {
+  GameControllerImplementation({
+    required this.navigationService,
+    required this.persistenceService,
+  }) : super(
+          GameModel(
+            cards: <GameModelCard>[],
+            amountOfCardsLeft: 0,
+            shouldShowContinueDialog: false,
+          ),
+        ) {
     currentCardsStreamSubscription = persistenceService.currentCardsChangeStream
         .listen((final List<GamePersistenceServiceCard> model) {
       final List<GameModelCard> cards = model.map(_mapToGameModelCard).toList();
-      state = state.copyWith(
-        cards: cards,
-        amountOfCardsLeft:
-            cards.where((final GameModelCard card) => !card.wasPlayed).length,
+      emit(
+        state.copyWith(
+          cards: cards,
+          amountOfCardsLeft:
+              cards.where((final GameModelCard card) => !card.wasPlayed).length,
+        ),
       );
     });
+
     final bool shouldShowContinueDialog =
         !persistenceService.currentGameHasBeenStarted();
+    emit(state.copyWith(shouldShowContinueDialog: shouldShowContinueDialog));
     if (shouldShowContinueDialog) {
       scheduleMicrotask(
         () => showFinishDialog(
@@ -54,14 +61,12 @@ class GameControllerImplementation extends _$GameControllerImplementation
         ),
       );
     }
-    ref.onDispose(() {
-      unawaited(currentCardsStreamSubscription?.cancel());
-    });
-    return GameModel(
-      cards: <GameModelCard>[],
-      amountOfCardsLeft: 0,
-      shouldShowContinueDialog: shouldShowContinueDialog,
-    );
+  }
+
+  @override
+  Future<void> close() {
+    unawaited(currentCardsStreamSubscription?.cancel());
+    return super.close();
   }
 
   GameModelCard _mapToGameModelCard(final GamePersistenceServiceCard card) =>
@@ -137,7 +142,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   @override
   void pop() {
-    state = state.copyWith(shouldShowContinueDialog: false);
+    emit(state.copyWith(shouldShowContinueDialog: false));
     navigationService.pop<void>();
   }
 

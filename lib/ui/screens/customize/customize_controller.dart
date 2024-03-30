@@ -10,44 +10,47 @@ import 'package:beercules/ui/screens/customize/services/customize_persistence_se
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'customize_controller.g.dart';
-
-@riverpod
-class CustomizeControllerImplementation
-    extends _$CustomizeControllerImplementation implements CustomizeController {
+class CustomizeControllerImplementation extends CustomizeController {
   StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
       persistenceServiceSubscription;
+  final CustomizeNavigationService navigationService;
+  final CustomizePersistenceService persistenceService;
 
   @override
-  CustomizeModel build({
-    required final CustomizeNavigationService navigationService,
-    required final CustomizePersistenceService persistenceService,
-  }) {
+  CustomizeControllerImplementation({
+    required this.navigationService,
+    required this.persistenceService,
+  }) : super(
+          CustomizeModel(
+            selectedCardType: null,
+            configCards: <CustomizeModelCard>[],
+          ),
+        ) {
     persistenceServiceSubscription = persistenceService.configCardsChangeStream
         .listen(
             (final List<CustomizePersistenceServiceModelCard> updatedCards) {
-      state = state.copyWith(
-        configCards: updatedCards
-            .whereNot((final _) => _.type.isBasicRule())
-            .map(
-              (final CustomizePersistenceServiceModelCard card) =>
-                  CustomizeModelCard(
-                type: card.type,
-                amount: card.amount,
-              ),
-            )
-            .toList(),
+      emit(
+        state.copyWith(
+          configCards: updatedCards
+              .whereNot((final _) => _.type.isBasicRule())
+              .map(
+                (final CustomizePersistenceServiceModelCard card) =>
+                    CustomizeModelCard(
+                  type: card.type,
+                  amount: card.amount,
+                ),
+              )
+              .toList(),
+        ),
       );
     });
-    ref.onDispose(() {
-      unawaited(persistenceServiceSubscription?.cancel());
-    });
-    return CustomizeModel(
-      selectedCardType: null,
-      configCards: <CustomizeModelCard>[],
-    );
+  }
+
+  @override
+  Future<void> close() {
+    unawaited(persistenceServiceSubscription?.cancel());
+    return super.close();
   }
 
   @override
@@ -59,7 +62,7 @@ class CustomizeControllerImplementation
     required final Widget widget,
   }) {
     unawaited(navigationService.showPopup<void>(widget).run());
-    state = state.copyWith(selectedCardType: cardType);
+    emit(state.copyWith(selectedCardType: cardType));
   }
 
   @override

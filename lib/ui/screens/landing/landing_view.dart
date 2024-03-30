@@ -4,16 +4,14 @@ import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class LandingView extends ConsumerWidget {
+class LandingView extends StatelessWidget {
   static const double desktopThreshold = 1200;
   const LandingView({super.key});
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) =>
-      LayoutBuilder(
+  Widget build(final BuildContext context) => LayoutBuilder(
         builder: (
           final BuildContext context,
           final BoxConstraints constraints,

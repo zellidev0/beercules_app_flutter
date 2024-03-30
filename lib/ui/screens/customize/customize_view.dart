@@ -2,22 +2,20 @@ import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/theme.dart';
 import 'package:beercules/ui/screens/customize/customize_model.dart';
-import 'package:beercules/ui/screens/customize/customize_providers.dart';
 import 'package:beercules/ui/screens/customize/widgets/customize_card.dart';
 import 'package:beercules/ui/widgets/beercules_icon_button.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomizeView extends ConsumerWidget {
+class CustomizeView extends StatelessWidget {
   const CustomizeView({super.key});
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) {
+  Widget build(final BuildContext context) {
     final CustomizeController controller =
-        ref.read(customizeControllerProvider);
-    final CustomizeModel model = ref.watch(customizeModelProvider);
+        BlocProvider.of<CustomizeController>(context);
 
     return ScaffoldWidget(
       padding: EdgeInsets.zero,
@@ -29,24 +27,28 @@ class CustomizeView extends ConsumerWidget {
           ),
           SliverPadding(
             padding: Constants.pagePadding.copyWith(top: 0),
-            sliver: SliverGrid.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 2.5 / 3.5,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemBuilder: (final _, final int index) => CustomizeCard(
-                cardKey: model.configCards[index].type,
-                onTap: () async => controller.showCard(
-                  cardType: model.configCards[index].type,
-                  widget: CardDetailsView(
-                    onTap: controller.pop,
-                    onButtonTap: controller.modifyCardAmount,
+            sliver: BlocBuilder<CustomizeController, CustomizeModel>(
+              builder:
+                  (final BuildContext context, final CustomizeModel model) =>
+                      SliverGrid.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 2.5 / 3.5,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemBuilder: (final _, final int index) => CustomizeCard(
+                  cardKey: model.configCards[index].type,
+                  onTap: () async => controller.showCard(
+                    cardType: model.configCards[index].type,
+                    widget: CardDetailsView(
+                      onTap: controller.pop,
+                      onButtonTap: controller.modifyCardAmount,
+                    ),
                   ),
                 ),
+                itemCount: model.configCards.length,
               ),
-              itemCount: model.configCards.length,
             ),
           ),
         ],
@@ -55,7 +57,7 @@ class CustomizeView extends ConsumerWidget {
   }
 }
 
-class CardDetailsView extends ConsumerWidget {
+class CardDetailsView extends StatelessWidget {
   final VoidCallback _onTap;
   final VoidCallback _onButtonTap;
   const CardDetailsView({
@@ -66,31 +68,34 @@ class CardDetailsView extends ConsumerWidget {
         _onButtonTap = onButtonTap;
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) {
-    final CustomizeModel model = ref.watch(customizeModelProvider);
-    final CustomizeModelCard selected = model.configCards.firstWhere(
-      (final CustomizeModelCard card) => card.type == model.selectedCardType,
-    );
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        PlayingCard(
-          onTap: _onTap,
-          showLogo: selected.type.isBasicRule(),
-          cardType: selected.type,
-        ),
-        FloatingActionButton(
-          onPressed: _onButtonTap,
-          child: Text(
-            selected.amount.toString(),
-            style: TextStyles.header3.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  Widget build(final BuildContext context) =>
+      BlocBuilder<CustomizeController, CustomizeModel>(
+        builder: (final BuildContext context, final CustomizeModel model) {
+          final CustomizeModelCard selected = model.configCards.firstWhere(
+            (final CustomizeModelCard card) =>
+                card.type == model.selectedCardType,
+          );
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              PlayingCard(
+                onTap: _onTap,
+                showLogo: selected.type.isBasicRule(),
+                cardType: selected.type,
+              ),
+              FloatingActionButton(
+                onPressed: _onButtonTap,
+                child: Text(
+                  selected.amount.toString(),
+                  style: TextStyles.header3.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
 }
 
 class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
@@ -135,7 +140,9 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
 }
 
-abstract class CustomizeController {
+abstract class CustomizeController extends Cubit<CustomizeModel> {
+  CustomizeController(super.initialState);
+
   void goBackToHome();
   void showCard({
     required final BeerculesCardType cardType,

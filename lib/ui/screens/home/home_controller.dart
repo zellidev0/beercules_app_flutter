@@ -5,18 +5,13 @@ import 'package:beercules/ui/screens/home/home_model.dart';
 import 'package:beercules/ui/screens/home/home_view.dart';
 import 'package:beercules/ui/screens/home/services/home_navigation_service.dart';
 import 'package:beercules/ui/screens/home/widgets/legal_notice.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'home_controller.g.dart';
-
-@riverpod
-class HomeControllerImplementation extends _$HomeControllerImplementation
-    implements HomeController {
+class HomeControllerImplementation extends HomeController {
+  final HomeNavigationService navigationService;
   @override
-  HomeModel build({
-    required final HomeNavigationService navigationService,
-  }) =>
-      HomeModel();
+  HomeControllerImplementation({
+    required this.navigationService,
+  }) : super(HomeModel());
 
   @override
   void goToGameView() => navigationService.push(

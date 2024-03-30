@@ -1,24 +1,15 @@
 import 'dart:async';
 
-import 'package:beercules/go_router.dart';
 import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'go_router_navigation_service.g.dart';
-
-@riverpod
-NavigationServiceAggregator goRouterNavigationService(
-  final GoRouterNavigationServiceRef ref,
-) =>
-    GoRouterNavigationService(goRouter: ref.watch(goRouterProvider));
-
-class GoRouterNavigationService implements NavigationServiceAggregator {
+class GoRouterNavigationService extends NavigationServiceAggregator {
   final GoRouter _goRouter;
 
-  GoRouterNavigationService({
+  GoRouterNavigationService(
+    super.initialState, {
     required final GoRouter goRouter,
   }) : _goRouter = goRouter;
 
