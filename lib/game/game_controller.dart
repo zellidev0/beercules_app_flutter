@@ -3,6 +3,7 @@ import 'dart:core';
 import 'dart:math';
 import 'package:beercules/common/utils.dart';
 import 'package:beercules/common/widgets/beercules_dialog.dart';
+import 'package:beercules/common/widgets/playing_card.dart';
 import 'package:beercules/game/game_controller_interface.dart';
 import 'package:beercules/game/game_model.dart';
 import 'package:beercules/game/services/game_navigation_service.dart';
@@ -92,8 +93,24 @@ class GameController extends GameControllerInterface {
   }
 
   @override
-  void decreaseCardAmount({required final String cardId}) {
-    _persistenceService.decreaseCurrentGameCardsAmount(cardId: cardId);
+  Future<void> selectCard({required final GameModelCard card}) async {
+    _persistenceService.decreaseCurrentGameCardsAmount(cardId: card.id);
+    await _navigationService
+        .showPopup<void>(
+          PlayingCard(
+            onTap: () => dismissCard(cardId: card.id),
+            showLogo: card.type.isBasicRule(),
+            isLastVictimGlass: card.type.isVictimGlass() &&
+                state.cards
+                        .where(
+                          (final _) => _.type.isVictimGlass() && !_.wasPlayed,
+                        )
+                        .length ==
+                    1,
+            cardType: card.type,
+          ),
+        )
+        .run();
   }
 
   @override
