@@ -26,7 +26,7 @@ Future<Widget> buildApp() async => ProviderScope(
           useOnlyLangCode: true,
           child: Builder(
             builder: (final BuildContext context) => MaterialApp.router(
-              builder: (final BuildContext context, final Widget? child) =>
+              builder: (final _, final Widget? child) =>
                   ResponsiveBreakpoints.builder(
                 child: child!,
                 breakpoints: <Breakpoint>[
