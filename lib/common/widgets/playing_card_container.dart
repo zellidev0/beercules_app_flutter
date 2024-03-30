@@ -17,22 +17,29 @@ class PlayingCardContainer extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Material(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: InkWell(
-          onTap: _onTap,
+        color: Colors.transparent,
+        child: Ink(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Theme.of(context).primaryColorDark,
+            ),
+            borderRadius: Constants.cardBorderRadius,
+          ),
           child: Card(
             margin: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+            shape: const RoundedRectangleBorder(
+              borderRadius: Constants.cardBorderRadius,
             ),
             color: BeerculesColors.primary,
-            child: AspectRatio(
-              aspectRatio: 2.5 / 3.5,
-              child: Padding(
-                padding: _padding,
-                child: _child,
+            child: InkWell(
+              borderRadius: Constants.cardBorderRadius,
+              onTap: _onTap,
+              child: AspectRatio(
+                aspectRatio: 2.5 / 3.5,
+                child: Padding(
+                  padding: _padding,
+                  child: _child,
+                ),
               ),
             ),
           ),
