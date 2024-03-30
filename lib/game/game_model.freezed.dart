@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$GameModel {
   List<GameModelCard> get cards => throw _privateConstructorUsedError;
-  int get cardTransformSeed => throw _privateConstructorUsedError;
   int get amountOfCardsLeft => throw _privateConstructorUsedError;
   bool get shouldShowContinueDialog => throw _privateConstructorUsedError;
 
@@ -33,7 +32,6 @@ abstract class $GameModelCopyWith<$Res> {
   @useResult
   $Res call(
       {List<GameModelCard> cards,
-      int cardTransformSeed,
       int amountOfCardsLeft,
       bool shouldShowContinueDialog});
 }
@@ -52,7 +50,6 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
   @override
   $Res call({
     Object? cards = null,
-    Object? cardTransformSeed = null,
     Object? amountOfCardsLeft = null,
     Object? shouldShowContinueDialog = null,
   }) {
@@ -61,10 +58,6 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<GameModelCard>,
-      cardTransformSeed: null == cardTransformSeed
-          ? _value.cardTransformSeed
-          : cardTransformSeed // ignore: cast_nullable_to_non_nullable
-              as int,
       amountOfCardsLeft: null == amountOfCardsLeft
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
@@ -87,7 +80,6 @@ abstract class _$$GameModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<GameModelCard> cards,
-      int cardTransformSeed,
       int amountOfCardsLeft,
       bool shouldShowContinueDialog});
 }
@@ -104,7 +96,6 @@ class __$$GameModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? cards = null,
-    Object? cardTransformSeed = null,
     Object? amountOfCardsLeft = null,
     Object? shouldShowContinueDialog = null,
   }) {
@@ -113,10 +104,6 @@ class __$$GameModelImplCopyWithImpl<$Res>
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<GameModelCard>,
-      cardTransformSeed: null == cardTransformSeed
-          ? _value.cardTransformSeed
-          : cardTransformSeed // ignore: cast_nullable_to_non_nullable
-              as int,
       amountOfCardsLeft: null == amountOfCardsLeft
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
@@ -134,7 +121,6 @@ class __$$GameModelImplCopyWithImpl<$Res>
 class _$GameModelImpl implements _GameModel {
   _$GameModelImpl(
       {required final List<GameModelCard> cards,
-      required this.cardTransformSeed,
       required this.amountOfCardsLeft,
       required this.shouldShowContinueDialog})
       : _cards = cards;
@@ -148,15 +134,13 @@ class _$GameModelImpl implements _GameModel {
   }
 
   @override
-  final int cardTransformSeed;
-  @override
   final int amountOfCardsLeft;
   @override
   final bool shouldShowContinueDialog;
 
   @override
   String toString() {
-    return 'GameModel(cards: $cards, cardTransformSeed: $cardTransformSeed, amountOfCardsLeft: $amountOfCardsLeft, shouldShowContinueDialog: $shouldShowContinueDialog)';
+    return 'GameModel(cards: $cards, amountOfCardsLeft: $amountOfCardsLeft, shouldShowContinueDialog: $shouldShowContinueDialog)';
   }
 
   @override
@@ -165,8 +149,6 @@ class _$GameModelImpl implements _GameModel {
         (other.runtimeType == runtimeType &&
             other is _$GameModelImpl &&
             const DeepCollectionEquality().equals(other._cards, _cards) &&
-            (identical(other.cardTransformSeed, cardTransformSeed) ||
-                other.cardTransformSeed == cardTransformSeed) &&
             (identical(other.amountOfCardsLeft, amountOfCardsLeft) ||
                 other.amountOfCardsLeft == amountOfCardsLeft) &&
             (identical(
@@ -178,7 +160,6 @@ class _$GameModelImpl implements _GameModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_cards),
-      cardTransformSeed,
       amountOfCardsLeft,
       shouldShowContinueDialog);
 
@@ -192,14 +173,11 @@ class _$GameModelImpl implements _GameModel {
 abstract class _GameModel implements GameModel {
   factory _GameModel(
       {required final List<GameModelCard> cards,
-      required final int cardTransformSeed,
       required final int amountOfCardsLeft,
       required final bool shouldShowContinueDialog}) = _$GameModelImpl;
 
   @override
   List<GameModelCard> get cards;
-  @override
-  int get cardTransformSeed;
   @override
   int get amountOfCardsLeft;
   @override

@@ -14,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GameControllerImplementation extends GameController {
+  static final int cardTransformSeed = Random().nextInt(10);
   final GameNavigationService _navigationService;
   final GamePersistenceService _persistenceService;
   StreamSubscription<List<GamePersistenceServiceCard>>?
@@ -28,7 +29,6 @@ class GameControllerImplementation extends GameController {
           GameModel(
             cards: <GameModelCard>[],
             amountOfCardsLeft: 0,
-            cardTransformSeed: Random().nextInt(10),
             shouldShowContinueDialog:
                 !persistenceService.currentGameHasBeenStarted(),
           ),
@@ -37,7 +37,6 @@ class GameControllerImplementation extends GameController {
         .currentCardsChangeStream
         .listen((final List<GamePersistenceServiceCard> model) {
       final List<GameModelCard> cards = initCards(
-        seed: state.cardTransformSeed,
         cards: model.map(_mapToGameModelCard).toList(),
       );
       state = state.copyWith(
@@ -65,7 +64,7 @@ class GameControllerImplementation extends GameController {
 
   GameModelCard _mapToGameModelCard(final GamePersistenceServiceCard card) =>
       GameModelCard(
-        transformationAngle: state.cardTransformSeed + card.id.hashCode,
+        transformationAngle: cardTransformSeed + card.id.hashCode,
         type: card.type,
         wasPlayed: card.wasPlayed,
         id: card.id,
@@ -138,12 +137,11 @@ class GameControllerImplementation extends GameController {
   }
 
   static List<GameModelCard> initCards({
-    required final int seed,
     required final List<GameModelCard> cards,
   }) =>
       <GameModelCard>[
         ...shuffle(
-          seed,
+          cardTransformSeed,
           cards
               .where((final GameModelCard card) => !card.type.isBasicRule())
               .toList(),
