@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:beercules/common/widgets/beercules_icon_button.dart';
-import 'package:beercules/common/widgets/playing_card_container.dart';
-import 'package:beercules/game/game_model.dart';
-import 'package:beercules/game/game_providers.dart';
+import 'package:beercules/common/theme.dart';
 import 'package:beercules/gen/assets.gen.dart';
-import 'package:beercules/scaffold_widget.dart';
-import 'package:beercules/theme.dart';
+import 'package:beercules/ui/screens/game/game_model.dart';
+import 'package:beercules/ui/screens/game/game_providers.dart';
+import 'package:beercules/ui/widgets/beercules_icon_button.dart';
+import 'package:beercules/ui/widgets/playing_card_container.dart';
+import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';

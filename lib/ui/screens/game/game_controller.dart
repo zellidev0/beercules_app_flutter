@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:math';
-import 'package:beercules/common/widgets/beercules_dialog.dart';
-import 'package:beercules/common/widgets/playing_card.dart';
-import 'package:beercules/game/game_model.dart';
-import 'package:beercules/game/game_view.dart';
-import 'package:beercules/game/services/game_navigation_service.dart';
-import 'package:beercules/game/services/game_persistence_service.dart';
+
 import 'package:beercules/gen/locale_keys.g.dart';
+import 'package:beercules/ui/screens/game/game_model.dart';
+import 'package:beercules/ui/screens/game/game_view.dart';
+import 'package:beercules/ui/screens/game/services/game_navigation_service.dart';
+import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
+import 'package:beercules/ui/widgets/beercules_dialog.dart';
+import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

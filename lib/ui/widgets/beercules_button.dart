@@ -1,4 +1,4 @@
-import 'package:beercules/theme.dart';
+import 'package:beercules/common/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeerculesButton extends StatelessWidget {

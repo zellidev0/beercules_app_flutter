@@ -1,6 +1,6 @@
+import 'package:beercules/common/theme.dart';
 import 'package:beercules/firebase_options.dart';
 import 'package:beercules/go_router.dart';
-import 'package:beercules/theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
