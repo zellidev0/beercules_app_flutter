@@ -32,9 +32,7 @@ Future<Widget> buildApp() async => MultiBlocProvider(
           ),
         ),
         BlocProvider<PersistenceServiceAggregator>(
-          create: (final _) => PersistenceService(
-            initialCards: initialCards,
-          ),
+          create: (final _) => PersistenceService(initialCards: initialCards),
         ),
       ],
       child: EasyLocalization(

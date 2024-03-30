@@ -40,49 +40,41 @@ final GoRouter goRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: NavigationServiceRoutes.homeRouteUri,
-      builder: (final BuildContext context, final __) =>
-          BlocProvider<HomeController>(
+      builder: (final _, final __) => BlocProvider<HomeController>(
         create: (final BuildContext context) => HomeControllerImplementation(
-          navigationService:
-              BlocProvider.of<NavigationServiceAggregator>(context),
+          navigationService: context.read<NavigationServiceAggregator>(),
         ),
         child: const HomeView(),
       ),
     ),
     GoRoute(
       path: NavigationServiceRoutes.gameRouteUri,
-      builder: (final BuildContext context, final __) =>
-          BlocProvider<GameController>(
+      builder: (final _, final __) => BlocProvider<GameController>(
         create: (final BuildContext context) => GameControllerImplementation(
-          navigationService:
-              BlocProvider.of<NavigationServiceAggregator>(context),
-          persistenceService:
-              BlocProvider.of<PersistenceServiceAggregator>(context),
+          navigationService: context.read<NavigationServiceAggregator>(),
+          persistenceService: context.read<PersistenceServiceAggregator>(),
         ),
         child: const GameView(),
       ),
     ),
     GoRoute(
       path: NavigationServiceRoutes.rulesRouteUri,
-      builder: (final BuildContext context, final __) => const RulesView(),
+      builder: (final _, final __) => const RulesView(),
     ),
     GoRoute(
       path: NavigationServiceRoutes.customizeRouteUri,
-      builder: (final BuildContext context, final __) =>
-          BlocProvider<CustomizeController>(
+      builder: (final _, final __) => BlocProvider<CustomizeController>(
         create: (final BuildContext context) =>
             CustomizeControllerImplementation(
-          navigationService:
-              BlocProvider.of<NavigationServiceAggregator>(context),
-          persistenceService:
-              BlocProvider.of<PersistenceServiceAggregator>(context),
+          navigationService: context.read<NavigationServiceAggregator>(),
+          persistenceService: context.read<PersistenceServiceAggregator>(),
         ),
         child: const CustomizeView(),
       ),
     ),
     GoRoute(
       path: NavigationServiceRoutes.landingRouteUri,
-      builder: (final BuildContext context, final __) => const LandingView(),
+      builder: (final _, final __) => const LandingView(),
     ),
   ],
 );
