@@ -1,6 +1,6 @@
 import 'package:beercules/common/constants.dart';
-import 'package:beercules/common/widgets/beercules_button.dart';
-import 'package:beercules/theme.dart';
+import 'package:beercules/common/theme.dart';
+import 'package:beercules/ui/widgets/beercules_button.dart';
 import 'package:flutter/material.dart';
 
 class BeerculesDialog extends StatelessWidget {

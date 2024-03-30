@@ -1,6 +1,6 @@
 import 'package:beercules/common/beercules_card_type.dart';
-import 'package:beercules/common/widgets/playing_card_container.dart';
-import 'package:beercules/theme.dart';
+import 'package:beercules/common/theme.dart';
+import 'package:beercules/ui/widgets/playing_card_container.dart';
 import 'package:flutter/material.dart';
 
 class CustomizeCard extends StatelessWidget {

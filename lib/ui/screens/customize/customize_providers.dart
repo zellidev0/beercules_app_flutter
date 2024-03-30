@@ -1,8 +1,8 @@
-import 'package:beercules/customize/customize_controller.dart';
-import 'package:beercules/customize/customize_model.dart';
-import 'package:beercules/customize/customize_view.dart';
 import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
 import 'package:beercules/services/persistence/implementation/persistence_service.dart';
+import 'package:beercules/ui/screens/customize/customize_controller.dart';
+import 'package:beercules/ui/screens/customize/customize_model.dart';
+import 'package:beercules/ui/screens/customize/customize_view.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'customize_providers.g.dart';

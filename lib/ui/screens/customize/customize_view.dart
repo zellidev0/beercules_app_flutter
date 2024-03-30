@@ -1,12 +1,12 @@
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/constants.dart';
-import 'package:beercules/common/widgets/beercules_icon_button.dart';
-import 'package:beercules/common/widgets/playing_card.dart';
-import 'package:beercules/customize/customize_model.dart';
-import 'package:beercules/customize/customize_providers.dart';
-import 'package:beercules/customize/widgets/customize_card.dart';
-import 'package:beercules/scaffold_widget.dart';
-import 'package:beercules/theme.dart';
+import 'package:beercules/common/theme.dart';
+import 'package:beercules/ui/screens/customize/customize_model.dart';
+import 'package:beercules/ui/screens/customize/customize_providers.dart';
+import 'package:beercules/ui/screens/customize/widgets/customize_card.dart';
+import 'package:beercules/ui/widgets/beercules_icon_button.dart';
+import 'package:beercules/ui/widgets/playing_card.dart';
+import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

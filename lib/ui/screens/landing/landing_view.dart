@@ -1,7 +1,7 @@
+import 'package:beercules/common/theme.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/scaffold_widget.dart';
-import 'package:beercules/theme.dart';
+import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
