@@ -8,10 +8,13 @@ import 'package:beercules/ui/widgets/playing_card_container.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RulesView extends StatelessWidget {
-  const RulesView({super.key});
+  final NavigationServiceAggregator navigationService;
+  const RulesView({
+    required this.navigationService,
+    super.key,
+  });
 
   @override
   Widget build(final BuildContext context) => ScaffoldWidget(
@@ -21,8 +24,7 @@ class RulesView extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: BeerculesIconButton(
-                onPressed: BlocProvider.of<NavigationServiceAggregator>(context)
-                    .goBack,
+                onPressed: navigationService.goBack,
                 icon: Icons.arrow_back_ios_rounded,
               ),
             ),
@@ -68,8 +70,7 @@ class RulesView extends StatelessWidget {
               ),
             ),
             BeerculesButton(
-              onPressed: () =>
-                  BlocProvider.of<NavigationServiceAggregator>(context).push(
+              onPressed: () => navigationService.push(
                 NavigationServiceRoutes.gameRouteUri,
               ),
               text: LocaleKeys.rules_view_go_to_game.tr(),

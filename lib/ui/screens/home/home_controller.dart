@@ -11,7 +11,7 @@ class HomeControllerImplementation extends HomeController {
   @override
   HomeControllerImplementation({
     required this.navigationService,
-  }) : super(HomeModel());
+  });
 
   @override
   void goToGameView() => navigationService.push(
@@ -31,4 +31,7 @@ class HomeControllerImplementation extends HomeController {
   @override
   void showModalLegalNotice() =>
       unawaited(navigationService.showModal<void>(const LegalNotice()).run());
+
+  @override
+  HomeModel get model => HomeModel();
 }

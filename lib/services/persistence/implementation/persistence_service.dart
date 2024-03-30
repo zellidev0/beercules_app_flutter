@@ -8,7 +8,6 @@ import 'package:beercules/services/persistence/persistence_service_model.dart';
 import 'package:beercules/ui/screens/customize/services/customize_persistence_service.dart';
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 typedef ConfigCard = PersistenceServiceModelConfigCard;
@@ -66,27 +65,23 @@ class PersistenceService extends PersistenceServiceAggregator {
       configCardsChangeSubject;
   final BehaviorSubject<List<GamePersistenceServiceCard>>
       currentCardsChangeSubject;
+  PersistenceServiceModel _state = PersistenceServiceModel(
+    configCards: initialCards,
+    currentGameCards: _initCurrentCards(initialCards),
+  );
 
-  PersistenceService({
-    required final List<ConfigCard> initialCards,
-  })  : defaultBeerculesCards = initialCards,
+  PersistenceService()
+      : defaultBeerculesCards = initialCards,
         configCardsChangeSubject =
             BehaviorSubject<List<CustomizePersistenceServiceModelCard>>(),
         currentCardsChangeSubject =
-            BehaviorSubject<List<GamePersistenceServiceCard>>(),
-        super(
-          PersistenceServiceModel(
-            configCards: initialCards,
-            currentGameCards: _initCurrentCards(initialCards),
-          ),
-        ) {
-    emitStateChange(state: state);
+            BehaviorSubject<List<GamePersistenceServiceCard>>() {
+    emitStateChange(state: _state);
   }
 
-  @override
-  void onChange(final Change<PersistenceServiceModel> change) {
-    super.onChange(change);
-    emitStateChange(state: change.nextState);
+  void _updateStateAndNotifyListeners(final PersistenceServiceModel model) {
+    _state = model;
+    emitStateChange(state: model);
   }
 
   static List<ConfigCard> shuffleCards({
@@ -157,8 +152,8 @@ class PersistenceService extends PersistenceServiceAggregator {
 
   @override
   void setCurrentToDefault() {
-    emit(
-      state.copyWith(
+    _updateStateAndNotifyListeners(
+      _state.copyWith(
         currentGameCards: _initCurrentCards(defaultBeerculesCards),
       ),
     );
@@ -166,8 +161,8 @@ class PersistenceService extends PersistenceServiceAggregator {
 
   @override
   void resetToDefaultCards() {
-    emit(
-      state.copyWith(
+    _updateStateAndNotifyListeners(
+      _state.copyWith(
         configCards: defaultBeerculesCards,
       ),
     );
@@ -175,18 +170,18 @@ class PersistenceService extends PersistenceServiceAggregator {
 
   @override
   void resetToConfig() {
-    emit(
-      state.copyWith(
-        currentGameCards: _initCurrentCards(state.configCards),
+    _updateStateAndNotifyListeners(
+      _state.copyWith(
+        currentGameCards: _initCurrentCards(_state.configCards),
       ),
     );
   }
 
   @override
   void decreaseCurrentGameCardsAmount({required final String cardId}) {
-    emit(
-      state.copyWith(
-        currentGameCards: state.currentGameCards
+    _updateStateAndNotifyListeners(
+      _state.copyWith(
+        currentGameCards: _state.currentGameCards
             .map(
               (final ActiveGameCard card) =>
                   card.id == cardId ? card.copyWith(wasPlayed: true) : card,
@@ -201,9 +196,9 @@ class PersistenceService extends PersistenceServiceAggregator {
     required final BeerculesCardType? cardType,
     required final int amount,
   }) {
-    emit(
-      state.copyWith(
-        configCards: state.configCards
+    _updateStateAndNotifyListeners(
+      _state.copyWith(
+        configCards: _state.configCards
             .map(
               (final ConfigCard card) =>
                   card.type == cardType ? card.copyWith(amount: amount) : card,
@@ -215,11 +210,11 @@ class PersistenceService extends PersistenceServiceAggregator {
 
   @override
   bool currentGameHasBeenStarted() =>
-      state.currentGameCards.where((final _) => _.wasPlayed).isEmpty;
+      _state.currentGameCards.where((final _) => _.wasPlayed).isEmpty;
 
   @override
   bool configDiffersFromDefault() =>
-      !listEquals(state.configCards, defaultBeerculesCards);
+      !listEquals(_state.configCards, defaultBeerculesCards);
 
   @override
   Stream<List<CustomizePersistenceServiceModelCard>>

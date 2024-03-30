@@ -1,6 +1,6 @@
-import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
+import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
-import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
+import 'package:beercules/services/persistence/implementation/persistence_service.dart';
 import 'package:beercules/ui/screens/customize/customize_controller.dart';
 import 'package:beercules/ui/screens/customize/customize_view.dart';
 import 'package:beercules/ui/screens/game/game_controller.dart';
@@ -11,11 +11,15 @@ import 'package:beercules/ui/screens/landing/landing_view.dart';
 import 'package:beercules/ui/screens/rules/rules_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
+
+GoRouterNavigationService navigationServiceAggregator =
+    GoRouterNavigationService(goRouter: goRouter);
+
+PersistenceService persistenceServiceAggregator = PersistenceService();
 
 final GoRouter goRouter = GoRouter(
   debugLogDiagnostics: kDebugMode,
@@ -40,36 +44,34 @@ final GoRouter goRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: NavigationServiceRoutes.homeRouteUri,
-      builder: (final _, final __) => BlocProvider<HomeController>(
-        create: (final BuildContext context) => HomeControllerImplementation(
-          navigationService: context.read<NavigationServiceAggregator>(),
+      builder: (final _, final __) => HomeView(
+        controller: HomeControllerImplementation(
+          navigationService: navigationServiceAggregator,
         ),
-        child: const HomeView(),
       ),
     ),
     GoRoute(
       path: NavigationServiceRoutes.gameRouteUri,
-      builder: (final _, final __) => BlocProvider<GameController>(
-        create: (final BuildContext context) => GameControllerImplementation(
-          navigationService: context.read<NavigationServiceAggregator>(),
-          persistenceService: context.read<PersistenceServiceAggregator>(),
+      builder: (final _, final __) => GameView(
+        controller: GameControllerImplementation(
+          navigationService: navigationServiceAggregator,
+          persistenceService: persistenceServiceAggregator,
         ),
-        child: const GameView(),
       ),
     ),
     GoRoute(
       path: NavigationServiceRoutes.rulesRouteUri,
-      builder: (final _, final __) => const RulesView(),
+      builder: (final _, final __) => RulesView(
+        navigationService: navigationServiceAggregator,
+      ),
     ),
     GoRoute(
       path: NavigationServiceRoutes.customizeRouteUri,
-      builder: (final _, final __) => BlocProvider<CustomizeController>(
-        create: (final BuildContext context) =>
-            CustomizeControllerImplementation(
-          navigationService: context.read<NavigationServiceAggregator>(),
-          persistenceService: context.read<PersistenceServiceAggregator>(),
+      builder: (final _, final __) => CustomizeView(
+        controller: CustomizeControllerImplementation(
+          navigationService: navigationServiceAggregator,
+          persistenceService: persistenceServiceAggregator,
         ),
-        child: const CustomizeView(),
       ),
     ),
     GoRoute(

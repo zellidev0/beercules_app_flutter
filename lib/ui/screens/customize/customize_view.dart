@@ -7,55 +7,52 @@ import 'package:beercules/ui/widgets/beercules_icon_button.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomizeView extends StatelessWidget {
-  const CustomizeView({super.key});
+  final CustomizeController controller;
+  const CustomizeView({
+    required this.controller,
+    super.key,
+  });
 
   @override
-  Widget build(final BuildContext context) {
-    final CustomizeController controller =
-        BlocProvider.of<CustomizeController>(context);
-
-    return ScaffoldWidget(
-      padding: EdgeInsets.zero,
-      child: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: <Widget>[
-          SliverPersistentHeader(
-            delegate: SliverHeaderDelegateComponent(controller: controller),
-          ),
-          SliverPadding(
-            padding: Constants.pagePadding.copyWith(top: 0),
-            sliver: BlocBuilder<CustomizeController, CustomizeModel>(
-              builder:
-                  (final BuildContext context, final CustomizeModel model) =>
-                      SliverGrid.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 2.5 / 3.5,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                itemBuilder: (final _, final int index) => CustomizeCard(
-                  cardKey: model.configCards[index].type,
-                  onTap: () async => controller.showCard(
-                    cardType: model.configCards[index].type,
-                    widget: CardDetailsView(
-                      card: model.configCards[index],
-                      onTap: controller.pop,
-                      onButtonTap: controller.modifyCardAmount,
+  Widget build(final BuildContext context) => ScaffoldWidget(
+        padding: EdgeInsets.zero,
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: <Widget>[
+            SliverPersistentHeader(
+              delegate: SliverHeaderDelegateComponent(controller: controller),
+            ),
+            SliverPadding(
+              padding: Constants.pagePadding.copyWith(top: 0),
+              sliver: ListenableBuilder(
+                listenable: controller,
+                builder: (final _, final __) => SliverGrid.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 2.5 / 3.5,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
+                  itemBuilder: (final _, final int index) => CustomizeCard(
+                    cardKey: controller.model.configCards[index].type,
+                    onTap: () async => controller.showCard(
+                      cardType: controller.model.configCards[index].type,
+                      widget: CardDetailsView(
+                        card: controller.model.configCards[index],
+                        onTap: controller.pop,
+                        onButtonTap: controller.modifyCardAmount,
+                      ),
                     ),
                   ),
+                  itemCount: controller.model.configCards.length,
                 ),
-                itemCount: model.configCards.length,
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 }
 
 class CardDetailsView extends StatelessWidget {
@@ -135,9 +132,8 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
 }
 
-abstract class CustomizeController extends Cubit<CustomizeModel> {
-  CustomizeController(super.initialState);
-
+abstract class CustomizeController extends ChangeNotifier {
+  CustomizeModel get model;
   void goBackToHome();
   void showCard({
     required final BeerculesCardType cardType,

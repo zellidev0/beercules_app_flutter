@@ -7,53 +7,51 @@ import 'package:beercules/ui/widgets/beercules_icon_button.dart';
 import 'package:beercules/ui/widgets/playing_card_container.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
 
 class GameView extends StatelessWidget {
+  final GameController controller;
   const GameView({
+    required this.controller,
     super.key,
   });
 
   @override
-  Widget build(final BuildContext context) {
-    final GameController controller = BlocProvider.of<GameController>(context);
-    return BlocBuilder<GameController, GameModel>(
-      builder: (final BuildContext context, final GameModel model) =>
-          ScaffoldWidget(
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            ...model.cards.map(
-              (final GameModelCard card) => card.wasPlayed
-                  ? const SizedBox.shrink()
-                  : GameCard(
-                      card: card,
-                      onSelectCard: (final GameModelCard card) async =>
-                          controller.selectCard(card: card),
-                    ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Row(
-                children: <Widget>[
-                  BeerculesIconButton(
-                    onPressed: controller.goBackToHome,
-                    icon: Icons.arrow_back_ios_rounded,
-                  ),
-                  const Spacer(),
-                  Text(
-                    model.amountOfCardsLeft.toString(),
-                    style: TextStyles.header4,
-                  ),
-                ],
+  Widget build(final BuildContext context) => ListenableBuilder(
+        listenable: controller,
+        builder: (final _, final __) => ScaffoldWidget(
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              ...controller.model.cards.map(
+                (final GameModelCard card) => card.wasPlayed
+                    ? const SizedBox.shrink()
+                    : GameCard(
+                        card: card,
+                        onSelectCard: (final GameModelCard card) async =>
+                            controller.selectCard(card: card),
+                      ),
               ),
-            ),
-          ],
+              Align(
+                alignment: Alignment.topCenter,
+                child: Row(
+                  children: <Widget>[
+                    BeerculesIconButton(
+                      onPressed: controller.goBackToHome,
+                      icon: Icons.arrow_back_ios_rounded,
+                    ),
+                    const Spacer(),
+                    Text(
+                      controller.model.amountOfCardsLeft.toString(),
+                      style: TextStyles.header4,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class GameCard extends StatefulWidget {
@@ -108,9 +106,8 @@ class _GameCardState extends State<GameCard> {
       );
 }
 
-abstract class GameController extends Cubit<GameModel> {
-  GameController(super.initialState);
-
+abstract class GameController extends ChangeNotifier {
+  GameModel get model;
   void pop();
   void dismissCard({required final String cardId});
   Future<void> selectCard({required final GameModelCard card});

@@ -19,23 +19,22 @@ class GameControllerImplementation extends GameController {
       currentCardsStreamSubscription;
   final GameNavigationService navigationService;
   final GamePersistenceService persistenceService;
+  GameModel _state = GameModel(
+    cards: <GameModelCard>[],
+    amountOfCardsLeft: 0,
+    shouldShowContinueDialog: false,
+  );
 
   @override
   GameControllerImplementation({
     required this.navigationService,
     required this.persistenceService,
-  }) : super(
-          GameModel(
-            cards: <GameModelCard>[],
-            amountOfCardsLeft: 0,
-            shouldShowContinueDialog: false,
-          ),
-        ) {
+  }) {
     currentCardsStreamSubscription = persistenceService.currentCardsChangeStream
         .listen((final List<GamePersistenceServiceCard> model) {
       final List<GameModelCard> cards = model.map(_mapToGameModelCard).toList();
-      emit(
-        state.copyWith(
+      _updateStateAndNotifyListeners(
+        _state.copyWith(
           cards: cards,
           amountOfCardsLeft:
               cards.where((final GameModelCard card) => !card.wasPlayed).length,
@@ -45,7 +44,12 @@ class GameControllerImplementation extends GameController {
 
     final bool shouldShowContinueDialog =
         !persistenceService.currentGameHasBeenStarted();
-    emit(state.copyWith(shouldShowContinueDialog: shouldShowContinueDialog));
+    _updateStateAndNotifyListeners(
+      _state.copyWith(
+        shouldShowContinueDialog: shouldShowContinueDialog,
+      ),
+    );
+
     if (shouldShowContinueDialog) {
       scheduleMicrotask(
         () => showFinishDialog(
@@ -63,10 +67,18 @@ class GameControllerImplementation extends GameController {
     }
   }
 
+  void _updateStateAndNotifyListeners(final GameModel model) {
+    _state = model;
+    notifyListeners();
+  }
+
   @override
-  Future<void> close() {
+  GameModel get model => _state;
+
+  @override
+  void dispose() {
     unawaited(currentCardsStreamSubscription?.cancel());
-    return super.close();
+    super.dispose();
   }
 
   GameModelCard _mapToGameModelCard(final GamePersistenceServiceCard card) =>
@@ -80,7 +92,7 @@ class GameControllerImplementation extends GameController {
   @override
   Future<void> dismissCard({required final String cardId}) async {
     navigationService.pop<void>();
-    if (state.cards
+    if (_state.cards
         .where((final GameModelCard card) => !card.wasPlayed)
         .isEmpty) {
       showFinishDialog(
@@ -106,7 +118,7 @@ class GameControllerImplementation extends GameController {
             onTap: () => dismissCard(cardId: card.id),
             showLogo: card.type.isBasicRule(),
             isLastVictimGlass: card.type.isVictimGlass() &&
-                state.cards
+                _state.cards
                         .where(
                           (final _) => _.type.isVictimGlass() && !_.wasPlayed,
                         )
@@ -142,7 +154,9 @@ class GameControllerImplementation extends GameController {
 
   @override
   void pop() {
-    emit(state.copyWith(shouldShowContinueDialog: false));
+    _updateStateAndNotifyListeners(
+      _state.copyWith(shouldShowContinueDialog: false),
+    );
     navigationService.pop<void>();
   }
 

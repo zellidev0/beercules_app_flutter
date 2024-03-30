@@ -8,8 +8,7 @@ import 'package:go_router/go_router.dart';
 class GoRouterNavigationService extends NavigationServiceAggregator {
   final GoRouter _goRouter;
 
-  GoRouterNavigationService(
-    super.initialState, {
+  GoRouterNavigationService({
     required final GoRouter goRouter,
   }) : _goRouter = goRouter;
 

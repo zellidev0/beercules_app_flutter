@@ -16,22 +16,20 @@ class CustomizeControllerImplementation extends CustomizeController {
       persistenceServiceSubscription;
   final CustomizeNavigationService navigationService;
   final CustomizePersistenceService persistenceService;
-
+  CustomizeModel _state = CustomizeModel(
+    selectedCardType: null,
+    configCards: <CustomizeModelCard>[],
+  );
   @override
   CustomizeControllerImplementation({
     required this.navigationService,
     required this.persistenceService,
-  }) : super(
-          CustomizeModel(
-            selectedCardType: null,
-            configCards: <CustomizeModelCard>[],
-          ),
-        ) {
+  }) {
     persistenceServiceSubscription = persistenceService.configCardsChangeStream
         .listen(
             (final List<CustomizePersistenceServiceModelCard> updatedCards) {
-      emit(
-        state.copyWith(
+      _updateStateAndNotifyListeners(
+        _state.copyWith(
           configCards: updatedCards
               .whereNot((final _) => _.type.isBasicRule())
               .map(
@@ -47,10 +45,15 @@ class CustomizeControllerImplementation extends CustomizeController {
     });
   }
 
+  void _updateStateAndNotifyListeners(final CustomizeModel model) {
+    _state = model;
+    notifyListeners();
+  }
+
   @override
-  Future<void> close() {
+  void dispose() {
     unawaited(persistenceServiceSubscription?.cancel());
-    return super.close();
+    super.dispose();
   }
 
   @override
@@ -62,18 +65,18 @@ class CustomizeControllerImplementation extends CustomizeController {
     required final Widget widget,
   }) {
     unawaited(navigationService.showPopup<void>(widget).run());
-    emit(state.copyWith(selectedCardType: cardType));
+    _updateStateAndNotifyListeners(_state.copyWith(selectedCardType: cardType));
   }
 
   @override
   void modifyCardAmount() {
     persistenceService
       ..modifyConfigGameCardsAmount(
-        cardType: state.selectedCardType,
-        amount: ((state.configCards
+        cardType: _state.selectedCardType,
+        amount: ((_state.configCards
                         .firstWhereOrNull(
                           (final CustomizeModelCard card) =>
-                              card.type == state.selectedCardType,
+                              card.type == _state.selectedCardType,
                         )
                         ?.amount ??
                     0) +
@@ -93,4 +96,7 @@ class CustomizeControllerImplementation extends CustomizeController {
 
   @override
   void pop() => navigationService.pop<void>();
+
+  @override
+  CustomizeModel get model => _state;
 }
