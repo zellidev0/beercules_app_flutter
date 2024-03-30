@@ -94,9 +94,11 @@ class Providers {
   final StateNotifierProvider<CustomizeControllerImplementation, CustomizeModel>
       customizeController =
       StateNotifierProvider<CustomizeControllerImplementation, CustomizeModel>(
-    (final StateNotifierProviderRef<CustomizeControllerImplementation,
-                CustomizeModel>
-            ref) =>
+    (
+      final StateNotifierProviderRef<CustomizeControllerImplementation,
+              CustomizeModel>
+          ref,
+    ) =>
         CustomizeControllerImplementation(
       navigationService: ref.read(goRouterNavigationServiceProvider),
       persistenceService: ref.read(providers.beerculesCardProvider.notifier),
