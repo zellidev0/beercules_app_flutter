@@ -64,20 +64,18 @@ class CustomizeControllerImplementation
 
   @override
   void modifyCardAmount() {
-    persistenceService
-      ..modifyConfigGameCardsAmount(
-        cardType: state.selectedCardType,
-        amount: ((state.configCards
-                        .firstWhereOrNull(
-                          (final CustomizeModelCard card) =>
-                              card.type == state.selectedCardType,
-                        )
-                        ?.amount ??
-                    0) +
-                1) %
-            6,
-      )
-      ..resetToConfig();
+    persistenceService.modifyConfigGameCardsAmount(
+      cardType: state.selectedCardType,
+      amount: ((state.configCards
+                      .firstWhereOrNull(
+                        (final CustomizeModelCard card) =>
+                            card.type == state.selectedCardType,
+                      )
+                      ?.amount ??
+                  0) +
+              1) %
+          6,
+    );
   }
 
   @override

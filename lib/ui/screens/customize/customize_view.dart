@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/theme.dart';
@@ -71,24 +73,27 @@ class CardDetailsView extends ConsumerWidget {
     final CustomizeModelCard selected = model.configCards.firstWhere(
       (final CustomizeModelCard card) => card.type == model.selectedCardType,
     );
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        PlayingCard(
-          onTap: _onTap,
-          showLogo: selected.type.isBasicRule(),
-          cardType: selected.type,
-        ),
-        FloatingActionButton(
-          onPressed: _onButtonTap,
-          child: Text(
-            selected.amount.toString(),
-            style: TextStyles.header3.copyWith(
-              color: Theme.of(context).colorScheme.primary,
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          PlayingCard(
+            onTap: _onTap,
+            showLogo: selected.type.isBasicRule(),
+            cardType: selected.type,
+          ),
+          FloatingActionButton(
+            onPressed: _onButtonTap,
+            child: Text(
+              selected.amount.toString(),
+              style: TextStyles.header3.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
