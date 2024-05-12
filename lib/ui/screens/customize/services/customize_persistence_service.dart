@@ -4,14 +4,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'customize_persistence_service.freezed.dart';
 
 abstract class CustomizePersistenceService {
-  void resetToDefaultCards();
-  void resetToConfig();
+  void resetCustomGameToDefaultGame();
+  void resetActiveGameToCustomGame();
   void modifyConfigGameCardsAmount({
     required final BeerculesCardType? cardType,
     required final int amount,
   });
-  Stream<List<CustomizePersistenceServiceModelCard>>
-      get configCardsChangeStream;
+  List<CustomizePersistenceServiceModelCard>? getCustomGame();
+  List<CustomizePersistenceServiceModelCard> getDefaultGame();
 }
 
 @freezed

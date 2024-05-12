@@ -17,36 +17,24 @@ part 'customize_controller.g.dart';
 @riverpod
 class CustomizeControllerImplementation
     extends _$CustomizeControllerImplementation implements CustomizeController {
-  StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
-      persistenceServiceSubscription;
-
   @override
   CustomizeModel build({
     required final CustomizeNavigationService navigationService,
     required final CustomizePersistenceService persistenceService,
   }) {
-    persistenceServiceSubscription = persistenceService.configCardsChangeStream
-        .listen(
-            (final List<CustomizePersistenceServiceModelCard> updatedCards) {
-      state = state.copyWith(
-        configCards: updatedCards
-            .whereNot((final _) => _.type.isBasicRule())
-            .map(
-              (final CustomizePersistenceServiceModelCard card) =>
-                  CustomizeModelCard(
-                type: card.type,
-                amount: card.amount,
-              ),
-            )
-            .toList(),
-      );
-    });
-    ref.onDispose(() {
-      unawaited(persistenceServiceSubscription?.cancel());
-    });
+    List<CustomizePersistenceServiceModelCard>? customGame =
+        persistenceService.getCustomGame();
+    if (customGame == null || customGame.isEmpty) {
+      customGame = persistenceService.getDefaultGame();
+    }
     return CustomizeModel(
       selectedCardType: null,
-      configCards: <CustomizeModelCard>[],
+      cards: customGame
+          .map(
+            (final CustomizePersistenceServiceModelCard card) =>
+                CustomizeModelCard(amount: card.amount, type: card.type),
+          )
+          .toList(),
     );
   }
 
@@ -64,23 +52,34 @@ class CustomizeControllerImplementation
 
   @override
   void modifyCardAmount() {
+    state = state.copyWith(
+      cards: state.cards
+          .map(
+            (final CustomizeModelCard card) =>
+                card.type == state.selectedCardType
+                    ? card.copyWith(amount: (card.amount + 1) % 6)
+                    : card,
+          )
+          .toList(),
+    );
+    if (persistenceService.getCustomGame() == null) {
+      persistenceService.resetCustomGameToDefaultGame();
+    }
     persistenceService.modifyConfigGameCardsAmount(
       cardType: state.selectedCardType,
-      amount: ((state.configCards
-                      .firstWhereOrNull(
-                        (final CustomizeModelCard card) =>
-                            card.type == state.selectedCardType,
-                      )
-                      ?.amount ??
-                  0) +
-              1) %
-          6,
+      amount: state.cards
+              .firstWhereOrNull(
+                (final CustomizeModelCard card) =>
+                    card.type == state.selectedCardType,
+              )
+              ?.amount ??
+          0,
     );
   }
 
   @override
   void restoreDefault() {
-    persistenceService.resetToDefaultCards();
+    persistenceService.resetCustomGameToDefaultGame();
     navigationService.showSnackBar(
       LocaleKeys.config_view_restoredDefault.tr(),
     );

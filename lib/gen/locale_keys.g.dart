@@ -35,6 +35,10 @@ abstract class  LocaleKeys {
   static const game_view_continue_header = 'game_view.continue.header';
   static const game_view_continue_yes = 'game_view.continue.yes';
   static const game_view_continue_no = 'game_view.continue.no';
+  static const game_view_config_game_question = 'game_view.config_game.question';
+  static const game_view_config_game_header = 'game_view.config_game.header';
+  static const game_view_config_game_yes = 'game_view.config_game.yes';
+  static const game_view_config_game_no = 'game_view.config_game.no';
   static const game_view_finish_question = 'game_view.finish.question';
   static const game_view_finish_header = 'game_view.finish.header';
   static const game_view_finish_yes = 'game_view.finish.yes';

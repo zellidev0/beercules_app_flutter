@@ -111,7 +111,7 @@ abstract class GameController {
   void dismissCard({required final String cardId});
   Future<void> selectCard({required final GameModelCard card});
   void goBackToHome();
-  void showFinishDialog({
+  void showDialog({
     required final void Function() onConfirmPressed,
     required final void Function() onCancelPressed,
     required final String confirmText,
@@ -119,6 +119,4 @@ abstract class GameController {
     required final String headerText,
     required final String descriptionText,
   });
-  void newGame();
-  void showCustomizedCardActiveSnackbar();
 }

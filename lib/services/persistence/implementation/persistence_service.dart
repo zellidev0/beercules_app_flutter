@@ -1,27 +1,22 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:beercules/common/beercules_card_type.dart';
-import 'package:beercules/common/utils.dart';
+import 'package:beercules/services/persistence/implementation/database/database.dart';
+import 'package:beercules/services/persistence/implementation/database/shared_prefs_database.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
-import 'package:beercules/services/persistence/persistence_service_model.dart';
 import 'package:beercules/ui/screens/customize/services/customize_persistence_service.dart';
+
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
-import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:rxdart/rxdart.dart';
 
 part 'persistence_service.g.dart';
-
-typedef ConfigCard = PersistenceServiceModelConfigCard;
-typedef ActiveGameCard = PersistenceServiceModelActiveGameCard;
 
 @Riverpod(keepAlive: true)
 PersistenceServiceAggregator persistenceService(
   final PersistenceServiceRef ref,
 ) =>
     PersistenceService(
-      initialCards: <BeerculesCardType, int>{
+      database: ref.watch(sharedPrefsDatabaseProvider),
+      defaultCards: <BeerculesCardType, int>{
         BeerculesCardType.abstimmung: 3,
         BeerculesCardType.alleFuerEinen: 1,
         BeerculesCardType.aufzaehlung: 3,
@@ -55,139 +50,112 @@ PersistenceServiceAggregator persistenceService(
         BeerculesCardType.basicRule1: 1,
         BeerculesCardType.basicRule2: 1,
         BeerculesCardType.basicRule3: 1,
-      }
-          .entries
-          .map(
-            (final MapEntry<BeerculesCardType, int> entry) =>
-                PersistenceServiceModelConfigCard(
-              type: entry.key,
-              amount: entry.value,
-            ),
-          )
-          .toList(),
+      },
     );
 
 class PersistenceService extends PersistenceServiceAggregator {
-  final List<ConfigCard> defaultBeerculesCards;
-  final BehaviorSubject<List<CustomizePersistenceServiceModelCard>>
-      configCardsChangeSubject;
-  final BehaviorSubject<List<GamePersistenceServiceCard>>
-      currentCardsChangeSubject;
+  final Map<BeerculesCardType, int> defaultBeerculesCards;
 
+  final Database database;
   PersistenceService({
-    required final List<ConfigCard> initialCards,
-  })  : defaultBeerculesCards = initialCards,
-        configCardsChangeSubject =
-            BehaviorSubject<List<CustomizePersistenceServiceModelCard>>(),
-        currentCardsChangeSubject =
-            BehaviorSubject<List<GamePersistenceServiceCard>>(),
-        super(
-          PersistenceServiceModel(
-            configCards: initialCards,
-            currentGameCards: _initCurrentCards(initialCards),
-          ),
-        ) {
-    emitStateChange();
-    addListener((final _) => emitStateChange());
-  }
+    required final Map<BeerculesCardType, int> defaultCards,
+    required this.database,
+  })  : defaultBeerculesCards = defaultCards,
+        super();
 
-  static List<ConfigCard> shuffleCards({
-    required final List<ConfigCard> cards,
-  }) =>
-      <ConfigCard>[
-        ...shuffle(
-          Random().nextInt(10),
-          cards.where((final _) => !_.type.isBasicRule()).toList(),
-        ),
-        ...cards.where((final _) => _.type.isBasicRule()),
-      ];
+  // static List<ConfigCard> shuffleCards({
+  //   required final List<ConfigCard> cards,
+  // }) =>
+  //     <ConfigCard>[
+  //       ...shuffle(
+  //         Random().nextInt(10),
+  //         cards.where((final _) => !_.type.isBasicRule()).toList(),
+  //       ),
+  //       ...cards.where((final _) => _.type.isBasicRule()),
+  //     ];
 
-  void emitStateChange() {
-    configCardsChangeSubject.add(
-      state.configCards
-          .map(
-            (final ConfigCard card) => CustomizePersistenceServiceModelCard(
-              type: card.type,
-              amount: card.amount,
-            ),
-          )
-          .toList(),
-    );
-    currentCardsChangeSubject.add(
-      state.currentGameCards
-          .map(
-            (final ActiveGameCard card) => GamePersistenceServiceCard(
-              id: card.id,
-              type: card.type,
-              wasPlayed: card.wasPlayed,
-            ),
-          )
-          .toList(),
-    );
-  }
+  // static List<ActiveGameCard> _initCurrentCards(
+  //   final List<ConfigCard> cards,
+  // ) {
+  //   final List<ActiveGameCard> newCards = cards
+  //       .map(
+  //         (final ConfigCard card) =>
+  //             List<({ConfigCard card, int index})>.generate(
+  //           card.amount,
+  //           (final int index) => (index: index, card: card),
+  //         ),
+  //       )
+  //       .expand((final _) => _)
+  //       .map(
+  //         (final ({ConfigCard card, int index}) card) => ActiveGameCard(
+  //           type: card.card.type,
+  //           wasPlayed: false,
+  //           id: card.card.type.toString() + card.index.toString(),
+  //         ),
+  //       )
+  //       .toList();
+  //   return <ActiveGameCard>[
+  //     ...shuffle(
+  //       Random().nextInt(100),
+  //       newCards
+  //           .where((final ActiveGameCard card) => !card.type.isBasicRule())
+  //           .toList(),
+  //     ),
+  //     ...newCards.where((final ActiveGameCard card) => card.type.isBasicRule()),
+  //   ];
+  // }
 
-  static List<ActiveGameCard> _initCurrentCards(
-    final List<ConfigCard> cards,
-  ) {
-    final List<ActiveGameCard> newCards = cards
-        .map(
-          (final ConfigCard card) =>
-              List<({ConfigCard card, int index})>.generate(
-            card.amount,
-            (final int index) => (index: index, card: card),
-          ),
-        )
-        .expand((final _) => _)
-        .map(
-          (final ({ConfigCard card, int index}) card) => ActiveGameCard(
-            type: card.card.type,
-            wasPlayed: false,
-            id: card.card.type.toString() + card.index.toString(),
-          ),
-        )
-        .toList();
-    return <ActiveGameCard>[
-      ...shuffle(
-        Random().nextInt(100),
-        newCards
-            .where((final ActiveGameCard card) => !card.type.isBasicRule())
-            .toList(),
+  @override
+  void resetActiveGameToDefaultGame() {
+    unawaited(
+      database.saveActiveGame(
+        mapToDatabaseCard(defaultBeerculesCards).toList(),
       ),
-      ...newCards.where((final ActiveGameCard card) => card.type.isBasicRule()),
-    ];
-  }
-
-  @override
-  void setCurrentToDefault() {
-    state = state.copyWith(
-      currentGameCards: _initCurrentCards(defaultBeerculesCards),
     );
   }
 
   @override
-  void resetToDefaultCards() {
-    state = state.copyWith(
-      configCards: defaultBeerculesCards,
+  void resetCustomGameToDefaultGame() {
+    unawaited(
+      database.saveCustomCards(
+        mapToDatabaseCard(defaultBeerculesCards).toList(),
+      ),
     );
   }
 
+  Iterable<DatabaseCard> mapToDatabaseCard(
+    final Map<BeerculesCardType, int> cards,
+  ) =>
+      cards.entries.map(
+        (final MapEntry<BeerculesCardType, int> entry) => DatabaseCard(
+          type: entry.key,
+          amount: entry.value,
+        ),
+      );
+
   @override
-  void resetToConfig() {
-    state = state.copyWith(
-      currentGameCards: _initCurrentCards(state.configCards),
-    );
+  void resetActiveGameToCustomGame() {
+    final List<DatabaseCard>? cards = database.readCustomCards();
+    if (cards != null) {
+      unawaited(database.saveActiveGame(cards));
+    }
   }
 
   @override
-  void decreaseCurrentGameCardsAmount({required final String cardId}) {
-    state = state.copyWith(
-      currentGameCards: state.currentGameCards
-          .map(
-            (final ActiveGameCard card) =>
-                card.id == cardId ? card.copyWith(wasPlayed: true) : card,
-          )
-          .toList(),
-    );
+  void decreaseActiveGameCardAmountByOne(final BeerculesCardType type) {
+    final List<DatabaseCard>? active = database.readActiveGame();
+    if (active != null) {
+      unawaited(
+        database.saveActiveGame(
+          active.map((final DatabaseCard card) {
+            if (card.type == type) {
+              return card.copyWith(amount: card.amount - 1);
+            }
+            return card;
+          }).toList(),
+        ),
+      );
+    }
   }
 
   @override
@@ -195,29 +163,77 @@ class PersistenceService extends PersistenceServiceAggregator {
     required final BeerculesCardType? cardType,
     required final int amount,
   }) {
-    state = state.copyWith(
-      configCards: state.configCards
-          .map(
-            (final ConfigCard card) =>
-                card.type == cardType ? card.copyWith(amount: amount) : card,
-          )
-          .toList(),
+    final List<DatabaseCard>? cards = database.readCustomCards();
+    if (cards != null) {
+      unawaited(
+        database.saveCustomCards(
+          cards.map((final DatabaseCard card) {
+            if (card.type == cardType) {
+              return card.copyWith(amount: amount);
+            }
+            return card;
+          }).toList(),
+        ),
+      );
+    }
+  }
+
+  @override
+  GamePersistenceServiceGame? activeGame() =>
+      convertToGamePersistenceServiceGame(
+        database.readActiveGame(),
+      );
+
+  GamePersistenceServiceGame? convertToGamePersistenceServiceGame(
+    final List<DatabaseCard>? cards,
+  ) {
+    final Map<BeerculesCardType, int>? game =
+        cards?.fold<Map<BeerculesCardType, int>>(
+      <BeerculesCardType, int>{},
+      (final Map<BeerculesCardType, int> map, final DatabaseCard card) {
+        map[card.type] = card.amount;
+        return map;
+      },
+    );
+    if (game == null) {
+      return null;
+    }
+    return GamePersistenceServiceGame(
+      cardToAmountMapping: game,
     );
   }
 
   @override
-  bool currentGameHasBeenStarted() =>
-      state.currentGameCards.where((final _) => _.wasPlayed).isEmpty;
+  GamePersistenceServiceGame? customGame() =>
+      convertToGamePersistenceServiceGame(
+        database.readCustomCards(),
+      );
 
   @override
-  bool configDiffersFromDefault() =>
-      !listEquals(state.configCards, defaultBeerculesCards);
+  GamePersistenceServiceGame defaultGame() => GamePersistenceServiceGame(
+        cardToAmountMapping: defaultBeerculesCards,
+      );
 
   @override
-  Stream<List<CustomizePersistenceServiceModelCard>>
-      get configCardsChangeStream => configCardsChangeSubject.stream;
+  List<CustomizePersistenceServiceModelCard>? getCustomGame() => database
+      .readCustomCards()
+      ?.map(
+        (final DatabaseCard card) => CustomizePersistenceServiceModelCard(
+          amount: card.amount,
+          type: card.type,
+        ),
+      )
+      .toList();
 
   @override
-  Stream<List<GamePersistenceServiceCard>> get currentCardsChangeStream =>
-      currentCardsChangeSubject.stream;
+  List<CustomizePersistenceServiceModelCard> getDefaultGame() =>
+      defaultBeerculesCards.entries
+          .map(
+            (final MapEntry<BeerculesCardType, int> entry) =>
+                CustomizePersistenceServiceModelCard(
+              amount: entry.value,
+              type: entry.key,
+            ),
+          )
+          .toList();
 }
