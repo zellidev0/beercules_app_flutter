@@ -1,6 +1,7 @@
 import 'package:beercules/common/theme.dart';
 import 'package:beercules/firebase_options.dart';
 import 'package:beercules/go_router.dart';
+import 'package:beercules/services/persistence/implementation/database/shared_prefs_database.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +11,20 @@ import 'package:responsive_framework/responsive_framework.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  final ProviderContainer providerContainer = ProviderContainer();
+  await providerContainer.read(sharedPrefsDatabaseProvider).init();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(await buildApp());
+  runApp(await buildApp(providerContainer: providerContainer));
 }
 
-Future<Widget> buildApp() async => ProviderScope(
+Future<Widget> buildApp({
+  required final ProviderContainer providerContainer,
+}) async =>
+    UncontrolledProviderScope(
+      container: providerContainer,
       child: Consumer(
         builder: (final _, final WidgetRef ref, final __) => EasyLocalization(
           supportedLocales: const <Locale>[Locale('en'), Locale('de')],

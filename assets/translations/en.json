@@ -58,6 +58,12 @@
       "yes": "Yes",
       "no": "No"
     },
+    "config_game": {
+      "question": "Play with your customized cards?",
+      "header": "Customize?",
+      "yes": "Yes",
+      "no": "No"
+    },
     "finish": {
       "question": "Would you like to play another round?",
       "header": "Another round?",

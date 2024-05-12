@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:math';
 
+import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/ui/screens/game/game_model.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
@@ -12,6 +13,7 @@ import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'game_controller.g.dart';
@@ -20,32 +22,105 @@ part 'game_controller.g.dart';
 class GameControllerImplementation extends _$GameControllerImplementation
     implements GameController {
   static final int cardTransformSeed = Random().nextInt(10);
-  StreamSubscription<List<GamePersistenceServiceCard>>?
-      currentCardsStreamSubscription;
 
   @override
   GameModel build({
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
   }) {
-    currentCardsStreamSubscription = persistenceService.currentCardsChangeStream
-        .listen((final List<GamePersistenceServiceCard> model) {
-      final List<GameModelCard> cards = model.map(_mapToGameModelCard).toList();
-      state = state.copyWith(
-        cards: cards,
-        amountOfCardsLeft:
-            cards.where((final GameModelCard card) => !card.wasPlayed).length,
+    final GamePersistenceServiceGame? storedActiveGame =
+        persistenceService.activeGame();
+    final GamePersistenceServiceGame? storedCustomGame =
+        persistenceService.customGame();
+    if (storedActiveGame == null) {
+      if (storedCustomGame == null) {
+        final List<GameModelCard> cards =
+            _mapToGameModelCard(persistenceService.defaultGame());
+        persistenceService.resetActiveGameToDefaultGame();
+        return GameModel(
+          cards: cards,
+          amountOfCardsLeft: cards.length,
+        );
+      } else {
+        showConfigVsDefaultDialog(storedCustomGame);
+      }
+    } else {
+      if (storedCustomGame == null) {
+        showContinueDialog(storedActiveGame, null);
+      } else {
+        showContinueDialog(storedActiveGame, storedCustomGame);
+      }
+    }
+
+    return GameModel(
+      cards: <GameModelCard>[],
+      amountOfCardsLeft: 0,
+    );
+  }
+
+  bool activeGameExists() =>
+      activeGameDiffersFromDefault() && activeGameDiffersFromCustom();
+
+  bool activeGameDiffersFromDefault() => !gamesAreEqual(
+        persistenceService.defaultGame(),
+        persistenceService.activeGame(),
       );
-    });
-    final bool shouldShowContinueDialog =
-        !persistenceService.currentGameHasBeenStarted();
-    if (shouldShowContinueDialog) {
+
+  bool activeGameDiffersFromCustom() => !gamesAreEqual(
+        persistenceService.customGame(),
+        persistenceService.activeGame(),
+      );
+
+  bool customizeGameDiffersFromCustom() => !gamesAreEqual(
+        persistenceService.customGame(),
+        persistenceService.defaultGame(),
+      );
+
+  bool gamesAreEqual(
+    final GamePersistenceServiceGame? game1,
+    final GamePersistenceServiceGame? game2,
+  ) {
+    if (game1 == null || game2 == null) {
+      return false;
+    }
+    final Map<BeerculesCardType, int> game1Map = game1.cardToAmountMapping;
+    final Map<BeerculesCardType, int> game2Map = game2.cardToAmountMapping;
+    return game1Map.keys == game2Map.keys &&
+        game1Map.keys.every(
+          (final BeerculesCardType key) =>
+              game1Map[key] == game2Map[key] &&
+              game1Map[key] != null &&
+              game2Map[key] != null,
+        );
+  }
+
+  void showContinueDialog(
+    final GamePersistenceServiceGame activeGame,
+    final GamePersistenceServiceGame? customGame,
+  ) =>
       scheduleMicrotask(
-        () => showFinishDialog(
-          onConfirmPressed: pop,
+        () => showDialog(
+          onConfirmPressed: () {
+            final List<GameModelCard> cards = _mapToGameModelCard(activeGame);
+            state = state.copyWith(
+              cards: cards,
+              amountOfCardsLeft: cards.length,
+            );
+            pop();
+          },
           onCancelPressed: () {
-            newGame();
-            showCustomizedCardActiveSnackbar();
+            pop();
+            final List<GameModelCard> cards =
+                _mapToGameModelCard(persistenceService.defaultGame());
+            if (customGame == null) {
+              persistenceService.resetActiveGameToDefaultGame();
+              state = state.copyWith(
+                cards: cards,
+                amountOfCardsLeft: cards.length,
+              );
+            } else {
+              showConfigVsDefaultDialog(customGame);
+            }
           },
           confirmText: LocaleKeys.game_view_continue_yes.tr(),
           declineText: LocaleKeys.game_view_continue_no.tr(),
@@ -53,24 +128,44 @@ class GameControllerImplementation extends _$GameControllerImplementation
           descriptionText: LocaleKeys.game_view_continue_question.tr(),
         ),
       );
-    }
-    ref.onDispose(() {
-      unawaited(currentCardsStreamSubscription?.cancel());
-    });
-    return GameModel(
-      cards: <GameModelCard>[],
-      amountOfCardsLeft: 0,
-      shouldShowContinueDialog: shouldShowContinueDialog,
-    );
-  }
 
-  GameModelCard _mapToGameModelCard(final GamePersistenceServiceCard card) =>
-      GameModelCard(
-        transformationAngle: cardTransformSeed + card.id.hashCode,
-        type: card.type,
-        wasPlayed: card.wasPlayed,
-        id: card.id,
+  void showConfigVsDefaultDialog(final GamePersistenceServiceGame customGame) =>
+      scheduleMicrotask(
+        () => showDialog(
+          onConfirmPressed: () {
+            newConfigGame(customGame);
+            pop();
+          },
+          onCancelPressed: () {
+            newDefaultGame();
+            pop();
+          },
+          confirmText: LocaleKeys.game_view_config_game_yes.tr(),
+          declineText: LocaleKeys.game_view_config_game_no.tr(),
+          headerText: LocaleKeys.game_view_config_game_header.tr(),
+          descriptionText: LocaleKeys.game_view_config_game_question.tr(),
+        ),
       );
+
+  List<GameModelCard> _mapToGameModelCard(
+    final GamePersistenceServiceGame game,
+  ) =>
+      game.cardToAmountMapping.entries
+          .map(
+            (final MapEntry<BeerculesCardType, int> entry) =>
+                List<GameModelCard>.generate(
+              entry.value,
+              (final int index) => GameModelCard(
+                transformationAngle:
+                    cardTransformSeed + entry.key.hashCode + index,
+                type: entry.key,
+                wasPlayed: false,
+                id: '$entry.key$index',
+              ),
+            ),
+          )
+          .flatten
+          .toList();
 
   @override
   Future<void> dismissCard({required final String cardId}) async {
@@ -78,12 +173,17 @@ class GameControllerImplementation extends _$GameControllerImplementation
     if (state.cards
         .where((final GameModelCard card) => !card.wasPlayed)
         .isEmpty) {
-      showFinishDialog(
-        onConfirmPressed: newGame,
-        onCancelPressed: () {
-          newGame();
-          goBackToHome();
+      showDialog(
+        onConfirmPressed: () {
+          final GamePersistenceServiceGame? customGame =
+              persistenceService.customGame();
+          if (customGame != null) {
+            showConfigVsDefaultDialog(customGame);
+          } else {
+            newDefaultGame();
+          }
         },
+        onCancelPressed: goBackToHome,
         confirmText: LocaleKeys.game_view_finish_yes.tr(),
         declineText: LocaleKeys.game_view_finish_no.tr(),
         headerText: LocaleKeys.game_view_finish_header.tr(),
@@ -94,7 +194,17 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   @override
   Future<void> selectCard({required final GameModelCard card}) async {
-    persistenceService.decreaseCurrentGameCardsAmount(cardId: card.id);
+    state = state.copyWith(
+      // cards: state.cards
+      //     .map(
+      //       (final GameModelCard currentCard) => currentCard.id == card.id
+      //           ? currentCard.copyWith(wasPlayed: true)
+      //           : currentCard,
+      //     )
+      //     .toList(),
+      amountOfCardsLeft: state.amountOfCardsLeft - 1,
+    );
+    persistenceService.decreaseActiveGameCardAmountByOne(card.type);
     await navigationService
         .showPopup<void>(
           PlayingCard(
@@ -113,23 +223,23 @@ class GameControllerImplementation extends _$GameControllerImplementation
         .run();
   }
 
-  @override
-  void newGame() {
-    if (persistenceService.configDiffersFromDefault()) {
-      persistenceService.resetToConfig();
-    } else {
-      persistenceService.setCurrentToDefault();
-    }
-    pop();
+  void newDefaultGame() {
+    final List<GameModelCard> cards =
+        _mapToGameModelCard(persistenceService.defaultGame());
+    state = state.copyWith(
+      cards: cards,
+      amountOfCardsLeft: cards.length,
+    );
+    persistenceService.resetActiveGameToDefaultGame();
   }
 
-  @override
-  void showCustomizedCardActiveSnackbar() {
-    if (persistenceService.configDiffersFromDefault()) {
-      navigationService.showSnackBar(
-        LocaleKeys.game_view_customize_cards_used.tr(),
-      );
-    }
+  void newConfigGame(final GamePersistenceServiceGame customGame) {
+    final List<GameModelCard> cards = _mapToGameModelCard(customGame);
+    state = state.copyWith(
+      cards: cards,
+      amountOfCardsLeft: cards.length,
+    );
+    persistenceService.resetActiveGameToCustomGame();
   }
 
   @override
@@ -137,12 +247,11 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   @override
   void pop() {
-    state = state.copyWith(shouldShowContinueDialog: false);
     navigationService.pop<void>();
   }
 
   @override
-  void showFinishDialog({
+  void showDialog({
     required final void Function() onConfirmPressed,
     required final void Function() onCancelPressed,
     required final String confirmText,

@@ -8,7 +8,6 @@ class GameModel with _$GameModel {
   factory GameModel({
     required final List<GameModelCard> cards,
     required final int amountOfCardsLeft,
-    required final bool shouldShowContinueDialog,
   }) = _GameModel;
 }
 

@@ -58,6 +58,12 @@
       "yes": "Ja",
       "no": "Nein"
     },
+    "config_game": {
+      "question": "Möchtest du mit deinen gespeicherte Karten spielen?",
+      "header": "Achtung!",
+      "yes": "Ja",
+      "no": "Nein, mit dem Standard"
+    },
     "finish": {
       "question": "Möchtest du noch eine Runde spielen?",
       "header": "Noch 'ne Runde?",

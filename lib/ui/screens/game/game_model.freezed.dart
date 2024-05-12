@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GameModel {
   List<GameModelCard> get cards => throw _privateConstructorUsedError;
   int get amountOfCardsLeft => throw _privateConstructorUsedError;
-  bool get shouldShowContinueDialog => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameModelCopyWith<GameModel> get copyWith =>
@@ -30,10 +29,7 @@ abstract class $GameModelCopyWith<$Res> {
   factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
       _$GameModelCopyWithImpl<$Res, GameModel>;
   @useResult
-  $Res call(
-      {List<GameModelCard> cards,
-      int amountOfCardsLeft,
-      bool shouldShowContinueDialog});
+  $Res call({List<GameModelCard> cards, int amountOfCardsLeft});
 }
 
 /// @nodoc
@@ -51,7 +47,6 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
   $Res call({
     Object? cards = null,
     Object? amountOfCardsLeft = null,
-    Object? shouldShowContinueDialog = null,
   }) {
     return _then(_value.copyWith(
       cards: null == cards
@@ -62,10 +57,6 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
               as int,
-      shouldShowContinueDialog: null == shouldShowContinueDialog
-          ? _value.shouldShowContinueDialog
-          : shouldShowContinueDialog // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -78,10 +69,7 @@ abstract class _$$GameModelImplCopyWith<$Res>
       __$$GameModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<GameModelCard> cards,
-      int amountOfCardsLeft,
-      bool shouldShowContinueDialog});
+  $Res call({List<GameModelCard> cards, int amountOfCardsLeft});
 }
 
 /// @nodoc
@@ -97,7 +85,6 @@ class __$$GameModelImplCopyWithImpl<$Res>
   $Res call({
     Object? cards = null,
     Object? amountOfCardsLeft = null,
-    Object? shouldShowContinueDialog = null,
   }) {
     return _then(_$GameModelImpl(
       cards: null == cards
@@ -108,10 +95,6 @@ class __$$GameModelImplCopyWithImpl<$Res>
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
               as int,
-      shouldShowContinueDialog: null == shouldShowContinueDialog
-          ? _value.shouldShowContinueDialog
-          : shouldShowContinueDialog // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -121,8 +104,7 @@ class __$$GameModelImplCopyWithImpl<$Res>
 class _$GameModelImpl implements _GameModel {
   _$GameModelImpl(
       {required final List<GameModelCard> cards,
-      required this.amountOfCardsLeft,
-      required this.shouldShowContinueDialog})
+      required this.amountOfCardsLeft})
       : _cards = cards;
 
   final List<GameModelCard> _cards;
@@ -135,12 +117,10 @@ class _$GameModelImpl implements _GameModel {
 
   @override
   final int amountOfCardsLeft;
-  @override
-  final bool shouldShowContinueDialog;
 
   @override
   String toString() {
-    return 'GameModel(cards: $cards, amountOfCardsLeft: $amountOfCardsLeft, shouldShowContinueDialog: $shouldShowContinueDialog)';
+    return 'GameModel(cards: $cards, amountOfCardsLeft: $amountOfCardsLeft)';
   }
 
   @override
@@ -150,18 +130,12 @@ class _$GameModelImpl implements _GameModel {
             other is _$GameModelImpl &&
             const DeepCollectionEquality().equals(other._cards, _cards) &&
             (identical(other.amountOfCardsLeft, amountOfCardsLeft) ||
-                other.amountOfCardsLeft == amountOfCardsLeft) &&
-            (identical(
-                    other.shouldShowContinueDialog, shouldShowContinueDialog) ||
-                other.shouldShowContinueDialog == shouldShowContinueDialog));
+                other.amountOfCardsLeft == amountOfCardsLeft));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_cards),
-      amountOfCardsLeft,
-      shouldShowContinueDialog);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_cards), amountOfCardsLeft);
 
   @JsonKey(ignore: true)
   @override
@@ -173,15 +147,12 @@ class _$GameModelImpl implements _GameModel {
 abstract class _GameModel implements GameModel {
   factory _GameModel(
       {required final List<GameModelCard> cards,
-      required final int amountOfCardsLeft,
-      required final bool shouldShowContinueDialog}) = _$GameModelImpl;
+      required final int amountOfCardsLeft}) = _$GameModelImpl;
 
   @override
   List<GameModelCard> get cards;
   @override
   int get amountOfCardsLeft;
-  @override
-  bool get shouldShowContinueDialog;
   @override
   @JsonKey(ignore: true)
   _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>

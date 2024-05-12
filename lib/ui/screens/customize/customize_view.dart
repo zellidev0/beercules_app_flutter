@@ -39,16 +39,16 @@ class CustomizeView extends ConsumerWidget {
                 mainAxisSpacing: 8,
               ),
               itemBuilder: (final _, final int index) => CustomizeCard(
-                cardKey: model.configCards[index].type,
+                cardKey: model.cards[index].type,
                 onTap: () async => controller.showCard(
-                  cardType: model.configCards[index].type,
+                  cardType: model.cards[index].type,
                   widget: CardDetailsView(
                     onTap: controller.pop,
                     onButtonTap: controller.modifyCardAmount,
                   ),
                 ),
               ),
-              itemCount: model.configCards.length,
+              itemCount: model.cards.length,
             ),
           ),
         ],
@@ -70,7 +70,7 @@ class CardDetailsView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     final CustomizeModel model = ref.watch(customizeModelProvider);
-    final CustomizeModelCard selected = model.configCards.firstWhere(
+    final CustomizeModelCard selected = model.cards.firstWhere(
       (final CustomizeModelCard card) => card.type == model.selectedCardType,
     );
     return BackdropFilter(

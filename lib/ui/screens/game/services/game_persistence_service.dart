@@ -4,19 +4,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'game_persistence_service.freezed.dart';
 
 abstract class GamePersistenceService {
-  void setCurrentToDefault();
-  void resetToConfig();
-  void decreaseCurrentGameCardsAmount({required final String cardId});
-  bool currentGameHasBeenStarted();
-  bool configDiffersFromDefault();
-  Stream<List<GamePersistenceServiceCard>> get currentCardsChangeStream;
+  GamePersistenceServiceGame defaultGame();
+  GamePersistenceServiceGame? customGame();
+  GamePersistenceServiceGame? activeGame();
+
+  void resetActiveGameToDefaultGame();
+  void resetActiveGameToCustomGame();
+  void decreaseActiveGameCardAmountByOne(final BeerculesCardType type);
 }
 
 @freezed
-class GamePersistenceServiceCard with _$GamePersistenceServiceCard {
-  factory GamePersistenceServiceCard({
-    required final BeerculesCardType type,
-    required final bool wasPlayed,
-    required final String id,
-  }) = _GamePersistenceServiceCard;
+class GamePersistenceServiceGame with _$GamePersistenceServiceGame {
+  factory GamePersistenceServiceGame({
+    required final Map<BeerculesCardType, int> cardToAmountMapping,
+  }) = _GamePersistenceServiceGame;
 }
