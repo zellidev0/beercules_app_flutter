@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:beercules/common/beercules_card_type.dart';
-import 'package:beercules/common/utils.dart';
 import 'package:beercules/services/persistence/implementation/database/database.dart';
 import 'package:beercules/services/persistence/implementation/database/shared_prefs_database.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
@@ -96,7 +95,8 @@ class PersistenceService extends PersistenceServiceAggregator {
 
   @override
   Future<void> decreaseActiveGameCardAmountByOne(
-      final BeerculesCardType type) async {
+    final BeerculesCardType type,
+  ) async {
     final List<DatabaseCard>? active = database.readActiveGame();
     if (active != null) {
       await database.saveActiveGame(

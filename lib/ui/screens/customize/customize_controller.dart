@@ -21,7 +21,10 @@ class CustomizeControllerImplementation
   CustomizeModel build({
     required final CustomizeNavigationService navigationService,
     required final CustomizePersistenceService persistenceService,
-  }) {
+  }) =>
+      initCustomGame();
+
+  CustomizeModel initCustomGame() {
     List<CustomizePersistenceServiceModelCard>? customGame =
         persistenceService.getCustomGame();
     if (customGame == null || customGame.isEmpty) {
@@ -29,12 +32,7 @@ class CustomizeControllerImplementation
     }
     return CustomizeModel(
       selectedCardType: null,
-      cards: customGame
-          .map(
-            (final CustomizePersistenceServiceModelCard card) =>
-                CustomizeModelCard(amount: card.amount, type: card.type),
-          )
-          .toList(),
+      cards: mapToModel(customGame),
     );
   }
 
@@ -51,7 +49,7 @@ class CustomizeControllerImplementation
   }
 
   @override
-  void modifyCardAmount() {
+  Future<void> modifyCardAmount() async {
     state = state.copyWith(
       cards: state.cards
           .map(
@@ -63,9 +61,9 @@ class CustomizeControllerImplementation
           .toList(),
     );
     if (persistenceService.getCustomGame() == null) {
-      persistenceService.resetCustomGameToDefaultGame();
+      await persistenceService.resetCustomGameToDefaultGame();
     }
-    persistenceService.modifyConfigGameCardsAmount(
+    await persistenceService.modifyConfigGameCardsAmount(
       cardType: state.selectedCardType,
       amount: state.cards
               .firstWhereOrNull(
@@ -78,8 +76,9 @@ class CustomizeControllerImplementation
   }
 
   @override
-  void restoreDefault() {
-    persistenceService.resetCustomGameToDefaultGame();
+  Future<void> restoreDefault() async {
+    await persistenceService.resetCustomGameToDefaultGame();
+    state = initCustomGame();
     navigationService.showSnackBar(
       LocaleKeys.config_view_restoredDefault.tr(),
     );
@@ -87,4 +86,20 @@ class CustomizeControllerImplementation
 
   @override
   void pop() => navigationService.pop<void>();
+
+  List<CustomizeModelCard> mapToModel(
+    final List<CustomizePersistenceServiceModelCard> cards,
+  ) =>
+      cards
+          .map(
+            (final CustomizePersistenceServiceModelCard card) =>
+                CustomizeModelCard(amount: card.amount, type: card.type),
+          )
+          .where(
+            (final CustomizeModelCard card) =>
+                card.type != BeerculesCardType.basicRule1 &&
+                card.type != BeerculesCardType.basicRule2 &&
+                card.type != BeerculesCardType.basicRule3,
+          )
+          .toList();
 }
