@@ -48,6 +48,7 @@ Future<Widget> buildApp({
                 ],
               ),
               theme: ThemeData(
+                useMaterial3: true,
                 colorScheme: ColorScheme.fromSeed(
                   seedColor: BeerculesColors.primary,
                   secondary: BeerculesColors.accent,
