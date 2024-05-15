@@ -38,13 +38,16 @@ class CustomizeView extends ConsumerWidget {
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
               ),
-              itemBuilder: (final _, final int index) => CustomizeCard(
-                cardKey: model.cards[index].type,
-                onTap: () async => controller.showCard(
-                  cardType: model.cards[index].type,
-                  widget: CardDetailsView(
-                    onTap: controller.pop,
-                    onButtonTap: controller.modifyCardAmount,
+              itemBuilder: (final _, final int index) => Opacity(
+                opacity: model.cards[index].amount < 1 ? 0.5 : 1,
+                child: CustomizeCard(
+                  cardKey: model.cards[index].type,
+                  onTap: () async => controller.showCard(
+                    cardType: model.cards[index].type,
+                    widget: CardDetailsView(
+                      onTap: controller.pop,
+                      onButtonTap: controller.modifyCardAmount,
+                    ),
                   ),
                 ),
               ),
@@ -111,21 +114,18 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
     final double shrinkOffset,
     final bool overlapsContent,
   ) =>
-      Padding(
-        padding: Constants.pagePadding,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            BeerculesIconButton(
-              onPressed: controller.goBackToHome,
-              icon: Icons.arrow_back_ios_rounded,
-            ),
-            BeerculesIconButton(
-              onPressed: controller.restoreDefault,
-              icon: Icons.restore,
-            ),
-          ],
-        ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          BeerculesIconButton(
+            onPressed: controller.goBackToHome,
+            icon: Icons.arrow_back_ios_rounded,
+          ),
+          BeerculesIconButton(
+            onPressed: controller.restoreDefault,
+            icon: Icons.restore,
+          ),
+        ],
       );
 
   @override
