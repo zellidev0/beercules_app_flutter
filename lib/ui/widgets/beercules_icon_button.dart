@@ -11,6 +11,7 @@ class BeerculesIconButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => IconButton(
+        padding: const EdgeInsets.all(16),
         onPressed: onPressed,
         icon: Icon(
           icon,
