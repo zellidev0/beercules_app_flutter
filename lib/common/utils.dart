@@ -11,3 +11,15 @@ List<T> shuffle<T>(final int seed, final List<T> items) {
 
   return items;
 }
+
+List<T> shuffleCards<T>({
+  required final List<T> cards,
+  required final bool Function(T element) conditionToSortFirst,
+}) =>
+    <T>[
+      ...shuffle(
+        Random().nextInt(10),
+        cards.where((final _) => !conditionToSortFirst(_)).toList(),
+      ),
+      ...cards.where(conditionToSortFirst),
+    ];

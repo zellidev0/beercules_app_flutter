@@ -8,9 +8,9 @@ abstract class GamePersistenceService {
   GamePersistenceServiceGame? customGame();
   GamePersistenceServiceGame? activeGame();
 
-  void resetActiveGameToDefaultGame();
-  void resetActiveGameToCustomGame();
-  void decreaseActiveGameCardAmountByOne(final BeerculesCardType type);
+  Future<void> resetActiveGameToDefaultGame();
+  Future<void> resetActiveGameToCustomGame();
+  Future<void> decreaseActiveGameCardAmountByOne(final BeerculesCardType type);
 }
 
 @freezed
