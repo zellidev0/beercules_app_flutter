@@ -40,8 +40,7 @@ class SharedPrefsDatabase implements Database {
                 DatabaseCard.fromJson(obj! as Map<String, Object?>),
           )
           .toList();
-      // ignore: avoid_catches_without_on_clauses
-    } catch (e) {
+    } on Exception {
       return null;
     }
   }
