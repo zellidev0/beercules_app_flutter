@@ -232,7 +232,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
       cards: cards,
       amountOfCardsLeft: cards.length,
     );
-    persistenceService.resetActiveGameToDefaultGame();
+    unawaited(persistenceService.resetActiveGameToDefaultGame());
   }
 
   void newConfigGame(final GamePersistenceServiceGame customGame) {
@@ -241,7 +241,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
       cards: cards,
       amountOfCardsLeft: cards.length,
     );
-    persistenceService.resetActiveGameToCustomGame();
+    unawaited(persistenceService.resetActiveGameToCustomGame());
   }
 
   @override
