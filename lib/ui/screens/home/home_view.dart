@@ -43,7 +43,7 @@ class HomeView extends ConsumerWidget {
                 text: LocaleKeys.home_view_button_go_drinking.tr(),
                 onPressed: controller.goToGameView,
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -53,7 +53,7 @@ class HomeView extends ConsumerWidget {
                       onPressed: controller.goToRulesView,
                     ),
                   ),
-                  const SizedBox(width: 32),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: BeerculesButton(
                       text: LocaleKeys.home_view_button_customize.tr(),
