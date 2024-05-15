@@ -53,13 +53,15 @@ class PlayingCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  AutoSizeText(
-                    cartType.localizedDescription(
-                      isLastVictimGlass: _isLastVictimGlass,
+                  Expanded(
+                    child: AutoSizeText(
+                      cartType.localizedDescription(
+                        isLastVictimGlass: _isLastVictimGlass,
+                      ),
+                      maxLines: 10,
+                      style: TextStyles.body1,
+                      textAlign: TextAlign.center,
                     ),
-                    maxLines: 10,
-                    style: TextStyles.body1,
-                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
