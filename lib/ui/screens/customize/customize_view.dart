@@ -26,8 +26,11 @@ class CustomizeView extends ConsumerWidget {
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
-          SliverPersistentHeader(
-            delegate: SliverHeaderDelegateComponent(controller: controller),
+          SliverPadding(
+            padding: Constants.pagePadding.copyWith(bottom: 0),
+            sliver: SliverPersistentHeader(
+              delegate: SliverHeaderDelegateComponent(controller: controller),
+            ),
           ),
           SliverPadding(
             padding: Constants.pagePadding.copyWith(top: 0),
@@ -87,6 +90,7 @@ class CardDetailsView extends ConsumerWidget {
             cardType: selected.type,
           ),
           FloatingActionButton(
+            backgroundColor: BeerculesColors.accent,
             onPressed: _onButtonTap,
             child: Text(
               selected.amount.toString(),
