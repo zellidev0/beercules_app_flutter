@@ -41,10 +41,11 @@ class GameView extends ConsumerWidget {
                   icon: Icons.arrow_back_ios_rounded,
                 ),
                 const Spacer(),
-                Text(
-                  model.amountOfCardsLeft.toString(),
-                  style: TextStyles.header4,
-                ),
+                if (model.amountOfCardsLeft > 0)
+                  Text(
+                    model.amountOfCardsLeft.toString(),
+                    style: TextStyles.header4,
+                  ),
               ],
             ),
           ),
