@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:beercules/services/persistence/implementation/database/database.dart';
+import 'package:collection/collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,13 +33,18 @@ class SharedPrefsDatabase implements Database {
 
   List<DatabaseCard>? readGame(final String key) {
     try {
-      final List<Object?> decoded =
-          jsonDecode(sharedPreferences.getString(key)!) as List<Object?>;
-      return decoded
+      final String? cards = sharedPreferences.getString(key);
+      if (cards == null) {
+        return null;
+      }
+
+      return (jsonDecode(cards) as List<Object?>)
           .map(
-            (final Object? obj) =>
-                DatabaseCard.fromJson(obj! as Map<String, Object?>),
+            (final Object? object) => object == null
+                ? null
+                : DatabaseCard.fromJson(object as Map<String, Object?>),
           )
+          .whereNotNull()
           .toList();
     } on Exception {
       return null;

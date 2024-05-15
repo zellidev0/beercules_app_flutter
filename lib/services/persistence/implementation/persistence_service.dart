@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:beercules/common/beercules_card_type.dart';
+import 'package:beercules/common/utils.dart';
 import 'package:beercules/services/persistence/implementation/database/database.dart';
 import 'package:beercules/services/persistence/implementation/database/shared_prefs_database.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
@@ -63,117 +64,66 @@ class PersistenceService extends PersistenceServiceAggregator {
   })  : defaultBeerculesCards = defaultCards,
         super();
 
-  // static List<ConfigCard> shuffleCards({
-  //   required final List<ConfigCard> cards,
-  // }) =>
-  //     <ConfigCard>[
-  //       ...shuffle(
-  //         Random().nextInt(10),
-  //         cards.where((final _) => !_.type.isBasicRule()).toList(),
-  //       ),
-  //       ...cards.where((final _) => _.type.isBasicRule()),
-  //     ];
-
-  // static List<ActiveGameCard> _initCurrentCards(
-  //   final List<ConfigCard> cards,
-  // ) {
-  //   final List<ActiveGameCard> newCards = cards
-  //       .map(
-  //         (final ConfigCard card) =>
-  //             List<({ConfigCard card, int index})>.generate(
-  //           card.amount,
-  //           (final int index) => (index: index, card: card),
-  //         ),
-  //       )
-  //       .expand((final _) => _)
-  //       .map(
-  //         (final ({ConfigCard card, int index}) card) => ActiveGameCard(
-  //           type: card.card.type,
-  //           wasPlayed: false,
-  //           id: card.card.type.toString() + card.index.toString(),
-  //         ),
-  //       )
-  //       .toList();
-  //   return <ActiveGameCard>[
-  //     ...shuffle(
-  //       Random().nextInt(100),
-  //       newCards
-  //           .where((final ActiveGameCard card) => !card.type.isBasicRule())
-  //           .toList(),
-  //     ),
-  //     ...newCards.where((final ActiveGameCard card) => card.type.isBasicRule()),
-  //   ];
-  // }
+  @override
+  Future<void> resetActiveGameToDefaultGame() => database.saveActiveGame(
+        mapToDatabaseCard(defaultBeerculesCards),
+      );
 
   @override
-  void resetActiveGameToDefaultGame() {
-    unawaited(
-      database.saveActiveGame(
-        mapToDatabaseCard(defaultBeerculesCards).toList(),
-      ),
-    );
-  }
+  Future<void> resetCustomGameToDefaultGame() async => database.saveCustomCards(
+        mapToDatabaseCard(defaultBeerculesCards),
+      );
 
-  @override
-  void resetCustomGameToDefaultGame() {
-    unawaited(
-      database.saveCustomCards(
-        mapToDatabaseCard(defaultBeerculesCards).toList(),
-      ),
-    );
-  }
-
-  Iterable<DatabaseCard> mapToDatabaseCard(
+  List<DatabaseCard> mapToDatabaseCard(
     final Map<BeerculesCardType, int> cards,
   ) =>
-      cards.entries.map(
-        (final MapEntry<BeerculesCardType, int> entry) => DatabaseCard(
-          type: entry.key,
-          amount: entry.value,
-        ),
-      );
+      cards.entries
+          .map(
+            (final MapEntry<BeerculesCardType, int> entry) => DatabaseCard(
+              type: entry.key,
+              amount: entry.value,
+            ),
+          )
+          .toList();
 
   @override
-  void resetActiveGameToCustomGame() {
+  Future<void> resetActiveGameToCustomGame() async {
     final List<DatabaseCard>? cards = database.readCustomCards();
     if (cards != null) {
-      unawaited(database.saveActiveGame(cards));
+      return database.saveActiveGame(cards);
     }
   }
 
   @override
-  void decreaseActiveGameCardAmountByOne(final BeerculesCardType type) {
+  Future<void> decreaseActiveGameCardAmountByOne(
+      final BeerculesCardType type) async {
     final List<DatabaseCard>? active = database.readActiveGame();
     if (active != null) {
-      unawaited(
-        database.saveActiveGame(
-          active.map((final DatabaseCard card) {
-            if (card.type == type) {
-              return card.copyWith(amount: card.amount - 1);
-            }
-            return card;
-          }).toList(),
-        ),
+      await database.saveActiveGame(
+        active.map((final DatabaseCard card) {
+          if (card.type == type) {
+            return card.copyWith(amount: card.amount - 1);
+          }
+          return card;
+        }).toList(),
       );
     }
   }
 
   @override
-  void modifyConfigGameCardsAmount({
+  Future<void> modifyConfigGameCardsAmount({
     required final BeerculesCardType? cardType,
     required final int amount,
-  }) {
+  }) async {
     final List<DatabaseCard>? cards = database.readCustomCards();
     if (cards != null) {
-      unawaited(
-        database.saveCustomCards(
-          cards.map((final DatabaseCard card) {
-            if (card.type == cardType) {
-              return card.copyWith(amount: amount);
-            }
-            return card;
-          }).toList(),
-        ),
+      await database.saveCustomCards(
+        cards.map((final DatabaseCard card) {
+          if (card.type == cardType) {
+            return card.copyWith(amount: amount);
+          }
+          return card;
+        }).toList(),
       );
     }
   }

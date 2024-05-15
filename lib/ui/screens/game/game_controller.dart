@@ -3,6 +3,7 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:beercules/common/beercules_card_type.dart';
+import 'package:beercules/common/utils.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/ui/screens/game/game_model.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
@@ -36,7 +37,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
       if (storedCustomGame == null) {
         final List<GameModelCard> cards =
             _mapToGameModelCard(persistenceService.defaultGame());
-        persistenceService.resetActiveGameToDefaultGame();
+        unawaited(persistenceService.resetActiveGameToDefaultGame());
         return GameModel(
           cards: cards,
           amountOfCardsLeft: cards.length,
@@ -108,12 +109,14 @@ class GameControllerImplementation extends _$GameControllerImplementation
             );
             pop();
           },
-          onCancelPressed: () {
+          onCancelPressed: () async {
             pop();
-            final List<GameModelCard> cards =
-                _mapToGameModelCard(persistenceService.defaultGame());
             if (customGame == null) {
-              persistenceService.resetActiveGameToDefaultGame();
+              await persistenceService.resetActiveGameToDefaultGame();
+              final List<GameModelCard> cards = _mapToGameModelCard(
+                persistenceService.activeGame() ??
+                    persistenceService.defaultGame(),
+              );
               state = state.copyWith(
                 cards: cards,
                 amountOfCardsLeft: cards.length,
@@ -150,22 +153,28 @@ class GameControllerImplementation extends _$GameControllerImplementation
   List<GameModelCard> _mapToGameModelCard(
     final GamePersistenceServiceGame game,
   ) =>
-      game.cardToAmountMapping.entries
-          .map(
-            (final MapEntry<BeerculesCardType, int> entry) =>
-                List<GameModelCard>.generate(
-              entry.value,
-              (final int index) => GameModelCard(
-                transformationAngle:
-                    cardTransformSeed + entry.key.hashCode + index,
-                type: entry.key,
-                wasPlayed: false,
-                id: '$entry.key$index',
+      shuffleCards(
+        cards: game.cardToAmountMapping.entries
+            .map(
+              (final MapEntry<BeerculesCardType, int> entry) =>
+                  List<GameModelCard>.generate(
+                entry.value,
+                (final int index) => GameModelCard(
+                  transformationAngle:
+                      cardTransformSeed + entry.key.hashCode + index,
+                  type: entry.key,
+                  wasPlayed: false,
+                  id: '$entry.key$index',
+                ),
               ),
-            ),
-          )
-          .flatten
-          .toList();
+            )
+            .flatten
+            .toList(),
+        conditionToSortFirst: (final GameModelCard card) =>
+            card.type == BeerculesCardType.basicRule1 ||
+            card.type == BeerculesCardType.basicRule2 ||
+            card.type == BeerculesCardType.basicRule3,
+      );
 
   @override
   Future<void> dismissCard({required final String cardId}) async {
@@ -195,16 +204,9 @@ class GameControllerImplementation extends _$GameControllerImplementation
   @override
   Future<void> selectCard({required final GameModelCard card}) async {
     state = state.copyWith(
-      // cards: state.cards
-      //     .map(
-      //       (final GameModelCard currentCard) => currentCard.id == card.id
-      //           ? currentCard.copyWith(wasPlayed: true)
-      //           : currentCard,
-      //     )
-      //     .toList(),
       amountOfCardsLeft: state.amountOfCardsLeft - 1,
     );
-    persistenceService.decreaseActiveGameCardAmountByOne(card.type);
+    await persistenceService.decreaseActiveGameCardAmountByOne(card.type);
     await navigationService
         .showPopup<void>(
           PlayingCard(

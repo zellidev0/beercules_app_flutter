@@ -4,9 +4,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'customize_persistence_service.freezed.dart';
 
 abstract class CustomizePersistenceService {
-  void resetCustomGameToDefaultGame();
-  void resetActiveGameToCustomGame();
-  void modifyConfigGameCardsAmount({
+  Future<void> resetCustomGameToDefaultGame();
+  Future<void> resetActiveGameToCustomGame();
+  Future<void> modifyConfigGameCardsAmount({
     required final BeerculesCardType? cardType,
     required final int amount,
   });
