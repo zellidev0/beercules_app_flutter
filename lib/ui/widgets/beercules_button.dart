@@ -14,12 +14,8 @@ class BeerculesButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => RepaintBoundary(
         child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: BeerculesColors.primary,
           ),
           onPressed: onPressed,
           child: Padding(
