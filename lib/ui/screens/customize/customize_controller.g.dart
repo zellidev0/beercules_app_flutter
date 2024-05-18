@@ -7,7 +7,7 @@ part of 'customize_controller.dart';
 // **************************************************************************
 
 String _$customizeControllerImplementationHash() =>
-    r'840c7fd7025d2741e6c2c2ddd9d5b37377983831';
+    r'59d0ab8f6ce1f0d4d02de653926d70933333b567';
 
 /// Copied from Dart SDK
 class _SystemHash {

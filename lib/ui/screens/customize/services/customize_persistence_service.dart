@@ -6,7 +6,7 @@ part 'customize_persistence_service.freezed.dart';
 abstract class CustomizePersistenceService {
   Future<void> resetCustomGameToDefaultGame();
   Future<void> resetActiveGameToCustomGame();
-  Future<void> modifyConfigGameCardsAmount({
+  Future<void> modifyCustomGameCardsAmount({
     required final BeerculesCardType? cardType,
     required final int amount,
   });

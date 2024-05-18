@@ -63,7 +63,7 @@ class CustomizeControllerImplementation
     if (persistenceService.getCustomGame() == null) {
       await persistenceService.resetCustomGameToDefaultGame();
     }
-    await persistenceService.modifyConfigGameCardsAmount(
+    await persistenceService.modifyCustomGameCardsAmount(
       cardType: state.selectedCardType,
       amount: state.cards
               .firstWhereOrNull(
@@ -80,7 +80,7 @@ class CustomizeControllerImplementation
     await persistenceService.resetCustomGameToDefaultGame();
     state = initCustomGame();
     navigationService.showSnackBar(
-      LocaleKeys.config_view_restoredDefault.tr(),
+      LocaleKeys.customize_view_restoredDefault.tr(),
     );
   }
 
