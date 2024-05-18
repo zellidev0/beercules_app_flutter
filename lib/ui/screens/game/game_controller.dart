@@ -161,14 +161,6 @@ class GameControllerImplementation extends _$GameControllerImplementation
       );
 
   @override
-  Future<void> dismissCard({required final String cardId}) async {
-    navigationService.pop<void>();
-    if (state.amountOfCardsLeft == 0) {
-      showFinishedDialog();
-    }
-  }
-
-  @override
   Future<void> selectCard({required final GameModelCard card}) async {
     state = state.copyWith(
       amountOfCardsLeft: state.amountOfCardsLeft - 1,
@@ -185,7 +177,12 @@ class GameControllerImplementation extends _$GameControllerImplementation
     await navigationService
         .showPopup<void>(
           PlayingCard(
-            onTap: () => dismissCard(cardId: card.id),
+            onTap: () {
+              navigationService.pop<void>();
+              if (state.amountOfCardsLeft == 0) {
+                showFinishedDialog();
+              }
+            },
             showLogo: card.type.isBasicRule(),
             isLastVictimGlass: card.type.isVictimGlass() &&
                 state.cards
