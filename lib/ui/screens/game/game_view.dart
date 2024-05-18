@@ -27,6 +27,7 @@ class GameView extends ConsumerWidget {
             (final GameModelCard card) => card.wasPlayed
                 ? const SizedBox.shrink()
                 : GameCard(
+                    key: ValueKey<GameModelCard>(card),
                     card: card,
                     onSelectCard: (final GameModelCard card) async =>
                         controller.selectCard(card: card),

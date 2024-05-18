@@ -54,7 +54,8 @@ class _BeerculesGameDialogState extends State<BeerculesGameDialog> {
                         LocaleKeys.game_view_popup_header.tr(),
                         style: TextStyles.header2,
                       ),
-                      if (widget.activeGameRemainingCards != null)
+                      if (widget.activeGameRemainingCards != null &&
+                          widget.activeGameRemainingCards! > 0)
                         ...buildContinue(
                           activeGameRemainingCards:
                               widget.activeGameRemainingCards!,
