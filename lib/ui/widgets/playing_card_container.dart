@@ -35,7 +35,7 @@ class PlayingCardContainer extends StatelessWidget {
               borderRadius: Constants.cardBorderRadius,
               onTap: _onTap,
               child: AspectRatio(
-                aspectRatio: 2.5 / 3.5,
+                aspectRatio: Constants.cardAspectRatio,
                 child: Padding(
                   padding: _padding,
                   child: _child,
