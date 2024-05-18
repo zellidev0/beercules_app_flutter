@@ -30,7 +30,8 @@ class GameControllerImplementation extends _$GameControllerImplementation
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
   }) {
-    WidgetsBinding.instance.addPostFrameCallback((final _) => showGameDialog());
+    WidgetsBinding.instance
+        .addPostFrameCallback((final _) => showPotentialGameDialog());
 
     return GameModel(
       cards: <GameModelCard>[],
@@ -38,50 +39,11 @@ class GameControllerImplementation extends _$GameControllerImplementation
     );
   }
 
-  bool activeGameExists() =>
-      activeGameDiffersFromDefault() && activeGameDiffersFromCustom();
-
-  bool activeGameDiffersFromDefault() => !gamesAreEqual(
-        persistenceService.defaultGame(),
-        persistenceService.activeGame(),
-      );
-
-  bool activeGameDiffersFromCustom() => !gamesAreEqual(
-        persistenceService.customGame(),
-        persistenceService.activeGame(),
-      );
-
-  bool customizeGameDiffersFromCustom() => !gamesAreEqual(
-        persistenceService.customGame(),
-        persistenceService.defaultGame(),
-      );
-
-  bool gamesAreEqual(
-    final GamePersistenceServiceGame? game1,
-    final GamePersistenceServiceGame? game2,
-  ) {
-    if (game1 == null || game2 == null) {
-      return false;
-    }
-    final Map<BeerculesCardType, int> game1Map = game1.cardToAmountMapping;
-    final Map<BeerculesCardType, int> game2Map = game2.cardToAmountMapping;
-    return game1Map.keys == game2Map.keys &&
-        game1Map.keys.every(
-          (final BeerculesCardType key) =>
-              game1Map[key] == game2Map[key] &&
-              game1Map[key] != null &&
-              game2Map[key] != null,
-        );
-  }
-
-  void showGameDialog() {
-    final GamePersistenceServiceGame? activeGame =
-        persistenceService.activeGame();
-    final GamePersistenceServiceGame? customGame =
-        persistenceService.customGame();
-    final GamePersistenceServiceGame defaultGame =
-        persistenceService.defaultGame();
-
+  bool shouldShowGameDialog({
+    required final GamePersistenceServiceGame? activeGame,
+    required final GamePersistenceServiceGame? customGame,
+    required final GamePersistenceServiceGame defaultGame,
+  }) {
     final bool onlyDefaultGameExists = activeGame == null && customGame == null;
     final bool activeGameIsDefaultGame = activeGame == defaultGame;
     final bool customGameExistsNot = customGame == null;
@@ -90,44 +52,69 @@ class GameControllerImplementation extends _$GameControllerImplementation
     if (onlyDefaultGameExists ||
         activeGameIsDefaultGame &&
             (customGameExistsNot || customGameIsDefault)) {
+      return false;
+    }
+    return true;
+  }
+
+  void showPotentialGameDialog() {
+    final GamePersistenceServiceGame? activeGame =
+        persistenceService.activeGame();
+    final GamePersistenceServiceGame? customGame =
+        persistenceService.customGame();
+    final GamePersistenceServiceGame defaultGame =
+        persistenceService.defaultGame();
+
+    if (!shouldShowGameDialog(
+      activeGame: activeGame,
+      customGame: customGame,
+      defaultGame: defaultGame,
+    )) {
       state = newDefaultGame();
       return;
     }
-    unawaited(
-      navigationService
-          .showPopup<void>(
-            BeerculesGameDialog(
-              activeGameRemainingCards: countCardsInGame(activeGame),
-              customGameCardsAmount: countCardsInGame(customGame),
-              onContinue: () {
-                final List<GameModelCard> cards =
-                    _mapToGameModelCard(activeGame!);
-                state = state.copyWith(
-                  cards: cards,
-                  amountOfCardsLeft: cards.length,
-                );
-                pop();
-              },
-              defaultGameCardsAmount:
-                  _mapToGameModelCard(persistenceService.defaultGame()).length,
-              onNewGame: ({required final bool isCustomGame}) async {
-                if (isCustomGame) {
-                  state = newConfigGame(customGame!);
-                } else {
-                  state = newDefaultGame();
-                }
-                pop();
-              },
-            ),
-            canBePoppedViaBackGesture: false,
-          )
-          .match(
-            (final Object error) => debugPrint(error.toString()),
-            (final _) {},
-          )
-          .run(),
-    );
+    showGameDialog(activeGame: activeGame, customGame: customGame);
   }
+
+  void showGameDialog({
+    required final GamePersistenceServiceGame? activeGame,
+    required final GamePersistenceServiceGame? customGame,
+  }) =>
+      unawaited(
+        navigationService
+            .showPopup<void>(
+              BeerculesGameDialog(
+                activeGameRemainingCards: countCardsInGame(activeGame),
+                customGameCardsAmount: countCardsInGame(customGame),
+                onContinue: () {
+                  final List<GameModelCard> cards =
+                      _mapToGameModelCard(activeGame!);
+                  state = state.copyWith(
+                    cards: cards,
+                    amountOfCardsLeft: cards.length,
+                  );
+                  pop();
+                },
+                defaultGameCardsAmount:
+                    _mapToGameModelCard(persistenceService.defaultGame())
+                        .length,
+                onNewGame: ({required final bool isCustomGame}) async {
+                  if (isCustomGame) {
+                    state = newConfigGame(customGame!);
+                  } else {
+                    state = newDefaultGame();
+                  }
+                  pop();
+                },
+              ),
+              canBePoppedViaBackGesture: false,
+            )
+            .match(
+              (final Object error) => debugPrint(error.toString()),
+              (final _) {},
+            )
+            .run(),
+      );
 
   int? countCardsInGame(final GamePersistenceServiceGame? activeGame) =>
       activeGame?.cardToAmountMapping.values.fold<int>(
@@ -239,11 +226,11 @@ class GameControllerImplementation extends _$GameControllerImplementation
               BeerculesBinaryDialog(
                 onConfirmPressed: () {
                   pop();
-                  showGameDialog();
+                  showPotentialGameDialog();
                 },
                 onCancelPressed: () {
-                  goBackToHome();
                   pop();
+                  goBackToHome();
                 },
                 confirmText: LocaleKeys.game_view_finish_yes.tr(),
                 declineText: LocaleKeys.game_view_finish_no.tr(),
