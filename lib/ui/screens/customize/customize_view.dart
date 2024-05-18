@@ -3,12 +3,14 @@ import 'dart:ui';
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/constants.dart';
 import 'package:beercules/common/theme.dart';
+import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/ui/screens/customize/customize_model.dart';
 import 'package:beercules/ui/screens/customize/customize_providers.dart';
 import 'package:beercules/ui/screens/customize/widgets/customize_card.dart';
 import 'package:beercules/ui/widgets/beercules_icon_button.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -127,6 +129,10 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
           BeerculesIconButton(
             onPressed: controller.goBackToHome,
             icon: Icons.arrow_back_ios_rounded,
+          ),
+          Text(
+            LocaleKeys.customize_view_title.tr(),
+            style: TextStyles.header3,
           ),
           BeerculesIconButton(
             onPressed: controller.restoreDefault,

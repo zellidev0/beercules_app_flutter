@@ -37,8 +37,9 @@
       "customize": "Meine Karten"
     }
   },
-  "config_view": {
-    "restoredDefault": "Die Anzahl der einzelnen Karten wurde auf den Standard zurückgesetzt!"
+  "customize_view": {
+    "restoredDefault": "Die Anzahl der einzelnen Karten wurde auf den Standard zurückgesetzt!",
+    "title": "Meine Karten"
   },
   "rules_view": {
     "go_to_game": "\uD83C\uDF89 Party jetzt \uD83C\uDF89",

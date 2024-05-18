@@ -21,7 +21,8 @@ abstract class  LocaleKeys {
   static const home_view_button_go_drinking = 'home_view.button.go_drinking';
   static const home_view_button_rules = 'home_view.button.rules';
   static const home_view_button_customize = 'home_view.button.customize';
-  static const config_view_restoredDefault = 'config_view.restoredDefault';
+  static const customize_view_restoredDefault = 'customize_view.restoredDefault';
+  static const customize_view_title = 'customize_view.title';
   static const rules_view_go_to_game = 'rules_view.go_to_game';
   static const rules_view_title = 'rules_view.title';
   static const rules_view_rule_1_title = 'rules_view.rule_1_title';
