@@ -28,7 +28,7 @@ class BeerculesGameDialog extends StatefulWidget {
 }
 
 class _BeerculesGameDialogState extends State<BeerculesGameDialog> {
-  bool isCustomGame = true;
+  bool isCustomGame = false;
 
   @override
   Widget build(final BuildContext context) => Material(
