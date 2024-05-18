@@ -7,5 +7,8 @@ abstract interface class GeneralNavigationService {
   void replaceWith(final Uri uri);
   void replaceWithNamed(final Uri uri);
   void showSnackBar(final String message);
-  TaskEither<Object, Option<T>> showPopup<T>(final Widget popup);
+  TaskEither<Object, Option<T>> showPopup<T>(
+    final Widget popup, {
+    final bool canBePoppedViaBackGesture,
+  });
 }

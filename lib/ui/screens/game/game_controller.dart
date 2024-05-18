@@ -119,6 +119,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
                 pop();
               },
             ),
+            canBePoppedViaBackGesture: false,
           )
           .match(
             (final Object error) => debugPrint(error.toString()),

@@ -48,7 +48,10 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
       );
 
   @override
-  TaskEither<Object, Option<T>> showPopup<T>(final Widget popup) =>
+  TaskEither<Object, Option<T>> showPopup<T>(
+    final Widget popup, {
+    final bool canBePoppedViaBackGesture = true,
+  }) =>
       optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
         () => TaskEither<Object, Option<T>>(
           () async =>
@@ -58,7 +61,10 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
           () async => optionOf(
             await showDialog<T>(
               context: context,
-              builder: (final _) => popup,
+              builder: (final _) => WillPopScope(
+                onWillPop: () async => canBePoppedViaBackGesture,
+                child: popup,
+              ),
             ),
           ),
           (final Object error, final _) => error,
