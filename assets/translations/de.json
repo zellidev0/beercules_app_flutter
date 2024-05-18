@@ -4,7 +4,12 @@
     "legal_google_play_notice": "Google Play and the Google Play logo are trademarks of Google LLC.",
     "app_name": "Beercules",
     "app_slogan": "Das göttliche Partyspiel",
-    "app_description": "Beercules ist das ultimative Trinkspiel für euch.\n Egal ob zum Vorglühen oder für gute Stimmung auf jeder Party.\nMit über 60 Karten erlebt Ihr den besten Abend eures Lebens. Ob mit Freunden, Kollegen oder Fremden, die dank dieses Trinkspiels zu Freunden werden."
+    "app_description": "Beercules ist das ultimative Trinkspiel für euch.\n Egal ob zum Vorglühen oder für gute Stimmung auf jeder Party.\nMit über 60 Karten erlebt Ihr den besten Abend eures Lebens. Ob mit Freunden, Kollegen oder Fremden, die dank dieses Trinkspiels zu Freunden werden.",
+    "event_type": {
+      "immediateOnce": "Einzel Aktionen",
+      "withinNextRoundOnce": "Runden Aktionen",
+      "entireGame": "Komplettes Spiel"
+    }
   },
   "landing_view": {
     "best_app_slogan": "Das beste Partyspiel seit es Partyspiele gibt!",

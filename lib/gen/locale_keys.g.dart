@@ -6,6 +6,9 @@ abstract class  LocaleKeys {
   static const general_app_name = 'general.app_name';
   static const general_app_slogan = 'general.app_slogan';
   static const general_app_description = 'general.app_description';
+  static const general_event_type_immediateOnce = 'general.event_type.immediateOnce';
+  static const general_event_type_withinNextRoundOnce = 'general.event_type.withinNextRoundOnce';
+  static const general_event_type_entireGame = 'general.event_type.entireGame';
   static const landing_view_best_app_slogan = 'landing_view.best_app_slogan';
   static const landing_view_reviews_title = 'landing_view.reviews.title';
   static const landing_view_reviews_review1_reviewAuthor = 'landing_view.reviews.review1.reviewAuthor';
