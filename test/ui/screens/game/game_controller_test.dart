@@ -2,12 +2,10 @@
 
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/ui/screens/game/game_controller.dart';
-import 'package:beercules/ui/screens/game/game_model.dart';
 import 'package:beercules/ui/screens/game/services/game_navigation_service.dart';
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:mockito/mockito.dart';
 
 class MockGameNavigationService extends Mock implements GameNavigationService {}
