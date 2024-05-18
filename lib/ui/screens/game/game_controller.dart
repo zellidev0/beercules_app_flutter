@@ -73,19 +73,29 @@ class GameControllerImplementation extends _$GameControllerImplementation
       state = newDefaultGame();
       return;
     }
-    showGameDialog(activeGame: activeGame, customGame: customGame);
+    showGameDialog(
+      activeGame: activeGame,
+      customGame: customGame,
+      defaultGame: defaultGame,
+    );
   }
 
   void showGameDialog({
     required final GamePersistenceServiceGame? activeGame,
     required final GamePersistenceServiceGame? customGame,
+    required final GamePersistenceServiceGame defaultGame,
   }) =>
       unawaited(
         navigationService
             .showPopup<void>(
               BeerculesGameDialog(
-                activeGameRemainingCards: countCardsInGame(activeGame),
-                customGameCardsAmount: countCardsInGame(customGame),
+                activeGameRemainingCards:
+                    (defaultGame == activeGame || customGame == activeGame)
+                        ? null
+                        : countCardsInGame(activeGame),
+                customGameCardsAmount: defaultGame == customGame
+                    ? null
+                    : countCardsInGame(customGame),
                 onContinue: () {
                   final List<GameModelCard> cards =
                       _mapToGameModelCard(activeGame!);
@@ -136,7 +146,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
                       cardTransformSeed + entry.key.hashCode + index,
                   type: entry.key,
                   wasPlayed: false,
-                  id: '$entry.key$index',
+                  id: '${entry.key}$index',
                 ),
               ),
             )
