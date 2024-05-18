@@ -51,18 +51,22 @@
     "rule_3_description" : "After completing the cards action, it's your neighbor's turn."
   },
   "game_view": {
-    "customize_cards_used": "You play with your configured card settings.",
-    "continue": {
-      "question": "Would you like to continue your last game?",
-      "header": "Continue?",
-      "yes": "Yes",
-      "no": "No"
-    },
-    "config_game": {
-      "question": "Play with your customized cards?",
-      "header": "Customize?",
-      "yes": "Yes",
-      "no": "No"
+    "popup": {
+      "header": "Saufen!!!",
+      "continue": {
+        "question": "Du hast noch {cards_amount} Karten übrig. Möchtest du mit den Karten weiter spielen?",
+        "button": "Weiterspielen"
+      },
+      "custom_or_default": {
+        "switch": {
+          "question_custom": "Mit {cards_amount} deiner Karten spielen",
+          "question_default": "Mit {cards_amount} Standardkarten spielen"
+        },
+        "button": {
+          "active_game_exists" : "Neue Runde",
+          "lets_go" : "Los geht's"
+        }
+      }
     },
     "finish": {
       "question": "Would you like to play another round?",

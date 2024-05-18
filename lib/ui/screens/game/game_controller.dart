@@ -9,6 +9,7 @@ import 'package:beercules/ui/screens/game/game_model.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
 import 'package:beercules/ui/screens/game/services/game_navigation_service.dart';
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
+import 'package:beercules/ui/widgets/beercules_binary_dialog.dart';
 import 'package:beercules/ui/widgets/beercules_dialog.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -29,29 +30,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
   }) {
-    final GamePersistenceServiceGame? storedActiveGame =
-        persistenceService.activeGame();
-    final GamePersistenceServiceGame? storedCustomGame =
-        persistenceService.customGame();
-    if (storedActiveGame == null) {
-      if (storedCustomGame == null) {
-        final List<GameModelCard> cards =
-            _mapToGameModelCard(persistenceService.defaultGame());
-        unawaited(persistenceService.resetActiveGameToDefaultGame());
-        return GameModel(
-          cards: cards,
-          amountOfCardsLeft: cards.length,
-        );
-      } else {
-        showConfigVsDefaultDialog(storedCustomGame);
-      }
-    } else {
-      if (storedCustomGame == null) {
-        showContinueDialog(storedActiveGame, null);
-      } else {
-        showContinueDialog(storedActiveGame, storedCustomGame);
-      }
-    }
+    WidgetsBinding.instance.addPostFrameCallback((final _) => showGameDialog());
 
     return GameModel(
       cards: <GameModelCard>[],
@@ -95,59 +74,58 @@ class GameControllerImplementation extends _$GameControllerImplementation
         );
   }
 
-  void showContinueDialog(
-    final GamePersistenceServiceGame activeGame,
-    final GamePersistenceServiceGame? customGame,
-  ) =>
-      scheduleMicrotask(
-        () => showDialog(
-          onConfirmPressed: () {
-            final List<GameModelCard> cards = _mapToGameModelCard(activeGame);
-            state = state.copyWith(
-              cards: cards,
-              amountOfCardsLeft: cards.length,
-            );
-            pop();
-          },
-          onCancelPressed: () async {
-            pop();
-            if (customGame == null) {
-              await persistenceService.resetActiveGameToDefaultGame();
-              final List<GameModelCard> cards = _mapToGameModelCard(
-                persistenceService.activeGame() ??
-                    persistenceService.defaultGame(),
-              );
-              state = state.copyWith(
-                cards: cards,
-                amountOfCardsLeft: cards.length,
-              );
-            } else {
-              showConfigVsDefaultDialog(customGame);
-            }
-          },
-          confirmText: LocaleKeys.game_view_continue_yes.tr(),
-          declineText: LocaleKeys.game_view_continue_no.tr(),
-          headerText: LocaleKeys.game_view_continue_header.tr(),
-          descriptionText: LocaleKeys.game_view_continue_question.tr(),
-        ),
-      );
+  void showGameDialog() {
+    final GamePersistenceServiceGame? activeGame =
+        persistenceService.activeGame();
+    final GamePersistenceServiceGame? customGame =
+        persistenceService.customGame();
+    final GamePersistenceServiceGame defaultGame =
+        persistenceService.defaultGame();
 
-  void showConfigVsDefaultDialog(final GamePersistenceServiceGame customGame) =>
-      scheduleMicrotask(
-        () => showDialog(
-          onConfirmPressed: () {
-            newConfigGame(customGame);
-            pop();
-          },
-          onCancelPressed: () {
-            newDefaultGame();
-            pop();
-          },
-          confirmText: LocaleKeys.game_view_config_game_yes.tr(),
-          declineText: LocaleKeys.game_view_config_game_no.tr(),
-          headerText: LocaleKeys.game_view_config_game_header.tr(),
-          descriptionText: LocaleKeys.game_view_config_game_question.tr(),
-        ),
+    if ((activeGame == null && customGame == null) ||
+        activeGame == defaultGame && customGame == null) {
+      state = newDefaultGame();
+      return;
+    }
+    unawaited(
+      navigationService
+          .showPopup<void>(
+            BeerculesGameDialog(
+              activeGameRemainingCards: countCardsInGame(activeGame),
+              customGameCardsAmount: countCardsInGame(customGame),
+              onContinue: () {
+                final List<GameModelCard> cards =
+                    _mapToGameModelCard(activeGame!);
+                state = state.copyWith(
+                  cards: cards,
+                  amountOfCardsLeft: cards.length,
+                );
+                pop();
+              },
+              defaultGameCardsAmount:
+                  _mapToGameModelCard(persistenceService.defaultGame()).length,
+              onNewGame: ({required final bool isCustomGame}) async {
+                if (isCustomGame) {
+                  state = newConfigGame(customGame!);
+                } else {
+                  state = newDefaultGame();
+                }
+                pop();
+              },
+            ),
+          )
+          .match(
+            (final Object error) => debugPrint(error.toString()),
+            (final _) {},
+          )
+          .run(),
+    );
+  }
+
+  int? countCardsInGame(final GamePersistenceServiceGame? activeGame) =>
+      activeGame?.cardToAmountMapping.values.fold<int>(
+        0,
+        (final int previousValue, final int element) => previousValue + element,
       );
 
   List<GameModelCard> _mapToGameModelCard(
@@ -182,22 +160,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
     if (state.cards
         .where((final GameModelCard card) => !card.wasPlayed)
         .isEmpty) {
-      showDialog(
-        onConfirmPressed: () {
-          final GamePersistenceServiceGame? customGame =
-              persistenceService.customGame();
-          if (customGame != null) {
-            showConfigVsDefaultDialog(customGame);
-          } else {
-            newDefaultGame();
-          }
-        },
-        onCancelPressed: goBackToHome,
-        confirmText: LocaleKeys.game_view_finish_yes.tr(),
-        declineText: LocaleKeys.game_view_finish_no.tr(),
-        headerText: LocaleKeys.game_view_finish_header.tr(),
-        descriptionText: LocaleKeys.game_view_finish_question.tr(),
-      );
+      showFinishedDialog();
     }
   }
 
@@ -225,23 +188,23 @@ class GameControllerImplementation extends _$GameControllerImplementation
         .run();
   }
 
-  void newDefaultGame() {
+  GameModel newDefaultGame() {
     final List<GameModelCard> cards =
         _mapToGameModelCard(persistenceService.defaultGame());
-    state = state.copyWith(
+    unawaited(persistenceService.resetActiveGameToDefaultGame());
+    return state.copyWith(
       cards: cards,
       amountOfCardsLeft: cards.length,
     );
-    unawaited(persistenceService.resetActiveGameToDefaultGame());
   }
 
-  void newConfigGame(final GamePersistenceServiceGame customGame) {
+  GameModel newConfigGame(final GamePersistenceServiceGame customGame) {
     final List<GameModelCard> cards = _mapToGameModelCard(customGame);
-    state = state.copyWith(
+    unawaited(persistenceService.resetActiveGameToCustomGame());
+    return state.copyWith(
       cards: cards,
       amountOfCardsLeft: cards.length,
     );
-    unawaited(persistenceService.resetActiveGameToCustomGame());
   }
 
   @override
@@ -252,25 +215,24 @@ class GameControllerImplementation extends _$GameControllerImplementation
     navigationService.pop<void>();
   }
 
-  @override
-  void showDialog({
-    required final void Function() onConfirmPressed,
-    required final void Function() onCancelPressed,
-    required final String confirmText,
-    required final String declineText,
-    required final String headerText,
-    required final String descriptionText,
-  }) =>
-      unawaited(
+  void showFinishedDialog() => unawaited(
         navigationService
             .showPopup<void>(
-              BeerculesDialog(
-                onConfirmPressed: onConfirmPressed,
-                onCancelPressed: onCancelPressed,
-                confirmText: confirmText,
-                declineText: declineText,
-                headerText: headerText,
-                descriptionText: descriptionText,
+              BeerculesBinaryDialog(
+                onConfirmPressed: () {
+                  final GamePersistenceServiceGame? customGame =
+                      persistenceService.customGame();
+                  // if (customGame != null) {
+                  //   showGameDialog(customGame);
+                  // } else {
+                  //   state = newDefaultGame();
+                  // }
+                },
+                onCancelPressed: goBackToHome,
+                confirmText: LocaleKeys.game_view_finish_yes.tr(),
+                declineText: LocaleKeys.game_view_finish_no.tr(),
+                headerText: LocaleKeys.game_view_finish_header.tr(),
+                descriptionText: LocaleKeys.game_view_finish_question.tr(),
               ),
             )
             .match(

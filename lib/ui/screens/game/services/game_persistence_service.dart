@@ -14,7 +14,8 @@ abstract class GamePersistenceService {
 }
 
 @freezed
-class GamePersistenceServiceGame with _$GamePersistenceServiceGame {
+@immutable
+abstract class GamePersistenceServiceGame with _$GamePersistenceServiceGame {
   factory GamePersistenceServiceGame({
     required final Map<BeerculesCardType, int> cardToAmountMapping,
   }) = _GamePersistenceServiceGame;
