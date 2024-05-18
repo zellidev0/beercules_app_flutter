@@ -163,9 +163,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
   @override
   Future<void> dismissCard({required final String cardId}) async {
     navigationService.pop<void>();
-    if (state.cards
-        .where((final GameModelCard card) => !card.wasPlayed)
-        .isEmpty) {
+    if (state.amountOfCardsLeft == 0) {
       showFinishedDialog();
     }
   }
@@ -174,6 +172,14 @@ class GameControllerImplementation extends _$GameControllerImplementation
   Future<void> selectCard({required final GameModelCard card}) async {
     state = state.copyWith(
       amountOfCardsLeft: state.amountOfCardsLeft - 1,
+      cards: state.cards.map(
+        (final GameModelCard cardInList) {
+          if (cardInList.id == card.id) {
+            return card.copyWith(wasPlayed: true);
+          }
+          return cardInList;
+        },
+      ).toList(),
     );
     await persistenceService.decreaseActiveGameCardAmountByOne(card.type);
     await navigationService
@@ -226,15 +232,13 @@ class GameControllerImplementation extends _$GameControllerImplementation
             .showPopup<void>(
               BeerculesBinaryDialog(
                 onConfirmPressed: () {
-                  final GamePersistenceServiceGame? customGame =
-                      persistenceService.customGame();
-                  // if (customGame != null) {
-                  //   showGameDialog(customGame);
-                  // } else {
-                  //   state = newDefaultGame();
-                  // }
+                  pop();
+                  showGameDialog();
                 },
-                onCancelPressed: goBackToHome,
+                onCancelPressed: () {
+                  goBackToHome();
+                  pop();
+                },
                 confirmText: LocaleKeys.game_view_finish_yes.tr(),
                 declineText: LocaleKeys.game_view_finish_no.tr(),
                 headerText: LocaleKeys.game_view_finish_header.tr(),
