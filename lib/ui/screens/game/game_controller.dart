@@ -174,27 +174,35 @@ class GameControllerImplementation extends _$GameControllerImplementation
       ).toList(),
     );
     await persistenceService.decreaseActiveGameCardAmountByOne(card.type);
-    await navigationService
-        .showPopup<void>(
-          PlayingCard(
-            onTap: () {
-              navigationService.pop<void>();
-              if (state.amountOfCardsLeft == 0) {
-                showFinishedDialog();
-              }
-            },
-            showLogo: card.type.isBasicRule(),
-            isLastVictimGlass: card.type.isVictimGlass() &&
-                state.cards
-                        .where(
-                          (final _) => _.type.isVictimGlass() && !_.wasPlayed,
-                        )
-                        .length ==
-                    1,
-            cardType: card.type,
-          ),
-        )
-        .run();
+    (await navigationService
+            .showPopup<Unit>(
+              PlayingCard(
+                onTap: () {
+                  navigationService.pop<Unit>(data: unit);
+                  if (state.amountOfCardsLeft == 0) {
+                    showFinishedDialog();
+                  }
+                },
+                showLogo: card.type.isBasicRule(),
+                isLastVictimGlass: card.type.isVictimGlass() &&
+                    state.cards
+                            .where(
+                              (final _) =>
+                                  _.type.isVictimGlass() && !_.wasPlayed,
+                            )
+                            .length ==
+                        1,
+                cardType: card.type,
+              ),
+            )
+            .run())
+        .match(
+      (final Object error) => debugPrint(error.toString()),
+      (final Option<Unit> dismissed) =>
+          dismissed.isNone() && state.amountOfCardsLeft == 0
+              ? showFinishedDialog()
+              : null,
+    );
   }
 
   GameModel newDefaultGame() {

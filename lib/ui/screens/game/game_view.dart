@@ -110,7 +110,6 @@ class _GameCardState extends State<GameCard> {
 
 abstract class GameController {
   void pop();
-  void dismissCard({required final String cardId});
   Future<void> selectCard({required final GameModelCard card});
   void goBackToHome();
 }
