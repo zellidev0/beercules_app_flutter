@@ -1,0 +1,78 @@
+# flow.yaml
+
+appId: com.jzellner98.thedrinkinggame
+
+---
+- clearState
+- launchApp
+- tapOn: 🎉 Party now 🎉
+- assertVisible: "56"
+- swipe:
+    start: 50%, 50%
+    end: 0%, 0%
+- tapOn:
+    point: 50%,50%
+- assertVisible: "55"
+- swipe:
+    start: 50%, 50%
+    end: 0%, 0%
+- tapOn:
+    point: 50%,10%
+- assertVisible: "54"
+- back
+- tapOn: 🎉 Party now 🎉
+- assertVisible: Continue Playing
+- assertVisible: New Round
+- assertNotVisible: Play with .* of your cards
+- assertNotVisible: Play with .* default cards
+- tapOn: "Continue Playing"
+- assertVisible: "54"
+- swipe:
+    start: 50%, 50%
+    end: 0%, 0%
+- tapOn:
+    point: 50%,50% # her
+- back
+- tapOn: 🎉 Party now 🎉
+- assertVisible: Continue Playing
+- assertVisible: New Round
+- assertNotVisible: Play with .* of your cards
+- assertNotVisible: Play with .* default cards
+- tapOn: New Round
+- assertVisible: "56"
+- back
+- tapOn: My cards
+- tapOn: Poll
+- tapOn: "3"
+- assertVisible: "4"
+- tapOn:
+    point: 50%,50%
+- back
+- tapOn: 🎉 Party now 🎉
+- assertVisible: Continue Playing
+- assertVisible: New Round
+- assertVisible: Play with 56 default cards
+- tapOn:
+    label: Tap on switch
+    point: 77%,62%
+- assertVisible: Play with 57 of your cards
+- tapOn: New Round
+- assertVisible: "57"
+- tapOn:
+    label: Tap back button
+    point: 15%,12%
+- tapOn: My cards
+- tapOn:
+    label: Tap on reset my cards
+    point: 85%,12%
+- assertVisible: The amount of each card was reset to the default!
+- tapOn:
+    label: Tap back button
+    point: 15%,12%
+- tapOn: 🎉 Party now 🎉
+- assertVisible: Continue Playing
+- assertVisible: New Round
+- assertNotVisible: Play with .* of your cards
+- assertNotVisible: Play with .* default cards
+
+

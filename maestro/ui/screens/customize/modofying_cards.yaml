@@ -1,0 +1,26 @@
+# flow.yaml
+
+appId: com.jzellner98.thedrinkinggame
+
+---
+- clearState
+- launchApp
+- tapOn: ".*Customize.*"
+- tapOn: ".*Poll.*"
+- assertVisible: ".*Poll.*"
+- assertVisible: "3"
+- tapOn: "3"
+- assertVisible: "4"
+- tapOn: "4"
+- assertVisible: "5"
+- tapOn: "5"
+- assertVisible: "0"
+- tapOn: ".*Poll.*" # close popup
+- assertVisible: "Enumeration"
+- tapOn: ".*Poll.*"
+- assertVisible: ".*Poll.*"
+- assertVisible: "0"
+- tapOn: "0"
+- assertVisible: "1"
+
+
