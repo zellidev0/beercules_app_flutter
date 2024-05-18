@@ -37,8 +37,9 @@
       "customize": "My cards"
     }
   },
-  "config_view": {
-    "restoredDefault":"The amount of each card was reset to the default!"
+  "customize_view": {
+    "restoredDefault":"The amount of each card was reset to the default!",
+    "title": "My cards"
   },
   "rules_view": {
     "go_to_game": "\uD83C\uDF89 Party now \uD83C\uDF89",
