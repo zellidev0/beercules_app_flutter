@@ -111,7 +111,7 @@ class PersistenceService extends PersistenceServiceAggregator {
   }
 
   @override
-  Future<void> modifyConfigGameCardsAmount({
+  Future<void> modifyCustomGameCardsAmount({
     required final BeerculesCardType? cardType,
     required final int amount,
   }) async {
