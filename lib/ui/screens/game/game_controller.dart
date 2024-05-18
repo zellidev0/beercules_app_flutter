@@ -82,8 +82,14 @@ class GameControllerImplementation extends _$GameControllerImplementation
     final GamePersistenceServiceGame defaultGame =
         persistenceService.defaultGame();
 
-    if ((activeGame == null && customGame == null) ||
-        activeGame == defaultGame && customGame == null) {
+    final bool onlyDefaultGameExists = activeGame == null && customGame == null;
+    final bool activeGameIsDefaultGame = activeGame == defaultGame;
+    final bool customGameExistsNot = customGame == null;
+    final bool customGameIsDefault = customGame == defaultGame;
+
+    if (onlyDefaultGameExists ||
+        activeGameIsDefaultGame &&
+            (customGameExistsNot || customGameIsDefault)) {
       state = newDefaultGame();
       return;
     }
