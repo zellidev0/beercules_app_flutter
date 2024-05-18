@@ -1,0 +1,14 @@
+# flow.yaml
+
+appId: com.jzellner98.thedrinkinggame
+---
+- launchApp
+- tapOn: "Rules"
+- assertVisible: ".*1. Sit down.*"
+- assertVisible: ".*How to*"
+- assertVisible: ".*2. Do it*"
+- assertVisible: ".*3. Next one*"
+- assertVisible: ".*Party now*"
+- tapOn: ".*Party now*"
+- back
+- back

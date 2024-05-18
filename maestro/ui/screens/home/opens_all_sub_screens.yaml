@@ -1,0 +1,12 @@
+# flow.yaml
+
+appId: com.jzellner98.thedrinkinggame
+---
+- launchApp
+- tapOn: ".*Party now.*"
+- back
+- back
+- tapOn: "Rules"
+- back
+- tapOn: "My cards"
+- back
