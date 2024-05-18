@@ -84,10 +84,13 @@ class CardDetailsView extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          PlayingCard(
-            onTap: _onTap,
-            showLogo: selected.type.isBasicRule(),
-            cardType: selected.type,
+          Opacity(
+            opacity: selected.amount < 1 ? 0.7 : 1,
+            child: PlayingCard(
+              onTap: _onTap,
+              showLogo: selected.type.isBasicRule(),
+              cardType: selected.type,
+            ),
           ),
           FloatingActionButton(
             backgroundColor: BeerculesColors.accent,
