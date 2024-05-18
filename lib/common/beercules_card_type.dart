@@ -172,6 +172,55 @@ enum BeerculesCardType {
       }
           .tr();
 
+  BeerculesCardEventType eventType() => switch (this) {
+        BeerculesCardType.abstimmung => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.alleFuerEinen => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.aufzaehlung => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.beerLove =>
+          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.biergott => BeerculesCardEventType.entireGame,
+        BeerculesCardType.deckelDrauf =>
+          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.dreiGeschenkeVonHerzen =>
+          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.einGeschenkVonHerzen =>
+          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.eisprinzessin =>
+          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.filmriss => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.fragenkoenig => BeerculesCardEventType.entireGame,
+        BeerculesCardType.haendeHoch =>
+          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.ichHabNochNie => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.ichPackeMeinenKoffer =>
+          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.kettenreaktion =>
+          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.knutschkarte => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.links => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.mensHealth => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.ohrenSpitzen =>
+          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.opferglas => BeerculesCardEventType.entireGame,
+        BeerculesCardType.rechts => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.reimschwein => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.richtungswechsel =>
+          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.schereSteinPaarBier =>
+          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.singNoSong => BeerculesCardEventType.entireGame,
+        BeerculesCardType.spiegelSpiegel =>
+          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.tauschrausch =>
+          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.trinkBuddy => BeerculesCardEventType.entireGame,
+        BeerculesCardType.womensHealth => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.bier123 => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.basicRule1 => BeerculesCardEventType.entireGame,
+        BeerculesCardType.basicRule2 => BeerculesCardEventType.entireGame,
+        BeerculesCardType.basicRule3 => BeerculesCardEventType.entireGame,
+      };
+
   String localizedTitle({
     required final bool isLastVictimGlass,
   }) =>
@@ -245,4 +294,10 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_BASIC_RULE_3_title,
       }
           .tr();
+}
+
+enum BeerculesCardEventType {
+  immediateOnce,
+  withinNextRoundOnce,
+  entireGame,
 }
