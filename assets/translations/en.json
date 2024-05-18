@@ -52,19 +52,19 @@
   },
   "game_view": {
     "popup": {
-      "header": "Saufen!!!",
+      "header": "Cheers!!!",
       "continue": {
-        "question": "Du hast noch {cards_amount} Karten übrig. Möchtest du mit den Karten weiter spielen?",
-        "button": "Weiterspielen"
+      "question": "You still have {cards_amount} cards left. Do you want to continue playing with the cards?",
+        "button": "Continue Playing"
       },
       "custom_or_default": {
         "switch": {
-          "question_custom": "Mit {cards_amount} deiner Karten spielen",
-          "question_default": "Mit {cards_amount} Standardkarten spielen"
+          "question_custom": "Play with {cards_amount} of your cards",
+          "question_default": "Play with {cards_amount} default cards"
         },
         "button": {
-          "active_game_exists" : "Neue Runde",
-          "lets_go" : "Los geht's"
+          "active_game_exists" : "New Round",
+          "lets_go" : "Let's Go"
         }
       }
     },
