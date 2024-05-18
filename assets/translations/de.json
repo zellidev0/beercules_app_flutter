@@ -51,18 +51,22 @@
     "rule_3_description": "Wenn die Anweisung erfüllt ist, ist der Nachbar dran."
   },
   "game_view": {
-    "customize_cards_used": "Du spielst mit deinen persönlichen Karten Einstellungen.",
-    "continue": {
-      "question": "Möchtest du dein letztes Spiel weiterspielen?",
-      "header": "Fortsetzen?",
-      "yes": "Ja",
-      "no": "Nein"
-    },
-    "config_game": {
-      "question": "Möchtest du mit deinen gespeicherte Karten spielen?",
-      "header": "Achtung!",
-      "yes": "Ja",
-      "no": "Nein, mit dem Standard"
+    "popup": {
+      "header": "Saufen!!!",
+      "continue": {
+        "question": "Du hast noch {cards_amount} Karten übrig. Möchtest du mit den Karten weiter spielen?",
+        "button": "Weiterspielen"
+      },
+      "custom_or_default": {
+        "switch": {
+          "question_custom": "Mit {cards_amount} deiner Karten spielen",
+          "question_default": "Mit {cards_amount} Standardkarten spielen"
+        },
+        "button": {
+          "active_game_exists" : "Neue Runde",
+          "lets_go" : "Los geht's"
+        }
+      }
     },
     "finish": {
       "question": "Möchtest du noch eine Runde spielen?",

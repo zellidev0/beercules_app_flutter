@@ -7,7 +7,7 @@ part of 'game_controller.dart';
 // **************************************************************************
 
 String _$gameControllerImplementationHash() =>
-    r'6d1945c98c5c03e46d855490557559d13e893c01';
+    r'1f93255ea62bf3c7e6dc49d503cac0a5c764ead9';
 
 /// Copied from Dart SDK
 class _SystemHash {

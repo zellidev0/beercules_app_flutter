@@ -112,12 +112,4 @@ abstract class GameController {
   void dismissCard({required final String cardId});
   Future<void> selectCard({required final GameModelCard card});
   void goBackToHome();
-  void showDialog({
-    required final void Function() onConfirmPressed,
-    required final void Function() onCancelPressed,
-    required final String confirmText,
-    required final String declineText,
-    required final String headerText,
-    required final String descriptionText,
-  });
 }
