@@ -30,8 +30,9 @@ class GameControllerImplementation extends _$GameControllerImplementation
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
   }) {
-    WidgetsBinding.instance
-        .addPostFrameCallback((final _) => showPotentialGameDialog());
+    WidgetsBinding.instance.addPostFrameCallback(
+      (final _) => unawaited(showPotentialGameDialog()),
+    );
 
     return GameModel(
       cards: <GameModelCard>[],
@@ -57,7 +58,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
     return true;
   }
 
-  void showPotentialGameDialog() {
+  Future<void> showPotentialGameDialog() async {
     final GamePersistenceServiceGame? activeGame =
         persistenceService.activeGame();
     final GamePersistenceServiceGame? customGame =
@@ -70,14 +71,14 @@ class GameControllerImplementation extends _$GameControllerImplementation
       customGame: customGame,
       defaultGame: defaultGame,
     )) {
-      state = newDefaultGame();
-      return;
+      updateState(cards: await newDefaultGame());
+    } else {
+      showGameDialog(
+        activeGame: activeGame,
+        customGame: customGame,
+        defaultGame: defaultGame,
+      );
     }
-    showGameDialog(
-      activeGame: activeGame,
-      customGame: customGame,
-      defaultGame: defaultGame,
-    );
   }
 
   void showGameDialog({
@@ -97,12 +98,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
                     ? null
                     : countCardsInGame(customGame),
                 onContinue: () {
-                  final List<GameModelCard> cards =
-                      _mapToGameModelCard(activeGame!);
-                  state = state.copyWith(
-                    cards: cards,
-                    amountOfCardsLeft: cards.length,
-                  );
+                  updateState(cards: _mapToGameModelCard(activeGame!));
                   pop();
                 },
                 defaultGameCardsAmount:
@@ -110,9 +106,9 @@ class GameControllerImplementation extends _$GameControllerImplementation
                         .length,
                 onNewGame: ({required final bool isCustomGame}) async {
                   if (isCustomGame) {
-                    state = newConfigGame(customGame!);
+                    updateState(cards: await newConfigGame(customGame!));
                   } else {
-                    state = newDefaultGame();
+                    updateState(cards: await newDefaultGame());
                   }
                   pop();
                 },
@@ -125,6 +121,15 @@ class GameControllerImplementation extends _$GameControllerImplementation
             )
             .run(),
       );
+
+  void updateState({
+    required final List<GameModelCard> cards,
+  }) {
+    state = state.copyWith(
+      cards: cards,
+      amountOfCardsLeft: cards.length,
+    );
+  }
 
   int? countCardsInGame(final GamePersistenceServiceGame? activeGame) =>
       activeGame?.cardToAmountMapping.values.fold<int>(
@@ -178,7 +183,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
                 onTap: () {
                   navigationService.pop<Unit>(data: unit);
                   if (state.amountOfCardsLeft == 0) {
-                    showFinishedDialog();
+                    showFinishedDialog().run();
                   }
                 },
                 showLogo: card.type.isBasicRule(),
@@ -198,60 +203,56 @@ class GameControllerImplementation extends _$GameControllerImplementation
       (final Object error) => debugPrint(error.toString()),
       (final Option<Unit> dismissed) =>
           dismissed.isNone() && state.amountOfCardsLeft == 0
-              ? showFinishedDialog()
+              ? showFinishedDialog().run()
               : null,
     );
   }
 
-  GameModel newDefaultGame() {
-    final List<GameModelCard> cards =
-        _mapToGameModelCard(persistenceService.defaultGame());
-    unawaited(persistenceService.resetActiveGameToDefaultGame());
-    return state.copyWith(
-      cards: cards,
-      amountOfCardsLeft: cards.length,
+  Future<List<GameModelCard>> newDefaultGame() async {
+    final List<GameModelCard> cards = _mapToGameModelCard(
+      persistenceService.defaultGame(),
     );
+    await persistenceService.resetActiveGameToDefaultGame();
+    return cards;
   }
 
-  GameModel newConfigGame(final GamePersistenceServiceGame customGame) {
+  Future<List<GameModelCard>> newConfigGame(
+    final GamePersistenceServiceGame customGame,
+  ) async {
     final List<GameModelCard> cards = _mapToGameModelCard(customGame);
-    unawaited(persistenceService.resetActiveGameToCustomGame());
-    return state.copyWith(
-      cards: cards,
-      amountOfCardsLeft: cards.length,
-    );
+    await persistenceService.resetActiveGameToCustomGame();
+    return cards;
   }
 
   @override
   void goBackToHome() => navigationService.goBack();
 
   @override
-  void pop() {
-    navigationService.pop<void>();
-  }
+  void pop() => navigationService.pop<void>();
 
-  void showFinishedDialog() => unawaited(
-        navigationService
-            .showPopup<void>(
-              BeerculesBinaryDialog(
-                onConfirmPressed: () {
-                  pop();
-                  showPotentialGameDialog();
-                },
-                onCancelPressed: () {
-                  pop();
-                  goBackToHome();
-                },
-                confirmText: LocaleKeys.game_view_finish_yes.tr(),
-                declineText: LocaleKeys.game_view_finish_no.tr(),
-                headerText: LocaleKeys.game_view_finish_header.tr(),
-                descriptionText: LocaleKeys.game_view_finish_question.tr(),
-              ),
-            )
-            .match(
-              (final Object error) => debugPrint(error.toString()),
-              (final _) {},
-            )
-            .run(),
+  Task<void> showFinishedDialog() => navigationService
+      .showPopup<void>(
+        BeerculesBinaryDialog(
+          onConfirmPressed: () async {
+            closePopUp();
+            await showPotentialGameDialog();
+          },
+          onCancelPressed: () {
+            closePopUp();
+            goBackToHome();
+          },
+          confirmText: LocaleKeys.game_view_finish_yes.tr(),
+          declineText: LocaleKeys.game_view_finish_no.tr(),
+          headerText: LocaleKeys.game_view_finish_header.tr(),
+          descriptionText: LocaleKeys.game_view_finish_question.tr(),
+        ),
+      )
+      .match(
+        (final Object error) => debugPrint(error.toString()),
+        (final _) {},
       );
+
+  void closePopUp() {
+    pop();
+  }
 }
