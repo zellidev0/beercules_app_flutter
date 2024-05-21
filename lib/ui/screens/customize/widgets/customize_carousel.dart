@@ -52,28 +52,29 @@ class _CustomizeCarouselState extends State<CustomizeCarousel> {
         ],
       );
 
-  Widget _buildCarousel() => LayoutBuilder(
-        builder: (
-          final BuildContext context,
-          final BoxConstraints constraints,
-        ) =>
-            AspectRatio(
-          aspectRatio: constraints.maxWidth /
-              ((constraints.maxWidth / Constants.cardAspectRatio) - (32 + 32)) /
-              widget.pageController.viewportFraction,
-          child: PageView.builder(
-            pageSnapping: false,
-            padEnds: false,
-            physics: const BouncingScrollPhysics(),
-            onPageChanged: (final int itemIndex) => widget._onPageChanged(
-              itemIndex: itemIndex,
-            ),
-            controller: _pageController,
-            itemCount: widget.itemCount,
-            itemBuilder: (final BuildContext context, final int index) =>
-                Padding(
-              padding: const EdgeInsets.only(left: 24),
-              child: widget.builder(context, index),
+  Widget _buildCarousel() => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: LayoutBuilder(
+          builder: (final _, final BoxConstraints constraints) => AspectRatio(
+            aspectRatio: constraints.maxWidth /
+                ((constraints.maxWidth / Constants.cardAspectRatio) -
+                    (12 * 4)) /
+                widget.pageController.viewportFraction,
+            child: PageView.builder(
+              pageSnapping: false,
+              clipBehavior: Clip.none,
+              padEnds: false,
+              physics: const BouncingScrollPhysics(),
+              onPageChanged: (final int itemIndex) => widget._onPageChanged(
+                itemIndex: itemIndex,
+              ),
+              controller: _pageController,
+              itemCount: widget.itemCount,
+              itemBuilder: (final BuildContext context, final int index) =>
+                  Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: widget.builder(context, index),
+              ),
             ),
           ),
         ),
@@ -87,7 +88,7 @@ class _CustomizeCarouselState extends State<CustomizeCarousel> {
           padding: const EdgeInsets.only(left: 24),
           child: Text(
             carouselTitle,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
           ),
