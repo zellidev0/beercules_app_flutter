@@ -6,9 +6,10 @@
     "app_slogan": "Das göttliche Partyspiel",
     "app_description": "Beercules ist das ultimative Trinkspiel für euch.\n Egal ob zum Vorglühen oder für gute Stimmung auf jeder Party.\nMit über 60 Karten erlebt Ihr den besten Abend eures Lebens. Ob mit Freunden, Kollegen oder Fremden, die dank dieses Trinkspiels zu Freunden werden.",
     "event_type": {
-      "immediateOnce": "Einzel Aktionen",
-      "withinNextRoundOnce": "Runden Aktionen",
-      "entireGame": "Komplettes Spiel"
+      "immediate_once": "Einzel Aktion",
+      "within_next_round_once": "Runden Aktion",
+      "entire_game": "Komplettes Spiel",
+      "mini_game": "Mini Spiel"
     }
   },
   "landing_view": {

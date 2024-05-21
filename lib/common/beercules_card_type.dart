@@ -173,49 +173,43 @@ enum BeerculesCardType {
           .tr();
 
   BeerculesCardEventType eventType() => switch (this) {
-        BeerculesCardType.abstimmung => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.alleFuerEinen => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.aufzaehlung => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.beerLove =>
-          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.abstimmung => BeerculesCardEventType.immediate,
+        BeerculesCardType.alleFuerEinen => BeerculesCardEventType.immediate,
+        BeerculesCardType.aufzaehlung => BeerculesCardEventType.miniGame,
+        BeerculesCardType.beerLove => BeerculesCardEventType.withinNextRound,
         BeerculesCardType.biergott => BeerculesCardEventType.entireGame,
-        BeerculesCardType.deckelDrauf =>
-          BeerculesCardEventType.withinNextRoundOnce,
+        BeerculesCardType.deckelDrauf => BeerculesCardEventType.withinNextRound,
         BeerculesCardType.dreiGeschenkeVonHerzen =>
-          BeerculesCardEventType.immediateOnce,
+          BeerculesCardEventType.immediate,
         BeerculesCardType.einGeschenkVonHerzen =>
-          BeerculesCardEventType.immediateOnce,
+          BeerculesCardEventType.immediate,
         BeerculesCardType.eisprinzessin =>
-          BeerculesCardEventType.withinNextRoundOnce,
-        BeerculesCardType.filmriss => BeerculesCardEventType.immediateOnce,
+          BeerculesCardEventType.withinNextRound,
+        BeerculesCardType.filmriss => BeerculesCardEventType.immediate,
         BeerculesCardType.fragenkoenig => BeerculesCardEventType.entireGame,
-        BeerculesCardType.haendeHoch =>
-          BeerculesCardEventType.withinNextRoundOnce,
-        BeerculesCardType.ichHabNochNie => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.haendeHoch => BeerculesCardEventType.withinNextRound,
+        BeerculesCardType.ichHabNochNie => BeerculesCardEventType.miniGame,
         BeerculesCardType.ichPackeMeinenKoffer =>
-          BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.kettenreaktion =>
-          BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.knutschkarte => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.links => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.mensHealth => BeerculesCardEventType.immediateOnce,
+          BeerculesCardEventType.miniGame,
+        BeerculesCardType.kettenreaktion => BeerculesCardEventType.immediate,
+        BeerculesCardType.knutschkarte => BeerculesCardEventType.immediate,
+        BeerculesCardType.links => BeerculesCardEventType.immediate,
+        BeerculesCardType.mensHealth => BeerculesCardEventType.immediate,
         BeerculesCardType.ohrenSpitzen =>
-          BeerculesCardEventType.withinNextRoundOnce,
+          BeerculesCardEventType.withinNextRound,
         BeerculesCardType.opferglas => BeerculesCardEventType.entireGame,
-        BeerculesCardType.rechts => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.reimschwein => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.richtungswechsel =>
-          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.rechts => BeerculesCardEventType.immediate,
+        BeerculesCardType.reimschwein => BeerculesCardEventType.miniGame,
+        BeerculesCardType.richtungswechsel => BeerculesCardEventType.immediate,
         BeerculesCardType.schereSteinPaarBier =>
-          BeerculesCardEventType.immediateOnce,
+          BeerculesCardEventType.miniGame,
         BeerculesCardType.singNoSong => BeerculesCardEventType.entireGame,
-        BeerculesCardType.spiegelSpiegel =>
-          BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.spiegelSpiegel => BeerculesCardEventType.immediate,
         BeerculesCardType.tauschrausch =>
-          BeerculesCardEventType.withinNextRoundOnce,
+          BeerculesCardEventType.withinNextRound,
         BeerculesCardType.trinkBuddy => BeerculesCardEventType.entireGame,
-        BeerculesCardType.womensHealth => BeerculesCardEventType.immediateOnce,
-        BeerculesCardType.bier123 => BeerculesCardEventType.immediateOnce,
+        BeerculesCardType.womensHealth => BeerculesCardEventType.immediate,
+        BeerculesCardType.bier123 => BeerculesCardEventType.miniGame,
         BeerculesCardType.basicRule1 => BeerculesCardEventType.entireGame,
         BeerculesCardType.basicRule2 => BeerculesCardEventType.entireGame,
         BeerculesCardType.basicRule3 => BeerculesCardEventType.entireGame,
@@ -297,7 +291,8 @@ enum BeerculesCardType {
 }
 
 enum BeerculesCardEventType {
-  immediateOnce,
-  withinNextRoundOnce,
+  immediate,
+  withinNextRound,
   entireGame,
+  miniGame,
 }

@@ -6,9 +6,10 @@
     "app_slogan": "Play like a god",
     "app_description": "Beercules is the ultimate drinking game for you.\n Whether to pre-drink or to get the party started. With over 60 cards, you will have the best evening of your life.\n",
     "event_type": {
-      "immediateOnce": "Immediate Action",
-      "withinNextRoundOnce": "Next Round",
-      "entireGame": "Entire Game"
+      "immediate_once": "Immediate action",
+      "within_next_round_once": "Within next round",
+      "entire_game": "Whole game",
+      "mini_game": "Mini game"
     }
   },
   "landing_view": {
