@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:core';
-import 'dart:math';
 
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/utils.dart';
@@ -23,12 +22,11 @@ part 'game_controller.g.dart';
 @riverpod
 class GameControllerImplementation extends _$GameControllerImplementation
     implements GameController {
-  static final int cardTransformSeed = Random().nextInt(10);
-
   @override
   GameModel build({
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
+    required final int cardTransformSeed,
   }) {
     WidgetsBinding.instance.addPostFrameCallback(
       (final _) => unawaited(showPotentialGameDialog()),
@@ -148,7 +146,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
                 entry.value,
                 (final int index) => GameModelCard(
                   transformationAngle:
-                      cardTransformSeed + entry.key.hashCode + index,
+                      cardTransformSeed + entry.key.index + index,
                   type: entry.key,
                   wasPlayed: false,
                   id: '${entry.key}$index',
