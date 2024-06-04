@@ -1,8 +1,8 @@
 name: beercules
 description: Beercules
 publish_to: 'none'
-version: 4.0.0
-build: 30
+version: 5.0.0
+build: 32
 
 environment:
   flutter: ">=3.13.4 <4.0.0"
@@ -41,13 +41,16 @@ dev_dependencies:
   austerity: ^1.1.0
   build_runner: ^2.4.4
   flutter_gen: ^5.3.1
+  flutter_launcher_icons: "^0.13.1"
   flutter_lints: ^3.0.1
+  flutter_native_splash: ^2.3.7
   flutter_test:
     sdk: flutter
   freezed: ^2.1.1
   go_router_builder: ^2.4.1
   json_serializable: ^6.8.0
   riverpod_generator: ^2.3.11
+
 
 
 flutter:
@@ -67,3 +70,32 @@ flutter_gen:
   integrations:
     flutter_svg: true
     lottie: true
+
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#2196f3"
+  adaptive_icon_monochrome: "assets/images/logo.png"
+  adaptive_icon_foreground: "assets/images/logo.png"
+  background_color_ios: "#2196f3"
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "assets/images/logo.png"
+    background_color: "##2196f3"
+    theme_color: "#2196f3"
+flutter_native_splash:
+  color: "#2196f3"
+  image: "assets/images/logo.png"
+  android_12:
+    color: "#2196f3"
+    icon_background_color: "#2196f3"
+    image_dark: "assets/images/logo.png"
+    color_dark: "#2196f3"
+    icon_background_color_dark: "#2196f3"
+
+  android_gravity: top
+  
