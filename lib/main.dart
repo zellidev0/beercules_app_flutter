@@ -25,13 +25,13 @@ void main() async {
 
 Future<Widget> buildApp() async => MultiBlocProvider(
       providers: <SingleChildWidget>[
-        BlocProvider<NavigationServiceAggregator>(
+        RepositoryProvider<NavigationServiceAggregator>(
           create: (final _) => GoRouterNavigationService(
             unit,
             goRouter: goRouter,
           ),
         ),
-        BlocProvider<PersistenceServiceAggregator>(
+        RepositoryProvider<PersistenceServiceAggregator>(
           create: (final _) => PersistenceService(initialCards: initialCards),
         ),
       ],
