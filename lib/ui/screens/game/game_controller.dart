@@ -11,6 +11,7 @@ import 'package:beercules/ui/screens/game/services/game_persistence_service.dart
 import 'package:beercules/ui/widgets/beercules_binary_dialog.dart';
 import 'package:beercules/ui/widgets/beercules_dialog.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,10 +47,13 @@ class GameControllerImplementation extends _$GameControllerImplementation
   }) {
     final bool onlyDefaultGameExists = activeGame == null && customGame == null;
     final bool activeGameIsDefaultGame = activeGame == defaultGame;
+    final bool activeGameIsEmpty =
+        (activeGame?.cardToAmountMapping.values.sum ?? 0) == 0;
     final bool customGameExistsNot = customGame == null;
     final bool customGameIsDefault = customGame == defaultGame;
 
     if (onlyDefaultGameExists ||
+        activeGameIsEmpty ||
         activeGameIsDefaultGame &&
             (customGameExistsNot || customGameIsDefault)) {
       return false;
