@@ -1,10 +1,9 @@
 import 'dart:math';
 
-import 'package:beercules/common/theme.dart';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/ui/screens/game/game_model.dart';
 import 'package:beercules/ui/screens/game/game_providers.dart';
-import 'package:beercules/ui/widgets/beercules_icon_button.dart';
+import 'package:beercules/ui/screens/game/widgets/game_view_remaining_cards.dart';
 import 'package:beercules/ui/widgets/playing_card_container.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,40 +15,24 @@ class GameView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final GameController controller = ref.read(gameControllerProvider);
-    final GameModel model = ref.watch(gameModelProvider);
+    final List<GameModelCard> cards = ref.watch(
+      gameModelProvider
+          .select((final GameModel value) => value.notYetPlayedCards),
+    );
 
     return ScaffoldWidget(
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          ...model.cards.map(
-            (final GameModelCard card) => card.wasPlayed
-                ? const SizedBox.shrink()
-                : GameCard(
-                    key: ValueKey<GameModelCard>(card),
-                    card: card,
-                    onSelectCard: (final GameModelCard card) async =>
-                        controller.selectCard(card: card),
-                  ),
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Row(
-              children: <Widget>[
-                BeerculesIconButton(
-                  onPressed: controller.goBackToHome,
-                  icon: Icons.arrow_back_ios_rounded,
-                ),
-                const Spacer(),
-                if (model.amountOfCardsLeft > 0)
-                  Text(
-                    model.amountOfCardsLeft.toString(),
-                    style: TextStyles.header4,
-                  ),
-              ],
+          ...cards.map(
+            (final GameModelCard card) => GameCard(
+              key: ValueKey<GameModelCard>(card),
+              card: card,
+              onSelectCard: (final GameModelCard card) async =>
+                  ref.read(gameControllerProvider).selectCard(card: card),
             ),
           ),
+          const GameViewRemainingCards(),
         ],
       ),
     );
@@ -72,10 +55,12 @@ class GameCard extends StatefulWidget {
 
 class _GameCardState extends State<GameCard> {
   late final int _randomTranslation;
+  late bool cardWasPlayed;
 
   @override
   void initState() {
     super.initState();
+    cardWasPlayed = false;
     _randomTranslation = Random(widget.card.id.hashCode).nextInt(20);
   }
 
@@ -94,11 +79,23 @@ class _GameCardState extends State<GameCard> {
               child: RepaintBoundary(
                 child: Swipable(
                   threshold: 4,
-                  onSwipeEnd: (final _, final __) async =>
-                      widget.onSelectCard(widget.card),
-                  child: PlayingCardContainer(
-                    onTap: () => widget.onSelectCard(widget.card),
-                    child: Assets.images.logo.image(),
+                  onSwipeEnd: (final _, final __) async {
+                    setState(() {
+                      cardWasPlayed = true;
+                    });
+                    widget.onSelectCard(widget.card);
+                  },
+                  child: Visibility(
+                    visible: !cardWasPlayed,
+                    child: PlayingCardContainer(
+                      onTap: () {
+                        setState(() {
+                          cardWasPlayed = true;
+                        });
+                        widget.onSelectCard(widget.card);
+                      },
+                      child: Assets.images.logo.image(),
+                    ),
                   ),
                 ),
               ),

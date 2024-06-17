@@ -33,7 +33,8 @@ class GameControllerImplementation extends _$GameControllerImplementation
     );
 
     return GameModel(
-      cards: <GameModelCard>[],
+      notYetPlayedCards: <GameModelCard>[],
+      playedCards: <GameModelCard>[],
       amountOfCardsLeft: 0,
     );
   }
@@ -124,7 +125,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
     required final List<GameModelCard> cards,
   }) {
     state = state.copyWith(
-      cards: cards,
+      notYetPlayedCards: cards,
       amountOfCardsLeft: cards.length,
     );
   }
@@ -148,7 +149,6 @@ class GameControllerImplementation extends _$GameControllerImplementation
                   transformationAngle:
                       cardTransformSeed + entry.key.index + index,
                   type: entry.key,
-                  wasPlayed: false,
                   id: '${entry.key}$index',
                 ),
               ),
@@ -165,14 +165,10 @@ class GameControllerImplementation extends _$GameControllerImplementation
   Future<void> selectCard({required final GameModelCard card}) async {
     state = state.copyWith(
       amountOfCardsLeft: state.amountOfCardsLeft - 1,
-      cards: state.cards.map(
-        (final GameModelCard cardInList) {
-          if (cardInList.id == card.id) {
-            return card.copyWith(wasPlayed: true);
-          }
-          return cardInList;
-        },
-      ).toList(),
+      playedCards: <GameModelCard>[
+        ...state.notYetPlayedCards,
+        card,
+      ],
     );
     await persistenceService.decreaseActiveGameCardAmountByOne(card.type);
     (await navigationService
@@ -186,11 +182,8 @@ class GameControllerImplementation extends _$GameControllerImplementation
                 },
                 showLogo: card.type.isBasicRule(),
                 isLastVictimGlass: card.type.isVictimGlass() &&
-                    state.cards
-                            .where(
-                              (final _) =>
-                                  _.type.isVictimGlass() && !_.wasPlayed,
-                            )
+                    state.notYetPlayedCards
+                            .where((final _) => _.type.isVictimGlass())
                             .length ==
                         1,
                 cardType: card.type,
