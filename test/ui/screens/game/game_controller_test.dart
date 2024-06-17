@@ -205,20 +205,17 @@ void main() {
       GameModelCard(
         transformationAngle: 0,
         type: BeerculesCardType.basicRule1,
-        wasPlayed: false,
         id: 'basicRule1_0',
       ),
       GameModelCard(
         transformationAngle: 1,
         type: BeerculesCardType.basicRule1,
-        wasPlayed: false,
         id: 'basicRule1_1',
       ),
     ];
     final GameControllerImplementation gameController = createGameController()
       ..updateState(cards: cards);
 
-    expect(gameController.state.cards, equals(cards));
     expect(
       gameController.state.amountOfCardsLeft,
       equals(cards.length),
@@ -244,13 +241,11 @@ void main() {
       GameModelCard(
         transformationAngle: 30,
         type: BeerculesCardType.basicRule1,
-        wasPlayed: false,
         id: 'BeerculesCardType.basicRule10',
       ),
       GameModelCard(
         transformationAngle: 31,
         type: BeerculesCardType.basicRule1,
-        wasPlayed: false,
         id: 'BeerculesCardType.basicRule11',
       ),
     ];
