@@ -186,6 +186,26 @@
         "title": "Men's Health",
         "description": "Alle Männer werden bestraft."
       },
+      "MEDUSA": {
+        "title": "Medusa",
+        "description": "Alle schließen Ihre Augen. Du zählt bis drei und dann schauen alle Spieler hoch, jeder muss sich einen Spieler aussuchen und diesen anstarren. Starren sich 2 Personen direkt an, werden diejenigen beide bestraft."
+      },
+      "LIVE_LAUGH_LAUGH": {
+        "title": "Live Laugh Laugh",
+        "description": "Lachen verboten. Der erste der in der nächsten Runde lacht, wird bestraft."
+      },
+      "VOLL_GEIL_GEIL_VOLL": {
+        "title": "Voll Geil, Geil Voll",
+        "description": "Der Spieler mit dem vollsten Glas wird bestraft."
+      },
+      "HEY_DU": {
+        "title": "Hey Du",
+        "description": "Alle Spieler müssen dich mit den Worten \"Hey Du\" anstelle deines Namens ansprechen. Wer dich mit deinem Namen anspricht, wird bestraft."
+      },
+      "KLAUS": {
+        "title": "Klaus",
+        "description": "Du darfst die nächste Runde eine Karte für dich beanspruchen. Es ist so als hättest du diese Karte gezogen. Der ursprünglich ziehende Spieler wird bestraft und ist anschließend erneut an der Reihe." 
+      },
       "WOMENS_HEALTH": {
         "title": "Women's Health",
         "description": "Alle Frauen werden bestraft."

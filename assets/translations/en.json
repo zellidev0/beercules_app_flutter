@@ -190,6 +190,26 @@
         "title": "Women's Health",
         "description": "All women get punished."
       },
+      "MEDUSA": {
+        "title": "Medusa",
+        "description": "Everyone closes their eyes. You count to three and then all players look up. Everyone has to choose one player and stare at them. If two people stare directly at each other, they are both punished."
+      },
+      "LIVE_LAUGH_LAUGH": {
+        "title": "Live Laugh Laugh",
+        "description": "Laughing is not allowed for one round. The first player in the next round to laugh gets punished."
+      },
+      "VOLL_GEIL_GEIL_VOLL": {
+        "title": "Full glass, full voll",
+        "description": "The player with the fullest glass gets punished."
+      },
+      "HEY_DU": {
+        "title": "Hey Du",
+        "description": "All players must say \"Hey You\" instead of your name for one round. Who says your name will be punished."
+      },
+      "KLAUS": {
+        "title": "Klaus",
+        "description": "You can steal a card for yourself. It is so as if you had chosen it. The original player gets punished and takes another turn." 
+      },
       "RICHTUNGSWECHSEL": {
         "title": "Change of direction",
         "description": "Take a break.\nOnly change direction and you get punished."

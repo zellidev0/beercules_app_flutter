@@ -22,6 +22,11 @@ enum BeerculesCardType {
   knutschkarte,
   links,
   mensHealth,
+  medusa,
+  liveLaughLaugh,
+  vollGeilGeilVoll,
+  heyDu,
+  klaus,
   ohrenSpitzen,
   opferglas,
   rechts,
@@ -92,6 +97,13 @@ enum BeerculesCardType {
         BeerculesCardType.trinkBuddy => Assets.instructions.tRINKBUDDYPic.svg(),
         BeerculesCardType.womensHealth =>
           Assets.instructions.wOMENSHEALTHPic.svg(),
+        BeerculesCardType.medusa => Assets.instructions.mEDUSAPic.svg(),
+        BeerculesCardType.liveLaughLaugh =>
+          Assets.instructions.lIVELAUGHLAUGHPic.svg(),
+        BeerculesCardType.vollGeilGeilVoll =>
+          Assets.instructions.vOLLGEILGEILVOLLPic.svg(),
+        BeerculesCardType.heyDu => Assets.instructions.hEYDUPic.svg(),
+        BeerculesCardType.klaus => Assets.instructions.kLAUSPic.svg(),
         BeerculesCardType.bier123 => Assets.instructions.bIER123Pic.svg(),
         BeerculesCardType.basicRule1 => Assets.images.logo.image(),
         BeerculesCardType.basicRule2 => Assets.images.logo.image(),
@@ -159,6 +171,8 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_TAUSCHRAUSCH_description,
         BeerculesCardType.trinkBuddy =>
           LocaleKeys.game_view_instructions_TRINK_BUDDY_description,
+        BeerculesCardType.medusa =>
+          LocaleKeys.game_view_instructions_MEDUSA_description,
         BeerculesCardType.womensHealth =>
           LocaleKeys.game_view_instructions_WOMENS_HEALTH_description,
         BeerculesCardType.bier123 =>
@@ -169,6 +183,14 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_BASIC_RULE_2_description,
         BeerculesCardType.basicRule3 =>
           LocaleKeys.game_view_instructions_BASIC_RULE_3_description,
+        BeerculesCardType.liveLaughLaugh =>
+          LocaleKeys.game_view_instructions_LIVE_LAUGH_LAUGH_description,
+        BeerculesCardType.vollGeilGeilVoll =>
+          LocaleKeys.game_view_instructions_VOLL_GEIL_GEIL_VOLL_description,
+        BeerculesCardType.heyDu =>
+          LocaleKeys.game_view_instructions_HEY_DU_description,
+        BeerculesCardType.klaus =>
+          LocaleKeys.game_view_instructions_KLAUS_description,
       }
           .tr();
 
@@ -208,11 +230,17 @@ enum BeerculesCardType {
         BeerculesCardType.tauschrausch =>
           BeerculesCardEventType.withinNextRound,
         BeerculesCardType.trinkBuddy => BeerculesCardEventType.entireGame,
+        BeerculesCardType.medusa => BeerculesCardEventType.immediate,
         BeerculesCardType.womensHealth => BeerculesCardEventType.immediate,
         BeerculesCardType.bier123 => BeerculesCardEventType.miniGame,
         BeerculesCardType.basicRule1 => BeerculesCardEventType.entireGame,
         BeerculesCardType.basicRule2 => BeerculesCardEventType.entireGame,
         BeerculesCardType.basicRule3 => BeerculesCardEventType.entireGame,
+        BeerculesCardType.liveLaughLaugh =>
+          BeerculesCardEventType.withinNextRound,
+        BeerculesCardType.vollGeilGeilVoll => BeerculesCardEventType.immediate,
+        BeerculesCardType.heyDu => BeerculesCardEventType.withinNextRound,
+        BeerculesCardType.klaus => BeerculesCardEventType.withinNextRound,
       };
 
   String localizedTitle({
@@ -276,6 +304,8 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_TAUSCHRAUSCH_title,
         BeerculesCardType.trinkBuddy =>
           LocaleKeys.game_view_instructions_TRINK_BUDDY_title,
+        BeerculesCardType.medusa =>
+          LocaleKeys.game_view_instructions_MEDUSA_title,
         BeerculesCardType.womensHealth =>
           LocaleKeys.game_view_instructions_WOMENS_HEALTH_title,
         BeerculesCardType.bier123 =>
@@ -286,6 +316,14 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_BASIC_RULE_2_title,
         BeerculesCardType.basicRule3 =>
           LocaleKeys.game_view_instructions_BASIC_RULE_3_title,
+        BeerculesCardType.liveLaughLaugh =>
+          LocaleKeys.game_view_instructions_LIVE_LAUGH_LAUGH_title,
+        BeerculesCardType.vollGeilGeilVoll =>
+          LocaleKeys.game_view_instructions_VOLL_GEIL_GEIL_VOLL_title,
+        BeerculesCardType.heyDu =>
+          LocaleKeys.game_view_instructions_HEY_DU_title,
+        BeerculesCardType.klaus =>
+          LocaleKeys.game_view_instructions_KLAUS_title,
       }
           .tr();
 }

@@ -8,8 +8,9 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 import 'package:lottie/lottie.dart';
 
 class $AssetsBackgroundsGen {
@@ -90,6 +91,10 @@ class $AssetsInstructionsGen {
   SvgGenImage get hAENDEHOCHPic =>
       const SvgGenImage('assets/instructions/HAENDE_HOCH_pic.svg');
 
+  /// File path: assets/instructions/HEY_DU_pic.svg
+  SvgGenImage get hEYDUPic =>
+      const SvgGenImage('assets/instructions/HEY_DU_pic.svg');
+
   /// File path: assets/instructions/ICH_HAB_NOCH_NIE_pic.svg
   SvgGenImage get iCHHABNOCHNIEPic =>
       const SvgGenImage('assets/instructions/ICH_HAB_NOCH_NIE_pic.svg');
@@ -102,6 +107,10 @@ class $AssetsInstructionsGen {
   SvgGenImage get kETTENREAKTIONPic =>
       const SvgGenImage('assets/instructions/KETTENREAKTION_pic.svg');
 
+  /// File path: assets/instructions/KLAUS_pic.svg
+  SvgGenImage get kLAUSPic =>
+      const SvgGenImage('assets/instructions/KLAUS_pic.svg');
+
   /// File path: assets/instructions/KNUTSCHKARTE_pic.svg
   SvgGenImage get kNUTSCHKARTEPic =>
       const SvgGenImage('assets/instructions/KNUTSCHKARTE_pic.svg');
@@ -110,6 +119,14 @@ class $AssetsInstructionsGen {
   SvgGenImage get lINKSPic =>
       const SvgGenImage('assets/instructions/LINKS_pic.svg');
 
+  /// File path: assets/instructions/LIVE_LAUGH_LAUGH_pic.svg
+  SvgGenImage get lIVELAUGHLAUGHPic =>
+      const SvgGenImage('assets/instructions/LIVE_LAUGH_LAUGH_pic.svg');
+
+  /// File path: assets/instructions/MEDUSA_pic.svg
+  SvgGenImage get mEDUSAPic =>
+      const SvgGenImage('assets/instructions/MEDUSA_pic.svg');
+
   /// File path: assets/instructions/MENS_HEALTH_pic.svg
   SvgGenImage get mENSHEALTHPic =>
       const SvgGenImage('assets/instructions/MENS_HEALTH_pic.svg');
@@ -117,10 +134,6 @@ class $AssetsInstructionsGen {
   /// File path: assets/instructions/OHREN_SPITZEN_pic.svg
   SvgGenImage get oHRENSPITZENPic =>
       const SvgGenImage('assets/instructions/OHREN_SPITZEN_pic.svg');
-
-  /// File path: assets/instructions/OPFERGLAS_LAST_pic.svg
-  SvgGenImage get oPFERGLASLASTPic =>
-      const SvgGenImage('assets/instructions/OPFERGLAS_LAST_pic.svg');
 
   /// File path: assets/instructions/OPFERGLAS_pic.svg
   SvgGenImage get oPFERGLASPic =>
@@ -158,6 +171,10 @@ class $AssetsInstructionsGen {
   SvgGenImage get tRINKBUDDYPic =>
       const SvgGenImage('assets/instructions/TRINK_BUDDY_pic.svg');
 
+  /// File path: assets/instructions/VOLL_GEIL_GEIL_VOLL_pic.svg
+  SvgGenImage get vOLLGEILGEILVOLLPic =>
+      const SvgGenImage('assets/instructions/VOLL_GEIL_GEIL_VOLL_pic.svg');
+
   /// File path: assets/instructions/WOMENS_HEALTH_pic.svg
   SvgGenImage get wOMENSHEALTHPic =>
       const SvgGenImage('assets/instructions/WOMENS_HEALTH_pic.svg');
@@ -178,14 +195,17 @@ class $AssetsInstructionsGen {
         fILMRISSPic,
         fRAGENKOENIGPic,
         hAENDEHOCHPic,
+        hEYDUPic,
         iCHHABNOCHNIEPic,
         iCHPACKEMEINENKOFFERPic,
         kETTENREAKTIONPic,
+        kLAUSPic,
         kNUTSCHKARTEPic,
         lINKSPic,
+        lIVELAUGHLAUGHPic,
+        mEDUSAPic,
         mENSHEALTHPic,
         oHRENSPITZENPic,
-        oPFERGLASLASTPic,
         oPFERGLASPic,
         rECHTSPic,
         rEIMSCHWEINPic,
@@ -195,6 +215,7 @@ class $AssetsInstructionsGen {
         sPIEGLEINSPIEGLEINPic,
         tAUSCHRAUSCHPic,
         tRINKBUDDYPic,
+        vOLLGEILGEILVOLLPic,
         wOMENSHEALTHPic
       ];
 }
@@ -291,9 +312,11 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(this._assetName, {this.size = null});
 
   final String _assetName;
+
+  final Size? size;
 
   Image image({
     Key? key,
@@ -365,9 +388,20 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName);
+  const SvgGenImage(
+    this._assetName, {
+    this.size = null,
+  }) : _isVecFormat = false;
+
+  const SvgGenImage.vec(
+    this._assetName, {
+    this.size = null,
+  }) : _isVecFormat = true;
 
   final String _assetName;
+
+  final Size? size;
+  final bool _isVecFormat;
 
   SvgPicture svg({
     Key? key,
@@ -382,19 +416,21 @@ class SvgGenImage {
     WidgetBuilder? placeholderBuilder,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    SvgTheme theme = const SvgTheme(),
+    SvgTheme? theme,
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
     @deprecated bool cacheColorFilter = false,
   }) {
-    return SvgPicture.asset(
-      _assetName,
+    return SvgPicture(
+      _isVecFormat
+          ? AssetBytesLoader(_assetName,
+              assetBundle: bundle, packageName: package)
+          : SvgAssetLoader(_assetName,
+              assetBundle: bundle, packageName: package),
       key: key,
       matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
       width: width,
       height: height,
       fit: fit,
@@ -404,9 +440,8 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
-      colorFilter: colorFilter,
-      color: color,
-      colorBlendMode: colorBlendMode,
+      colorFilter: colorFilter ??
+          (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
