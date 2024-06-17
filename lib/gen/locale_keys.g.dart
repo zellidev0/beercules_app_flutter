@@ -98,6 +98,16 @@ abstract class  LocaleKeys {
   static const game_view_instructions_KNUTSCHKARTE_description = 'game_view.instructions.KNUTSCHKARTE.description';
   static const game_view_instructions_MENS_HEALTH_title = 'game_view.instructions.MENS_HEALTH.title';
   static const game_view_instructions_MENS_HEALTH_description = 'game_view.instructions.MENS_HEALTH.description';
+  static const game_view_instructions_MEDUSA_title = 'game_view.instructions.MEDUSA.title';
+  static const game_view_instructions_MEDUSA_description = 'game_view.instructions.MEDUSA.description';
+  static const game_view_instructions_LIVE_LAUGH_LAUGH_title = 'game_view.instructions.LIVE_LAUGH_LAUGH.title';
+  static const game_view_instructions_LIVE_LAUGH_LAUGH_description = 'game_view.instructions.LIVE_LAUGH_LAUGH.description';
+  static const game_view_instructions_VOLL_GEIL_GEIL_VOLL_title = 'game_view.instructions.VOLL_GEIL_GEIL_VOLL.title';
+  static const game_view_instructions_VOLL_GEIL_GEIL_VOLL_description = 'game_view.instructions.VOLL_GEIL_GEIL_VOLL.description';
+  static const game_view_instructions_HEY_DU_title = 'game_view.instructions.HEY_DU.title';
+  static const game_view_instructions_HEY_DU_description = 'game_view.instructions.HEY_DU.description';
+  static const game_view_instructions_KLAUS_title = 'game_view.instructions.KLAUS.title';
+  static const game_view_instructions_KLAUS_description = 'game_view.instructions.KLAUS.description';
   static const game_view_instructions_WOMENS_HEALTH_title = 'game_view.instructions.WOMENS_HEALTH.title';
   static const game_view_instructions_WOMENS_HEALTH_description = 'game_view.instructions.WOMENS_HEALTH.description';
   static const game_view_instructions_RICHTUNGSWECHSEL_title = 'game_view.instructions.RICHTUNGSWECHSEL.title';
