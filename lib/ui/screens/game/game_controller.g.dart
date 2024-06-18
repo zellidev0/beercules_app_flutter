@@ -7,7 +7,7 @@ part of 'game_controller.dart';
 // **************************************************************************
 
 String _$gameControllerImplementationHash() =>
-    r'53d6657fc62b7a4ed86e09c208adbcce0701783c';
+    r'42874fe94ce4d92d1da0b5a336f41f406ce9ad54';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,11 +34,13 @@ abstract class _$GameControllerImplementation
     extends BuildlessAutoDisposeNotifier<GameModel> {
   late final GameNavigationService navigationService;
   late final GamePersistenceService persistenceService;
+  late final GameAdService adService;
   late final int cardTransformSeed;
 
   GameModel build({
     required GameNavigationService navigationService,
     required GamePersistenceService persistenceService,
+    required GameAdService adService,
     required int cardTransformSeed,
   });
 }
@@ -57,11 +59,13 @@ class GameControllerImplementationFamily extends Family<GameModel> {
   GameControllerImplementationProvider call({
     required GameNavigationService navigationService,
     required GamePersistenceService persistenceService,
+    required GameAdService adService,
     required int cardTransformSeed,
   }) {
     return GameControllerImplementationProvider(
       navigationService: navigationService,
       persistenceService: persistenceService,
+      adService: adService,
       cardTransformSeed: cardTransformSeed,
     );
   }
@@ -73,6 +77,7 @@ class GameControllerImplementationFamily extends Family<GameModel> {
     return call(
       navigationService: provider.navigationService,
       persistenceService: provider.persistenceService,
+      adService: provider.adService,
       cardTransformSeed: provider.cardTransformSeed,
     );
   }
@@ -100,11 +105,13 @@ class GameControllerImplementationProvider
   GameControllerImplementationProvider({
     required GameNavigationService navigationService,
     required GamePersistenceService persistenceService,
+    required GameAdService adService,
     required int cardTransformSeed,
   }) : this._internal(
           () => GameControllerImplementation()
             ..navigationService = navigationService
             ..persistenceService = persistenceService
+            ..adService = adService
             ..cardTransformSeed = cardTransformSeed,
           from: gameControllerImplementationProvider,
           name: r'gameControllerImplementationProvider',
@@ -117,6 +124,7 @@ class GameControllerImplementationProvider
               GameControllerImplementationFamily._allTransitiveDependencies,
           navigationService: navigationService,
           persistenceService: persistenceService,
+          adService: adService,
           cardTransformSeed: cardTransformSeed,
         );
 
@@ -129,11 +137,13 @@ class GameControllerImplementationProvider
     required super.from,
     required this.navigationService,
     required this.persistenceService,
+    required this.adService,
     required this.cardTransformSeed,
   }) : super.internal();
 
   final GameNavigationService navigationService;
   final GamePersistenceService persistenceService;
+  final GameAdService adService;
   final int cardTransformSeed;
 
   @override
@@ -143,6 +153,7 @@ class GameControllerImplementationProvider
     return notifier.build(
       navigationService: navigationService,
       persistenceService: persistenceService,
+      adService: adService,
       cardTransformSeed: cardTransformSeed,
     );
   }
@@ -155,6 +166,7 @@ class GameControllerImplementationProvider
         () => create()
           ..navigationService = navigationService
           ..persistenceService = persistenceService
+          ..adService = adService
           ..cardTransformSeed = cardTransformSeed,
         from: from,
         name: null,
@@ -163,6 +175,7 @@ class GameControllerImplementationProvider
         debugGetCreateSourceHash: null,
         navigationService: navigationService,
         persistenceService: persistenceService,
+        adService: adService,
         cardTransformSeed: cardTransformSeed,
       ),
     );
@@ -179,6 +192,7 @@ class GameControllerImplementationProvider
     return other is GameControllerImplementationProvider &&
         other.navigationService == navigationService &&
         other.persistenceService == persistenceService &&
+        other.adService == adService &&
         other.cardTransformSeed == cardTransformSeed;
   }
 
@@ -187,6 +201,7 @@ class GameControllerImplementationProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, navigationService.hashCode);
     hash = _SystemHash.combine(hash, persistenceService.hashCode);
+    hash = _SystemHash.combine(hash, adService.hashCode);
     hash = _SystemHash.combine(hash, cardTransformSeed.hashCode);
 
     return _SystemHash.finish(hash);
@@ -200,6 +215,9 @@ mixin GameControllerImplementationRef
 
   /// The parameter `persistenceService` of this provider.
   GamePersistenceService get persistenceService;
+
+  /// The parameter `adService` of this provider.
+  GameAdService get adService;
 
   /// The parameter `cardTransformSeed` of this provider.
   int get cardTransformSeed;
@@ -216,6 +234,9 @@ class _GameControllerImplementationProviderElement
   @override
   GamePersistenceService get persistenceService =>
       (origin as GameControllerImplementationProvider).persistenceService;
+  @override
+  GameAdService get adService =>
+      (origin as GameControllerImplementationProvider).adService;
   @override
   int get cardTransformSeed =>
       (origin as GameControllerImplementationProvider).cardTransformSeed;

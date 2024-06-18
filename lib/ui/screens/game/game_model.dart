@@ -1,5 +1,6 @@
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 part 'game_model.freezed.dart';
 
@@ -9,6 +10,7 @@ class GameModel with _$GameModel {
     required final List<GameModelCard> notYetPlayedCards,
     required final List<GameModelCard> playedCards,
     required final int amountOfCardsLeft,
+    required final BannerAd? bannerAd,
   }) = _GameModel;
 }
 

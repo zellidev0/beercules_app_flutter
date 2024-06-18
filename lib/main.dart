@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:beercules/common/theme.dart';
 import 'package:beercules/firebase_options.dart';
 import 'package:beercules/go_router.dart';
+import 'package:beercules/services/ad_service/ad_service.dart';
 import 'package:beercules/services/persistence/implementation/database/shared_prefs_database.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,6 +16,12 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   final ProviderContainer providerContainer = ProviderContainer();
   await providerContainer.read(sharedPrefsDatabaseProvider).init();
+  await providerContainer
+      .read(adServiceProvider)
+      .init()
+      .catchError((final Object? error) {
+    debugPrint('AdMob initialization failed with error: $error');
+  });
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

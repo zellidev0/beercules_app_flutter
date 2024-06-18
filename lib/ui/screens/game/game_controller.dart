@@ -6,6 +6,7 @@ import 'package:beercules/common/utils.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/ui/screens/game/game_model.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
+import 'package:beercules/ui/screens/game/services/game_ad_service.dart';
 import 'package:beercules/ui/screens/game/services/game_navigation_service.dart';
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
 import 'package:beercules/ui/widgets/beercules_binary_dialog.dart';
@@ -16,6 +17,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'game_controller.g.dart';
@@ -27,18 +29,36 @@ class GameControllerImplementation extends _$GameControllerImplementation
   GameModel build({
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
+    required final GameAdService adService,
     required final int cardTransformSeed,
   }) {
     WidgetsBinding.instance.addPostFrameCallback(
       (final _) => unawaited(showPotentialGameDialog()),
     );
+    unawaited(loadBannerAd());
 
     return GameModel(
       notYetPlayedCards: <GameModelCard>[],
       playedCards: <GameModelCard>[],
       amountOfCardsLeft: 0,
+      bannerAd: null,
     );
   }
+
+  Future<void> loadBannerAd() async => adService.getBannerAd().then(
+        (final BannerAd ad) {
+          state = state.copyWith(bannerAd: ad);
+          ref.onDispose(ad.dispose);
+        },
+        onError: (final Object error) {
+          debugPrint('BannerAd failed to load: $error');
+        },
+      );
+
+  Future<BannerAd> loadCardAd() async => adService.getCardAd().then(
+        (final BannerAd ad) => ad,
+        onError: (final Object error) => null,
+      );
 
   bool shouldShowGameDialog({
     required final GamePersistenceServiceGame? activeGame,
@@ -175,6 +195,8 @@ class GameControllerImplementation extends _$GameControllerImplementation
       ],
     );
     await persistenceService.decreaseActiveGameCardAmountByOne(card.type);
+    final PlayingCardSpecialImage? cardModel =
+        await determineCardModel(card: card);
     (await navigationService
             .showPopup<Unit>(
               PlayingCard(
@@ -184,22 +206,21 @@ class GameControllerImplementation extends _$GameControllerImplementation
                     showFinishedDialog().run();
                   }
                 },
-                showLogo: card.type.isBasicRule(),
-                isLastVictimGlass: card.type.isVictimGlass() &&
-                    state.notYetPlayedCards
-                            .where((final _) => _.type.isVictimGlass())
-                            .length ==
-                        1,
+                cardSpecialImage: cardModel,
                 cardType: card.type,
               ),
             )
             .run())
         .match(
       (final Object error) => debugPrint(error.toString()),
-      (final Option<Unit> dismissed) =>
-          dismissed.isNone() && state.amountOfCardsLeft == 0
-              ? showFinishedDialog().run()
-              : null,
+      (final Option<Unit> dismissed) {
+        if (cardModel is PlayingCardSpecialImageAdsAdsAds) {
+          cardModel.bannerAd.dispose();
+        }
+        return dismissed.isNone() && state.amountOfCardsLeft == 0
+            ? showFinishedDialog().run()
+            : null;
+      },
     );
   }
 
@@ -249,5 +270,26 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   void closePopUp() {
     pop();
+  }
+
+  Future<PlayingCardSpecialImage?> determineCardModel({
+    required final GameModelCard card,
+  }) async {
+    if (card.type.isBasicRule()) {
+      return const PlayingCardSpecialImage.showLogo();
+    }
+    if (card.type.isVictimGlass() &&
+        state.notYetPlayedCards
+                .where((final _) => _.type.isVictimGlass())
+                .length ==
+            1) {
+      return const PlayingCardSpecialImage.lastVictimGlass();
+    }
+    if (card.type.isAdsAdsAds()) {
+      return PlayingCardSpecialImage.adsAdsAds(
+        bannerAd: await loadCardAd(),
+      );
+    }
+    return null;
   }
 }

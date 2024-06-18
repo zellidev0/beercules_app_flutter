@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:beercules/services/ad_service/ad_service.dart';
 import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
 import 'package:beercules/services/persistence/implementation/persistence_service.dart';
 import 'package:beercules/ui/screens/game/game_controller.dart';
@@ -15,6 +16,7 @@ GameController gameController(final GameControllerRef ref) => ref.watch(
         navigationService: ref.watch(goRouterNavigationServiceProvider),
         persistenceService: ref.watch(persistenceServiceProvider),
         cardTransformSeed: ref.watch(cardTransformationSeedProvider),
+        adService: ref.watch(adServiceProvider),
       ).notifier,
     );
 
@@ -24,6 +26,7 @@ GameModel gameModel(final GameModelRef ref) => ref.watch(
         navigationService: ref.watch(goRouterNavigationServiceProvider),
         persistenceService: ref.watch(persistenceServiceProvider),
         cardTransformSeed: ref.watch(cardTransformationSeedProvider),
+        adService: ref.watch(adServiceProvider),
       ),
     );
 
