@@ -135,6 +135,10 @@ class $AssetsInstructionsGen {
   SvgGenImage get oHRENSPITZENPic =>
       const SvgGenImage('assets/instructions/OHREN_SPITZEN_pic.svg');
 
+  /// File path: assets/instructions/OPFERGLAS_LAST_pic.svg
+  SvgGenImage get oPFERGLASLASTPic =>
+      const SvgGenImage('assets/instructions/OPFERGLAS_LAST_pic.svg');
+
   /// File path: assets/instructions/OPFERGLAS_pic.svg
   SvgGenImage get oPFERGLASPic =>
       const SvgGenImage('assets/instructions/OPFERGLAS_pic.svg');
@@ -206,6 +210,7 @@ class $AssetsInstructionsGen {
         mEDUSAPic,
         mENSHEALTHPic,
         oHRENSPITZENPic,
+        oPFERGLASLASTPic,
         oPFERGLASPic,
         rECHTSPic,
         rEIMSCHWEINPic,
