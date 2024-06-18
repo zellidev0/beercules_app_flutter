@@ -39,11 +39,13 @@ enum BeerculesCardType {
   trinkBuddy,
   womensHealth,
   bier123,
+  adsAdsAds,
   basicRule1,
   basicRule2,
   basicRule3;
 
   bool isVictimGlass() => this == BeerculesCardType.opferglas;
+  bool isAdsAdsAds() => this == BeerculesCardType.adsAdsAds;
   bool isBasicRule() =>
       this == BeerculesCardType.basicRule1 ||
       this == BeerculesCardType.basicRule2 ||
@@ -105,6 +107,7 @@ enum BeerculesCardType {
         BeerculesCardType.heyDu => Assets.instructions.hEYDUPic.svg(),
         BeerculesCardType.klaus => Assets.instructions.kLAUSPic.svg(),
         BeerculesCardType.bier123 => Assets.instructions.bIER123Pic.svg(),
+        BeerculesCardType.adsAdsAds => Assets.images.logo.image(),
         BeerculesCardType.basicRule1 => Assets.images.logo.image(),
         BeerculesCardType.basicRule2 => Assets.images.logo.image(),
         BeerculesCardType.basicRule3 => Assets.images.logo.image(),
@@ -191,6 +194,8 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_HEY_DU_description,
         BeerculesCardType.klaus =>
           LocaleKeys.game_view_instructions_KLAUS_description,
+        BeerculesCardType.adsAdsAds =>
+          LocaleKeys.game_view_instructions_ADS_ADS_ADS_description,
       }
           .tr();
 
@@ -241,6 +246,7 @@ enum BeerculesCardType {
         BeerculesCardType.vollGeilGeilVoll => BeerculesCardEventType.immediate,
         BeerculesCardType.heyDu => BeerculesCardEventType.withinNextRound,
         BeerculesCardType.klaus => BeerculesCardEventType.withinNextRound,
+        BeerculesCardType.adsAdsAds => BeerculesCardEventType.immediate,
       };
 
   String localizedTitle({
@@ -324,6 +330,8 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_HEY_DU_title,
         BeerculesCardType.klaus =>
           LocaleKeys.game_view_instructions_KLAUS_title,
+        BeerculesCardType.adsAdsAds =>
+          LocaleKeys.game_view_instructions_ADS_ADS_ADS_title,
       }
           .tr();
 }

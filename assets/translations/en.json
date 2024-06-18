@@ -206,9 +206,17 @@
         "title": "Hey Du",
         "description": "All players must say \"Hey You\" instead of your name for one round. Who says your name will be punished."
       },
+      "ADS_ADS_ADS": {
+        "title": "Ads Ads Ads",
+        "description": "Ads Ads Ads. Everywhere is ads. Click on the card to see the ad or you will be punished. The group decides how often."
+      },
       "KLAUS": {
         "title": "Klaus",
-        "description": "You can steal a card for yourself. It is so as if you had chosen it. The original player gets punished and takes another turn." 
+        "description": "Du darfst die nächste Runde eine Karte für dich beanspruchen. Es ist so als hättest du diese Karte gezogen. Der ursprünglich ziehende Spieler wird bestraft und ist anschließend erneut an der Reihe." 
+      },
+      "DOUBLE_TIME": {
+        "title": "Double Time",
+        "description": "You can shout \"Double Time\" at any time when someone is punished. All players who are currently punished must say \"Thank you\" and must double their punishments. But here's the catch. You yourself must also get the half of the punishments."
       },
       "RICHTUNGSWECHSEL": {
         "title": "Change of direction",
