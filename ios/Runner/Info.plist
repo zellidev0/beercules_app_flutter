@@ -39,6 +39,8 @@
 	<string>Main</string>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-2447211869280891~3427661368</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
