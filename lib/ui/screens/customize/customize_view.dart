@@ -90,7 +90,9 @@ class CardDetailsView extends ConsumerWidget {
             opacity: selected.amount < 1 ? 0.7 : 1,
             child: PlayingCard(
               onTap: _onTap,
-              showLogo: selected.type.isBasicRule(),
+              cardSpecialImage: selected.type.isBasicRule()
+                  ? const PlayingCardSpecialImage.showLogo()
+                  : null,
               cardType: selected.type,
             ),
           ),

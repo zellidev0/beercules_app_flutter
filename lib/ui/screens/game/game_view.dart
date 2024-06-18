@@ -3,12 +3,14 @@ import 'dart:math';
 import 'package:beercules/gen/assets.gen.dart';
 import 'package:beercules/ui/screens/game/game_model.dart';
 import 'package:beercules/ui/screens/game/game_providers.dart';
+import 'package:beercules/ui/screens/game/widgets/game_view_bottom_banner_ad.dart';
 import 'package:beercules/ui/screens/game/widgets/game_view_remaining_cards.dart';
 import 'package:beercules/ui/widgets/playing_card_container.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipable/flutter_swipable.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class GameView extends ConsumerWidget {
   const GameView({super.key});
@@ -19,20 +21,36 @@ class GameView extends ConsumerWidget {
       gameModelProvider
           .select((final GameModel value) => value.notYetPlayedCards),
     );
+    final BannerAd? ad = ref.watch(
+      gameModelProvider.select((final GameModel value) => value.bannerAd),
+    );
 
     return ScaffoldWidget(
+      padding: EdgeInsets.zero,
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          ...cards.map(
-            (final GameModelCard card) => GameCard(
-              key: ValueKey<GameModelCard>(card),
-              card: card,
-              onSelectCard: (final GameModelCard card) async =>
-                  ref.read(gameControllerProvider).selectCard(card: card),
+          if (ad != null) GameViewBottomBannerAd(ad: ad),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Stack(
+              children: cards
+                  .map(
+                    (final GameModelCard card) => GameCard(
+                      key: ValueKey<GameModelCard>(card),
+                      card: card,
+                      onSelectCard: (final GameModelCard card) async => ref
+                          .read(gameControllerProvider)
+                          .selectCard(card: card),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
-          const GameViewRemainingCards(),
+          const Padding(
+            padding: EdgeInsets.all(32),
+            child: GameViewRemainingCards(),
+          ),
         ],
       ),
     );

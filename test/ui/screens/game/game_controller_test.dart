@@ -1,6 +1,7 @@
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/ui/screens/game/game_controller.dart';
 import 'package:beercules/ui/screens/game/game_model.dart';
+import 'package:beercules/ui/screens/game/services/game_ad_service.dart';
 import 'package:beercules/ui/screens/game/services/game_navigation_service.dart';
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'game_controller_test.mocks.dart';
 @GenerateMocks(<Type>[
   GameNavigationService,
   GamePersistenceService,
+  GameAdService,
 ])
 // ignore: unreachable_from_main
 class GameControllerTestMocks {}
@@ -21,10 +23,12 @@ class GameControllerTestMocks {}
 void main() {
   late MockGameNavigationService mockNavigationService;
   late MockGamePersistenceService mockPersistenceService;
+  late MockGameAdService mockAdService;
 
   setUp(() async {
     mockNavigationService = MockGameNavigationService();
     mockPersistenceService = MockGamePersistenceService();
+    mockAdService = MockGameAdService();
   });
 
   GameControllerImplementation createGameController() {
@@ -34,6 +38,7 @@ void main() {
         navigationService: mockNavigationService,
         persistenceService: mockPersistenceService,
         cardTransformSeed: 0,
+        adService: mockAdService,
       ).notifier,
     );
     final KeepAliveLink keepAliveLink = gameController.ref.keepAlive();
