@@ -1,3 +1,4 @@
+import 'package:beercules/services/ad_service/ad_service.dart';
 import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
 import 'package:beercules/ui/screens/home/home_controller.dart';
 import 'package:beercules/ui/screens/home/home_model.dart';
@@ -10,6 +11,7 @@ part 'home_providers.g.dart';
 HomeController homeController(final HomeControllerRef ref) => ref.watch(
       homeControllerImplementationProvider(
         navigationService: ref.watch(goRouterNavigationServiceProvider),
+        adService: ref.watch(adServiceProvider),
       ).notifier,
     );
 
@@ -17,5 +19,6 @@ HomeController homeController(final HomeControllerRef ref) => ref.watch(
 HomeModel homeModel(final HomeModelRef ref) => ref.watch(
       homeControllerImplementationProvider(
         navigationService: ref.watch(goRouterNavigationServiceProvider),
+        adService: ref.watch(adServiceProvider),
       ),
     );

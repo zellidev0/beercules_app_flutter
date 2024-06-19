@@ -6,7 +6,7 @@ part of 'home_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeControllerHash() => r'5515b2b7b6d3cc95d948ea42e7224c9f603157e8';
+String _$homeControllerHash() => r'488b9ad75a66b3ac6fb63ae31987a5d284e1bf67';
 
 /// See also [homeController].
 @ProviderFor(homeController)
@@ -21,7 +21,7 @@ final homeControllerProvider = AutoDisposeProvider<HomeController>.internal(
 );
 
 typedef HomeControllerRef = AutoDisposeProviderRef<HomeController>;
-String _$homeModelHash() => r'c5a51b3528c720fb4d07ecb4fe6bb2e15801bf69';
+String _$homeModelHash() => r'39c381ef06128ebac2b0c84f0f737e6a6e7adfd1';
 
 /// See also [homeModel].
 @ProviderFor(homeModel)

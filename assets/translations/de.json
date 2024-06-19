@@ -41,6 +41,9 @@
       "go_drinking": "\uD83C\uDF89 Party jetzt \uD83C\uDF89",
       "rules": "Regeln",
       "customize": "Meine Karten"
+    },
+    "tracking_consent": {
+      "button": "Tracking-Einverständnis"
     }
   },
   "customize_view": {
@@ -204,7 +207,7 @@
       },
       "ADS_ADS_ADS": {
         "title": "Schei$ Werbung",
-        "description": "Werbung. Überall ist Werbung. Klicke auf die Karte, um die Werbung zu sehen oder du wirst bestraft. Die Gruppe Entscheidet wie oft."
+        "description": "Werbung. Überall ist Werbung. Klicke auf die Karte, um die Werbung zu sehen oder du wirst bestraft. Die Gruppe Entscheidet wie oft.\n\n Solltest du keine Werbung sehen, wirst du 3 mal bestraft."
       },
       "KLAUS": {
         "title": "Klaus",

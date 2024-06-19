@@ -76,4 +76,5 @@ abstract class HomeController {
   void goToGameView();
   void goToRulesView();
   void showModalLegalNotice();
+  Future<void> resetTrackingConsent();
 }
