@@ -52,6 +52,7 @@ PersistenceServiceAggregator persistenceService(
         BeerculesCardType.klaus: 1,
         BeerculesCardType.medusa: 1,
         BeerculesCardType.bier123: 1,
+        // BeerculesCardType.adsAdsAds: 2,
         BeerculesCardType.basicRule1: 1,
         BeerculesCardType.basicRule2: 1,
         BeerculesCardType.basicRule3: 1,
