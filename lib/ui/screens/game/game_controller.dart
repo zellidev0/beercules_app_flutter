@@ -39,7 +39,6 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
     return GameModel(
       notYetPlayedCards: <GameModelCard>[],
-      playedCards: <GameModelCard>[],
       amountOfCardsLeft: 0,
       bannerAd: null,
     );
@@ -189,16 +188,16 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   @override
   Future<void> selectCard({required final GameModelCard card}) async {
+    final List<GameModelCard> newNotPlayedCards = state.notYetPlayedCards
+        .filter((final GameModelCard element) => element.id != card.id)
+        .toList();
     state = state.copyWith(
       amountOfCardsLeft: state.amountOfCardsLeft - 1,
-      playedCards: <GameModelCard>[
-        ...state.notYetPlayedCards,
-        card,
-      ],
+      notYetPlayedCards: newNotPlayedCards,
     );
     await persistenceService.decreaseActiveGameCardAmountByOne(card.type);
-    final PlayingCardSpecialImage? cardModel =
-        await determineCardModel(card: card);
+    final PlayingCardSpecialImage? cardModel = await determineCardModel(
+        card: card, newNotPlayedCards: newNotPlayedCards);
     (await navigationService
             .showPopup<Unit>(
               PlayingCard(
@@ -276,15 +275,13 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   Future<PlayingCardSpecialImage?> determineCardModel({
     required final GameModelCard card,
+    required final List<GameModelCard> newNotPlayedCards,
   }) async {
     if (card.type.isBasicRule()) {
       return const PlayingCardSpecialImage.showLogo();
     }
     if (card.type.isVictimGlass() &&
-        state.notYetPlayedCards
-                .where((final _) => _.type.isVictimGlass())
-                .length ==
-            1) {
+        newNotPlayedCards.where((final _) => _.type.isVictimGlass()).isEmpty) {
       return const PlayingCardSpecialImage.lastVictimGlass();
     }
     if (card.type.isAdsAdsAds()) {
