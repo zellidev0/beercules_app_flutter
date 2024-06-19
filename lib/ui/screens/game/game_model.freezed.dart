@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GameModel {
-  List<GameModelCard> get notYetPlayedCards =>
-      throw _privateConstructorUsedError;
-  int get amountOfCardsLeft => throw _privateConstructorUsedError;
+  int? get amountOfCardsLeft => throw _privateConstructorUsedError;
+  int? get initialCards => throw _privateConstructorUsedError;
   BannerAd? get bannerAd => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,10 +30,7 @@ abstract class $GameModelCopyWith<$Res> {
   factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
       _$GameModelCopyWithImpl<$Res, GameModel>;
   @useResult
-  $Res call(
-      {List<GameModelCard> notYetPlayedCards,
-      int amountOfCardsLeft,
-      BannerAd? bannerAd});
+  $Res call({int? amountOfCardsLeft, int? initialCards, BannerAd? bannerAd});
 }
 
 /// @nodoc
@@ -50,19 +46,19 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notYetPlayedCards = null,
-    Object? amountOfCardsLeft = null,
+    Object? amountOfCardsLeft = freezed,
+    Object? initialCards = freezed,
     Object? bannerAd = freezed,
   }) {
     return _then(_value.copyWith(
-      notYetPlayedCards: null == notYetPlayedCards
-          ? _value.notYetPlayedCards
-          : notYetPlayedCards // ignore: cast_nullable_to_non_nullable
-              as List<GameModelCard>,
-      amountOfCardsLeft: null == amountOfCardsLeft
+      amountOfCardsLeft: freezed == amountOfCardsLeft
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      initialCards: freezed == initialCards
+          ? _value.initialCards
+          : initialCards // ignore: cast_nullable_to_non_nullable
+              as int?,
       bannerAd: freezed == bannerAd
           ? _value.bannerAd
           : bannerAd // ignore: cast_nullable_to_non_nullable
@@ -79,10 +75,7 @@ abstract class _$$GameModelImplCopyWith<$Res>
       __$$GameModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<GameModelCard> notYetPlayedCards,
-      int amountOfCardsLeft,
-      BannerAd? bannerAd});
+  $Res call({int? amountOfCardsLeft, int? initialCards, BannerAd? bannerAd});
 }
 
 /// @nodoc
@@ -96,19 +89,19 @@ class __$$GameModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notYetPlayedCards = null,
-    Object? amountOfCardsLeft = null,
+    Object? amountOfCardsLeft = freezed,
+    Object? initialCards = freezed,
     Object? bannerAd = freezed,
   }) {
     return _then(_$GameModelImpl(
-      notYetPlayedCards: null == notYetPlayedCards
-          ? _value._notYetPlayedCards
-          : notYetPlayedCards // ignore: cast_nullable_to_non_nullable
-              as List<GameModelCard>,
-      amountOfCardsLeft: null == amountOfCardsLeft
+      amountOfCardsLeft: freezed == amountOfCardsLeft
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      initialCards: freezed == initialCards
+          ? _value.initialCards
+          : initialCards // ignore: cast_nullable_to_non_nullable
+              as int?,
       bannerAd: freezed == bannerAd
           ? _value.bannerAd
           : bannerAd // ignore: cast_nullable_to_non_nullable
@@ -121,28 +114,20 @@ class __$$GameModelImplCopyWithImpl<$Res>
 
 class _$GameModelImpl implements _GameModel {
   _$GameModelImpl(
-      {required final List<GameModelCard> notYetPlayedCards,
-      required this.amountOfCardsLeft,
-      required this.bannerAd})
-      : _notYetPlayedCards = notYetPlayedCards;
-
-  final List<GameModelCard> _notYetPlayedCards;
-  @override
-  List<GameModelCard> get notYetPlayedCards {
-    if (_notYetPlayedCards is EqualUnmodifiableListView)
-      return _notYetPlayedCards;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_notYetPlayedCards);
-  }
+      {required this.amountOfCardsLeft,
+      required this.initialCards,
+      required this.bannerAd});
 
   @override
-  final int amountOfCardsLeft;
+  final int? amountOfCardsLeft;
+  @override
+  final int? initialCards;
   @override
   final BannerAd? bannerAd;
 
   @override
   String toString() {
-    return 'GameModel(notYetPlayedCards: $notYetPlayedCards, amountOfCardsLeft: $amountOfCardsLeft, bannerAd: $bannerAd)';
+    return 'GameModel(amountOfCardsLeft: $amountOfCardsLeft, initialCards: $initialCards, bannerAd: $bannerAd)';
   }
 
   @override
@@ -150,20 +135,17 @@ class _$GameModelImpl implements _GameModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GameModelImpl &&
-            const DeepCollectionEquality()
-                .equals(other._notYetPlayedCards, _notYetPlayedCards) &&
             (identical(other.amountOfCardsLeft, amountOfCardsLeft) ||
                 other.amountOfCardsLeft == amountOfCardsLeft) &&
+            (identical(other.initialCards, initialCards) ||
+                other.initialCards == initialCards) &&
             (identical(other.bannerAd, bannerAd) ||
                 other.bannerAd == bannerAd));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_notYetPlayedCards),
-      amountOfCardsLeft,
-      bannerAd);
+  int get hashCode =>
+      Object.hash(runtimeType, amountOfCardsLeft, initialCards, bannerAd);
 
   @JsonKey(ignore: true)
   @override
@@ -174,14 +156,14 @@ class _$GameModelImpl implements _GameModel {
 
 abstract class _GameModel implements GameModel {
   factory _GameModel(
-      {required final List<GameModelCard> notYetPlayedCards,
-      required final int amountOfCardsLeft,
+      {required final int? amountOfCardsLeft,
+      required final int? initialCards,
       required final BannerAd? bannerAd}) = _$GameModelImpl;
 
   @override
-  List<GameModelCard> get notYetPlayedCards;
+  int? get amountOfCardsLeft;
   @override
-  int get amountOfCardsLeft;
+  int? get initialCards;
   @override
   BannerAd? get bannerAd;
   @override
@@ -193,7 +175,7 @@ abstract class _GameModel implements GameModel {
 /// @nodoc
 mixin _$GameModelCard {
   String get id => throw _privateConstructorUsedError;
-  int get transformationAngle => throw _privateConstructorUsedError;
+  bool get wasPlayed => throw _privateConstructorUsedError;
   BeerculesCardType get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -207,7 +189,7 @@ abstract class $GameModelCardCopyWith<$Res> {
           GameModelCard value, $Res Function(GameModelCard) then) =
       _$GameModelCardCopyWithImpl<$Res, GameModelCard>;
   @useResult
-  $Res call({String id, int transformationAngle, BeerculesCardType type});
+  $Res call({String id, bool wasPlayed, BeerculesCardType type});
 }
 
 /// @nodoc
@@ -224,7 +206,7 @@ class _$GameModelCardCopyWithImpl<$Res, $Val extends GameModelCard>
   @override
   $Res call({
     Object? id = null,
-    Object? transformationAngle = null,
+    Object? wasPlayed = null,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
@@ -232,10 +214,10 @@ class _$GameModelCardCopyWithImpl<$Res, $Val extends GameModelCard>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      transformationAngle: null == transformationAngle
-          ? _value.transformationAngle
-          : transformationAngle // ignore: cast_nullable_to_non_nullable
-              as int,
+      wasPlayed: null == wasPlayed
+          ? _value.wasPlayed
+          : wasPlayed // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -252,7 +234,7 @@ abstract class _$$GameModelCardImplCopyWith<$Res>
       __$$GameModelCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, int transformationAngle, BeerculesCardType type});
+  $Res call({String id, bool wasPlayed, BeerculesCardType type});
 }
 
 /// @nodoc
@@ -267,7 +249,7 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? transformationAngle = null,
+    Object? wasPlayed = null,
     Object? type = null,
   }) {
     return _then(_$GameModelCardImpl(
@@ -275,10 +257,10 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      transformationAngle: null == transformationAngle
-          ? _value.transformationAngle
-          : transformationAngle // ignore: cast_nullable_to_non_nullable
-              as int,
+      wasPlayed: null == wasPlayed
+          ? _value.wasPlayed
+          : wasPlayed // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -291,20 +273,18 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
 
 class _$GameModelCardImpl implements _GameModelCard {
   _$GameModelCardImpl(
-      {required this.id,
-      required this.transformationAngle,
-      required this.type});
+      {required this.id, required this.wasPlayed, required this.type});
 
   @override
   final String id;
   @override
-  final int transformationAngle;
+  final bool wasPlayed;
   @override
   final BeerculesCardType type;
 
   @override
   String toString() {
-    return 'GameModelCard(id: $id, transformationAngle: $transformationAngle, type: $type)';
+    return 'GameModelCard(id: $id, wasPlayed: $wasPlayed, type: $type)';
   }
 
   @override
@@ -313,13 +293,13 @@ class _$GameModelCardImpl implements _GameModelCard {
         (other.runtimeType == runtimeType &&
             other is _$GameModelCardImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.transformationAngle, transformationAngle) ||
-                other.transformationAngle == transformationAngle) &&
+            (identical(other.wasPlayed, wasPlayed) ||
+                other.wasPlayed == wasPlayed) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, transformationAngle, type);
+  int get hashCode => Object.hash(runtimeType, id, wasPlayed, type);
 
   @JsonKey(ignore: true)
   @override
@@ -331,13 +311,13 @@ class _$GameModelCardImpl implements _GameModelCard {
 abstract class _GameModelCard implements GameModelCard {
   factory _GameModelCard(
       {required final String id,
-      required final int transformationAngle,
+      required final bool wasPlayed,
       required final BeerculesCardType type}) = _$GameModelCardImpl;
 
   @override
   String get id;
   @override
-  int get transformationAngle;
+  bool get wasPlayed;
   @override
   BeerculesCardType get type;
   @override

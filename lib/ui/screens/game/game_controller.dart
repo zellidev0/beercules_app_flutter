@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:core';
-import 'dart:math';
 
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/utils.dart';
@@ -26,6 +25,8 @@ part 'game_controller.g.dart';
 @riverpod
 class GameControllerImplementation extends _$GameControllerImplementation
     implements GameController {
+  List<GameModelCard> notYetPlayedCards = <GameModelCard>[];
+
   @override
   GameModel build({
     required final GameNavigationService navigationService,
@@ -38,8 +39,8 @@ class GameControllerImplementation extends _$GameControllerImplementation
     unawaited(loadBannerAd());
 
     return GameModel(
-      notYetPlayedCards: <GameModelCard>[],
-      amountOfCardsLeft: 0,
+      amountOfCardsLeft: null,
+      initialCards: null,
       bannerAd: null,
     );
   }
@@ -147,8 +148,9 @@ class GameControllerImplementation extends _$GameControllerImplementation
   void updateState({
     required final List<GameModelCard> cards,
   }) {
+    notYetPlayedCards = cards;
     state = state.copyWith(
-      notYetPlayedCards: cards,
+      initialCards: cards.length,
       amountOfCardsLeft: cards.length,
     );
   }
@@ -161,43 +163,46 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   List<GameModelCard> _mapToGameModelCard(
     final GamePersistenceServiceGame game,
-  ) {
-    final int cardTransformSeed = Random().nextInt(10);
-    return shuffleCards(
-      cards: game.cardToAmountMapping.entries
-          .map(
-            (final MapEntry<BeerculesCardType, int> entry) =>
-                List<GameModelCard>.generate(
-              entry.value,
-              (final int index) => GameModelCard(
-                transformationAngle:
-                    cardTransformSeed + entry.key.index + index,
-                type: entry.key,
-                id: '${entry.key}$index',
+  ) =>
+      shuffleCards(
+        cards: game.cardToAmountMapping.entries
+            .map(
+              (final MapEntry<BeerculesCardType, int> entry) =>
+                  List<GameModelCard>.generate(
+                entry.value,
+                (final int index) => GameModelCard(
+                  wasPlayed: false,
+                  type: entry.key,
+                  id: '${entry.key}$index',
+                ),
               ),
-            ),
-          )
-          .flatten
-          .toList(),
-      conditionToSortFirst: (final GameModelCard card) =>
-          card.type == BeerculesCardType.basicRule1 ||
-          card.type == BeerculesCardType.basicRule2 ||
-          card.type == BeerculesCardType.basicRule3,
-    );
-  }
+            )
+            .flatten
+            .toList(),
+        conditionToSortFirst: (final GameModelCard card) =>
+            card.type == BeerculesCardType.basicRule1 ||
+            card.type == BeerculesCardType.basicRule2 ||
+            card.type == BeerculesCardType.basicRule3,
+      );
 
   @override
-  Future<void> selectCard({required final GameModelCard card}) async {
-    final List<GameModelCard> newNotPlayedCards = state.notYetPlayedCards
-        .filter((final GameModelCard element) => element.id != card.id)
+  Future<void> selectCard({required final int cardNumber}) async {
+    notYetPlayedCards = notYetPlayedCards
+        .mapIndexed(
+          (final int index, final GameModelCard element) =>
+              index == cardNumber ? element.copyWith(wasPlayed: true) : element,
+        )
         .toList();
+    final GameModelCard card = notYetPlayedCards[cardNumber];
     state = state.copyWith(
-      amountOfCardsLeft: state.amountOfCardsLeft - 1,
-      notYetPlayedCards: newNotPlayedCards,
+      amountOfCardsLeft: (state.amountOfCardsLeft ?? 0) - 1,
     );
+
     await persistenceService.decreaseActiveGameCardAmountByOne(card.type);
     final PlayingCardSpecialImage? cardModel = await determineCardModel(
-        card: card, newNotPlayedCards: newNotPlayedCards);
+      card: card,
+      newNotPlayedCards: notYetPlayedCards,
+    );
     (await navigationService
             .showPopup<Unit>(
               PlayingCard(
@@ -281,7 +286,9 @@ class GameControllerImplementation extends _$GameControllerImplementation
       return const PlayingCardSpecialImage.showLogo();
     }
     if (card.type.isVictimGlass() &&
-        newNotPlayedCards.where((final _) => _.type.isVictimGlass()).isEmpty) {
+        newNotPlayedCards
+            .where((final _) => _.type.isVictimGlass() && !_.wasPlayed)
+            .isEmpty) {
       return const PlayingCardSpecialImage.lastVictimGlass();
     }
     if (card.type.isAdsAdsAds()) {

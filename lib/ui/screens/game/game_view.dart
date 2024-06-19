@@ -17,11 +17,10 @@ class GameView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final List<GameModelCard> cards = ref.watch(
-      gameModelProvider
-          .select((final GameModel value) => value.notYetPlayedCards),
+    final int? initialCards = ref.watch(
+      gameModelProvider.select((final GameModel value) => value.initialCards),
     );
-    final BannerAd? ad = ref.watch(
+    final BannerAd? bannerAd = ref.watch(
       gameModelProvider.select((final GameModel value) => value.bannerAd),
     );
 
@@ -30,21 +29,20 @@ class GameView extends ConsumerWidget {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          if (ad != null) GameViewBottomBannerAd(ad: ad),
+          if (bannerAd != null) GameViewBottomBannerAd(ad: bannerAd),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Stack(
-              children: cards
-                  .map(
-                    (final GameModelCard card) => GameCard(
-                      key: ValueKey<GameModelCard>(card),
-                      card: card,
-                      onSelectCard: (final GameModelCard card) async => ref
-                          .read(gameControllerProvider)
-                          .selectCard(card: card),
-                    ),
-                  )
-                  .toList(),
+              children: List<GameCard>.generate(
+                initialCards ?? 0,
+                (final int index) => GameCard(
+                  key: ValueKey<int>(index),
+                  cardNumber: index,
+                  onSelectCard: (final int cardNumber) async => ref
+                      .read(gameControllerProvider)
+                      .selectCard(cardNumber: cardNumber),
+                ),
+              ),
             ),
           ),
           const Padding(
@@ -57,76 +55,86 @@ class GameView extends ConsumerWidget {
   }
 }
 
-class GameCard extends StatefulWidget {
+class GameCard extends ConsumerStatefulWidget {
   const GameCard({
-    required this.card,
+    required this.cardNumber,
     required this.onSelectCard,
     super.key,
   });
 
-  final GameModelCard card;
-  final void Function(GameModelCard card) onSelectCard;
+  final int cardNumber;
+  final void Function(int cardNumber) onSelectCard;
 
   @override
-  State<GameCard> createState() => _GameCardState();
+  ConsumerState<GameCard> createState() => _GameCardState();
 }
 
-class _GameCardState extends State<GameCard> {
-  late final int _randomTranslation;
+class _GameCardState extends ConsumerState<GameCard> {
+  late final int randomTranslation;
+  late final int transformationAngle;
+  late final Widget content;
   late bool cardWasPlayed;
 
   @override
   void initState() {
+    final Random random = Random(widget.cardNumber);
+
     super.initState();
     cardWasPlayed = false;
-    _randomTranslation = Random(widget.card.id.hashCode).nextInt(20);
-  }
+    randomTranslation = random.nextInt(20);
+    transformationAngle = random.nextInt(20);
 
-  @override
-  Widget build(final BuildContext context) => Transform.rotate(
-        angle: widget.card.transformationAngle.toDouble(),
-        child: Transform.translate(
-          offset: Offset(
-            64,
-            44 + _randomTranslation.toDouble(),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(64),
-            child: AspectRatio(
-              aspectRatio: 2.5 / 3.5,
-              child: RepaintBoundary(
-                child: Swipable(
-                  key: ValueKey<GameModelCard>(widget.card),
-                  threshold: 4,
-                  onSwipeEnd: (final _, final __) async {
-                    setState(() {
-                      cardWasPlayed = true;
-                    });
-                    widget.onSelectCard(widget.card);
-                  },
-                  child: Visibility(
-                    visible: !cardWasPlayed,
-                    child: PlayingCardContainer(
-                      onTap: () {
-                        Future<void>.delayed(
-                          const Duration(milliseconds: 200),
-                          () => setState(() => cardWasPlayed = true),
-                        );
-                        widget.onSelectCard(widget.card);
-                      },
-                      child: Assets.images.logo.image(),
-                    ),
+    content = Transform.rotate(
+      angle: transformationAngle.toDouble(),
+      child: Transform.translate(
+        offset: Offset(
+          64,
+          44 + randomTranslation.toDouble(),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(64),
+          child: AspectRatio(
+            aspectRatio: 2.5 / 3.5,
+            child: RepaintBoundary(
+              child: Swipable(
+                key: ValueKey<int>(widget.cardNumber),
+                threshold: 4,
+                onSwipeEnd: (final _, final __) async {
+                  setState(() {
+                    cardWasPlayed = true;
+                  });
+                  widget.onSelectCard(widget.cardNumber);
+                },
+                child: Visibility(
+                  visible: !cardWasPlayed,
+                  child: PlayingCardContainer(
+                    onTap: () {
+                      Future<void>.delayed(
+                        const Duration(milliseconds: 200),
+                        () => setState(() => cardWasPlayed = true),
+                      );
+                      widget.onSelectCard(widget.cardNumber);
+                    },
+                    child: Assets.images.logo.image(),
                   ),
                 ),
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    if (cardWasPlayed) return const SizedBox.shrink();
+    return content;
+  }
 }
 
 abstract class GameController {
   void pop();
-  Future<void> selectCard({required final GameModelCard card});
+  Future<void> selectCard({required final int cardNumber});
   void goBackToHome();
 }
