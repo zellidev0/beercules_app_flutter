@@ -1,3 +1,4 @@
+import 'package:beercules/common/constants.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
 import 'package:beercules/ui/screens/home/home_providers.dart';
 import 'package:beercules/ui/widgets/beercules_button.dart';
@@ -26,11 +27,12 @@ class LegalNotice extends ConsumerWidget {
               padding: const EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
-                  BeerculesButton(
-                    text: LocaleKeys.home_view_tracking_consent_button.tr(),
-                    onPressed:
-                        ref.read(homeControllerProvider).resetTrackingConsent,
-                  ),
+                  if (Constants.adsEnabled)
+                    BeerculesButton(
+                      text: LocaleKeys.home_view_tracking_consent_button.tr(),
+                      onPressed:
+                          ref.read(homeControllerProvider).resetTrackingConsent,
+                    ),
                   Expanded(
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),

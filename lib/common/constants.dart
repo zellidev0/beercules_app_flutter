@@ -6,4 +6,5 @@ class Constants {
       BorderRadius.all(Radius.circular(12));
 
   static const double cardAspectRatio = 2.5 / 3.5;
+  static const bool adsEnabled = false;
 }
