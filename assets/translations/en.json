@@ -41,6 +41,9 @@
       "go_drinking": "\uD83C\uDF89 Party now \uD83C\uDF89",
       "rules": "Rules",
       "customize": "My cards"
+    },
+    "tracking_consent": {
+      "button": "Tracking-Consent"
     }
   },
   "customize_view": {
@@ -208,7 +211,7 @@
       },
       "ADS_ADS_ADS": {
         "title": "Ads Ads Ads",
-        "description": "Ads Ads Ads. Everywhere is ads. Click on the card to see the ad or you will be punished. The group decides how often."
+        "description": "Ads Ads Ads. Everywhere is ads. Click on the card to see the ad or you will be punished. The group decides how often.\n\n If you don't see any ads, you simply will be punished 3 times." 
       },
       "KLAUS": {
         "title": "Klaus",

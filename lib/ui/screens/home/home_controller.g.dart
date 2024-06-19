@@ -7,7 +7,7 @@ part of 'home_controller.dart';
 // **************************************************************************
 
 String _$homeControllerImplementationHash() =>
-    r'5b5233541a0842035c107a1c3f460bd1c2fed84d';
+    r'1f0ff969f8c30fa11bb61083724b6b53961a57cc';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,9 +33,11 @@ class _SystemHash {
 abstract class _$HomeControllerImplementation
     extends BuildlessAutoDisposeNotifier<HomeModel> {
   late final HomeNavigationService navigationService;
+  late final HomeAdService adService;
 
   HomeModel build({
     required HomeNavigationService navigationService,
+    required HomeAdService adService,
   });
 }
 
@@ -52,9 +54,11 @@ class HomeControllerImplementationFamily extends Family<HomeModel> {
   /// See also [HomeControllerImplementation].
   HomeControllerImplementationProvider call({
     required HomeNavigationService navigationService,
+    required HomeAdService adService,
   }) {
     return HomeControllerImplementationProvider(
       navigationService: navigationService,
+      adService: adService,
     );
   }
 
@@ -64,6 +68,7 @@ class HomeControllerImplementationFamily extends Family<HomeModel> {
   ) {
     return call(
       navigationService: provider.navigationService,
+      adService: provider.adService,
     );
   }
 
@@ -89,9 +94,11 @@ class HomeControllerImplementationProvider
   /// See also [HomeControllerImplementation].
   HomeControllerImplementationProvider({
     required HomeNavigationService navigationService,
+    required HomeAdService adService,
   }) : this._internal(
           () => HomeControllerImplementation()
-            ..navigationService = navigationService,
+            ..navigationService = navigationService
+            ..adService = adService,
           from: homeControllerImplementationProvider,
           name: r'homeControllerImplementationProvider',
           debugGetCreateSourceHash:
@@ -102,6 +109,7 @@ class HomeControllerImplementationProvider
           allTransitiveDependencies:
               HomeControllerImplementationFamily._allTransitiveDependencies,
           navigationService: navigationService,
+          adService: adService,
         );
 
   HomeControllerImplementationProvider._internal(
@@ -112,9 +120,11 @@ class HomeControllerImplementationProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.navigationService,
+    required this.adService,
   }) : super.internal();
 
   final HomeNavigationService navigationService;
+  final HomeAdService adService;
 
   @override
   HomeModel runNotifierBuild(
@@ -122,6 +132,7 @@ class HomeControllerImplementationProvider
   ) {
     return notifier.build(
       navigationService: navigationService,
+      adService: adService,
     );
   }
 
@@ -130,13 +141,16 @@ class HomeControllerImplementationProvider
     return ProviderOverride(
       origin: this,
       override: HomeControllerImplementationProvider._internal(
-        () => create()..navigationService = navigationService,
+        () => create()
+          ..navigationService = navigationService
+          ..adService = adService,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         navigationService: navigationService,
+        adService: adService,
       ),
     );
   }
@@ -150,13 +164,15 @@ class HomeControllerImplementationProvider
   @override
   bool operator ==(Object other) {
     return other is HomeControllerImplementationProvider &&
-        other.navigationService == navigationService;
+        other.navigationService == navigationService &&
+        other.adService == adService;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, navigationService.hashCode);
+    hash = _SystemHash.combine(hash, adService.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -166,6 +182,9 @@ mixin HomeControllerImplementationRef
     on AutoDisposeNotifierProviderRef<HomeModel> {
   /// The parameter `navigationService` of this provider.
   HomeNavigationService get navigationService;
+
+  /// The parameter `adService` of this provider.
+  HomeAdService get adService;
 }
 
 class _HomeControllerImplementationProviderElement
@@ -176,6 +195,9 @@ class _HomeControllerImplementationProviderElement
   @override
   HomeNavigationService get navigationService =>
       (origin as HomeControllerImplementationProvider).navigationService;
+  @override
+  HomeAdService get adService =>
+      (origin as HomeControllerImplementationProvider).adService;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
