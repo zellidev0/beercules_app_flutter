@@ -15,7 +15,6 @@ GameController gameController(final GameControllerRef ref) => ref.watch(
       gameControllerImplementationProvider(
         navigationService: ref.watch(goRouterNavigationServiceProvider),
         persistenceService: ref.watch(persistenceServiceProvider),
-        cardTransformSeed: ref.watch(cardTransformationSeedProvider),
         adService: ref.watch(adServiceProvider),
       ).notifier,
     );
@@ -25,7 +24,6 @@ GameModel gameModel(final GameModelRef ref) => ref.watch(
       gameControllerImplementationProvider(
         navigationService: ref.watch(goRouterNavigationServiceProvider),
         persistenceService: ref.watch(persistenceServiceProvider),
-        cardTransformSeed: ref.watch(cardTransformationSeedProvider),
         adService: ref.watch(adServiceProvider),
       ),
     );

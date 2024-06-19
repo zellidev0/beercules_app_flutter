@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:core';
+import 'dart:math';
 
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/utils.dart';
@@ -30,7 +31,6 @@ class GameControllerImplementation extends _$GameControllerImplementation
     required final GameNavigationService navigationService,
     required final GamePersistenceService persistenceService,
     required final GameAdService adService,
-    required final int cardTransformSeed,
   }) {
     WidgetsBinding.instance.addPostFrameCallback(
       (final _) => unawaited(showPotentialGameDialog()),
@@ -162,28 +162,30 @@ class GameControllerImplementation extends _$GameControllerImplementation
 
   List<GameModelCard> _mapToGameModelCard(
     final GamePersistenceServiceGame game,
-  ) =>
-      shuffleCards(
-        cards: game.cardToAmountMapping.entries
-            .map(
-              (final MapEntry<BeerculesCardType, int> entry) =>
-                  List<GameModelCard>.generate(
-                entry.value,
-                (final int index) => GameModelCard(
-                  transformationAngle:
-                      cardTransformSeed + entry.key.index + index,
-                  type: entry.key,
-                  id: '${entry.key}$index',
-                ),
+  ) {
+    final int cardTransformSeed = Random().nextInt(10);
+    return shuffleCards(
+      cards: game.cardToAmountMapping.entries
+          .map(
+            (final MapEntry<BeerculesCardType, int> entry) =>
+                List<GameModelCard>.generate(
+              entry.value,
+              (final int index) => GameModelCard(
+                transformationAngle:
+                    cardTransformSeed + entry.key.index + index,
+                type: entry.key,
+                id: '${entry.key}$index',
               ),
-            )
-            .flatten
-            .toList(),
-        conditionToSortFirst: (final GameModelCard card) =>
-            card.type == BeerculesCardType.basicRule1 ||
-            card.type == BeerculesCardType.basicRule2 ||
-            card.type == BeerculesCardType.basicRule3,
-      );
+            ),
+          )
+          .flatten
+          .toList(),
+      conditionToSortFirst: (final GameModelCard card) =>
+          card.type == BeerculesCardType.basicRule1 ||
+          card.type == BeerculesCardType.basicRule2 ||
+          card.type == BeerculesCardType.basicRule3,
+    );
+  }
 
   @override
   Future<void> selectCard({required final GameModelCard card}) async {

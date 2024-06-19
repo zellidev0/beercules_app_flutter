@@ -6,7 +6,7 @@ part of 'game_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gameControllerHash() => r'bd821f2ce48ce435f24ce4da44e626bdfafad886';
+String _$gameControllerHash() => r'c0711dd5ec465d7f6a09a9765b0acb09c252d07d';
 
 /// See also [gameController].
 @ProviderFor(gameController)
@@ -21,7 +21,7 @@ final gameControllerProvider = AutoDisposeProvider<GameController>.internal(
 );
 
 typedef GameControllerRef = AutoDisposeProviderRef<GameController>;
-String _$gameModelHash() => r'eb3c8ff253dd0e8ec695079634b93df7bd751779';
+String _$gameModelHash() => r'891b8fd928609489fab9165aac4140aca6fffe12';
 
 /// See also [gameModel].
 @ProviderFor(gameModel)
