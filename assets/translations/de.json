@@ -215,7 +215,7 @@
       },
       "DOUBLE_TIME": {
         "title": "Double Time",
-        "description": "Du kannst jederzeit, wenn jemand bestraft wird \"Double Time\" rufen. Alle zu bestrafenden Personen müssen \"Danke\" sagen und doppelt so viele Bestrafungen erleiden. Aber du selbst musst dabei die Hälfte der Bestrafungen ebenfalls erleiden."
+        "description": "Du kannst jederzeit, wenn jemand bestraft wird \"Double Time\" rufen bis jemand anderes diese Karte zieht. Alle zu bestrafenden Personen müssen \"Danke\" sagen und doppelt so viele Bestrafungen erleiden. Aber du selbst musst dabei die Hälfte der Bestrafungen ebenfalls erleiden."
       },
       "WOMENS_HEALTH": {
         "title": "Women's Health",

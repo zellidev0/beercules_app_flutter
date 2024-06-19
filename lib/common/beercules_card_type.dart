@@ -40,6 +40,7 @@ enum BeerculesCardType {
   womensHealth,
   bier123,
   adsAdsAds,
+  doubleTime,
   basicRule1,
   basicRule2,
   basicRule3;
@@ -111,6 +112,7 @@ enum BeerculesCardType {
         BeerculesCardType.basicRule1 => Assets.images.logo.image(),
         BeerculesCardType.basicRule2 => Assets.images.logo.image(),
         BeerculesCardType.basicRule3 => Assets.images.logo.image(),
+        BeerculesCardType.doubleTime => Assets.instructions.dOUBLETIMEPic.svg(),
       };
 
   String localizedDescription({
@@ -196,6 +198,8 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_KLAUS_description,
         BeerculesCardType.adsAdsAds =>
           LocaleKeys.game_view_instructions_ADS_ADS_ADS_description,
+        BeerculesCardType.doubleTime =>
+          LocaleKeys.game_view_instructions_DOUBLE_TIME_description
       }
           .tr();
 
@@ -247,6 +251,7 @@ enum BeerculesCardType {
         BeerculesCardType.heyDu => BeerculesCardEventType.withinNextRound,
         BeerculesCardType.klaus => BeerculesCardEventType.withinNextRound,
         BeerculesCardType.adsAdsAds => BeerculesCardEventType.immediate,
+        BeerculesCardType.doubleTime => BeerculesCardEventType.entireGame
       };
 
   String localizedTitle({
@@ -332,6 +337,8 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_KLAUS_title,
         BeerculesCardType.adsAdsAds =>
           LocaleKeys.game_view_instructions_ADS_ADS_ADS_title,
+        BeerculesCardType.doubleTime =>
+          LocaleKeys.game_view_instructions_DOUBLE_TIME_title
       }
           .tr();
 }
