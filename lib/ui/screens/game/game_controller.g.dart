@@ -7,7 +7,7 @@ part of 'game_controller.dart';
 // **************************************************************************
 
 String _$gameControllerImplementationHash() =>
-    r'6d14647a446eb8b64a9500ff0ed7a8ee141514aa';
+    r'3128714f9d0b50b97196f9f28d15ad990e105f86';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -35,13 +35,11 @@ abstract class _$GameControllerImplementation
   late final GameNavigationService navigationService;
   late final GamePersistenceService persistenceService;
   late final GameAdService adService;
-  late final int cardTransformSeed;
 
   GameModel build({
     required GameNavigationService navigationService,
     required GamePersistenceService persistenceService,
     required GameAdService adService,
-    required int cardTransformSeed,
   });
 }
 
@@ -60,13 +58,11 @@ class GameControllerImplementationFamily extends Family<GameModel> {
     required GameNavigationService navigationService,
     required GamePersistenceService persistenceService,
     required GameAdService adService,
-    required int cardTransformSeed,
   }) {
     return GameControllerImplementationProvider(
       navigationService: navigationService,
       persistenceService: persistenceService,
       adService: adService,
-      cardTransformSeed: cardTransformSeed,
     );
   }
 
@@ -78,7 +74,6 @@ class GameControllerImplementationFamily extends Family<GameModel> {
       navigationService: provider.navigationService,
       persistenceService: provider.persistenceService,
       adService: provider.adService,
-      cardTransformSeed: provider.cardTransformSeed,
     );
   }
 
@@ -106,13 +101,11 @@ class GameControllerImplementationProvider
     required GameNavigationService navigationService,
     required GamePersistenceService persistenceService,
     required GameAdService adService,
-    required int cardTransformSeed,
   }) : this._internal(
           () => GameControllerImplementation()
             ..navigationService = navigationService
             ..persistenceService = persistenceService
-            ..adService = adService
-            ..cardTransformSeed = cardTransformSeed,
+            ..adService = adService,
           from: gameControllerImplementationProvider,
           name: r'gameControllerImplementationProvider',
           debugGetCreateSourceHash:
@@ -125,7 +118,6 @@ class GameControllerImplementationProvider
           navigationService: navigationService,
           persistenceService: persistenceService,
           adService: adService,
-          cardTransformSeed: cardTransformSeed,
         );
 
   GameControllerImplementationProvider._internal(
@@ -138,13 +130,11 @@ class GameControllerImplementationProvider
     required this.navigationService,
     required this.persistenceService,
     required this.adService,
-    required this.cardTransformSeed,
   }) : super.internal();
 
   final GameNavigationService navigationService;
   final GamePersistenceService persistenceService;
   final GameAdService adService;
-  final int cardTransformSeed;
 
   @override
   GameModel runNotifierBuild(
@@ -154,7 +144,6 @@ class GameControllerImplementationProvider
       navigationService: navigationService,
       persistenceService: persistenceService,
       adService: adService,
-      cardTransformSeed: cardTransformSeed,
     );
   }
 
@@ -166,8 +155,7 @@ class GameControllerImplementationProvider
         () => create()
           ..navigationService = navigationService
           ..persistenceService = persistenceService
-          ..adService = adService
-          ..cardTransformSeed = cardTransformSeed,
+          ..adService = adService,
         from: from,
         name: null,
         dependencies: null,
@@ -176,7 +164,6 @@ class GameControllerImplementationProvider
         navigationService: navigationService,
         persistenceService: persistenceService,
         adService: adService,
-        cardTransformSeed: cardTransformSeed,
       ),
     );
   }
@@ -192,8 +179,7 @@ class GameControllerImplementationProvider
     return other is GameControllerImplementationProvider &&
         other.navigationService == navigationService &&
         other.persistenceService == persistenceService &&
-        other.adService == adService &&
-        other.cardTransformSeed == cardTransformSeed;
+        other.adService == adService;
   }
 
   @override
@@ -202,7 +188,6 @@ class GameControllerImplementationProvider
     hash = _SystemHash.combine(hash, navigationService.hashCode);
     hash = _SystemHash.combine(hash, persistenceService.hashCode);
     hash = _SystemHash.combine(hash, adService.hashCode);
-    hash = _SystemHash.combine(hash, cardTransformSeed.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -218,9 +203,6 @@ mixin GameControllerImplementationRef
 
   /// The parameter `adService` of this provider.
   GameAdService get adService;
-
-  /// The parameter `cardTransformSeed` of this provider.
-  int get cardTransformSeed;
 }
 
 class _GameControllerImplementationProviderElement
@@ -237,9 +219,6 @@ class _GameControllerImplementationProviderElement
   @override
   GameAdService get adService =>
       (origin as GameControllerImplementationProvider).adService;
-  @override
-  int get cardTransformSeed =>
-      (origin as GameControllerImplementationProvider).cardTransformSeed;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

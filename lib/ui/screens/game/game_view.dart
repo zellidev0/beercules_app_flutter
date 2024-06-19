@@ -96,6 +96,7 @@ class _GameCardState extends State<GameCard> {
               aspectRatio: 2.5 / 3.5,
               child: RepaintBoundary(
                 child: Swipable(
+                  key: ValueKey<GameModelCard>(widget.card),
                   threshold: 4,
                   onSwipeEnd: (final _, final __) async {
                     setState(() {
