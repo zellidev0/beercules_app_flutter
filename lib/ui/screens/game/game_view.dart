@@ -107,9 +107,10 @@ class _GameCardState extends State<GameCard> {
                     visible: !cardWasPlayed,
                     child: PlayingCardContainer(
                       onTap: () {
-                        setState(() {
-                          cardWasPlayed = true;
-                        });
+                        Future<void>.delayed(
+                          const Duration(milliseconds: 200),
+                          () => setState(() => cardWasPlayed = true),
+                        );
                         widget.onSelectCard(widget.card);
                       },
                       child: Assets.images.logo.image(),
