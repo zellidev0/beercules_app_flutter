@@ -37,7 +37,6 @@ void main() {
       gameControllerImplementationProvider(
         navigationService: mockNavigationService,
         persistenceService: mockPersistenceService,
-        cardTransformSeed: 0,
         adService: mockAdService,
       ).notifier,
     );
