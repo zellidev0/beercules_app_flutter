@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:beercules/common/constants.dart';
 import 'package:beercules/services/ad_service/implementation/ad_mob_ad_service.dart';
 import 'package:beercules/services/ad_service/implementation/no_op_ad_service.dart';
 import 'package:beercules/ui/screens/game/services/game_ad_service.dart';
@@ -16,6 +17,6 @@ abstract class AdServiceAggregator implements GameAdService, HomeAdService {
 AdServiceAggregator adService(
   final AdServiceRef ref,
 ) =>
-    kIsWeb
+    kIsWeb || !Constants.adsEnabled
         ? ref.watch(noOpAdServiceProvider)
         : ref.watch(adMobAdServiceProvider);
