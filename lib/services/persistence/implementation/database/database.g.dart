@@ -55,6 +55,7 @@ const _$BeerculesCardTypeEnumMap = {
   BeerculesCardType.womensHealth: 'womensHealth',
   BeerculesCardType.bier123: 'bier123',
   BeerculesCardType.adsAdsAds: 'adsAdsAds',
+  BeerculesCardType.doubleTime: 'doubleTime',
   BeerculesCardType.basicRule1: 'basicRule1',
   BeerculesCardType.basicRule2: 'basicRule2',
   BeerculesCardType.basicRule3: 'basicRule3',

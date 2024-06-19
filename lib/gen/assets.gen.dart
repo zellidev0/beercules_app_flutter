@@ -67,6 +67,10 @@ class $AssetsInstructionsGen {
   SvgGenImage get dECKELDRAUFPic =>
       const SvgGenImage('assets/instructions/DECKEL_DRAUF_pic.svg');
 
+  /// File path: assets/instructions/DOUBLE_TIME_pic.svg
+  SvgGenImage get dOUBLETIMEPic =>
+      const SvgGenImage('assets/instructions/DOUBLE_TIME_pic.svg');
+
   /// File path: assets/instructions/DREI_GESCHENKE_VON_HERZEN_pic.svg
   SvgGenImage get dREIGESCHENKEVONHERZENPic => const SvgGenImage(
       'assets/instructions/DREI_GESCHENKE_VON_HERZEN_pic.svg');
@@ -193,6 +197,7 @@ class $AssetsInstructionsGen {
         bIERGOTTPic,
         bIER123Pic,
         dECKELDRAUFPic,
+        dOUBLETIMEPic,
         dREIGESCHENKEVONHERZENPic,
         eINGESCHENKVONHERZENPic,
         eISPRINZESSINPic,

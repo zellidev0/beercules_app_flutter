@@ -6,7 +6,7 @@ part of 'ad_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$adServiceHash() => r'310c1077974c643ea24ea099ed4ba17bda179b32';
+String _$adServiceHash() => r'44057ac31800611ed9959da2fff6f6ecbd3b8646';
 
 /// See also [adService].
 @ProviderFor(adService)

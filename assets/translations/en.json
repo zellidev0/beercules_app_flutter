@@ -219,7 +219,7 @@
       },
       "DOUBLE_TIME": {
         "title": "Double Time",
-        "description": "You can shout \"Double Time\" at any time when someone is punished. All players who are currently punished must say \"Thank you\" and must double their punishments. But here's the catch. You yourself must also get the half of the punishments."
+        "description": "You can shout \"Double Time\" at any time when someone is punished until someone else gets this card. All players who are currently punished must say \"Thank you\" and must double their punishments. But here's the catch. You yourself must also get the half of the punishments."
       },
       "RICHTUNGSWECHSEL": {
         "title": "Change of direction",
