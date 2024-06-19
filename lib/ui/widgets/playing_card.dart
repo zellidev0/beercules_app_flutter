@@ -44,9 +44,13 @@ class PlayingCard extends StatelessWidget {
                               lastVictimGlass: (final _) =>
                                   Assets.lotties.skullAnimation.lottie(),
                               showLogo: (final _) => Assets.images.logo.image(),
-                              adsAdsAds: (final _) => GameViewCardAd(
-                                ad: _.bannerAd,
-                              ),
+                              adsAdsAds: (final _) {
+                                final BannerAd? ad = _.bannerAd;
+                                if (ad == null) {
+                                  return Assets.images.logo.image();
+                                }
+                                return GameViewCardAd(ad: ad);
+                              },
                             ),
                     ),
                   ),
@@ -89,6 +93,6 @@ class PlayingCardSpecialImage with _$PlayingCardSpecialImage {
   const factory PlayingCardSpecialImage.showLogo() =
       PlayingCardSpecialImageShowLogo;
   const factory PlayingCardSpecialImage.adsAdsAds({
-    required final BannerAd bannerAd,
+    required final BannerAd? bannerAd,
   }) = PlayingCardSpecialImageAdsAdsAds;
 }

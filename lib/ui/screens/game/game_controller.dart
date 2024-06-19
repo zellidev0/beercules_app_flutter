@@ -46,17 +46,17 @@ class GameControllerImplementation extends _$GameControllerImplementation
   }
 
   Future<void> loadBannerAd() async => adService.getBannerAd().then(
-        (final BannerAd ad) {
+        (final BannerAd? ad) {
           state = state.copyWith(bannerAd: ad);
-          ref.onDispose(ad.dispose);
+          ref.onDispose(() => ad?.dispose());
         },
         onError: (final Object error) {
           debugPrint('BannerAd failed to load: $error');
         },
       );
 
-  Future<BannerAd> loadCardAd() async => adService.getCardAd().then(
-        (final BannerAd ad) => ad,
+  Future<BannerAd?> loadCardAd() async => adService.getCardAd().then(
+        (final BannerAd? ad) => ad,
         onError: (final Object error) => null,
       );
 
@@ -215,7 +215,7 @@ class GameControllerImplementation extends _$GameControllerImplementation
       (final Object error) => debugPrint(error.toString()),
       (final Option<Unit> dismissed) {
         if (cardModel is PlayingCardSpecialImageAdsAdsAds) {
-          cardModel.bannerAd.dispose();
+          cardModel.bannerAd?.dispose();
         }
         return dismissed.isNone() && state.amountOfCardsLeft == 0
             ? showFinishedDialog().run()
