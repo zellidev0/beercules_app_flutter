@@ -109,10 +109,6 @@ class LandingView extends ConsumerWidget {
                 text: LocaleKeys.landing_view_reviews_review3_reviewText.tr(),
                 author:
                     LocaleKeys.landing_view_reviews_review3_reviewAuthor.tr(),
-              ),
-              buildReviewCard(
-                text: 'landing_view.reviews.review3.reviewText',
-                author: 'landing_view.reviews.review3.reviewAuthor',
                 halfStar: true,
               ),
               buildReviewCard(
