@@ -207,12 +207,12 @@ void main() {
     WidgetsFlutterBinding.ensureInitialized();
     final List<GameModelCard> cards = <GameModelCard>[
       GameModelCard(
-        transformationAngle: 0,
+        wasPlayed: false,
         type: BeerculesCardType.basicRule1,
         id: 'basicRule1_0',
       ),
       GameModelCard(
-        transformationAngle: 1,
+        wasPlayed: false,
         type: BeerculesCardType.basicRule1,
         id: 'basicRule1_1',
       ),
@@ -243,12 +243,12 @@ void main() {
   test('should generate new default game', () async {
     final List<GameModelCard> cards = <GameModelCard>[
       GameModelCard(
-        transformationAngle: 30,
+        wasPlayed: false,
         type: BeerculesCardType.basicRule1,
         id: 'BeerculesCardType.basicRule10',
       ),
       GameModelCard(
-        transformationAngle: 31,
+        wasPlayed: false,
         type: BeerculesCardType.basicRule1,
         id: 'BeerculesCardType.basicRule11',
       ),

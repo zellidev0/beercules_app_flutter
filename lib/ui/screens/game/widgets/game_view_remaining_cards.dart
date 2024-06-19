@@ -25,14 +25,14 @@ class GameViewRemainingCards extends StatelessWidget {
             const Spacer(),
             Consumer(
               builder: (final _, final WidgetRef ref, final __) {
-                final int amountOfCardsLeft = ref.watch(
+                final int? amountOfCardsLeft = ref.watch(
                   gameModelProvider.select(
                     (final GameModel value) => value.amountOfCardsLeft,
                   ),
                 );
                 return RepaintBoundary(
                   child: Visibility(
-                    visible: amountOfCardsLeft > 0,
+                    visible: amountOfCardsLeft != null && amountOfCardsLeft > 0,
                     child: Text(
                       amountOfCardsLeft.toString(),
                       style: TextStyles.header4,
