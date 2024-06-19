@@ -46,5 +46,6 @@
     // Remove from file watching
     "files.watcherExclude": {
         "**/.fvm": true
-    }
+    },
+    "yaml.schemaStore.enable": false
 }
