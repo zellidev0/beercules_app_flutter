@@ -20,21 +20,21 @@ mixin _$PlayingCardSpecialImage {
   TResult when<TResult extends Object?>({
     required TResult Function() lastVictimGlass,
     required TResult Function() showLogo,
-    required TResult Function(BannerAd bannerAd) adsAdsAds,
+    required TResult Function(BannerAd? bannerAd) adsAdsAds,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? lastVictimGlass,
     TResult? Function()? showLogo,
-    TResult? Function(BannerAd bannerAd)? adsAdsAds,
+    TResult? Function(BannerAd? bannerAd)? adsAdsAds,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? lastVictimGlass,
     TResult Function()? showLogo,
-    TResult Function(BannerAd bannerAd)? adsAdsAds,
+    TResult Function(BannerAd? bannerAd)? adsAdsAds,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,7 +129,7 @@ class _$PlayingCardSpecialImageLastVictimGlassImpl
   TResult when<TResult extends Object?>({
     required TResult Function() lastVictimGlass,
     required TResult Function() showLogo,
-    required TResult Function(BannerAd bannerAd) adsAdsAds,
+    required TResult Function(BannerAd? bannerAd) adsAdsAds,
   }) {
     return lastVictimGlass();
   }
@@ -139,7 +139,7 @@ class _$PlayingCardSpecialImageLastVictimGlassImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? lastVictimGlass,
     TResult? Function()? showLogo,
-    TResult? Function(BannerAd bannerAd)? adsAdsAds,
+    TResult? Function(BannerAd? bannerAd)? adsAdsAds,
   }) {
     return lastVictimGlass?.call();
   }
@@ -149,7 +149,7 @@ class _$PlayingCardSpecialImageLastVictimGlassImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? lastVictimGlass,
     TResult Function()? showLogo,
-    TResult Function(BannerAd bannerAd)? adsAdsAds,
+    TResult Function(BannerAd? bannerAd)? adsAdsAds,
     required TResult orElse(),
   }) {
     if (lastVictimGlass != null) {
@@ -247,7 +247,7 @@ class _$PlayingCardSpecialImageShowLogoImpl
   TResult when<TResult extends Object?>({
     required TResult Function() lastVictimGlass,
     required TResult Function() showLogo,
-    required TResult Function(BannerAd bannerAd) adsAdsAds,
+    required TResult Function(BannerAd? bannerAd) adsAdsAds,
   }) {
     return showLogo();
   }
@@ -257,7 +257,7 @@ class _$PlayingCardSpecialImageShowLogoImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? lastVictimGlass,
     TResult? Function()? showLogo,
-    TResult? Function(BannerAd bannerAd)? adsAdsAds,
+    TResult? Function(BannerAd? bannerAd)? adsAdsAds,
   }) {
     return showLogo?.call();
   }
@@ -267,7 +267,7 @@ class _$PlayingCardSpecialImageShowLogoImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? lastVictimGlass,
     TResult Function()? showLogo,
-    TResult Function(BannerAd bannerAd)? adsAdsAds,
+    TResult Function(BannerAd? bannerAd)? adsAdsAds,
     required TResult orElse(),
   }) {
     if (showLogo != null) {
@@ -327,7 +327,7 @@ abstract class _$$PlayingCardSpecialImageAdsAdsAdsImplCopyWith<$Res> {
           $Res Function(_$PlayingCardSpecialImageAdsAdsAdsImpl) then) =
       __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({BannerAd bannerAd});
+  $Res call({BannerAd? bannerAd});
 }
 
 /// @nodoc
@@ -343,13 +343,13 @@ class __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bannerAd = null,
+    Object? bannerAd = freezed,
   }) {
     return _then(_$PlayingCardSpecialImageAdsAdsAdsImpl(
-      bannerAd: null == bannerAd
+      bannerAd: freezed == bannerAd
           ? _value.bannerAd
           : bannerAd // ignore: cast_nullable_to_non_nullable
-              as BannerAd,
+              as BannerAd?,
     ));
   }
 }
@@ -361,7 +361,7 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   const _$PlayingCardSpecialImageAdsAdsAdsImpl({required this.bannerAd});
 
   @override
-  final BannerAd bannerAd;
+  final BannerAd? bannerAd;
 
   @override
   String toString() {
@@ -393,7 +393,7 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   TResult when<TResult extends Object?>({
     required TResult Function() lastVictimGlass,
     required TResult Function() showLogo,
-    required TResult Function(BannerAd bannerAd) adsAdsAds,
+    required TResult Function(BannerAd? bannerAd) adsAdsAds,
   }) {
     return adsAdsAds(bannerAd);
   }
@@ -403,7 +403,7 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? lastVictimGlass,
     TResult? Function()? showLogo,
-    TResult? Function(BannerAd bannerAd)? adsAdsAds,
+    TResult? Function(BannerAd? bannerAd)? adsAdsAds,
   }) {
     return adsAdsAds?.call(bannerAd);
   }
@@ -413,7 +413,7 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? lastVictimGlass,
     TResult Function()? showLogo,
-    TResult Function(BannerAd bannerAd)? adsAdsAds,
+    TResult Function(BannerAd? bannerAd)? adsAdsAds,
     required TResult orElse(),
   }) {
     if (adsAdsAds != null) {
@@ -463,10 +463,10 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
 abstract class PlayingCardSpecialImageAdsAdsAds
     implements PlayingCardSpecialImage {
   const factory PlayingCardSpecialImageAdsAdsAds(
-          {required final BannerAd bannerAd}) =
+          {required final BannerAd? bannerAd}) =
       _$PlayingCardSpecialImageAdsAdsAdsImpl;
 
-  BannerAd get bannerAd;
+  BannerAd? get bannerAd;
   @JsonKey(ignore: true)
   _$$PlayingCardSpecialImageAdsAdsAdsImplCopyWith<
           _$PlayingCardSpecialImageAdsAdsAdsImpl>

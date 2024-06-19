@@ -3,20 +3,19 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i8;
+import 'dart:async' as _i7;
 
-import 'package:beercules/common/beercules_card_type.dart' as _i9;
-import 'package:beercules/ui/screens/game/services/game_ad_service.dart'
-    as _i10;
+import 'package:beercules/common/beercules_card_type.dart' as _i8;
+import 'package:beercules/ui/screens/game/services/game_ad_service.dart' as _i9;
 import 'package:beercules/ui/screens/game/services/game_navigation_service.dart'
-    as _i4;
+    as _i3;
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart'
     as _i2;
-import 'package:flutter/material.dart' as _i6;
-import 'package:fpdart/fpdart.dart' as _i5;
-import 'package:google_mobile_ads/google_mobile_ads.dart' as _i3;
+import 'package:flutter/material.dart' as _i5;
+import 'package:fpdart/fpdart.dart' as _i4;
+import 'package:google_mobile_ads/google_mobile_ads.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:mockito/src/dummies.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -42,21 +41,11 @@ class _FakeGamePersistenceServiceGame_0 extends _i1.SmartFake
         );
 }
 
-class _FakeBannerAd_1 extends _i1.SmartFake implements _i3.BannerAd {
-  _FakeBannerAd_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [GameNavigationService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGameNavigationService extends _i1.Mock
-    implements _i4.GameNavigationService {
+    implements _i3.GameNavigationService {
   MockGameNavigationService() {
     _i1.throwOnMissingStub(this);
   }
@@ -109,8 +98,8 @@ class MockGameNavigationService extends _i1.Mock
       );
 
   @override
-  _i5.TaskEither<Object, _i5.Option<T>> showPopup<T>(
-    _i6.Widget? popup, {
+  _i4.TaskEither<Object, _i4.Option<T>> showPopup<T>(
+    _i5.Widget? popup, {
     bool? canBePoppedViaBackGesture,
   }) =>
       (super.noSuchMethod(
@@ -119,7 +108,7 @@ class MockGameNavigationService extends _i1.Mock
           [popup],
           {#canBePoppedViaBackGesture: canBePoppedViaBackGesture},
         ),
-        returnValue: _i7.dummyValue<_i5.TaskEither<Object, _i5.Option<T>>>(
+        returnValue: _i6.dummyValue<_i4.TaskEither<Object, _i4.Option<T>>>(
           this,
           Invocation.method(
             #showPopup,
@@ -127,7 +116,7 @@ class MockGameNavigationService extends _i1.Mock
             {#canBePoppedViaBackGesture: canBePoppedViaBackGesture},
           ),
         ),
-      ) as _i5.TaskEither<Object, _i5.Option<T>>);
+      ) as _i4.TaskEither<Object, _i4.Option<T>>);
 }
 
 /// A class which mocks [GamePersistenceService].
@@ -155,73 +144,61 @@ class MockGamePersistenceService extends _i1.Mock
       ) as _i2.GamePersistenceServiceGame);
 
   @override
-  _i8.Future<void> resetActiveGameToDefaultGame() => (super.noSuchMethod(
+  _i7.Future<void> resetActiveGameToDefaultGame() => (super.noSuchMethod(
         Invocation.method(
           #resetActiveGameToDefaultGame,
           [],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  _i8.Future<void> resetActiveGameToCustomGame() => (super.noSuchMethod(
+  _i7.Future<void> resetActiveGameToCustomGame() => (super.noSuchMethod(
         Invocation.method(
           #resetActiveGameToCustomGame,
           [],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  _i8.Future<void> decreaseActiveGameCardAmountByOne(
-          _i9.BeerculesCardType? type) =>
+  _i7.Future<void> decreaseActiveGameCardAmountByOne(
+          _i8.BeerculesCardType? type) =>
       (super.noSuchMethod(
         Invocation.method(
           #decreaseActiveGameCardAmountByOne,
           [type],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 }
 
 /// A class which mocks [GameAdService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGameAdService extends _i1.Mock implements _i10.GameAdService {
+class MockGameAdService extends _i1.Mock implements _i9.GameAdService {
   MockGameAdService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i8.Future<_i3.BannerAd> getBannerAd() => (super.noSuchMethod(
+  _i7.Future<_i10.BannerAd?> getBannerAd() => (super.noSuchMethod(
         Invocation.method(
           #getBannerAd,
           [],
         ),
-        returnValue: _i8.Future<_i3.BannerAd>.value(_FakeBannerAd_1(
-          this,
-          Invocation.method(
-            #getBannerAd,
-            [],
-          ),
-        )),
-      ) as _i8.Future<_i3.BannerAd>);
+        returnValue: _i7.Future<_i10.BannerAd?>.value(),
+      ) as _i7.Future<_i10.BannerAd?>);
 
   @override
-  _i8.Future<_i3.BannerAd> getCardAd() => (super.noSuchMethod(
+  _i7.Future<_i10.BannerAd?> getCardAd() => (super.noSuchMethod(
         Invocation.method(
           #getCardAd,
           [],
         ),
-        returnValue: _i8.Future<_i3.BannerAd>.value(_FakeBannerAd_1(
-          this,
-          Invocation.method(
-            #getCardAd,
-            [],
-          ),
-        )),
-      ) as _i8.Future<_i3.BannerAd>);
+        returnValue: _i7.Future<_i10.BannerAd?>.value(),
+      ) as _i7.Future<_i10.BannerAd?>);
 }
