@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GameModel {
   List<GameModelCard> get notYetPlayedCards =>
       throw _privateConstructorUsedError;
-  List<GameModelCard> get playedCards => throw _privateConstructorUsedError;
   int get amountOfCardsLeft => throw _privateConstructorUsedError;
   BannerAd? get bannerAd => throw _privateConstructorUsedError;
 
@@ -34,7 +33,6 @@ abstract class $GameModelCopyWith<$Res> {
   @useResult
   $Res call(
       {List<GameModelCard> notYetPlayedCards,
-      List<GameModelCard> playedCards,
       int amountOfCardsLeft,
       BannerAd? bannerAd});
 }
@@ -53,7 +51,6 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
   @override
   $Res call({
     Object? notYetPlayedCards = null,
-    Object? playedCards = null,
     Object? amountOfCardsLeft = null,
     Object? bannerAd = freezed,
   }) {
@@ -61,10 +58,6 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
       notYetPlayedCards: null == notYetPlayedCards
           ? _value.notYetPlayedCards
           : notYetPlayedCards // ignore: cast_nullable_to_non_nullable
-              as List<GameModelCard>,
-      playedCards: null == playedCards
-          ? _value.playedCards
-          : playedCards // ignore: cast_nullable_to_non_nullable
               as List<GameModelCard>,
       amountOfCardsLeft: null == amountOfCardsLeft
           ? _value.amountOfCardsLeft
@@ -88,7 +81,6 @@ abstract class _$$GameModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<GameModelCard> notYetPlayedCards,
-      List<GameModelCard> playedCards,
       int amountOfCardsLeft,
       BannerAd? bannerAd});
 }
@@ -105,7 +97,6 @@ class __$$GameModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? notYetPlayedCards = null,
-    Object? playedCards = null,
     Object? amountOfCardsLeft = null,
     Object? bannerAd = freezed,
   }) {
@@ -113,10 +104,6 @@ class __$$GameModelImplCopyWithImpl<$Res>
       notYetPlayedCards: null == notYetPlayedCards
           ? _value._notYetPlayedCards
           : notYetPlayedCards // ignore: cast_nullable_to_non_nullable
-              as List<GameModelCard>,
-      playedCards: null == playedCards
-          ? _value._playedCards
-          : playedCards // ignore: cast_nullable_to_non_nullable
               as List<GameModelCard>,
       amountOfCardsLeft: null == amountOfCardsLeft
           ? _value.amountOfCardsLeft
@@ -135,11 +122,9 @@ class __$$GameModelImplCopyWithImpl<$Res>
 class _$GameModelImpl implements _GameModel {
   _$GameModelImpl(
       {required final List<GameModelCard> notYetPlayedCards,
-      required final List<GameModelCard> playedCards,
       required this.amountOfCardsLeft,
       required this.bannerAd})
-      : _notYetPlayedCards = notYetPlayedCards,
-        _playedCards = playedCards;
+      : _notYetPlayedCards = notYetPlayedCards;
 
   final List<GameModelCard> _notYetPlayedCards;
   @override
@@ -150,14 +135,6 @@ class _$GameModelImpl implements _GameModel {
     return EqualUnmodifiableListView(_notYetPlayedCards);
   }
 
-  final List<GameModelCard> _playedCards;
-  @override
-  List<GameModelCard> get playedCards {
-    if (_playedCards is EqualUnmodifiableListView) return _playedCards;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_playedCards);
-  }
-
   @override
   final int amountOfCardsLeft;
   @override
@@ -165,7 +142,7 @@ class _$GameModelImpl implements _GameModel {
 
   @override
   String toString() {
-    return 'GameModel(notYetPlayedCards: $notYetPlayedCards, playedCards: $playedCards, amountOfCardsLeft: $amountOfCardsLeft, bannerAd: $bannerAd)';
+    return 'GameModel(notYetPlayedCards: $notYetPlayedCards, amountOfCardsLeft: $amountOfCardsLeft, bannerAd: $bannerAd)';
   }
 
   @override
@@ -175,8 +152,6 @@ class _$GameModelImpl implements _GameModel {
             other is _$GameModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._notYetPlayedCards, _notYetPlayedCards) &&
-            const DeepCollectionEquality()
-                .equals(other._playedCards, _playedCards) &&
             (identical(other.amountOfCardsLeft, amountOfCardsLeft) ||
                 other.amountOfCardsLeft == amountOfCardsLeft) &&
             (identical(other.bannerAd, bannerAd) ||
@@ -187,7 +162,6 @@ class _$GameModelImpl implements _GameModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_notYetPlayedCards),
-      const DeepCollectionEquality().hash(_playedCards),
       amountOfCardsLeft,
       bannerAd);
 
@@ -201,14 +175,11 @@ class _$GameModelImpl implements _GameModel {
 abstract class _GameModel implements GameModel {
   factory _GameModel(
       {required final List<GameModelCard> notYetPlayedCards,
-      required final List<GameModelCard> playedCards,
       required final int amountOfCardsLeft,
       required final BannerAd? bannerAd}) = _$GameModelImpl;
 
   @override
   List<GameModelCard> get notYetPlayedCards;
-  @override
-  List<GameModelCard> get playedCards;
   @override
   int get amountOfCardsLeft;
   @override

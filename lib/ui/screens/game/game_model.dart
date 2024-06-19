@@ -8,7 +8,6 @@ part 'game_model.freezed.dart';
 class GameModel with _$GameModel {
   factory GameModel({
     required final List<GameModelCard> notYetPlayedCards,
-    required final List<GameModelCard> playedCards,
     required final int amountOfCardsLeft,
     required final BannerAd? bannerAd,
   }) = _GameModel;
