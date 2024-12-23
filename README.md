@@ -15,8 +15,14 @@ Welcome to **Beercules**, an open-source drinking app developed in flutter. Avai
 
 Get **Beercules** on your device:
 
-[![Get it on Google Play](https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg)](https://play.google.com/store/apps/details?id=cc.zellner.beercules)  
-[![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/vn/app/beercules/id1469757352)
+<div style="display: flex; gap: 10px;">
+   <a href="https://play.google.com/store/apps/details?id=cc.zellner.beercules">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="200">
+   </a>
+   <a href="https://apps.apple.com/vn/app/beercules/id1469757352">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="200">
+   </a>
+</div>
 
 
 ## 🎨 App Screenshots
