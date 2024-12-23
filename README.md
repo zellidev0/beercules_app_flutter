@@ -3,7 +3,7 @@
 <img src="assets/images/logo.png" alt="App logo" width="300" height="300">
 
 
-Welcome to **Beercules**, an open-source drinking app developed in flutter. Available in the Apple App Store and on Google Play.
+Welcome to **Beercules** app, an open-source drinking game developed in flutter. Available in the Apple App Store and on Google Play.
 
 ## 🚀 Features
 - **Intuitive Design**: A user-friendly Drinking game. Easy to use. Hard to master
