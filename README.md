@@ -68,7 +68,6 @@ I love contributions! Follow the steps below for creating new content for the ap
 
 Join the conversation and connect with other users and contributors:
 - [GitHub Issues](https://github.com/yourusername/your-repo/issues)
-- [Discord Server](#)
 
 
 ## 📝 License
