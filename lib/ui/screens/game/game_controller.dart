@@ -10,8 +10,6 @@ import 'package:beercules/ui/screens/game/services/game_persistence_service.dart
 import 'package:beercules/ui/widgets/beercules_dialog.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class GameControllerImplementation extends GameController {
   static final int cardTransformSeed = Random().nextInt(10);
@@ -100,22 +98,20 @@ class GameControllerImplementation extends GameController {
   @override
   Future<void> selectCard({required final GameModelCard card}) async {
     persistenceService.decreaseCurrentGameCardsAmount(cardId: card.id);
-    await navigationService
-        .showPopup<void>(
-          PlayingCard(
-            onTap: () => dismissCard(cardId: card.id),
-            showLogo: card.type.isBasicRule(),
-            isLastVictimGlass: card.type.isVictimGlass() &&
-                state.cards
-                        .where(
-                          (final _) => _.type.isVictimGlass() && !_.wasPlayed,
-                        )
-                        .length ==
-                    1,
-            cardType: card.type,
-          ),
-        )
-        .run();
+    await navigationService.showPopup<void>(
+      PlayingCard(
+        onTap: () => dismissCard(cardId: card.id),
+        showLogo: card.type.isBasicRule(),
+        isLastVictimGlass: card.type.isVictimGlass() &&
+            state.cards
+                    .where(
+                      (final _) => _.type.isVictimGlass() && !_.wasPlayed,
+                    )
+                    .length ==
+                1,
+        cardType: card.type,
+      ),
+    );
   }
 
   @override
@@ -156,21 +152,15 @@ class GameControllerImplementation extends GameController {
     required final String descriptionText,
   }) =>
       unawaited(
-        navigationService
-            .showPopup<void>(
-              BeerculesDialog(
-                onConfirmPressed: onConfirmPressed,
-                onCancelPressed: onCancelPressed,
-                confirmText: confirmText,
-                declineText: declineText,
-                headerText: headerText,
-                descriptionText: descriptionText,
-              ),
-            )
-            .match(
-              (final Object error) => debugPrint(error.toString()),
-              (final _) {},
-            )
-            .run(),
+        navigationService.showPopup<void>(
+          BeerculesDialog(
+            onConfirmPressed: onConfirmPressed,
+            onCancelPressed: onCancelPressed,
+            confirmText: confirmText,
+            declineText: declineText,
+            headerText: headerText,
+            descriptionText: descriptionText,
+          ),
+        ),
       );
 }

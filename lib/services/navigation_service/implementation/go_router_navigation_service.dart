@@ -39,21 +39,10 @@ class GoRouterNavigationService extends NavigationServiceAggregator {
       );
 
   @override
-  TaskEither<Object, Option<T>> showPopup<T>(final Widget popup) =>
-      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
-        () => TaskEither<Object, Option<T>>(
-          () async =>
-              left('Error when searching for context - navigation service'),
-        ),
-        (final BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
-          () async => optionOf(
-            await showDialog<T>(
-              context: context,
-              builder: (final _) => popup,
-            ),
-          ),
-          (final Object error, final _) => error,
-        ),
+  Future<T?> showPopup<T>(final Widget popup) => showDialog<T>(
+        context: _goRouter.routerDelegate.navigatorKey.currentContext ??
+            (throw Exception('No context found')),
+        builder: (final _) => popup,
       );
 
   @override

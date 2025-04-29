@@ -61,7 +61,7 @@ class CustomizeControllerImplementation extends CustomizeController {
     required final BeerculesCardType cardType,
     required final Widget widget,
   }) {
-    unawaited(navigationService.showPopup<void>(widget).run());
+    unawaited(navigationService.showPopup<void>(widget));
     emit(state.copyWith(selectedCardType: cardType));
   }
 
