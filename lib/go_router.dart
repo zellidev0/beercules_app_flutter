@@ -2,7 +2,7 @@ import 'package:beercules/services/navigation_service/navigation_service_aggrega
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
 import 'package:beercules/ui/screens/customize/customize_page.dart';
-import 'package:beercules/ui/screens/game/game_controller.dart';
+import 'package:beercules/ui/screens/game/game_cubit.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
 import 'package:beercules/ui/screens/home/home_controller.dart';
 import 'package:beercules/ui/screens/home/home_view.dart';
@@ -48,8 +48,8 @@ GoRouter goRouter = GoRouter(
     ),
     GoRoute(
       path: NavigationServiceRoutes.gameRouteUri,
-      builder: (_, __) => BlocProvider<GameController>(
-        create: (BuildContext context) => GameControllerImplementation(
+      builder: (_, __) => BlocProvider<GameCubit>(
+        create: (BuildContext context) => GameCubitImplementation(
           navigationService: context.read<NavigationServiceAggregator>(),
           persistenceService: context.read<PersistenceServiceAggregator>(),
         ),

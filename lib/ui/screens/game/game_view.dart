@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:beercules/common/theme.dart';
 import 'package:beercules/gen/assets.gen.dart';
-import 'package:beercules/ui/screens/game/game_model.dart';
+import 'package:beercules/ui/screens/game/game_state.dart';
 import 'package:beercules/ui/widgets/beercules_icon_button.dart';
 import 'package:beercules/ui/widgets/playing_card_container.dart';
 import 'package:beercules/ui/widgets/scaffold_widget.dart';
@@ -17,18 +17,18 @@ class GameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = BlocProvider.of<GameController>(context);
-    return BlocBuilder<GameController, GameModel>(
-      builder: (BuildContext context, GameModel model) => ScaffoldWidget(
+    final controller = BlocProvider.of<GameCubit>(context);
+    return BlocBuilder<GameCubit, GameState>(
+      builder: (BuildContext context, GameState model) => ScaffoldWidget(
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
             ...model.cards.map(
-              (GameModelCard card) => card.wasPlayed
+              (GameStateCard card) => card.wasPlayed
                   ? const SizedBox.shrink()
                   : GameCard(
                       card: card,
-                      onSelectCard: (GameModelCard card) async =>
+                      onSelectCard: (GameStateCard card) async =>
                           controller.selectCard(card: card),
                     ),
             ),
@@ -62,8 +62,8 @@ class GameCard extends StatefulWidget {
     super.key,
   });
 
-  final GameModelCard card;
-  final void Function(GameModelCard card) onSelectCard;
+  final GameStateCard card;
+  final void Function(GameStateCard card) onSelectCard;
 
   @override
   State<GameCard> createState() => _GameCardState();
@@ -106,12 +106,12 @@ class _GameCardState extends State<GameCard> {
       );
 }
 
-abstract class GameController extends Cubit<GameModel> {
-  GameController(super.initialState);
+abstract class GameCubit extends Cubit<GameState> {
+  GameCubit(super.initialState);
 
   void pop();
   void dismissCard({required String cardId});
-  Future<void> selectCard({required GameModelCard card});
+  Future<void> selectCard({required GameStateCard card});
   void goBackToHome();
   void showFinishDialog({
     required void Function() onConfirmPressed,

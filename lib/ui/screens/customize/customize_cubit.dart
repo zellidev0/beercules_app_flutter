@@ -3,14 +3,14 @@ import 'dart:core';
 
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/ui/screens/customize/customize_model.dart';
+import 'package:beercules/ui/screens/customize/customize_state.dart';
 import 'package:beercules/ui/screens/customize/customize_view.dart';
 import 'package:beercules/ui/screens/customize/services/customize_navigation_service.dart';
 import 'package:beercules/ui/screens/customize/services/customize_persistence_service.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class CustomizeControllerImplementation extends CustomizeController {
+class CustomizeControllerImplementation extends CustomizeCubit {
   StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
       persistenceServiceSubscription;
   CustomizeNavigationService navigationService;
@@ -21,7 +21,7 @@ class CustomizeControllerImplementation extends CustomizeController {
     required this.navigationService,
     required this.persistenceService,
   }) : super(
-          CustomizeModel(
+          CustomizeState(
             selectedCardType: null,
             configCards: <CustomizeModelCard>[],
           ),

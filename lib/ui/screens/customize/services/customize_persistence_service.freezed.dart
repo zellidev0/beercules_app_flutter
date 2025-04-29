@@ -19,7 +19,9 @@ mixin _$CustomizePersistenceServiceModelCard {
   BeerculesCardType get type => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CustomizePersistenceServiceModelCardCopyWith<
           CustomizePersistenceServiceModelCard>
       get copyWith => throw _privateConstructorUsedError;
@@ -47,6 +49,8 @@ class _$CustomizePersistenceServiceModelCardCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -88,6 +92,8 @@ class __$$CustomizePersistenceServiceModelCardImplCopyWithImpl<$Res>
       $Res Function(_$CustomizePersistenceServiceModelCardImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,7 +142,9 @@ class _$CustomizePersistenceServiceModelCardImpl
   @override
   int get hashCode => Object.hash(runtimeType, type, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CustomizePersistenceServiceModelCardImplCopyWith<
@@ -155,8 +163,11 @@ abstract class _CustomizePersistenceServiceModelCard
   BeerculesCardType get type;
   @override
   int get amount;
+
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CustomizePersistenceServiceModelCardImplCopyWith<
           _$CustomizePersistenceServiceModelCardImpl>
       get copyWith => throw _privateConstructorUsedError;

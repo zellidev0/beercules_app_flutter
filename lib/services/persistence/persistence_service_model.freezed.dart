@@ -19,7 +19,9 @@ mixin _$PersistenceServiceModelConfigCard {
   int get amount => throw _privateConstructorUsedError;
   BeerculesCardType get type => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PersistenceServiceModelConfigCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PersistenceServiceModelConfigCardCopyWith<PersistenceServiceModelConfigCard>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$PersistenceServiceModelConfigCardCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PersistenceServiceModelConfigCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$PersistenceServiceModelConfigCardImplCopyWithImpl<$Res>
       $Res Function(_$PersistenceServiceModelConfigCardImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PersistenceServiceModelConfigCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,7 +141,9 @@ class _$PersistenceServiceModelConfigCardImpl
   @override
   int get hashCode => Object.hash(runtimeType, amount, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PersistenceServiceModelConfigCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PersistenceServiceModelConfigCardImplCopyWith<
@@ -154,8 +162,11 @@ abstract class _PersistenceServiceModelConfigCard
   int get amount;
   @override
   BeerculesCardType get type;
+
+  /// Create a copy of PersistenceServiceModelConfigCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PersistenceServiceModelConfigCardImplCopyWith<
           _$PersistenceServiceModelConfigCardImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -168,7 +179,9 @@ mixin _$PersistenceServiceModel {
   List<PersistenceServiceModelConfigCard> get configCards =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PersistenceServiceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PersistenceServiceModelCopyWith<PersistenceServiceModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -195,6 +208,8 @@ class _$PersistenceServiceModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PersistenceServiceModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -238,6 +253,8 @@ class __$$PersistenceServiceModelImplCopyWithImpl<$Res>
       $Res Function(_$PersistenceServiceModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PersistenceServiceModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -306,7 +323,9 @@ class _$PersistenceServiceModelImpl implements _PersistenceServiceModel {
       const DeepCollectionEquality().hash(_currentGameCards),
       const DeepCollectionEquality().hash(_configCards));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PersistenceServiceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PersistenceServiceModelImplCopyWith<_$PersistenceServiceModelImpl>
@@ -325,8 +344,11 @@ abstract class _PersistenceServiceModel implements PersistenceServiceModel {
   List<PersistenceServiceModelActiveGameCard> get currentGameCards;
   @override
   List<PersistenceServiceModelConfigCard> get configCards;
+
+  /// Create a copy of PersistenceServiceModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PersistenceServiceModelImplCopyWith<_$PersistenceServiceModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -337,7 +359,9 @@ mixin _$PersistenceServiceModelActiveGameCard {
   BeerculesCardType get type => throw _privateConstructorUsedError;
   bool get wasPlayed => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PersistenceServiceModelActiveGameCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PersistenceServiceModelActiveGameCardCopyWith<
           PersistenceServiceModelActiveGameCard>
       get copyWith => throw _privateConstructorUsedError;
@@ -365,6 +389,8 @@ class _$PersistenceServiceModelActiveGameCardCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PersistenceServiceModelActiveGameCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -411,6 +437,8 @@ class __$$PersistenceServiceModelActiveGameCardImplCopyWithImpl<$Res>
       $Res Function(_$PersistenceServiceModelActiveGameCardImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PersistenceServiceModelActiveGameCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -468,7 +496,9 @@ class _$PersistenceServiceModelActiveGameCardImpl
   @override
   int get hashCode => Object.hash(runtimeType, id, type, wasPlayed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PersistenceServiceModelActiveGameCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PersistenceServiceModelActiveGameCardImplCopyWith<
@@ -491,8 +521,11 @@ abstract class _PersistenceServiceModelActiveGameCard
   BeerculesCardType get type;
   @override
   bool get wasPlayed;
+
+  /// Create a copy of PersistenceServiceModelActiveGameCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PersistenceServiceModelActiveGameCardImplCopyWith<
           _$PersistenceServiceModelActiveGameCardImpl>
       get copyWith => throw _privateConstructorUsedError;

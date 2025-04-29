@@ -20,7 +20,9 @@ mixin _$GamePersistenceServiceCard {
   bool get wasPlayed => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GamePersistenceServiceCardCopyWith<GamePersistenceServiceCard>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$GamePersistenceServiceCardCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +96,8 @@ class __$$GamePersistenceServiceCardImplCopyWithImpl<$Res>
       $Res Function(_$GamePersistenceServiceCardImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,7 +154,9 @@ class _$GamePersistenceServiceCardImpl implements _GamePersistenceServiceCard {
   @override
   int get hashCode => Object.hash(runtimeType, type, wasPlayed, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GamePersistenceServiceCardImplCopyWith<_$GamePersistenceServiceCardImpl>
@@ -169,8 +177,11 @@ abstract class _GamePersistenceServiceCard
   bool get wasPlayed;
   @override
   String get id;
+
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GamePersistenceServiceCardImplCopyWith<_$GamePersistenceServiceCardImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

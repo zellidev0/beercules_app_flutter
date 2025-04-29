@@ -3,7 +3,7 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/ui/screens/game/game_model.dart';
+import 'package:beercules/ui/screens/game/game_state.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
 import 'package:beercules/ui/screens/game/services/game_navigation_service.dart';
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
@@ -11,7 +11,7 @@ import 'package:beercules/ui/widgets/beercules_dialog.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class GameControllerImplementation extends GameController {
+class GameCubitImplementation extends GameCubit {
   static int cardTransformSeed = Random().nextInt(10);
   StreamSubscription<List<GamePersistenceServiceCard>>?
       currentCardsStreamSubscription;
@@ -19,12 +19,12 @@ class GameControllerImplementation extends GameController {
   GamePersistenceService persistenceService;
 
   @override
-  GameControllerImplementation({
+  GameCubitImplementation({
     required this.navigationService,
     required this.persistenceService,
   }) : super(
-          GameModel(
-            cards: <GameModelCard>[],
+          GameState(
+            cards: <GameStateCard>[],
             amountOfCardsLeft: 0,
             shouldShowContinueDialog: false,
           ),
@@ -36,7 +36,7 @@ class GameControllerImplementation extends GameController {
         state.copyWith(
           cards: cards,
           amountOfCardsLeft:
-              cards.where((GameModelCard card) => !card.wasPlayed).length,
+              cards.where((GameStateCard card) => !card.wasPlayed).length,
         ),
       );
     });
@@ -67,8 +67,8 @@ class GameControllerImplementation extends GameController {
     return super.close();
   }
 
-  GameModelCard _mapToGameModelCard(GamePersistenceServiceCard card) =>
-      GameModelCard(
+  GameStateCard _mapToGameModelCard(GamePersistenceServiceCard card) =>
+      GameStateCard(
         transformationAngle: cardTransformSeed + card.id.hashCode,
         type: card.type,
         wasPlayed: card.wasPlayed,
@@ -78,7 +78,7 @@ class GameControllerImplementation extends GameController {
   @override
   Future<void> dismissCard({required String cardId}) async {
     navigationService.pop<void>();
-    if (state.cards.where((GameModelCard card) => !card.wasPlayed).isEmpty) {
+    if (state.cards.where((GameStateCard card) => !card.wasPlayed).isEmpty) {
       showFinishDialog(
         onConfirmPressed: newGame,
         onCancelPressed: () {
@@ -94,7 +94,7 @@ class GameControllerImplementation extends GameController {
   }
 
   @override
-  Future<void> selectCard({required GameModelCard card}) async {
+  Future<void> selectCard({required GameStateCard card}) async {
     persistenceService.decreaseCurrentGameCardsAmount(cardId: card.id);
     await navigationService.showPopup<void>(
       PlayingCard(

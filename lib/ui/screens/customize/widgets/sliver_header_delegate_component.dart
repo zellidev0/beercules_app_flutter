@@ -13,7 +13,7 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    var controller = BlocProvider.of<CustomizeController>(context);
+    var controller = BlocProvider.of<CustomizeCubit>(context);
     return Padding(
       padding: Constants.pagePadding,
       child: Row(

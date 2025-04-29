@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'game_model.dart';
+part of 'game_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,37 +15,41 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$GameModel {
-  List<GameModelCard> get cards => throw _privateConstructorUsedError;
+mixin _$GameState {
+  List<GameStateCard> get cards => throw _privateConstructorUsedError;
   int get amountOfCardsLeft => throw _privateConstructorUsedError;
   bool get shouldShowContinueDialog => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $GameModelCopyWith<GameModel> get copyWith =>
+  /// Create a copy of GameState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GameStateCopyWith<GameState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameModelCopyWith<$Res> {
-  factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
-      _$GameModelCopyWithImpl<$Res, GameModel>;
+abstract class $GameStateCopyWith<$Res> {
+  factory $GameStateCopyWith(GameState value, $Res Function(GameState) then) =
+      _$GameStateCopyWithImpl<$Res, GameState>;
   @useResult
   $Res call(
-      {List<GameModelCard> cards,
+      {List<GameStateCard> cards,
       int amountOfCardsLeft,
       bool shouldShowContinueDialog});
 }
 
 /// @nodoc
-class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
-    implements $GameModelCopyWith<$Res> {
-  _$GameModelCopyWithImpl(this._value, this._then);
+class _$GameStateCopyWithImpl<$Res, $Val extends GameState>
+    implements $GameStateCopyWith<$Res> {
+  _$GameStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GameState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -57,7 +61,7 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
       cards: null == cards
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
-              as List<GameModelCard>,
+              as List<GameStateCard>,
       amountOfCardsLeft: null == amountOfCardsLeft
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
@@ -71,27 +75,29 @@ class _$GameModelCopyWithImpl<$Res, $Val extends GameModel>
 }
 
 /// @nodoc
-abstract class _$$GameModelImplCopyWith<$Res>
-    implements $GameModelCopyWith<$Res> {
-  factory _$$GameModelImplCopyWith(
-          _$GameModelImpl value, $Res Function(_$GameModelImpl) then) =
-      __$$GameModelImplCopyWithImpl<$Res>;
+abstract class _$$GameStateImplCopyWith<$Res>
+    implements $GameStateCopyWith<$Res> {
+  factory _$$GameStateImplCopyWith(
+          _$GameStateImpl value, $Res Function(_$GameStateImpl) then) =
+      __$$GameStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<GameModelCard> cards,
+      {List<GameStateCard> cards,
       int amountOfCardsLeft,
       bool shouldShowContinueDialog});
 }
 
 /// @nodoc
-class __$$GameModelImplCopyWithImpl<$Res>
-    extends _$GameModelCopyWithImpl<$Res, _$GameModelImpl>
-    implements _$$GameModelImplCopyWith<$Res> {
-  __$$GameModelImplCopyWithImpl(
-      _$GameModelImpl _value, $Res Function(_$GameModelImpl) _then)
+class __$$GameStateImplCopyWithImpl<$Res>
+    extends _$GameStateCopyWithImpl<$Res, _$GameStateImpl>
+    implements _$$GameStateImplCopyWith<$Res> {
+  __$$GameStateImplCopyWithImpl(
+      _$GameStateImpl _value, $Res Function(_$GameStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,11 +105,11 @@ class __$$GameModelImplCopyWithImpl<$Res>
     Object? amountOfCardsLeft = null,
     Object? shouldShowContinueDialog = null,
   }) {
-    return _then(_$GameModelImpl(
+    return _then(_$GameStateImpl(
       cards: null == cards
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
-              as List<GameModelCard>,
+              as List<GameStateCard>,
       amountOfCardsLeft: null == amountOfCardsLeft
           ? _value.amountOfCardsLeft
           : amountOfCardsLeft // ignore: cast_nullable_to_non_nullable
@@ -118,16 +124,16 @@ class __$$GameModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GameModelImpl implements _GameModel {
-  _$GameModelImpl(
-      {required final List<GameModelCard> cards,
+class _$GameStateImpl implements _GameState {
+  _$GameStateImpl(
+      {required final List<GameStateCard> cards,
       required this.amountOfCardsLeft,
       required this.shouldShowContinueDialog})
       : _cards = cards;
 
-  final List<GameModelCard> _cards;
+  final List<GameStateCard> _cards;
   @override
-  List<GameModelCard> get cards {
+  List<GameStateCard> get cards {
     if (_cards is EqualUnmodifiableListView) return _cards;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cards);
@@ -140,14 +146,14 @@ class _$GameModelImpl implements _GameModel {
 
   @override
   String toString() {
-    return 'GameModel(cards: $cards, amountOfCardsLeft: $amountOfCardsLeft, shouldShowContinueDialog: $shouldShowContinueDialog)';
+    return 'GameState(cards: $cards, amountOfCardsLeft: $amountOfCardsLeft, shouldShowContinueDialog: $shouldShowContinueDialog)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GameModelImpl &&
+            other is _$GameStateImpl &&
             const DeepCollectionEquality().equals(other._cards, _cards) &&
             (identical(other.amountOfCardsLeft, amountOfCardsLeft) ||
                 other.amountOfCardsLeft == amountOfCardsLeft) &&
@@ -163,48 +169,55 @@ class _$GameModelImpl implements _GameModel {
       amountOfCardsLeft,
       shouldShowContinueDialog);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
-      __$$GameModelImplCopyWithImpl<_$GameModelImpl>(this, _$identity);
+  _$$GameStateImplCopyWith<_$GameStateImpl> get copyWith =>
+      __$$GameStateImplCopyWithImpl<_$GameStateImpl>(this, _$identity);
 }
 
-abstract class _GameModel implements GameModel {
-  factory _GameModel(
-      {required final List<GameModelCard> cards,
+abstract class _GameState implements GameState {
+  factory _GameState(
+      {required final List<GameStateCard> cards,
       required final int amountOfCardsLeft,
-      required final bool shouldShowContinueDialog}) = _$GameModelImpl;
+      required final bool shouldShowContinueDialog}) = _$GameStateImpl;
 
   @override
-  List<GameModelCard> get cards;
+  List<GameStateCard> get cards;
   @override
   int get amountOfCardsLeft;
   @override
   bool get shouldShowContinueDialog;
+
+  /// Create a copy of GameState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GameStateImplCopyWith<_$GameStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$GameModelCard {
+mixin _$GameStateCard {
   String get id => throw _privateConstructorUsedError;
   int get transformationAngle => throw _privateConstructorUsedError;
   BeerculesCardType get type => throw _privateConstructorUsedError;
   bool get wasPlayed => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $GameModelCardCopyWith<GameModelCard> get copyWith =>
+  /// Create a copy of GameStateCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GameStateCardCopyWith<GameStateCard> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameModelCardCopyWith<$Res> {
-  factory $GameModelCardCopyWith(
-          GameModelCard value, $Res Function(GameModelCard) then) =
-      _$GameModelCardCopyWithImpl<$Res, GameModelCard>;
+abstract class $GameStateCardCopyWith<$Res> {
+  factory $GameStateCardCopyWith(
+          GameStateCard value, $Res Function(GameStateCard) then) =
+      _$GameStateCardCopyWithImpl<$Res, GameStateCard>;
   @useResult
   $Res call(
       {String id,
@@ -214,15 +227,17 @@ abstract class $GameModelCardCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameModelCardCopyWithImpl<$Res, $Val extends GameModelCard>
-    implements $GameModelCardCopyWith<$Res> {
-  _$GameModelCardCopyWithImpl(this._value, this._then);
+class _$GameStateCardCopyWithImpl<$Res, $Val extends GameStateCard>
+    implements $GameStateCardCopyWith<$Res> {
+  _$GameStateCardCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GameStateCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -253,11 +268,11 @@ class _$GameModelCardCopyWithImpl<$Res, $Val extends GameModelCard>
 }
 
 /// @nodoc
-abstract class _$$GameModelCardImplCopyWith<$Res>
-    implements $GameModelCardCopyWith<$Res> {
-  factory _$$GameModelCardImplCopyWith(
-          _$GameModelCardImpl value, $Res Function(_$GameModelCardImpl) then) =
-      __$$GameModelCardImplCopyWithImpl<$Res>;
+abstract class _$$GameStateCardImplCopyWith<$Res>
+    implements $GameStateCardCopyWith<$Res> {
+  factory _$$GameStateCardImplCopyWith(
+          _$GameStateCardImpl value, $Res Function(_$GameStateCardImpl) then) =
+      __$$GameStateCardImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -268,13 +283,15 @@ abstract class _$$GameModelCardImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$GameModelCardImplCopyWithImpl<$Res>
-    extends _$GameModelCardCopyWithImpl<$Res, _$GameModelCardImpl>
-    implements _$$GameModelCardImplCopyWith<$Res> {
-  __$$GameModelCardImplCopyWithImpl(
-      _$GameModelCardImpl _value, $Res Function(_$GameModelCardImpl) _then)
+class __$$GameStateCardImplCopyWithImpl<$Res>
+    extends _$GameStateCardCopyWithImpl<$Res, _$GameStateCardImpl>
+    implements _$$GameStateCardImplCopyWith<$Res> {
+  __$$GameStateCardImplCopyWithImpl(
+      _$GameStateCardImpl _value, $Res Function(_$GameStateCardImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameStateCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -283,7 +300,7 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
     Object? type = null,
     Object? wasPlayed = null,
   }) {
-    return _then(_$GameModelCardImpl(
+    return _then(_$GameStateCardImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -306,8 +323,8 @@ class __$$GameModelCardImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GameModelCardImpl implements _GameModelCard {
-  _$GameModelCardImpl(
+class _$GameStateCardImpl implements _GameStateCard {
+  _$GameStateCardImpl(
       {required this.id,
       required this.transformationAngle,
       required this.type,
@@ -324,14 +341,14 @@ class _$GameModelCardImpl implements _GameModelCard {
 
   @override
   String toString() {
-    return 'GameModelCard(id: $id, transformationAngle: $transformationAngle, type: $type, wasPlayed: $wasPlayed)';
+    return 'GameStateCard(id: $id, transformationAngle: $transformationAngle, type: $type, wasPlayed: $wasPlayed)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GameModelCardImpl &&
+            other is _$GameStateCardImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.transformationAngle, transformationAngle) ||
                 other.transformationAngle == transformationAngle) &&
@@ -344,19 +361,21 @@ class _$GameModelCardImpl implements _GameModelCard {
   int get hashCode =>
       Object.hash(runtimeType, id, transformationAngle, type, wasPlayed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameStateCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GameModelCardImplCopyWith<_$GameModelCardImpl> get copyWith =>
-      __$$GameModelCardImplCopyWithImpl<_$GameModelCardImpl>(this, _$identity);
+  _$$GameStateCardImplCopyWith<_$GameStateCardImpl> get copyWith =>
+      __$$GameStateCardImplCopyWithImpl<_$GameStateCardImpl>(this, _$identity);
 }
 
-abstract class _GameModelCard implements GameModelCard {
-  factory _GameModelCard(
+abstract class _GameStateCard implements GameStateCard {
+  factory _GameStateCard(
       {required final String id,
       required final int transformationAngle,
       required final BeerculesCardType type,
-      required final bool wasPlayed}) = _$GameModelCardImpl;
+      required final bool wasPlayed}) = _$GameStateCardImpl;
 
   @override
   String get id;
@@ -366,8 +385,11 @@ abstract class _GameModelCard implements GameModelCard {
   BeerculesCardType get type;
   @override
   bool get wasPlayed;
+
+  /// Create a copy of GameStateCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$GameModelCardImplCopyWith<_$GameModelCardImpl> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GameStateCardImplCopyWith<_$GameStateCardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

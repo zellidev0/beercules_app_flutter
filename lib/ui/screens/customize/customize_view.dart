@@ -1,6 +1,6 @@
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/common/constants.dart';
-import 'package:beercules/ui/screens/customize/customize_model.dart';
+import 'package:beercules/ui/screens/customize/customize_state.dart';
 import 'package:beercules/ui/screens/customize/widgets/card_details_view.dart';
 import 'package:beercules/ui/screens/customize/widgets/customize_card.dart';
 import 'package:beercules/ui/screens/customize/widgets/sliver_header_delegate_component.dart';
@@ -22,8 +22,8 @@ class CustomizeView extends StatelessWidget {
             ),
             SliverPadding(
               padding: Constants.pagePadding.copyWith(top: 0),
-              sliver: BlocBuilder<CustomizeController, CustomizeModel>(
-                builder: (BuildContext context, CustomizeModel model) =>
+              sliver: BlocBuilder<CustomizeCubit, CustomizeState>(
+                builder: (BuildContext context, CustomizeState model) =>
                     SliverGrid.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
@@ -36,7 +36,7 @@ class CustomizeView extends StatelessWidget {
                     cardType: model.configCards[index].type,
                     onTap: () async {
                       final controller =
-                          BlocProvider.of<CustomizeController>(context)
+                          BlocProvider.of<CustomizeCubit>(context)
                             ..setSelectedCard(
                               cardType: model.configCards[index].type,
                             );
@@ -68,8 +68,8 @@ class CustomizeView extends StatelessWidget {
       );
 }
 
-abstract class CustomizeController extends Cubit<CustomizeModel> {
-  CustomizeController(super.initialState);
+abstract class CustomizeCubit extends Cubit<CustomizeState> {
+  CustomizeCubit(super.initialState);
 
   void goBackToHome();
   void setSelectedCard({required BeerculesCardType cardType});

@@ -1,5 +1,5 @@
 import 'package:beercules/common/theme.dart';
-import 'package:beercules/ui/screens/customize/customize_model.dart';
+import 'package:beercules/ui/screens/customize/customize_state.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:flutter/material.dart';
 
