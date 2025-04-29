@@ -36,8 +36,7 @@ class BeerculesDialog extends StatelessWidget {
             children: <Widget>[
               DecoratedBox(
                 decoration: BoxDecoration(
-                  color:
-                      Theme.of(context).colorScheme.background.withAlpha(255),
+                  color: Theme.of(context).colorScheme.surface.withAlpha(255),
                   borderRadius: const BorderRadius.all(
                     Radius.circular(16),
                   ),

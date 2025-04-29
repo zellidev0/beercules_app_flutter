@@ -17,10 +17,10 @@ class ScaffoldWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
         child: Material(
           child: Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: Padding(
               padding: _padding,
               child: Center(

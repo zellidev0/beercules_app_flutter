@@ -80,7 +80,8 @@ class LandingView extends StatelessWidget {
 
   Widget _buildLegal() => Text(
         LocaleKeys.general_legal_google_play_notice,
-        style: TextStyles.body4.copyWith(color: Colors.white.withOpacity(0.4)),
+        style: TextStyles.body4
+            .copyWith(color: Colors.white.withValues(alpha: 0.4)),
       ).tr();
 
   Widget _divider() => const Padding(

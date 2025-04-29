@@ -57,10 +57,11 @@ Future<Widget> buildApp() async => MultiBlocProvider(
               ],
             ),
             theme: ThemeData(
+              useMaterial3: true,
               colorScheme: ColorScheme.fromSeed(
                 seedColor: BeerculesColors.primary,
                 secondary: BeerculesColors.accent,
-                background: BeerculesColors.backgroundColor,
+                surface: BeerculesColors.backgroundColor,
               ),
             ),
             debugShowCheckedModeBanner: false,
