@@ -1,27 +1,22 @@
 include: package:austerity/analysis_options.yaml
 
 linter:
-  rules:
-    - always_specify_types
-    - prefer_final_parameters
-    - omit_local_variable_types
 analyzer:
   errors:
-    always_specify_types: warning
-    avoid_final_parameters: ignore
     avoid_renaming_method_parameters: warning
     avoid_types_on_closure_parameters: ignore
     invalid_annotation_target: ignore
-    omit_local_variable_types: ignore
     one_member_abstracts: ignore
-    prefer_final_parameters: warning
+    omit_local_variable_types: warning
+    prefer_final_parameters: ignore
+    prefer_final_fields: warning
     public_member_api_docs: ignore
     sort_constructors_first: ignore
     avoid_escaping_inner_quotes: warning
     prefer_single_quotes: warning
     unused_local_variable: warning
     avoid_print: warning
-    prefer_final_locals: warning
+    prefer_final_locals: ignore
     unused_field: warning
     prefer_expression_function_bodies: warning
     require_trailing_commas: warning
