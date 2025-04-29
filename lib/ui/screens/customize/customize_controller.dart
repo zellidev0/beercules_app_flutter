@@ -9,7 +9,6 @@ import 'package:beercules/ui/screens/customize/services/customize_navigation_ser
 import 'package:beercules/ui/screens/customize/services/customize_persistence_service.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 
 class CustomizeControllerImplementation extends CustomizeController {
   StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
@@ -57,28 +56,18 @@ class CustomizeControllerImplementation extends CustomizeController {
   void goBackToHome() => navigationService.goBack();
 
   @override
-  void showCard({
+  void setSelectedCard({
     required final BeerculesCardType cardType,
-    required final Widget widget,
   }) {
-    unawaited(navigationService.showPopup<void>(widget));
     emit(state.copyWith(selectedCardType: cardType));
   }
 
   @override
-  void modifyCardAmount() {
+  void setCardAmount(final int amount) {
     persistenceService
       ..modifyConfigGameCardsAmount(
         cardType: state.selectedCardType,
-        amount: ((state.configCards
-                        .firstWhereOrNull(
-                          (final CustomizeModelCard card) =>
-                              card.type == state.selectedCardType,
-                        )
-                        ?.amount ??
-                    0) +
-                1) %
-            6,
+        amount: amount,
       )
       ..resetToConfig();
   }
@@ -92,5 +81,7 @@ class CustomizeControllerImplementation extends CustomizeController {
   }
 
   @override
-  void pop() => navigationService.pop<void>();
+  void closeCardAmountChangeDialog() {
+    navigationService.pop<void>();
+  }
 }

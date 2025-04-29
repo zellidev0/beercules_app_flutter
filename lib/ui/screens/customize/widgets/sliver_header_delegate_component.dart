@@ -2,36 +2,36 @@ import 'package:beercules/common/constants.dart';
 import 'package:beercules/ui/screens/customize/customize_view.dart';
 import 'package:beercules/ui/widgets/beercules_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
-  final CustomizeController controller;
-
-  const SliverHeaderDelegateComponent({
-    required this.controller,
-  });
+  const SliverHeaderDelegateComponent();
 
   @override
   Widget build(
     final BuildContext context,
     final double shrinkOffset,
     final bool overlapsContent,
-  ) =>
-      Padding(
-        padding: Constants.pagePadding,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            BeerculesIconButton(
-              onPressed: controller.goBackToHome,
-              icon: Icons.arrow_back_ios_rounded,
-            ),
-            BeerculesIconButton(
-              onPressed: controller.restoreDefault,
-              icon: Icons.restore,
-            ),
-          ],
-        ),
-      );
+  ) {
+    final CustomizeController controller =
+        BlocProvider.of<CustomizeController>(context);
+    return Padding(
+      padding: Constants.pagePadding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          BeerculesIconButton(
+            onPressed: controller.goBackToHome,
+            icon: Icons.arrow_back_ios_rounded,
+          ),
+          BeerculesIconButton(
+            onPressed: controller.restoreDefault,
+            icon: Icons.restore,
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   double get maxExtent => _height;

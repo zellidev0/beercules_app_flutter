@@ -1,8 +1,7 @@
 import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
-import 'package:beercules/ui/screens/customize/customize_controller.dart';
-import 'package:beercules/ui/screens/customize/customize_view.dart';
+import 'package:beercules/ui/screens/customize/customize_page.dart';
 import 'package:beercules/ui/screens/game/game_controller.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
 import 'package:beercules/ui/screens/home/home_controller.dart';
@@ -63,14 +62,7 @@ final GoRouter goRouter = GoRouter(
     ),
     GoRoute(
       path: NavigationServiceRoutes.customizeRouteUri,
-      builder: (final _, final __) => BlocProvider<CustomizeController>(
-        create: (final BuildContext context) =>
-            CustomizeControllerImplementation(
-          navigationService: context.read<NavigationServiceAggregator>(),
-          persistenceService: context.read<PersistenceServiceAggregator>(),
-        ),
-        child: const CustomizeView(),
-      ),
+      builder: (final _, final __) => const CardDetailsPage(),
     ),
     GoRoute(
       path: NavigationServiceRoutes.landingRouteUri,

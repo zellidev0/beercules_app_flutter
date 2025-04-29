@@ -3,32 +3,46 @@ import 'package:beercules/ui/screens/customize/customize_model.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
 import 'package:flutter/material.dart';
 
-class CardDetailsView extends StatelessWidget {
-  final VoidCallback _onTap;
-  final VoidCallback _onButtonTap;
-  final CustomizeModelCard _card;
+class CardDetailsView extends StatefulWidget {
+  final CustomizeModelCard initialCardInfos;
+  final void Function(int amount) onSetAmount;
+  final void Function() onPop;
   const CardDetailsView({
-    required final VoidCallback onTap,
-    required final VoidCallback onButtonTap,
-    required final CustomizeModelCard card,
+    required this.initialCardInfos,
+    required this.onSetAmount,
+    required this.onPop,
     super.key,
-  })  : _onTap = onTap,
-        _onButtonTap = onButtonTap,
-        _card = card;
+  });
+
+  @override
+  State<CardDetailsView> createState() => _CardDetailsViewState();
+}
+
+class _CardDetailsViewState extends State<CardDetailsView> {
+  late int _amount;
+
+  @override
+  void initState() {
+    super.initState();
+    _amount = widget.initialCardInfos.amount;
+  }
 
   @override
   Widget build(final BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           PlayingCard(
-            onTap: _onTap,
-            showLogo: _card.type.isBasicRule(),
-            cardType: _card.type,
+            onTap: () => widget.onPop(),
+            showLogo: widget.initialCardInfos.type.isBasicRule(),
+            cardType: widget.initialCardInfos.type,
           ),
           FloatingActionButton(
-            onPressed: _onButtonTap,
+            onPressed: () {
+              setState(() => _amount = (_amount + 1) % 6);
+              widget.onSetAmount(_amount);
+            },
             child: Text(
-              _card.amount.toString(),
+              _amount.toString(),
               style: TextStyles.header3.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
