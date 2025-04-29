@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:beercules/ui/screens/home/home_model.dart';
 import 'package:beercules/ui/screens/home/home_view.dart';
-import 'package:beercules/ui/screens/home/services/home_navigation_service.dart';
 import 'package:beercules/ui/screens/home/widgets/legal_notice.dart';
 
 class HomeControllerImplementation extends HomeController {
-  final HomeNavigationService navigationService;
+  final NavigationService navigationService;
   @override
   HomeControllerImplementation({
     required this.navigationService,
@@ -30,5 +30,5 @@ class HomeControllerImplementation extends HomeController {
 
   @override
   void showModalLegalNotice() =>
-      unawaited(navigationService.showModal<void>(const LegalNotice()).run());
+      unawaited(navigationService.showModal<void>(const LegalNotice()));
 }

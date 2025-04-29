@@ -1,15 +1,14 @@
 import 'dart:async';
 
-import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 
-class GoRouterNavigationService extends NavigationServiceAggregator {
+class GoRouterNavigationService extends NavigationService {
   final GoRouter _goRouter;
 
-  GoRouterNavigationService(
-    super.initialState, {
+  GoRouterNavigationService({
     required GoRouter goRouter,
   }) : _goRouter = goRouter;
 
@@ -59,20 +58,8 @@ class GoRouterNavigationService extends NavigationServiceAggregator {
       );
 
   @override
-  TaskEither<Object, Option<T>> showModal<T>(Widget widget) =>
-      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
-        () => TaskEither<Object, Option<T>>(
-          () async =>
-              left('Error when searching for context - navigation service'),
-        ),
-        (BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
-          () async => optionOf(
-            await showModalBottomSheet<T>(
-              context: context,
-              builder: (_) => widget,
-            ),
-          ),
-          (Object error, _) => error,
-        ),
+  Future<T?> showModal<T>(Widget widget) => showModalBottomSheet<T>(
+        context: _goRouter.routerDelegate.navigatorKey.currentContext!,
+        builder: (_) => widget,
       );
 }

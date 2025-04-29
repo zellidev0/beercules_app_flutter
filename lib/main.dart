@@ -2,14 +2,14 @@ import 'package:beercules/common/theme.dart';
 import 'package:beercules/firebase_options.dart';
 import 'package:beercules/go_router.dart';
 import 'package:beercules/services/navigation_service/implementation/go_router_navigation_service.dart';
-import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/persistence/implementation/persistence_service.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fpdart/fpdart.dart';
+
 import 'package:nested/nested.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -25,9 +25,8 @@ void main() async {
 
 Future<Widget> buildApp() async => MultiBlocProvider(
       providers: <SingleChildWidget>[
-        RepositoryProvider<NavigationServiceAggregator>(
+        RepositoryProvider<NavigationService>(
           create: (_) => GoRouterNavigationService(
-            unit,
             goRouter: goRouter,
           ),
         ),

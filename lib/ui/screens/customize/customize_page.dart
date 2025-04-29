@@ -1,4 +1,4 @@
-import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
 import 'package:beercules/ui/screens/customize/customize_cubit.dart';
 import 'package:beercules/ui/screens/customize/customize_view.dart';
@@ -11,7 +11,7 @@ class CardDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider<CustomizeCubit>(
         create: (BuildContext context) => CustomizeControllerImplementation(
-          navigationService: context.read<NavigationServiceAggregator>(),
+          navigationService: context.read<NavigationService>(),
           persistenceService: context.read<PersistenceServiceAggregator>(),
         ),
         child: const CustomizeView(),

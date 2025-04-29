@@ -3,9 +3,9 @@ import 'dart:core';
 
 import 'package:beercules/common/beercules_card_type.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/ui/screens/customize/customize_state.dart';
 import 'package:beercules/ui/screens/customize/customize_view.dart';
-import 'package:beercules/ui/screens/customize/services/customize_navigation_service.dart';
 import 'package:beercules/ui/screens/customize/services/customize_persistence_service.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -13,7 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 class CustomizeControllerImplementation extends CustomizeCubit {
   StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
       persistenceServiceSubscription;
-  CustomizeNavigationService navigationService;
+  NavigationService navigationService;
   CustomizePersistenceService persistenceService;
 
   @override

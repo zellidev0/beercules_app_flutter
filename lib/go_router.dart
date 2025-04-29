@@ -1,4 +1,4 @@
-import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:beercules/services/persistence/persistence_service_aggregator.dart';
 import 'package:beercules/ui/screens/customize/customize_page.dart';
@@ -41,7 +41,7 @@ GoRouter goRouter = GoRouter(
       path: NavigationServiceRoutes.homeRouteUri,
       builder: (_, __) => BlocProvider<HomeController>(
         create: (BuildContext context) => HomeControllerImplementation(
-          navigationService: context.read<NavigationServiceAggregator>(),
+          navigationService: context.read<NavigationService>(),
         ),
         child: const HomeView(),
       ),
@@ -50,7 +50,7 @@ GoRouter goRouter = GoRouter(
       path: NavigationServiceRoutes.gameRouteUri,
       builder: (_, __) => BlocProvider<GameCubit>(
         create: (BuildContext context) => GameCubitImplementation(
-          navigationService: context.read<NavigationServiceAggregator>(),
+          navigationService: context.read<NavigationService>(),
           persistenceService: context.read<PersistenceServiceAggregator>(),
         ),
         child: const GameView(),

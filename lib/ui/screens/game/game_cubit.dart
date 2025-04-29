@@ -3,9 +3,9 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:beercules/gen/locale_keys.g.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/ui/screens/game/game_state.dart';
 import 'package:beercules/ui/screens/game/game_view.dart';
-import 'package:beercules/ui/screens/game/services/game_navigation_service.dart';
 import 'package:beercules/ui/screens/game/services/game_persistence_service.dart';
 import 'package:beercules/ui/widgets/beercules_dialog.dart';
 import 'package:beercules/ui/widgets/playing_card.dart';
@@ -15,7 +15,7 @@ class GameCubitImplementation extends GameCubit {
   static int cardTransformSeed = Random().nextInt(10);
   StreamSubscription<List<GamePersistenceServiceCard>>?
       currentCardsStreamSubscription;
-  GameNavigationService navigationService;
+  NavigationService navigationService;
   GamePersistenceService persistenceService;
 
   @override

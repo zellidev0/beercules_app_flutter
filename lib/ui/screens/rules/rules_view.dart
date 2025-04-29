@@ -1,6 +1,6 @@
 import 'package:beercules/common/theme.dart';
 import 'package:beercules/gen/locale_keys.g.dart';
-import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:beercules/services/navigation_service/navigation_service_routes.dart';
 import 'package:beercules/ui/widgets/beercules_button.dart';
 import 'package:beercules/ui/widgets/beercules_icon_button.dart';
@@ -21,8 +21,8 @@ class RulesView extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: BeerculesIconButton(
-                onPressed: BlocProvider.of<NavigationServiceAggregator>(context)
-                    .goBack,
+                onPressed:
+                    RepositoryProvider.of<NavigationService>(context).goBack,
                 icon: Icons.arrow_back_ios_rounded,
               ),
             ),
@@ -69,7 +69,7 @@ class RulesView extends StatelessWidget {
             ),
             BeerculesButton(
               onPressed: () =>
-                  BlocProvider.of<NavigationServiceAggregator>(context).push(
+                  RepositoryProvider.of<NavigationService>(context).push(
                 NavigationServiceRoutes.gameRouteUri,
               ),
               text: LocaleKeys.rules_view_go_to_game.tr(),
