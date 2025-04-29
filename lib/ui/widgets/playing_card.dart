@@ -11,10 +11,10 @@ class PlayingCard extends StatelessWidget {
   final BeerculesCardType cartType;
   final bool _isLastVictimGlass;
   const PlayingCard({
-    required final void Function() onTap,
-    required final bool showLogo,
-    required final BeerculesCardType cardType,
-    final bool isLastVictimGlass = false,
+    required void Function() onTap,
+    required bool showLogo,
+    required BeerculesCardType cardType,
+    bool isLastVictimGlass = false,
     super.key,
   })  : _isLastVictimGlass = isLastVictimGlass,
         cartType = cardType,
@@ -22,7 +22,7 @@ class PlayingCard extends StatelessWidget {
         _onTap = onTap;
 
   @override
-  Widget build(final BuildContext context) => Padding(
+  Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -12,12 +12,12 @@ class BeerculesDialog extends StatelessWidget {
   final String _declineText;
 
   const BeerculesDialog({
-    required final void Function() onConfirmPressed,
-    required final void Function() onCancelPressed,
-    required final String confirmText,
-    required final String headerText,
-    required final String descriptionText,
-    required final String declineText,
+    required void Function() onConfirmPressed,
+    required void Function() onCancelPressed,
+    required String confirmText,
+    required String headerText,
+    required String descriptionText,
+    required String declineText,
     super.key,
   })  : _declineText = declineText,
         _descriptionText = descriptionText,
@@ -27,7 +27,7 @@ class BeerculesDialog extends StatelessWidget {
         _onConfirmPressed = onConfirmPressed;
 
   @override
-  Widget build(final BuildContext context) => Material(
+  Widget build(BuildContext context) => Material(
         color: Colors.black.withAlpha(100),
         child: Padding(
           padding: Constants.pagePadding,
@@ -76,10 +76,10 @@ class BeerculesDialog extends StatelessWidget {
       );
 
   Row _buildDialogButtons({
-    required final VoidCallback onConfirmPressed,
-    required final VoidCallback onCancelPressed,
-    required final String confirmText,
-    required final String declineText,
+    required VoidCallback onConfirmPressed,
+    required VoidCallback onCancelPressed,
+    required String confirmText,
+    required String declineText,
   }) =>
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

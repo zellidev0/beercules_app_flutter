@@ -13,11 +13,10 @@ class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(final BuildContext context) {
-    final HomeController controller = BlocProvider.of<HomeController>(context);
+  Widget build(BuildContext context) {
+    final controller = BlocProvider.of<HomeController>(context);
     return BlocBuilder<HomeController, HomeModel>(
-      builder: (final BuildContext context, final HomeModel model) =>
-          ScaffoldWidget(
+      builder: (BuildContext context, HomeModel model) => ScaffoldWidget(
         child: Stack(
           children: <Widget>[
             Align(

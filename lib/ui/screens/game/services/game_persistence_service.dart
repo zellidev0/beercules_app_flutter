@@ -6,7 +6,7 @@ part 'game_persistence_service.freezed.dart';
 abstract class GamePersistenceService {
   void setCurrentToDefault();
   void resetToConfig();
-  void decreaseCurrentGameCardsAmount({required final String cardId});
+  void decreaseCurrentGameCardsAmount({required String cardId});
   bool currentGameHasBeenStarted();
   bool configDiffersFromDefault();
   Stream<List<GamePersistenceServiceCard>> get currentCardsChangeStream;
@@ -15,8 +15,8 @@ abstract class GamePersistenceService {
 @freezed
 class GamePersistenceServiceCard with _$GamePersistenceServiceCard {
   factory GamePersistenceServiceCard({
-    required final BeerculesCardType type,
-    required final bool wasPlayed,
-    required final String id,
+    required BeerculesCardType type,
+    required bool wasPlayed,
+    required String id,
   }) = _GamePersistenceServiceCard;
 }

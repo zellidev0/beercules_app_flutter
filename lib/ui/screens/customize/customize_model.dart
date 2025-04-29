@@ -6,15 +6,15 @@ part 'customize_model.freezed.dart';
 @freezed
 class CustomizeModel with _$CustomizeModel {
   factory CustomizeModel({
-    required final BeerculesCardType? selectedCardType,
-    required final List<CustomizeModelCard> configCards,
+    required BeerculesCardType? selectedCardType,
+    required List<CustomizeModelCard> configCards,
   }) = _CustomizeModel;
 }
 
 @freezed
 class CustomizeModelCard with _$CustomizeModelCard {
   factory CustomizeModelCard({
-    required final BeerculesCardType type,
-    required final int amount,
+    required BeerculesCardType type,
+    required int amount,
   }) = _CustomizeModelCard;
 }

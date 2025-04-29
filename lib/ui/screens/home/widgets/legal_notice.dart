@@ -9,12 +9,12 @@ class LegalNotice extends StatelessWidget {
   });
 
   @override
-  Widget build(final BuildContext context) => FutureBuilder<String>(
+  Widget build(BuildContext context) => FutureBuilder<String>(
         // ignore: discarded_futures
         future: rootBundle.loadString(
           'assets/legal/${"general.legal_notice_path".tr()}',
         ),
-        builder: (final _, final AsyncSnapshot<String> snapshot) =>
+        builder: (_, AsyncSnapshot<String> snapshot) =>
             switch (snapshot.connectionState) {
           ConnectionState.waiting => const CircularProgressIndicator(),
           _ => Padding(

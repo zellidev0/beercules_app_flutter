@@ -12,7 +12,7 @@ class BeerculesButton extends StatelessWidget {
   });
 
   @override
-  Widget build(final BuildContext context) => RepaintBoundary(
+  Widget build(BuildContext context) => RepaintBoundary(
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Theme.of(context).colorScheme.primary,

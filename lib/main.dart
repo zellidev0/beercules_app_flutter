@@ -26,13 +26,13 @@ void main() async {
 Future<Widget> buildApp() async => MultiBlocProvider(
       providers: <SingleChildWidget>[
         RepositoryProvider<NavigationServiceAggregator>(
-          create: (final _) => GoRouterNavigationService(
+          create: (_) => GoRouterNavigationService(
             unit,
             goRouter: goRouter,
           ),
         ),
         RepositoryProvider<PersistenceServiceAggregator>(
-          create: (final _) => PersistenceService(initialCards: initialCards),
+          create: (_) => PersistenceService(initialCards: initialCards),
         ),
       ],
       child: EasyLocalization(
@@ -41,9 +41,8 @@ Future<Widget> buildApp() async => MultiBlocProvider(
         path: 'assets/translations',
         useOnlyLangCode: true,
         child: Builder(
-          builder: (final BuildContext context) => MaterialApp.router(
-            builder: (final _, final Widget? child) =>
-                ResponsiveBreakpoints.builder(
+          builder: (BuildContext context) => MaterialApp.router(
+            builder: (_, Widget? child) => ResponsiveBreakpoints.builder(
               child: child!,
               breakpoints: <Breakpoint>[
                 const Breakpoint(start: 0, end: 450, name: MOBILE),

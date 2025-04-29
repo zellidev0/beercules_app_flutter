@@ -7,16 +7,16 @@ class PlayingCardContainer extends StatelessWidget {
   final VoidCallback? _onTap;
   final EdgeInsets _padding;
   const PlayingCardContainer({
-    required final Widget child,
-    final void Function()? onTap,
-    final EdgeInsets padding = Constants.pagePadding,
+    required Widget child,
+    void Function()? onTap,
+    EdgeInsets padding = Constants.pagePadding,
     super.key,
   })  : _onTap = onTap,
         _child = child,
         _padding = padding;
 
   @override
-  Widget build(final BuildContext context) => Material(
+  Widget build(BuildContext context) => Material(
         color: Colors.transparent,
         child: Ink(
           decoration: BoxDecoration(

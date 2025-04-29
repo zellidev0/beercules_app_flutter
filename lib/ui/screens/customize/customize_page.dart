@@ -9,9 +9,8 @@ class CardDetailsPage extends StatelessWidget {
   const CardDetailsPage({super.key});
 
   @override
-  Widget build(final BuildContext context) => BlocProvider<CustomizeController>(
-        create: (final BuildContext context) =>
-            CustomizeControllerImplementation(
+  Widget build(BuildContext context) => BlocProvider<CustomizeController>(
+        create: (BuildContext context) => CustomizeControllerImplementation(
           navigationService: context.read<NavigationServiceAggregator>(),
           persistenceService: context.read<PersistenceServiceAggregator>(),
         ),

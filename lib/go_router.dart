@@ -13,14 +13,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-final GlobalKey<NavigatorState> rootNavigatorKey =
+GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
 
-final GoRouter goRouter = GoRouter(
+GoRouter goRouter = GoRouter(
   debugLogDiagnostics: kDebugMode,
   initialLocation: NavigationServiceRoutes.homeRouteUri,
   navigatorKey: rootNavigatorKey,
-  redirect: (final BuildContext context, final GoRouterState state) {
+  redirect: (BuildContext context, GoRouterState state) {
     if (kIsWeb) {
       return NavigationServiceRoutes.landingRouteUri;
     }
@@ -30,17 +30,17 @@ final GoRouter goRouter = GoRouter(
     return null;
   },
   onException: (
-    final BuildContext context,
-    final GoRouterState state,
-    final GoRouter router,
+    BuildContext context,
+    GoRouterState state,
+    GoRouter router,
   ) {
     debugPrint('GoRouter exception: ${state.error}');
   },
   routes: <RouteBase>[
     GoRoute(
       path: NavigationServiceRoutes.homeRouteUri,
-      builder: (final _, final __) => BlocProvider<HomeController>(
-        create: (final BuildContext context) => HomeControllerImplementation(
+      builder: (_, __) => BlocProvider<HomeController>(
+        create: (BuildContext context) => HomeControllerImplementation(
           navigationService: context.read<NavigationServiceAggregator>(),
         ),
         child: const HomeView(),
@@ -48,8 +48,8 @@ final GoRouter goRouter = GoRouter(
     ),
     GoRoute(
       path: NavigationServiceRoutes.gameRouteUri,
-      builder: (final _, final __) => BlocProvider<GameController>(
-        create: (final BuildContext context) => GameControllerImplementation(
+      builder: (_, __) => BlocProvider<GameController>(
+        create: (BuildContext context) => GameControllerImplementation(
           navigationService: context.read<NavigationServiceAggregator>(),
           persistenceService: context.read<PersistenceServiceAggregator>(),
         ),
@@ -58,15 +58,15 @@ final GoRouter goRouter = GoRouter(
     ),
     GoRoute(
       path: NavigationServiceRoutes.rulesRouteUri,
-      builder: (final _, final __) => const RulesView(),
+      builder: (_, __) => const RulesView(),
     ),
     GoRoute(
       path: NavigationServiceRoutes.customizeRouteUri,
-      builder: (final _, final __) => const CardDetailsPage(),
+      builder: (_, __) => const CardDetailsPage(),
     ),
     GoRoute(
       path: NavigationServiceRoutes.landingRouteUri,
-      builder: (final _, final __) => const LandingView(),
+      builder: (_, __) => const LandingView(),
     ),
   ],
 );

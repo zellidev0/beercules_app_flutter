@@ -7,8 +7,8 @@ abstract class CustomizePersistenceService {
   void resetToDefaultCards();
   void resetToConfig();
   void modifyConfigGameCardsAmount({
-    required final BeerculesCardType? cardType,
-    required final int amount,
+    required BeerculesCardType? cardType,
+    required int amount,
   });
   Stream<List<CustomizePersistenceServiceModelCard>>
       get configCardsChangeStream;
@@ -18,7 +18,7 @@ abstract class CustomizePersistenceService {
 class CustomizePersistenceServiceModelCard
     with _$CustomizePersistenceServiceModelCard {
   factory CustomizePersistenceServiceModelCard({
-    required final BeerculesCardType type,
-    required final int amount,
+    required BeerculesCardType type,
+    required int amount,
   }) = _CustomizePersistenceServiceModelCard;
 }

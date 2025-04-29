@@ -13,8 +13,8 @@ import 'package:easy_localization/easy_localization.dart';
 class CustomizeControllerImplementation extends CustomizeController {
   StreamSubscription<List<CustomizePersistenceServiceModelCard>>?
       persistenceServiceSubscription;
-  final CustomizeNavigationService navigationService;
-  final CustomizePersistenceService persistenceService;
+  CustomizeNavigationService navigationService;
+  CustomizePersistenceService persistenceService;
 
   @override
   CustomizeControllerImplementation({
@@ -27,14 +27,13 @@ class CustomizeControllerImplementation extends CustomizeController {
           ),
         ) {
     persistenceServiceSubscription = persistenceService.configCardsChangeStream
-        .listen(
-            (final List<CustomizePersistenceServiceModelCard> updatedCards) {
+        .listen((List<CustomizePersistenceServiceModelCard> updatedCards) {
       emit(
         state.copyWith(
           configCards: updatedCards
-              .whereNot((final _) => _.type.isBasicRule())
+              .whereNot((_) => _.type.isBasicRule())
               .map(
-                (final CustomizePersistenceServiceModelCard card) =>
+                (CustomizePersistenceServiceModelCard card) =>
                     CustomizeModelCard(
                   type: card.type,
                   amount: card.amount,
@@ -57,13 +56,13 @@ class CustomizeControllerImplementation extends CustomizeController {
 
   @override
   void setSelectedCard({
-    required final BeerculesCardType cardType,
+    required BeerculesCardType cardType,
   }) {
     emit(state.copyWith(selectedCardType: cardType));
   }
 
   @override
-  void setCardAmount(final int amount) {
+  void setCardAmount(int amount) {
     persistenceService
       ..modifyConfigGameCardsAmount(
         cardType: state.selectedCardType,

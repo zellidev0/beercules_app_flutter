@@ -11,10 +11,10 @@ class LandingView extends StatelessWidget {
   const LandingView({super.key});
 
   @override
-  Widget build(final BuildContext context) => LayoutBuilder(
+  Widget build(BuildContext context) => LayoutBuilder(
         builder: (
-          final BuildContext context,
-          final BoxConstraints constraints,
+          BuildContext context,
+          BoxConstraints constraints,
         ) =>
             ScaffoldWidget(
           useSafeAre: false,
@@ -125,7 +125,7 @@ class LandingView extends StatelessWidget {
       );
 
   Widget _buildFeatures() => LayoutBuilder(
-        builder: (final _, final BoxConstraints constraints) => Column(
+        builder: (_, BoxConstraints constraints) => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
@@ -158,8 +158,8 @@ class LandingView extends StatelessWidget {
       );
 
   Widget _buildBadge({
-    required final Widget badge,
-    required final bool isIos,
+    required Widget badge,
+    required bool isIos,
   }) =>
       Flexible(
         child: MouseRegion(
@@ -180,8 +180,8 @@ class LandingView extends StatelessWidget {
       );
 
   Widget _buildSloganAndMockup({
-    required final BoxConstraints constraints,
-    required final BuildContext context,
+    required BoxConstraints constraints,
+    required BuildContext context,
   }) {
     if (constraints.maxWidth < desktopThreshold) {
       return Column(
@@ -210,7 +210,7 @@ class LandingView extends StatelessWidget {
             Assets.mockups.mockup2.image(
               height: MediaQuery.of(context).size.height * 0.5,
             ),
-          ].map((final _) => Expanded(child: _)).toList(),
+          ].map((_) => Expanded(child: _)).toList(),
         ),
       );
     }
@@ -236,9 +236,9 @@ class LandingView extends StatelessWidget {
       );
 
   Widget buildReviewCard({
-    required final String text,
-    required final String author,
-    final bool halfStar = false,
+    required String text,
+    required String author,
+    bool halfStar = false,
   }) =>
       Padding(
         padding: const EdgeInsets.all(32),
@@ -259,10 +259,10 @@ class LandingView extends StatelessWidget {
                     children: <Widget>[
                       ...List<Icon>.generate(
                         halfStar ? 4 : 5,
-                        (final int index) =>
+                        (int index) =>
                             const Icon(Icons.star, color: Colors.white),
                       ).map<Widget>(
-                        (final Icon e) => Padding(
+                        (Icon e) => Padding(
                           padding: const EdgeInsets.all(4),
                           child: e,
                         ),

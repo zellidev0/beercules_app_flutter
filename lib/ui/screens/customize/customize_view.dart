@@ -12,7 +12,7 @@ class CustomizeView extends StatelessWidget {
   const CustomizeView({super.key});
 
   @override
-  Widget build(final BuildContext context) => ScaffoldWidget(
+  Widget build(BuildContext context) => ScaffoldWidget(
         padding: EdgeInsets.zero,
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
@@ -23,17 +23,19 @@ class CustomizeView extends StatelessWidget {
             SliverPadding(
               padding: Constants.pagePadding.copyWith(top: 0),
               sliver: BlocBuilder<CustomizeController, CustomizeModel>(
-                builder: (final context, final model) => SliverGrid.builder(
+                builder: (BuildContext context, CustomizeModel model) =>
+                    SliverGrid.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: 2.5 / 3.5,
                     crossAxisSpacing: 8,
                     mainAxisSpacing: 8,
                   ),
-                  itemBuilder: (final context, final index) => CustomizeCard(
-                    cardKey: model.configCards[index].type,
+                  itemBuilder: (BuildContext context, int index) =>
+                      CustomizeCard(
+                    cardType: model.configCards[index].type,
                     onTap: () async {
-                      final CustomizeController controller =
+                      final controller =
                           BlocProvider.of<CustomizeController>(context)
                             ..setSelectedCard(
                               cardType: model.configCards[index].type,
@@ -43,10 +45,11 @@ class CustomizeView extends StatelessWidget {
 
                       await showDialog<int>(
                         context: context,
-                        builder: (final _) => StatefulBuilder(
-                          builder: (context, setState) => CardDetailsView(
+                        builder: (_) => StatefulBuilder(
+                          builder: (BuildContext context, setState) =>
+                              CardDetailsView(
                             initialCardInfos: model.configCards[index],
-                            onSetAmount: (final amount) {
+                            onSetAmount: (int amount) {
                               setState(() => newAmount = amount);
                               controller.setCardAmount(newAmount);
                             },
@@ -69,8 +72,8 @@ abstract class CustomizeController extends Cubit<CustomizeModel> {
   CustomizeController(super.initialState);
 
   void goBackToHome();
-  void setSelectedCard({required final BeerculesCardType cardType});
-  void setCardAmount(final int amount);
+  void setSelectedCard({required BeerculesCardType cardType});
+  void setCardAmount(int amount);
   void restoreDefault();
   void closeCardAmountChangeDialog();
 }

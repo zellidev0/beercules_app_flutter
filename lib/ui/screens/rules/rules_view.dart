@@ -14,7 +14,7 @@ class RulesView extends StatelessWidget {
   const RulesView({super.key});
 
   @override
-  Widget build(final BuildContext context) => ScaffoldWidget(
+  Widget build(BuildContext context) => ScaffoldWidget(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

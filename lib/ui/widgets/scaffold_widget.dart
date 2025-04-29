@@ -10,13 +10,13 @@ class ScaffoldWidget extends StatelessWidget {
   const ScaffoldWidget({
     required this.child,
     super.key,
-    final bool useSafeAre = true,
-    final EdgeInsets padding = Constants.pagePadding,
+    bool useSafeAre = true,
+    EdgeInsets padding = Constants.pagePadding,
   })  : _padding = padding,
         _useSafeAre = useSafeAre;
 
   @override
-  Widget build(final BuildContext context) => MediaQuery(
+  Widget build(BuildContext context) => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
         child: Material(
           child: Scaffold(

@@ -10,7 +10,7 @@ class BeerculesIconButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(final BuildContext context) => IconButton(
+  Widget build(BuildContext context) => IconButton(
         onPressed: onPressed,
         icon: Icon(
           icon,

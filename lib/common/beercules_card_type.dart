@@ -99,7 +99,7 @@ enum BeerculesCardType {
       };
 
   String localizedDescription({
-    required final bool isLastVictimGlass,
+    required bool isLastVictimGlass,
   }) =>
       switch (this) {
         BeerculesCardType.abstimmung =>
@@ -173,7 +173,7 @@ enum BeerculesCardType {
           .tr();
 
   String localizedTitle({
-    required final bool isLastVictimGlass,
+    required bool isLastVictimGlass,
   }) =>
       switch (this) {
         BeerculesCardType.abstimmung =>

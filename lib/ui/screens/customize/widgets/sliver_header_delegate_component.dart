@@ -9,12 +9,11 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-    final BuildContext context,
-    final double shrinkOffset,
-    final bool overlapsContent,
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
   ) {
-    final CustomizeController controller =
-        BlocProvider.of<CustomizeController>(context);
+    var controller = BlocProvider.of<CustomizeController>(context);
     return Padding(
       padding: Constants.pagePadding,
       child: Row(
@@ -42,5 +41,5 @@ class SliverHeaderDelegateComponent extends SliverPersistentHeaderDelegate {
   double get _height => kToolbarHeight + Constants.pagePadding.top;
 
   @override
-  bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
 }

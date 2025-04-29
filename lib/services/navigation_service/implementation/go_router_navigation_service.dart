@@ -10,11 +10,11 @@ class GoRouterNavigationService extends NavigationServiceAggregator {
 
   GoRouterNavigationService(
     super.initialState, {
-    required final GoRouter goRouter,
+    required GoRouter goRouter,
   }) : _goRouter = goRouter;
 
   @override
-  void goBack({final Uri? fallbackUri}) {
+  void goBack({Uri? fallbackUri}) {
     if (_goRouter.canPop()) {
       _goRouter.pop();
     } else if (fallbackUri != null) {
@@ -23,34 +23,33 @@ class GoRouterNavigationService extends NavigationServiceAggregator {
   }
 
   @override
-  void pop<T>({final T? data}) => _goRouter.pop(data);
+  void pop<T>({T? data}) => _goRouter.pop(data);
 
   @override
-  void push(final String uri) => unawaited(_goRouter.push(uri));
+  void push(String uri) => unawaited(_goRouter.push(uri));
 
   @override
-  void replaceWith(final Uri uri) => unawaited(
+  void replaceWith(Uri uri) => unawaited(
         _goRouter.pushReplacement(uri.toString()),
       );
 
   @override
-  void replaceWithNamed(final Uri uri) => unawaited(
+  void replaceWithNamed(Uri uri) => unawaited(
         _goRouter.replace(uri.toString()),
       );
 
   @override
-  Future<T?> showPopup<T>(final Widget popup) => showDialog<T>(
+  Future<T?> showPopup<T>(Widget popup) => showDialog<T>(
         context: _goRouter.routerDelegate.navigatorKey.currentContext ??
             (throw Exception('No context found')),
-        builder: (final _) => popup,
+        builder: (_) => popup,
       );
 
   @override
-  void showSnackBar(final String message) =>
+  void showSnackBar(String message) =>
       optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
         () {},
-        (final BuildContext context) =>
-            ScaffoldMessenger.of(context).showSnackBar(
+        (BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Theme.of(context).colorScheme.primary,
             content: Text(message),
@@ -60,20 +59,20 @@ class GoRouterNavigationService extends NavigationServiceAggregator {
       );
 
   @override
-  TaskEither<Object, Option<T>> showModal<T>(final Widget widget) =>
+  TaskEither<Object, Option<T>> showModal<T>(Widget widget) =>
       optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
         () => TaskEither<Object, Option<T>>(
           () async =>
               left('Error when searching for context - navigation service'),
         ),
-        (final BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
+        (BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
           () async => optionOf(
             await showModalBottomSheet<T>(
               context: context,
-              builder: (final _) => widget,
+              builder: (_) => widget,
             ),
           ),
-          (final Object error, final _) => error,
+          (Object error, _) => error,
         ),
       );
 }

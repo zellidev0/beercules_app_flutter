@@ -28,7 +28,7 @@ class _CardDetailsViewState extends State<CardDetailsView> {
   }
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           PlayingCard(

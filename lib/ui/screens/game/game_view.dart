@@ -16,20 +16,19 @@ class GameView extends StatelessWidget {
   });
 
   @override
-  Widget build(final BuildContext context) {
-    final GameController controller = BlocProvider.of<GameController>(context);
+  Widget build(BuildContext context) {
+    final controller = BlocProvider.of<GameController>(context);
     return BlocBuilder<GameController, GameModel>(
-      builder: (final BuildContext context, final GameModel model) =>
-          ScaffoldWidget(
+      builder: (BuildContext context, GameModel model) => ScaffoldWidget(
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
             ...model.cards.map(
-              (final GameModelCard card) => card.wasPlayed
+              (GameModelCard card) => card.wasPlayed
                   ? const SizedBox.shrink()
                   : GameCard(
                       card: card,
-                      onSelectCard: (final GameModelCard card) async =>
+                      onSelectCard: (GameModelCard card) async =>
                           controller.selectCard(card: card),
                     ),
             ),
@@ -71,7 +70,7 @@ class GameCard extends StatefulWidget {
 }
 
 class _GameCardState extends State<GameCard> {
-  late final int _randomTranslation;
+  late int _randomTranslation;
 
   @override
   void initState() {
@@ -80,7 +79,7 @@ class _GameCardState extends State<GameCard> {
   }
 
   @override
-  Widget build(final BuildContext context) => Transform.rotate(
+  Widget build(BuildContext context) => Transform.rotate(
         angle: widget.card.transformationAngle.toDouble(),
         child: Transform.translate(
           offset: Offset(
@@ -94,8 +93,7 @@ class _GameCardState extends State<GameCard> {
               child: RepaintBoundary(
                 child: Swipable(
                   threshold: 4,
-                  onSwipeEnd: (final _, final __) async =>
-                      widget.onSelectCard(widget.card),
+                  onSwipeEnd: (_, __) async => widget.onSelectCard(widget.card),
                   child: PlayingCardContainer(
                     onTap: () => widget.onSelectCard(widget.card),
                     child: Assets.images.logo.image(),
@@ -112,16 +110,16 @@ abstract class GameController extends Cubit<GameModel> {
   GameController(super.initialState);
 
   void pop();
-  void dismissCard({required final String cardId});
-  Future<void> selectCard({required final GameModelCard card});
+  void dismissCard({required String cardId});
+  Future<void> selectCard({required GameModelCard card});
   void goBackToHome();
   void showFinishDialog({
-    required final void Function() onConfirmPressed,
-    required final void Function() onCancelPressed,
-    required final String confirmText,
-    required final String declineText,
-    required final String headerText,
-    required final String descriptionText,
+    required void Function() onConfirmPressed,
+    required void Function() onCancelPressed,
+    required String confirmText,
+    required String declineText,
+    required String headerText,
+    required String descriptionText,
   });
   void newGame();
   void showCustomizedCardActiveSnackbar();
