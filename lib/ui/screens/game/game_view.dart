@@ -97,7 +97,7 @@ class _GameCardState extends State<GameCard> {
                   onSwipeEnd: (final _, final __) async =>
                       widget.onSelectCard(widget.card),
                   child: PlayingCardContainer(
-                    onTap: () {},
+                    onTap: () => widget.onSelectCard(widget.card),
                     child: Assets.images.logo.image(),
                   ),
                 ),
