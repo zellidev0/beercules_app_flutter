@@ -5,8 +5,9 @@ version: 4.0.0
 build: 30
 
 environment:
-  flutter: ">=3.13.4 <4.0.0"
-  sdk: ">=3.1.2 <4.0.0"
+  sdk: ^3.6.0
+  flutter: ^3.29.2
+
 
 dependencies:
   auto_size_text: ^3.0.0

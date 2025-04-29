@@ -1,48 +1,46 @@
 {
-    "cSpell.words": [
-        "ABSTIMMUNG",
-        "AUFZAEHLUNG",
-        "beercules",
-        "BIERGOTT",
-        "DECKEL",
-        "DRAUF",
-        "DREI",
-        "EINEN",
-        "EISPRINZESSIN",
-        "FILMRISS",
-        "FRAGENKOENIG",
-        "FUER",
-        "GESCHENK",
-        "GESCHENKE",
-        "HAENDE",
-        "HERZEN",
-        "HOCH",
-        "KETTENREAKTION",
-        "KNUTSCHKARTE",
-        "KOFFER",
-        "MEINEN",
-        "NOCH",
-        "OHREN",
-        "OPFERGLAS",
-        "PACKE",
-        "RECHTS",
-        "REIMSCHWEIN",
-        "RICHTUNGSWECHSEL",
-        "SCHERE",
-        "SPIEGLEIN",
-        "SPITZEN",
-        "swipable",
-        "TAUSCHRAUSCH",
-        "TRINK",
-        "WOMENS"
-    ],
-    "dart.flutterSdkPath": ".fvm/flutter_sdk",
-    // Remove .fvm files from search
-    "search.exclude": {
-        "**/.fvm": true
-    },
-    // Remove from file watching
-    "files.watcherExclude": {
-        "**/.fvm": true
-    }
+  "cSpell.words": [
+    "ABSTIMMUNG",
+    "AUFZAEHLUNG",
+    "beercules",
+    "BIERGOTT",
+    "DECKEL",
+    "DRAUF",
+    "DREI",
+    "EINEN",
+    "EISPRINZESSIN",
+    "FILMRISS",
+    "FRAGENKOENIG",
+    "FUER",
+    "GESCHENK",
+    "GESCHENKE",
+    "HAENDE",
+    "HERZEN",
+    "HOCH",
+    "KETTENREAKTION",
+    "KNUTSCHKARTE",
+    "KOFFER",
+    "MEINEN",
+    "NOCH",
+    "OHREN",
+    "OPFERGLAS",
+    "PACKE",
+    "RECHTS",
+    "REIMSCHWEIN",
+    "RICHTUNGSWECHSEL",
+    "SCHERE",
+    "SPIEGLEIN",
+    "SPITZEN",
+    "swipable",
+    "TAUSCHRAUSCH",
+    "TRINK",
+    "WOMENS"
+  ],
+  "dart.flutterSdkPath": ".fvm/versions/3.29.2",
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true
+  }
 }
