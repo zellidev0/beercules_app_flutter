@@ -12,33 +12,42 @@ part of 'customize_persistence_service.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CustomizePersistenceServiceModelCard {
   BeerculesCardType get type => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CustomizePersistenceServiceModelCardCopyWith<
-          CustomizePersistenceServiceModelCard>
-      get copyWith => throw _privateConstructorUsedError;
+    CustomizePersistenceServiceModelCard
+  >
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CustomizePersistenceServiceModelCardCopyWith<$Res> {
   factory $CustomizePersistenceServiceModelCardCopyWith(
-          CustomizePersistenceServiceModelCard value,
-          $Res Function(CustomizePersistenceServiceModelCard) then) =
-      _$CustomizePersistenceServiceModelCardCopyWithImpl<$Res,
-          CustomizePersistenceServiceModelCard>;
+    CustomizePersistenceServiceModelCard value,
+    $Res Function(CustomizePersistenceServiceModelCard) then,
+  ) =
+      _$CustomizePersistenceServiceModelCardCopyWithImpl<
+        $Res,
+        CustomizePersistenceServiceModelCard
+      >;
   @useResult
   $Res call({BeerculesCardType type, int amount});
 }
 
 /// @nodoc
-class _$CustomizePersistenceServiceModelCardCopyWithImpl<$Res,
-        $Val extends CustomizePersistenceServiceModelCard>
+class _$CustomizePersistenceServiceModelCardCopyWithImpl<
+  $Res,
+  $Val extends CustomizePersistenceServiceModelCard
+>
     implements $CustomizePersistenceServiceModelCardCopyWith<$Res> {
   _$CustomizePersistenceServiceModelCardCopyWithImpl(this._value, this._then);
 
@@ -47,22 +56,26 @@ class _$CustomizePersistenceServiceModelCardCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
-    Object? amount = null,
-  }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BeerculesCardType,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  $Res call({Object? type = null, Object? amount = null}) {
+    return _then(
+      _value.copyWith(
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as BeerculesCardType,
+            amount:
+                null == amount
+                    ? _value.amount
+                    : amount // ignore: cast_nullable_to_non_nullable
+                        as int,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -70,9 +83,9 @@ class _$CustomizePersistenceServiceModelCardCopyWithImpl<$Res,
 abstract class _$$CustomizePersistenceServiceModelCardImplCopyWith<$Res>
     implements $CustomizePersistenceServiceModelCardCopyWith<$Res> {
   factory _$$CustomizePersistenceServiceModelCardImplCopyWith(
-          _$CustomizePersistenceServiceModelCardImpl value,
-          $Res Function(_$CustomizePersistenceServiceModelCardImpl) then) =
-      __$$CustomizePersistenceServiceModelCardImplCopyWithImpl<$Res>;
+    _$CustomizePersistenceServiceModelCardImpl value,
+    $Res Function(_$CustomizePersistenceServiceModelCardImpl) then,
+  ) = __$$CustomizePersistenceServiceModelCardImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({BeerculesCardType type, int amount});
@@ -80,30 +93,36 @@ abstract class _$$CustomizePersistenceServiceModelCardImplCopyWith<$Res>
 
 /// @nodoc
 class __$$CustomizePersistenceServiceModelCardImplCopyWithImpl<$Res>
-    extends _$CustomizePersistenceServiceModelCardCopyWithImpl<$Res,
-        _$CustomizePersistenceServiceModelCardImpl>
+    extends
+        _$CustomizePersistenceServiceModelCardCopyWithImpl<
+          $Res,
+          _$CustomizePersistenceServiceModelCardImpl
+        >
     implements _$$CustomizePersistenceServiceModelCardImplCopyWith<$Res> {
   __$$CustomizePersistenceServiceModelCardImplCopyWithImpl(
-      _$CustomizePersistenceServiceModelCardImpl _value,
-      $Res Function(_$CustomizePersistenceServiceModelCardImpl) _then)
-      : super(_value, _then);
+    _$CustomizePersistenceServiceModelCardImpl _value,
+    $Res Function(_$CustomizePersistenceServiceModelCardImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
-    Object? amount = null,
-  }) {
-    return _then(_$CustomizePersistenceServiceModelCardImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BeerculesCardType,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? type = null, Object? amount = null}) {
+    return _then(
+      _$CustomizePersistenceServiceModelCardImpl(
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as BeerculesCardType,
+        amount:
+            null == amount
+                ? _value.amount
+                : amount // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
   }
 }
 
@@ -111,8 +130,10 @@ class __$$CustomizePersistenceServiceModelCardImplCopyWithImpl<$Res>
 
 class _$CustomizePersistenceServiceModelCardImpl
     implements _CustomizePersistenceServiceModelCard {
-  _$CustomizePersistenceServiceModelCardImpl(
-      {required this.type, required this.amount});
+  _$CustomizePersistenceServiceModelCardImpl({
+    required this.type,
+    required this.amount,
+  });
 
   @override
   final BeerculesCardType type;
@@ -136,28 +157,37 @@ class _$CustomizePersistenceServiceModelCardImpl
   @override
   int get hashCode => Object.hash(runtimeType, type, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CustomizePersistenceServiceModelCardImplCopyWith<
-          _$CustomizePersistenceServiceModelCardImpl>
-      get copyWith => __$$CustomizePersistenceServiceModelCardImplCopyWithImpl<
-          _$CustomizePersistenceServiceModelCardImpl>(this, _$identity);
+    _$CustomizePersistenceServiceModelCardImpl
+  >
+  get copyWith => __$$CustomizePersistenceServiceModelCardImplCopyWithImpl<
+    _$CustomizePersistenceServiceModelCardImpl
+  >(this, _$identity);
 }
 
 abstract class _CustomizePersistenceServiceModelCard
     implements CustomizePersistenceServiceModelCard {
-  factory _CustomizePersistenceServiceModelCard(
-      {required final BeerculesCardType type,
-      required final int amount}) = _$CustomizePersistenceServiceModelCardImpl;
+  factory _CustomizePersistenceServiceModelCard({
+    required final BeerculesCardType type,
+    required final int amount,
+  }) = _$CustomizePersistenceServiceModelCardImpl;
 
   @override
   BeerculesCardType get type;
   @override
   int get amount;
+
+  /// Create a copy of CustomizePersistenceServiceModelCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CustomizePersistenceServiceModelCardImplCopyWith<
-          _$CustomizePersistenceServiceModelCardImpl>
-      get copyWith => throw _privateConstructorUsedError;
+    _$CustomizePersistenceServiceModelCardImpl
+  >
+  get copyWith => throw _privateConstructorUsedError;
 }

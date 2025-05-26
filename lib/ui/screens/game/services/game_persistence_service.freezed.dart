@@ -12,141 +12,202 @@ part of 'game_persistence_service.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
-mixin _$GamePersistenceServiceGame {
-  Map<BeerculesCardType, int> get cardToAmountMapping =>
-      throw _privateConstructorUsedError;
+mixin _$GamePersistenceServiceCard {
+  BeerculesCardType get type => throw _privateConstructorUsedError;
+  bool get wasPlayed => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $GamePersistenceServiceGameCopyWith<GamePersistenceServiceGame>
-      get copyWith => throw _privateConstructorUsedError;
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GamePersistenceServiceCardCopyWith<GamePersistenceServiceCard>
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GamePersistenceServiceGameCopyWith<$Res> {
-  factory $GamePersistenceServiceGameCopyWith(GamePersistenceServiceGame value,
-          $Res Function(GamePersistenceServiceGame) then) =
-      _$GamePersistenceServiceGameCopyWithImpl<$Res,
-          GamePersistenceServiceGame>;
+abstract class $GamePersistenceServiceCardCopyWith<$Res> {
+  factory $GamePersistenceServiceCardCopyWith(
+    GamePersistenceServiceCard value,
+    $Res Function(GamePersistenceServiceCard) then,
+  ) =
+      _$GamePersistenceServiceCardCopyWithImpl<
+        $Res,
+        GamePersistenceServiceCard
+      >;
   @useResult
-  $Res call({Map<BeerculesCardType, int> cardToAmountMapping});
+  $Res call({BeerculesCardType type, bool wasPlayed, String id});
 }
 
 /// @nodoc
-class _$GamePersistenceServiceGameCopyWithImpl<$Res,
-        $Val extends GamePersistenceServiceGame>
-    implements $GamePersistenceServiceGameCopyWith<$Res> {
-  _$GamePersistenceServiceGameCopyWithImpl(this._value, this._then);
+class _$GamePersistenceServiceCardCopyWithImpl<
+  $Res,
+  $Val extends GamePersistenceServiceCard
+>
+    implements $GamePersistenceServiceCardCopyWith<$Res> {
+  _$GamePersistenceServiceCardCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cardToAmountMapping = null,
+    Object? type = null,
+    Object? wasPlayed = null,
+    Object? id = null,
   }) {
-    return _then(_value.copyWith(
-      cardToAmountMapping: null == cardToAmountMapping
-          ? _value.cardToAmountMapping
-          : cardToAmountMapping // ignore: cast_nullable_to_non_nullable
-              as Map<BeerculesCardType, int>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as BeerculesCardType,
+            wasPlayed:
+                null == wasPlayed
+                    ? _value.wasPlayed
+                    : wasPlayed // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
-abstract class _$$GamePersistenceServiceGameImplCopyWith<$Res>
-    implements $GamePersistenceServiceGameCopyWith<$Res> {
-  factory _$$GamePersistenceServiceGameImplCopyWith(
-          _$GamePersistenceServiceGameImpl value,
-          $Res Function(_$GamePersistenceServiceGameImpl) then) =
-      __$$GamePersistenceServiceGameImplCopyWithImpl<$Res>;
+abstract class _$$GamePersistenceServiceCardImplCopyWith<$Res>
+    implements $GamePersistenceServiceCardCopyWith<$Res> {
+  factory _$$GamePersistenceServiceCardImplCopyWith(
+    _$GamePersistenceServiceCardImpl value,
+    $Res Function(_$GamePersistenceServiceCardImpl) then,
+  ) = __$$GamePersistenceServiceCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<BeerculesCardType, int> cardToAmountMapping});
+  $Res call({BeerculesCardType type, bool wasPlayed, String id});
 }
 
 /// @nodoc
-class __$$GamePersistenceServiceGameImplCopyWithImpl<$Res>
-    extends _$GamePersistenceServiceGameCopyWithImpl<$Res,
-        _$GamePersistenceServiceGameImpl>
-    implements _$$GamePersistenceServiceGameImplCopyWith<$Res> {
-  __$$GamePersistenceServiceGameImplCopyWithImpl(
-      _$GamePersistenceServiceGameImpl _value,
-      $Res Function(_$GamePersistenceServiceGameImpl) _then)
-      : super(_value, _then);
+class __$$GamePersistenceServiceCardImplCopyWithImpl<$Res>
+    extends
+        _$GamePersistenceServiceCardCopyWithImpl<
+          $Res,
+          _$GamePersistenceServiceCardImpl
+        >
+    implements _$$GamePersistenceServiceCardImplCopyWith<$Res> {
+  __$$GamePersistenceServiceCardImplCopyWithImpl(
+    _$GamePersistenceServiceCardImpl _value,
+    $Res Function(_$GamePersistenceServiceCardImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cardToAmountMapping = null,
+    Object? type = null,
+    Object? wasPlayed = null,
+    Object? id = null,
   }) {
-    return _then(_$GamePersistenceServiceGameImpl(
-      cardToAmountMapping: null == cardToAmountMapping
-          ? _value._cardToAmountMapping
-          : cardToAmountMapping // ignore: cast_nullable_to_non_nullable
-              as Map<BeerculesCardType, int>,
-    ));
+    return _then(
+      _$GamePersistenceServiceCardImpl(
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as BeerculesCardType,
+        wasPlayed:
+            null == wasPlayed
+                ? _value.wasPlayed
+                : wasPlayed // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$GamePersistenceServiceGameImpl implements _GamePersistenceServiceGame {
-  _$GamePersistenceServiceGameImpl(
-      {required final Map<BeerculesCardType, int> cardToAmountMapping})
-      : _cardToAmountMapping = cardToAmountMapping;
+class _$GamePersistenceServiceCardImpl implements _GamePersistenceServiceCard {
+  _$GamePersistenceServiceCardImpl({
+    required this.type,
+    required this.wasPlayed,
+    required this.id,
+  });
 
-  final Map<BeerculesCardType, int> _cardToAmountMapping;
   @override
-  Map<BeerculesCardType, int> get cardToAmountMapping {
-    if (_cardToAmountMapping is EqualUnmodifiableMapView)
-      return _cardToAmountMapping;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_cardToAmountMapping);
-  }
+  final BeerculesCardType type;
+  @override
+  final bool wasPlayed;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'GamePersistenceServiceGame(cardToAmountMapping: $cardToAmountMapping)';
+    return 'GamePersistenceServiceCard(type: $type, wasPlayed: $wasPlayed, id: $id)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GamePersistenceServiceGameImpl &&
-            const DeepCollectionEquality()
-                .equals(other._cardToAmountMapping, _cardToAmountMapping));
+            other is _$GamePersistenceServiceCardImpl &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.wasPlayed, wasPlayed) ||
+                other.wasPlayed == wasPlayed) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_cardToAmountMapping));
+  int get hashCode => Object.hash(runtimeType, type, wasPlayed, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GamePersistenceServiceGameImplCopyWith<_$GamePersistenceServiceGameImpl>
-      get copyWith => __$$GamePersistenceServiceGameImplCopyWithImpl<
-          _$GamePersistenceServiceGameImpl>(this, _$identity);
+  _$$GamePersistenceServiceCardImplCopyWith<_$GamePersistenceServiceCardImpl>
+  get copyWith => __$$GamePersistenceServiceCardImplCopyWithImpl<
+    _$GamePersistenceServiceCardImpl
+  >(this, _$identity);
 }
 
-abstract class _GamePersistenceServiceGame
-    implements GamePersistenceServiceGame {
-  factory _GamePersistenceServiceGame(
-          {required final Map<BeerculesCardType, int> cardToAmountMapping}) =
-      _$GamePersistenceServiceGameImpl;
+abstract class _GamePersistenceServiceCard
+    implements GamePersistenceServiceCard {
+  factory _GamePersistenceServiceCard({
+    required final BeerculesCardType type,
+    required final bool wasPlayed,
+    required final String id,
+  }) = _$GamePersistenceServiceCardImpl;
 
   @override
-  Map<BeerculesCardType, int> get cardToAmountMapping;
+  BeerculesCardType get type;
   @override
-  @JsonKey(ignore: true)
-  _$$GamePersistenceServiceGameImplCopyWith<_$GamePersistenceServiceGameImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  bool get wasPlayed;
+  @override
+  String get id;
+
+  /// Create a copy of GamePersistenceServiceCard
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GamePersistenceServiceCardImplCopyWith<_$GamePersistenceServiceCardImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }

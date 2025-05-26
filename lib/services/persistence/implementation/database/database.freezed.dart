@@ -12,7 +12,8 @@ part of 'database.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 DatabaseCard _$DatabaseCardFromJson(Map<String, dynamic> json) {
   return _DatabaseCard.fromJson(json);
@@ -23,8 +24,12 @@ mixin _$DatabaseCard {
   BeerculesCardType get type => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this DatabaseCard to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DatabaseCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DatabaseCardCopyWith<DatabaseCard> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -32,8 +37,9 @@ mixin _$DatabaseCard {
 /// @nodoc
 abstract class $DatabaseCardCopyWith<$Res> {
   factory $DatabaseCardCopyWith(
-          DatabaseCard value, $Res Function(DatabaseCard) then) =
-      _$DatabaseCardCopyWithImpl<$Res, DatabaseCard>;
+    DatabaseCard value,
+    $Res Function(DatabaseCard) then,
+  ) = _$DatabaseCardCopyWithImpl<$Res, DatabaseCard>;
   @useResult
   $Res call({BeerculesCardType type, int amount});
 }
@@ -48,22 +54,26 @@ class _$DatabaseCardCopyWithImpl<$Res, $Val extends DatabaseCard>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DatabaseCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
-    Object? amount = null,
-  }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BeerculesCardType,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  $Res call({Object? type = null, Object? amount = null}) {
+    return _then(
+      _value.copyWith(
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as BeerculesCardType,
+            amount:
+                null == amount
+                    ? _value.amount
+                    : amount // ignore: cast_nullable_to_non_nullable
+                        as int,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -71,8 +81,9 @@ class _$DatabaseCardCopyWithImpl<$Res, $Val extends DatabaseCard>
 abstract class _$$DatabaseCardImplCopyWith<$Res>
     implements $DatabaseCardCopyWith<$Res> {
   factory _$$DatabaseCardImplCopyWith(
-          _$DatabaseCardImpl value, $Res Function(_$DatabaseCardImpl) then) =
-      __$$DatabaseCardImplCopyWithImpl<$Res>;
+    _$DatabaseCardImpl value,
+    $Res Function(_$DatabaseCardImpl) then,
+  ) = __$$DatabaseCardImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({BeerculesCardType type, int amount});
@@ -83,25 +94,29 @@ class __$$DatabaseCardImplCopyWithImpl<$Res>
     extends _$DatabaseCardCopyWithImpl<$Res, _$DatabaseCardImpl>
     implements _$$DatabaseCardImplCopyWith<$Res> {
   __$$DatabaseCardImplCopyWithImpl(
-      _$DatabaseCardImpl _value, $Res Function(_$DatabaseCardImpl) _then)
-      : super(_value, _then);
+    _$DatabaseCardImpl _value,
+    $Res Function(_$DatabaseCardImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of DatabaseCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
-    Object? amount = null,
-  }) {
-    return _then(_$DatabaseCardImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BeerculesCardType,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? type = null, Object? amount = null}) {
+    return _then(
+      _$DatabaseCardImpl(
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as BeerculesCardType,
+        amount:
+            null == amount
+                ? _value.amount
+                : amount // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
   }
 }
 
@@ -132,11 +147,13 @@ class _$DatabaseCardImpl implements _DatabaseCard {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, type, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DatabaseCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DatabaseCardImplCopyWith<_$DatabaseCardImpl> get copyWith =>
@@ -144,16 +161,15 @@ class _$DatabaseCardImpl implements _DatabaseCard {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DatabaseCardImplToJson(
-      this,
-    );
+    return _$$DatabaseCardImplToJson(this);
   }
 }
 
 abstract class _DatabaseCard implements DatabaseCard {
-  factory _DatabaseCard(
-      {required final BeerculesCardType type,
-      required final int amount}) = _$DatabaseCardImpl;
+  factory _DatabaseCard({
+    required final BeerculesCardType type,
+    required final int amount,
+  }) = _$DatabaseCardImpl;
 
   factory _DatabaseCard.fromJson(Map<String, dynamic> json) =
       _$DatabaseCardImpl.fromJson;
@@ -162,8 +178,11 @@ abstract class _DatabaseCard implements DatabaseCard {
   BeerculesCardType get type;
   @override
   int get amount;
+
+  /// Create a copy of DatabaseCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DatabaseCardImplCopyWith<_$DatabaseCardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

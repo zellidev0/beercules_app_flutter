@@ -12,7 +12,8 @@ part of 'playing_card.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$PlayingCardSpecialImage {
@@ -21,60 +22,57 @@ mixin _$PlayingCardSpecialImage {
     required TResult Function() lastVictimGlass,
     required TResult Function() showLogo,
     required TResult Function(BannerAd? bannerAd) adsAdsAds,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? lastVictimGlass,
     TResult? Function()? showLogo,
     TResult? Function(BannerAd? bannerAd)? adsAdsAds,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? lastVictimGlass,
     TResult Function()? showLogo,
     TResult Function(BannerAd? bannerAd)? adsAdsAds,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(PlayingCardSpecialImageLastVictimGlass value)
-        lastVictimGlass,
+    lastVictimGlass,
     required TResult Function(PlayingCardSpecialImageShowLogo value) showLogo,
     required TResult Function(PlayingCardSpecialImageAdsAdsAds value) adsAdsAds,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult? Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult? Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PlayingCardSpecialImageCopyWith<$Res> {
-  factory $PlayingCardSpecialImageCopyWith(PlayingCardSpecialImage value,
-          $Res Function(PlayingCardSpecialImage) then) =
-      _$PlayingCardSpecialImageCopyWithImpl<$Res, PlayingCardSpecialImage>;
+  factory $PlayingCardSpecialImageCopyWith(
+    PlayingCardSpecialImage value,
+    $Res Function(PlayingCardSpecialImage) then,
+  ) = _$PlayingCardSpecialImageCopyWithImpl<$Res, PlayingCardSpecialImage>;
 }
 
 /// @nodoc
-class _$PlayingCardSpecialImageCopyWithImpl<$Res,
-        $Val extends PlayingCardSpecialImage>
+class _$PlayingCardSpecialImageCopyWithImpl<
+  $Res,
+  $Val extends PlayingCardSpecialImage
+>
     implements $PlayingCardSpecialImageCopyWith<$Res> {
   _$PlayingCardSpecialImageCopyWithImpl(this._value, this._then);
 
@@ -82,25 +80,34 @@ class _$PlayingCardSpecialImageCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PlayingCardSpecialImage
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$PlayingCardSpecialImageLastVictimGlassImplCopyWith<$Res> {
   factory _$$PlayingCardSpecialImageLastVictimGlassImplCopyWith(
-          _$PlayingCardSpecialImageLastVictimGlassImpl value,
-          $Res Function(_$PlayingCardSpecialImageLastVictimGlassImpl) then) =
-      __$$PlayingCardSpecialImageLastVictimGlassImplCopyWithImpl<$Res>;
+    _$PlayingCardSpecialImageLastVictimGlassImpl value,
+    $Res Function(_$PlayingCardSpecialImageLastVictimGlassImpl) then,
+  ) = __$$PlayingCardSpecialImageLastVictimGlassImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$PlayingCardSpecialImageLastVictimGlassImplCopyWithImpl<$Res>
-    extends _$PlayingCardSpecialImageCopyWithImpl<$Res,
-        _$PlayingCardSpecialImageLastVictimGlassImpl>
+    extends
+        _$PlayingCardSpecialImageCopyWithImpl<
+          $Res,
+          _$PlayingCardSpecialImageLastVictimGlassImpl
+        >
     implements _$$PlayingCardSpecialImageLastVictimGlassImplCopyWith<$Res> {
   __$$PlayingCardSpecialImageLastVictimGlassImplCopyWithImpl(
-      _$PlayingCardSpecialImageLastVictimGlassImpl _value,
-      $Res Function(_$PlayingCardSpecialImageLastVictimGlassImpl) _then)
-      : super(_value, _then);
+    _$PlayingCardSpecialImageLastVictimGlassImpl _value,
+    $Res Function(_$PlayingCardSpecialImageLastVictimGlassImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of PlayingCardSpecialImage
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -162,7 +169,7 @@ class _$PlayingCardSpecialImageLastVictimGlassImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(PlayingCardSpecialImageLastVictimGlass value)
-        lastVictimGlass,
+    lastVictimGlass,
     required TResult Function(PlayingCardSpecialImageShowLogo value) showLogo,
     required TResult Function(PlayingCardSpecialImageAdsAdsAds value) adsAdsAds,
   }) {
@@ -173,7 +180,7 @@ class _$PlayingCardSpecialImageLastVictimGlassImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult? Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult? Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
   }) {
@@ -184,7 +191,7 @@ class _$PlayingCardSpecialImageLastVictimGlassImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
     required TResult orElse(),
@@ -205,20 +212,26 @@ abstract class PlayingCardSpecialImageLastVictimGlass
 /// @nodoc
 abstract class _$$PlayingCardSpecialImageShowLogoImplCopyWith<$Res> {
   factory _$$PlayingCardSpecialImageShowLogoImplCopyWith(
-          _$PlayingCardSpecialImageShowLogoImpl value,
-          $Res Function(_$PlayingCardSpecialImageShowLogoImpl) then) =
-      __$$PlayingCardSpecialImageShowLogoImplCopyWithImpl<$Res>;
+    _$PlayingCardSpecialImageShowLogoImpl value,
+    $Res Function(_$PlayingCardSpecialImageShowLogoImpl) then,
+  ) = __$$PlayingCardSpecialImageShowLogoImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$PlayingCardSpecialImageShowLogoImplCopyWithImpl<$Res>
-    extends _$PlayingCardSpecialImageCopyWithImpl<$Res,
-        _$PlayingCardSpecialImageShowLogoImpl>
+    extends
+        _$PlayingCardSpecialImageCopyWithImpl<
+          $Res,
+          _$PlayingCardSpecialImageShowLogoImpl
+        >
     implements _$$PlayingCardSpecialImageShowLogoImplCopyWith<$Res> {
   __$$PlayingCardSpecialImageShowLogoImplCopyWithImpl(
-      _$PlayingCardSpecialImageShowLogoImpl _value,
-      $Res Function(_$PlayingCardSpecialImageShowLogoImpl) _then)
-      : super(_value, _then);
+    _$PlayingCardSpecialImageShowLogoImpl _value,
+    $Res Function(_$PlayingCardSpecialImageShowLogoImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of PlayingCardSpecialImage
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -280,7 +293,7 @@ class _$PlayingCardSpecialImageShowLogoImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(PlayingCardSpecialImageLastVictimGlass value)
-        lastVictimGlass,
+    lastVictimGlass,
     required TResult Function(PlayingCardSpecialImageShowLogo value) showLogo,
     required TResult Function(PlayingCardSpecialImageAdsAdsAds value) adsAdsAds,
   }) {
@@ -291,7 +304,7 @@ class _$PlayingCardSpecialImageShowLogoImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult? Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult? Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
   }) {
@@ -302,7 +315,7 @@ class _$PlayingCardSpecialImageShowLogoImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
     required TResult orElse(),
@@ -323,34 +336,40 @@ abstract class PlayingCardSpecialImageShowLogo
 /// @nodoc
 abstract class _$$PlayingCardSpecialImageAdsAdsAdsImplCopyWith<$Res> {
   factory _$$PlayingCardSpecialImageAdsAdsAdsImplCopyWith(
-          _$PlayingCardSpecialImageAdsAdsAdsImpl value,
-          $Res Function(_$PlayingCardSpecialImageAdsAdsAdsImpl) then) =
-      __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl<$Res>;
+    _$PlayingCardSpecialImageAdsAdsAdsImpl value,
+    $Res Function(_$PlayingCardSpecialImageAdsAdsAdsImpl) then,
+  ) = __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({BannerAd? bannerAd});
 }
 
 /// @nodoc
 class __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl<$Res>
-    extends _$PlayingCardSpecialImageCopyWithImpl<$Res,
-        _$PlayingCardSpecialImageAdsAdsAdsImpl>
+    extends
+        _$PlayingCardSpecialImageCopyWithImpl<
+          $Res,
+          _$PlayingCardSpecialImageAdsAdsAdsImpl
+        >
     implements _$$PlayingCardSpecialImageAdsAdsAdsImplCopyWith<$Res> {
   __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl(
-      _$PlayingCardSpecialImageAdsAdsAdsImpl _value,
-      $Res Function(_$PlayingCardSpecialImageAdsAdsAdsImpl) _then)
-      : super(_value, _then);
+    _$PlayingCardSpecialImageAdsAdsAdsImpl _value,
+    $Res Function(_$PlayingCardSpecialImageAdsAdsAdsImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of PlayingCardSpecialImage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? bannerAd = freezed,
-  }) {
-    return _then(_$PlayingCardSpecialImageAdsAdsAdsImpl(
-      bannerAd: freezed == bannerAd
-          ? _value.bannerAd
-          : bannerAd // ignore: cast_nullable_to_non_nullable
-              as BannerAd?,
-    ));
+  $Res call({Object? bannerAd = freezed}) {
+    return _then(
+      _$PlayingCardSpecialImageAdsAdsAdsImpl(
+        bannerAd:
+            freezed == bannerAd
+                ? _value.bannerAd
+                : bannerAd // ignore: cast_nullable_to_non_nullable
+                    as BannerAd?,
+      ),
+    );
   }
 }
 
@@ -380,13 +399,17 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   @override
   int get hashCode => Object.hash(runtimeType, bannerAd);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayingCardSpecialImage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlayingCardSpecialImageAdsAdsAdsImplCopyWith<
-          _$PlayingCardSpecialImageAdsAdsAdsImpl>
-      get copyWith => __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl<
-          _$PlayingCardSpecialImageAdsAdsAdsImpl>(this, _$identity);
+    _$PlayingCardSpecialImageAdsAdsAdsImpl
+  >
+  get copyWith => __$$PlayingCardSpecialImageAdsAdsAdsImplCopyWithImpl<
+    _$PlayingCardSpecialImageAdsAdsAdsImpl
+  >(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -426,7 +449,7 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(PlayingCardSpecialImageLastVictimGlass value)
-        lastVictimGlass,
+    lastVictimGlass,
     required TResult Function(PlayingCardSpecialImageShowLogo value) showLogo,
     required TResult Function(PlayingCardSpecialImageAdsAdsAds value) adsAdsAds,
   }) {
@@ -437,7 +460,7 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult? Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult? Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
   }) {
@@ -448,7 +471,7 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayingCardSpecialImageLastVictimGlass value)?
-        lastVictimGlass,
+    lastVictimGlass,
     TResult Function(PlayingCardSpecialImageShowLogo value)? showLogo,
     TResult Function(PlayingCardSpecialImageAdsAdsAds value)? adsAdsAds,
     required TResult orElse(),
@@ -462,13 +485,17 @@ class _$PlayingCardSpecialImageAdsAdsAdsImpl
 
 abstract class PlayingCardSpecialImageAdsAdsAds
     implements PlayingCardSpecialImage {
-  const factory PlayingCardSpecialImageAdsAdsAds(
-          {required final BannerAd? bannerAd}) =
-      _$PlayingCardSpecialImageAdsAdsAdsImpl;
+  const factory PlayingCardSpecialImageAdsAdsAds({
+    required final BannerAd? bannerAd,
+  }) = _$PlayingCardSpecialImageAdsAdsAdsImpl;
 
   BannerAd? get bannerAd;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlayingCardSpecialImage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayingCardSpecialImageAdsAdsAdsImplCopyWith<
-          _$PlayingCardSpecialImageAdsAdsAdsImpl>
-      get copyWith => throw _privateConstructorUsedError;
+    _$PlayingCardSpecialImageAdsAdsAdsImpl
+  >
+  get copyWith => throw _privateConstructorUsedError;
 }

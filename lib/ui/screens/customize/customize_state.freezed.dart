@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'customize_model.dart';
+part of 'customize_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,45 +16,46 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$CustomizeModel {
+mixin _$CustomizeState {
   BeerculesCardType? get selectedCardType => throw _privateConstructorUsedError;
-  List<CustomizeModelCard> get cards => throw _privateConstructorUsedError;
+  List<CustomizeModelCard> get configCards =>
+      throw _privateConstructorUsedError;
 
-  /// Create a copy of CustomizeModel
+  /// Create a copy of CustomizeState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CustomizeModelCopyWith<CustomizeModel> get copyWith =>
+  $CustomizeStateCopyWith<CustomizeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CustomizeModelCopyWith<$Res> {
-  factory $CustomizeModelCopyWith(
-    CustomizeModel value,
-    $Res Function(CustomizeModel) then,
-  ) = _$CustomizeModelCopyWithImpl<$Res, CustomizeModel>;
+abstract class $CustomizeStateCopyWith<$Res> {
+  factory $CustomizeStateCopyWith(
+    CustomizeState value,
+    $Res Function(CustomizeState) then,
+  ) = _$CustomizeStateCopyWithImpl<$Res, CustomizeState>;
   @useResult
   $Res call({
     BeerculesCardType? selectedCardType,
-    List<CustomizeModelCard> cards,
+    List<CustomizeModelCard> configCards,
   });
 }
 
 /// @nodoc
-class _$CustomizeModelCopyWithImpl<$Res, $Val extends CustomizeModel>
-    implements $CustomizeModelCopyWith<$Res> {
-  _$CustomizeModelCopyWithImpl(this._value, this._then);
+class _$CustomizeStateCopyWithImpl<$Res, $Val extends CustomizeState>
+    implements $CustomizeStateCopyWith<$Res> {
+  _$CustomizeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CustomizeModel
+  /// Create a copy of CustomizeState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? selectedCardType = freezed, Object? cards = null}) {
+  $Res call({Object? selectedCardType = freezed, Object? configCards = null}) {
     return _then(
       _value.copyWith(
             selectedCardType:
@@ -62,10 +63,10 @@ class _$CustomizeModelCopyWithImpl<$Res, $Val extends CustomizeModel>
                     ? _value.selectedCardType
                     : selectedCardType // ignore: cast_nullable_to_non_nullable
                         as BeerculesCardType?,
-            cards:
-                null == cards
-                    ? _value.cards
-                    : cards // ignore: cast_nullable_to_non_nullable
+            configCards:
+                null == configCards
+                    ? _value.configCards
+                    : configCards // ignore: cast_nullable_to_non_nullable
                         as List<CustomizeModelCard>,
           )
           as $Val,
@@ -74,45 +75,45 @@ class _$CustomizeModelCopyWithImpl<$Res, $Val extends CustomizeModel>
 }
 
 /// @nodoc
-abstract class _$$CustomizeModelImplCopyWith<$Res>
-    implements $CustomizeModelCopyWith<$Res> {
-  factory _$$CustomizeModelImplCopyWith(
-    _$CustomizeModelImpl value,
-    $Res Function(_$CustomizeModelImpl) then,
-  ) = __$$CustomizeModelImplCopyWithImpl<$Res>;
+abstract class _$$CustomizeStateImplCopyWith<$Res>
+    implements $CustomizeStateCopyWith<$Res> {
+  factory _$$CustomizeStateImplCopyWith(
+    _$CustomizeStateImpl value,
+    $Res Function(_$CustomizeStateImpl) then,
+  ) = __$$CustomizeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
     BeerculesCardType? selectedCardType,
-    List<CustomizeModelCard> cards,
+    List<CustomizeModelCard> configCards,
   });
 }
 
 /// @nodoc
-class __$$CustomizeModelImplCopyWithImpl<$Res>
-    extends _$CustomizeModelCopyWithImpl<$Res, _$CustomizeModelImpl>
-    implements _$$CustomizeModelImplCopyWith<$Res> {
-  __$$CustomizeModelImplCopyWithImpl(
-    _$CustomizeModelImpl _value,
-    $Res Function(_$CustomizeModelImpl) _then,
+class __$$CustomizeStateImplCopyWithImpl<$Res>
+    extends _$CustomizeStateCopyWithImpl<$Res, _$CustomizeStateImpl>
+    implements _$$CustomizeStateImplCopyWith<$Res> {
+  __$$CustomizeStateImplCopyWithImpl(
+    _$CustomizeStateImpl _value,
+    $Res Function(_$CustomizeStateImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of CustomizeModel
+  /// Create a copy of CustomizeState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? selectedCardType = freezed, Object? cards = null}) {
+  $Res call({Object? selectedCardType = freezed, Object? configCards = null}) {
     return _then(
-      _$CustomizeModelImpl(
+      _$CustomizeStateImpl(
         selectedCardType:
             freezed == selectedCardType
                 ? _value.selectedCardType
                 : selectedCardType // ignore: cast_nullable_to_non_nullable
                     as BeerculesCardType?,
-        cards:
-            null == cards
-                ? _value._cards
-                : cards // ignore: cast_nullable_to_non_nullable
+        configCards:
+            null == configCards
+                ? _value._configCards
+                : configCards // ignore: cast_nullable_to_non_nullable
                     as List<CustomizeModelCard>,
       ),
     );
@@ -121,72 +122,75 @@ class __$$CustomizeModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CustomizeModelImpl implements _CustomizeModel {
-  _$CustomizeModelImpl({
+class _$CustomizeStateImpl implements _CustomizeState {
+  _$CustomizeStateImpl({
     required this.selectedCardType,
-    required final List<CustomizeModelCard> cards,
-  }) : _cards = cards;
+    required final List<CustomizeModelCard> configCards,
+  }) : _configCards = configCards;
 
   @override
   final BeerculesCardType? selectedCardType;
-  final List<CustomizeModelCard> _cards;
+  final List<CustomizeModelCard> _configCards;
   @override
-  List<CustomizeModelCard> get cards {
-    if (_cards is EqualUnmodifiableListView) return _cards;
+  List<CustomizeModelCard> get configCards {
+    if (_configCards is EqualUnmodifiableListView) return _configCards;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cards);
+    return EqualUnmodifiableListView(_configCards);
   }
 
   @override
   String toString() {
-    return 'CustomizeModel(selectedCardType: $selectedCardType, cards: $cards)';
+    return 'CustomizeState(selectedCardType: $selectedCardType, configCards: $configCards)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CustomizeModelImpl &&
+            other is _$CustomizeStateImpl &&
             (identical(other.selectedCardType, selectedCardType) ||
                 other.selectedCardType == selectedCardType) &&
-            const DeepCollectionEquality().equals(other._cards, _cards));
+            const DeepCollectionEquality().equals(
+              other._configCards,
+              _configCards,
+            ));
   }
 
   @override
   int get hashCode => Object.hash(
     runtimeType,
     selectedCardType,
-    const DeepCollectionEquality().hash(_cards),
+    const DeepCollectionEquality().hash(_configCards),
   );
 
-  /// Create a copy of CustomizeModel
+  /// Create a copy of CustomizeState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CustomizeModelImplCopyWith<_$CustomizeModelImpl> get copyWith =>
-      __$$CustomizeModelImplCopyWithImpl<_$CustomizeModelImpl>(
+  _$$CustomizeStateImplCopyWith<_$CustomizeStateImpl> get copyWith =>
+      __$$CustomizeStateImplCopyWithImpl<_$CustomizeStateImpl>(
         this,
         _$identity,
       );
 }
 
-abstract class _CustomizeModel implements CustomizeModel {
-  factory _CustomizeModel({
+abstract class _CustomizeState implements CustomizeState {
+  factory _CustomizeState({
     required final BeerculesCardType? selectedCardType,
-    required final List<CustomizeModelCard> cards,
-  }) = _$CustomizeModelImpl;
+    required final List<CustomizeModelCard> configCards,
+  }) = _$CustomizeStateImpl;
 
   @override
   BeerculesCardType? get selectedCardType;
   @override
-  List<CustomizeModelCard> get cards;
+  List<CustomizeModelCard> get configCards;
 
-  /// Create a copy of CustomizeModel
+  /// Create a copy of CustomizeState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CustomizeModelImplCopyWith<_$CustomizeModelImpl> get copyWith =>
+  _$$CustomizeStateImplCopyWith<_$CustomizeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

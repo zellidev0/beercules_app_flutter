@@ -12,7 +12,7 @@ class TextStyles {
   static const String _fontFamilyInter = 'Inter';
 
   static const TextStyle header1 = TextStyle(
-    fontSize: 44,
+    fontSize: 58,
     fontFamily: _fontFamilyInter,
     color: Colors.white,
     fontWeight: FontWeight.w400,

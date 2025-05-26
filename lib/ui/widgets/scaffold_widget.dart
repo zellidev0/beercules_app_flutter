@@ -10,17 +10,17 @@ class ScaffoldWidget extends StatelessWidget {
   const ScaffoldWidget({
     required this.child,
     super.key,
-    final bool useSafeAre = true,
-    final EdgeInsets padding = Constants.pagePadding,
+    bool useSafeAre = true,
+    EdgeInsets padding = Constants.pagePadding,
   })  : _padding = padding,
         _useSafeAre = useSafeAre;
 
   @override
-  Widget build(final BuildContext context) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+  Widget build(BuildContext context) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
         child: Material(
           child: Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: Padding(
               padding: _padding,
               child: Center(

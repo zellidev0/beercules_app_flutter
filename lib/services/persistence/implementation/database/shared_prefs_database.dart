@@ -1,17 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:beercules/services/persistence/implementation/database/database.dart';
-import 'package:collection/collection.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-part 'shared_prefs_database.g.dart';
-
-@Riverpod(keepAlive: true)
-Database sharedPrefsDatabase(
-  final SharedPrefsDatabaseRef ref,
-) =>
-    SharedPrefsDatabase();
 
 class SharedPrefsDatabase implements Database {
   static const String configCardsKey = 'configCards';
@@ -33,18 +24,19 @@ class SharedPrefsDatabase implements Database {
 
   List<DatabaseCard>? readGame(final String key) {
     try {
-      final String? cards = sharedPreferences.getString(key);
+      final cards = sharedPreferences.getString(key);
       if (cards == null) {
         return null;
       }
 
       return (jsonDecode(cards) as List<Object?>)
           .map(
-            (final Object? object) => object == null
-                ? null
-                : DatabaseCard.fromJson(object as Map<String, Object?>),
+            (final Object? object) =>
+                object == null
+                    ? null
+                    : DatabaseCard.fromJson(object as Map<String, Object?>),
           )
-          .whereNotNull()
+          .nonNulls
           .toList();
     } on Exception {
       return null;
@@ -52,14 +44,10 @@ class SharedPrefsDatabase implements Database {
   }
 
   @override
-  Future<void> saveCustomCards(
-    final List<DatabaseCard> cards,
-  ) async =>
+  Future<void> saveCustomCards(final List<DatabaseCard> cards) async =>
       sharedPreferences.setString(configCardsKey, jsonEncode(cards));
 
   @override
-  Future<void> saveActiveGame(
-    final List<DatabaseCard> cards,
-  ) async =>
+  Future<void> saveActiveGame(final List<DatabaseCard> cards) async =>
       sharedPreferences.setString(currentCardsKey, jsonEncode(cards));
 }

@@ -7,11 +7,11 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:vector_graphics/vector_graphics.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:lottie/lottie.dart' as _lottie;
+import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
 class $AssetsBackgroundsGen {
   const $AssetsBackgroundsGen();
@@ -73,7 +73,8 @@ class $AssetsInstructionsGen {
 
   /// File path: assets/instructions/DREI_GESCHENKE_VON_HERZEN_pic.svg
   SvgGenImage get dREIGESCHENKEVONHERZENPic => const SvgGenImage(
-      'assets/instructions/DREI_GESCHENKE_VON_HERZEN_pic.svg');
+    'assets/instructions/DREI_GESCHENKE_VON_HERZEN_pic.svg',
+  );
 
   /// File path: assets/instructions/EIN_GESCHENK_VON_HERZEN_pic.svg
   SvgGenImage get eINGESCHENKVONHERZENPic =>
@@ -189,45 +190,45 @@ class $AssetsInstructionsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        aBSTIMMUNGPic,
-        aLLEFUEREINENPic,
-        aUFZAEHLUNGPic,
-        alles,
-        bEERLOVEPic,
-        bIERGOTTPic,
-        bIER123Pic,
-        dECKELDRAUFPic,
-        dOUBLETIMEPic,
-        dREIGESCHENKEVONHERZENPic,
-        eINGESCHENKVONHERZENPic,
-        eISPRINZESSINPic,
-        fILMRISSPic,
-        fRAGENKOENIGPic,
-        hAENDEHOCHPic,
-        hEYDUPic,
-        iCHHABNOCHNIEPic,
-        iCHPACKEMEINENKOFFERPic,
-        kETTENREAKTIONPic,
-        kLAUSPic,
-        kNUTSCHKARTEPic,
-        lINKSPic,
-        lIVELAUGHLAUGHPic,
-        mEDUSAPic,
-        mENSHEALTHPic,
-        oHRENSPITZENPic,
-        oPFERGLASLASTPic,
-        oPFERGLASPic,
-        rECHTSPic,
-        rEIMSCHWEINPic,
-        rICHTUNGSWECHSELPic,
-        sCHERESTEINPAARBIERPic,
-        sINGNOSONGPic,
-        sPIEGLEINSPIEGLEINPic,
-        tAUSCHRAUSCHPic,
-        tRINKBUDDYPic,
-        vOLLGEILGEILVOLLPic,
-        wOMENSHEALTHPic
-      ];
+    aBSTIMMUNGPic,
+    aLLEFUEREINENPic,
+    aUFZAEHLUNGPic,
+    alles,
+    bEERLOVEPic,
+    bIERGOTTPic,
+    bIER123Pic,
+    dECKELDRAUFPic,
+    dOUBLETIMEPic,
+    dREIGESCHENKEVONHERZENPic,
+    eINGESCHENKVONHERZENPic,
+    eISPRINZESSINPic,
+    fILMRISSPic,
+    fRAGENKOENIGPic,
+    hAENDEHOCHPic,
+    hEYDUPic,
+    iCHHABNOCHNIEPic,
+    iCHPACKEMEINENKOFFERPic,
+    kETTENREAKTIONPic,
+    kLAUSPic,
+    kNUTSCHKARTEPic,
+    lINKSPic,
+    lIVELAUGHLAUGHPic,
+    mEDUSAPic,
+    mENSHEALTHPic,
+    oHRENSPITZENPic,
+    oPFERGLASLASTPic,
+    oPFERGLASPic,
+    rECHTSPic,
+    rEIMSCHWEINPic,
+    rICHTUNGSWECHSELPic,
+    sCHERESTEINPAARBIERPic,
+    sINGNOSONGPic,
+    sPIEGLEINSPIEGLEINPic,
+    tAUSCHRAUSCHPic,
+    tRINKBUDDYPic,
+    vOLLGEILGEILVOLLPic,
+    wOMENSHEALTHPic,
+  ];
 }
 
 class $AssetsLegalGen {
@@ -248,8 +249,12 @@ class $AssetsLegalGen {
   String get legalNoticeEn => 'assets/legal/legal_notice_en.html';
 
   /// List of all assets
-  List<dynamic> get values =>
-      [appStoreBadge, googlePlayBadge, legalNoticeDe, legalNoticeEn];
+  List<dynamic> get values => [
+    appStoreBadge,
+    googlePlayBadge,
+    legalNoticeDe,
+    legalNoticeEn,
+  ];
 }
 
 class $AssetsLottiesGen {
@@ -288,12 +293,12 @@ class $AssetsMockupsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        mockup2,
-        smartmockupsL7kyju62,
-        smartmockupsL7kykb9a,
-        smartmockupsL7kyrfp1,
-        smartmockupsL7kyro8d
-      ];
+    mockup2,
+    smartmockupsL7kyju62,
+    smartmockupsL7kykb9a,
+    smartmockupsL7kyrfp1,
+    smartmockupsL7kyro8d,
+  ];
 }
 
 class $AssetsTranslationsGen {
@@ -310,7 +315,7 @@ class $AssetsTranslationsGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsBackgroundsGen backgrounds = $AssetsBackgroundsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
@@ -322,11 +327,12 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size = null});
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
   final Size? size;
+  final Set<String> flavors;
 
   Image image({
     Key? key,
@@ -346,10 +352,10 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -381,15 +387,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
@@ -398,22 +397,18 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size = null,
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size = null,
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
 
   final String _assetName;
-
   final Size? size;
+  final Set<String> flavors;
   final bool _isVecFormat;
 
-  SvgPicture svg({
+  _svg.SvgPicture svg({
     Key? key,
     bool matchTextDirection = false,
     AssetBundle? bundle,
@@ -426,19 +421,30 @@ class SvgGenImage {
     WidgetBuilder? placeholderBuilder,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    SvgTheme? theme,
+    _svg.SvgTheme? theme,
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
     @deprecated bool cacheColorFilter = false,
   }) {
-    return SvgPicture(
-      _isVecFormat
-          ? AssetBytesLoader(_assetName,
-              assetBundle: bundle, packageName: package)
-          : SvgAssetLoader(_assetName,
-              assetBundle: bundle, packageName: package),
+    final _svg.BytesLoader loader;
+    if (_isVecFormat) {
+      loader = _vg.AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = _svg.SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+      );
+    }
+    return _svg.SvgPicture(
+      loader,
       key: key,
       matchTextDirection: matchTextDirection,
       width: width,
@@ -449,8 +455,8 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      colorFilter: colorFilter ??
+      colorFilter:
+          colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
@@ -463,23 +469,25 @@ class SvgGenImage {
 }
 
 class LottieGenImage {
-  const LottieGenImage(this._assetName);
+  const LottieGenImage(this._assetName, {this.flavors = const {}});
 
   final String _assetName;
+  final Set<String> flavors;
 
-  LottieBuilder lottie({
+  _lottie.LottieBuilder lottie({
     Animation<double>? controller,
     bool? animate,
-    FrameRate? frameRate,
+    _lottie.FrameRate? frameRate,
     bool? repeat,
     bool? reverse,
-    LottieDelegates? delegates,
-    LottieOptions? options,
-    void Function(LottieComposition)? onLoaded,
-    LottieImageProviderFactory? imageProviderFactory,
+    _lottie.LottieDelegates? delegates,
+    _lottie.LottieOptions? options,
+    void Function(_lottie.LottieComposition)? onLoaded,
+    _lottie.LottieImageProviderFactory? imageProviderFactory,
     Key? key,
     AssetBundle? bundle,
-    Widget Function(BuildContext, Widget, LottieComposition?)? frameBuilder,
+    Widget Function(BuildContext, Widget, _lottie.LottieComposition?)?
+    frameBuilder,
     ImageErrorWidgetBuilder? errorBuilder,
     double? width,
     double? height,
@@ -489,8 +497,11 @@ class LottieGenImage {
     bool? addRepaintBoundary,
     FilterQuality? filterQuality,
     void Function(String)? onWarning,
+    _lottie.LottieDecoder? decoder,
+    _lottie.RenderCache? renderCache,
+    bool? backgroundLoading,
   }) {
-    return Lottie.asset(
+    return _lottie.Lottie.asset(
       _assetName,
       controller: controller,
       animate: animate,
@@ -513,6 +524,9 @@ class LottieGenImage {
       addRepaintBoundary: addRepaintBoundary,
       filterQuality: filterQuality,
       onWarning: onWarning,
+      decoder: decoder,
+      renderCache: renderCache,
+      backgroundLoading: backgroundLoading,
     );
   }
 

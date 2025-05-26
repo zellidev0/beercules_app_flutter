@@ -53,71 +53,61 @@ enum BeerculesCardType {
       this == BeerculesCardType.basicRule3;
 
   Widget asset() => switch (this) {
-        BeerculesCardType.abstimmung => Assets.instructions.aBSTIMMUNGPic.svg(),
-        BeerculesCardType.alleFuerEinen =>
-          Assets.instructions.aLLEFUEREINENPic.svg(),
-        BeerculesCardType.aufzaehlung =>
-          Assets.instructions.aUFZAEHLUNGPic.svg(),
-        BeerculesCardType.beerLove => Assets.instructions.bEERLOVEPic.svg(),
-        BeerculesCardType.biergott => Assets.instructions.bIERGOTTPic.svg(),
-        BeerculesCardType.deckelDrauf =>
-          Assets.instructions.dECKELDRAUFPic.svg(),
-        BeerculesCardType.dreiGeschenkeVonHerzen =>
-          Assets.instructions.dREIGESCHENKEVONHERZENPic.svg(),
-        BeerculesCardType.einGeschenkVonHerzen =>
-          Assets.instructions.eINGESCHENKVONHERZENPic.svg(),
-        BeerculesCardType.eisprinzessin =>
-          Assets.instructions.eISPRINZESSINPic.svg(),
-        BeerculesCardType.filmriss => Assets.instructions.fILMRISSPic.svg(),
-        BeerculesCardType.fragenkoenig =>
-          Assets.instructions.fRAGENKOENIGPic.svg(),
-        BeerculesCardType.haendeHoch => Assets.instructions.hAENDEHOCHPic.svg(),
-        BeerculesCardType.ichHabNochNie =>
-          Assets.instructions.iCHHABNOCHNIEPic.svg(),
-        BeerculesCardType.ichPackeMeinenKoffer =>
-          Assets.instructions.iCHPACKEMEINENKOFFERPic.svg(),
-        BeerculesCardType.kettenreaktion =>
-          Assets.instructions.kETTENREAKTIONPic.svg(),
-        BeerculesCardType.knutschkarte =>
-          Assets.instructions.kNUTSCHKARTEPic.svg(),
-        BeerculesCardType.links => Assets.instructions.lINKSPic.svg(),
-        BeerculesCardType.mensHealth => Assets.instructions.mENSHEALTHPic.svg(),
-        BeerculesCardType.ohrenSpitzen =>
-          Assets.instructions.oHRENSPITZENPic.svg(),
-        BeerculesCardType.opferglas => Assets.instructions.oPFERGLASPic.svg(),
-        BeerculesCardType.rechts => Assets.instructions.rECHTSPic.svg(),
-        BeerculesCardType.reimschwein =>
-          Assets.instructions.rEIMSCHWEINPic.svg(),
-        BeerculesCardType.richtungswechsel =>
-          Assets.instructions.rICHTUNGSWECHSELPic.svg(),
-        BeerculesCardType.schereSteinPaarBier =>
-          Assets.instructions.sCHERESTEINPAARBIERPic.svg(),
-        BeerculesCardType.singNoSong => Assets.instructions.sINGNOSONGPic.svg(),
-        BeerculesCardType.spiegelSpiegel =>
-          Assets.instructions.sPIEGLEINSPIEGLEINPic.svg(),
-        BeerculesCardType.tauschrausch =>
-          Assets.instructions.tAUSCHRAUSCHPic.svg(),
-        BeerculesCardType.trinkBuddy => Assets.instructions.tRINKBUDDYPic.svg(),
-        BeerculesCardType.womensHealth =>
-          Assets.instructions.wOMENSHEALTHPic.svg(),
-        BeerculesCardType.medusa => Assets.instructions.mEDUSAPic.svg(),
-        BeerculesCardType.liveLaughLaugh =>
-          Assets.instructions.lIVELAUGHLAUGHPic.svg(),
-        BeerculesCardType.vollGeilGeilVoll =>
-          Assets.instructions.vOLLGEILGEILVOLLPic.svg(),
-        BeerculesCardType.heyDu => Assets.instructions.hEYDUPic.svg(),
-        BeerculesCardType.klaus => Assets.instructions.kLAUSPic.svg(),
-        BeerculesCardType.bier123 => Assets.instructions.bIER123Pic.svg(),
-        BeerculesCardType.adsAdsAds => Assets.images.logo.image(),
-        BeerculesCardType.basicRule1 => Assets.images.logo.image(),
-        BeerculesCardType.basicRule2 => Assets.images.logo.image(),
-        BeerculesCardType.basicRule3 => Assets.images.logo.image(),
-        BeerculesCardType.doubleTime => Assets.instructions.dOUBLETIMEPic.svg(),
-      };
+    BeerculesCardType.abstimmung => Assets.instructions.aBSTIMMUNGPic.svg(),
+    BeerculesCardType.alleFuerEinen =>
+      Assets.instructions.aLLEFUEREINENPic.svg(),
+    BeerculesCardType.aufzaehlung => Assets.instructions.aUFZAEHLUNGPic.svg(),
+    BeerculesCardType.beerLove => Assets.instructions.bEERLOVEPic.svg(),
+    BeerculesCardType.biergott => Assets.instructions.bIERGOTTPic.svg(),
+    BeerculesCardType.deckelDrauf => Assets.instructions.dECKELDRAUFPic.svg(),
+    BeerculesCardType.dreiGeschenkeVonHerzen =>
+      Assets.instructions.dREIGESCHENKEVONHERZENPic.svg(),
+    BeerculesCardType.einGeschenkVonHerzen =>
+      Assets.instructions.eINGESCHENKVONHERZENPic.svg(),
+    BeerculesCardType.eisprinzessin =>
+      Assets.instructions.eISPRINZESSINPic.svg(),
+    BeerculesCardType.filmriss => Assets.instructions.fILMRISSPic.svg(),
+    BeerculesCardType.fragenkoenig => Assets.instructions.fRAGENKOENIGPic.svg(),
+    BeerculesCardType.haendeHoch => Assets.instructions.hAENDEHOCHPic.svg(),
+    BeerculesCardType.ichHabNochNie =>
+      Assets.instructions.iCHHABNOCHNIEPic.svg(),
+    BeerculesCardType.ichPackeMeinenKoffer =>
+      Assets.instructions.iCHPACKEMEINENKOFFERPic.svg(),
+    BeerculesCardType.kettenreaktion =>
+      Assets.instructions.kETTENREAKTIONPic.svg(),
+    BeerculesCardType.knutschkarte => Assets.instructions.kNUTSCHKARTEPic.svg(),
+    BeerculesCardType.links => Assets.instructions.lINKSPic.svg(),
+    BeerculesCardType.mensHealth => Assets.instructions.mENSHEALTHPic.svg(),
+    BeerculesCardType.ohrenSpitzen => Assets.instructions.oHRENSPITZENPic.svg(),
+    BeerculesCardType.opferglas => Assets.instructions.oPFERGLASPic.svg(),
+    BeerculesCardType.rechts => Assets.instructions.rECHTSPic.svg(),
+    BeerculesCardType.reimschwein => Assets.instructions.rEIMSCHWEINPic.svg(),
+    BeerculesCardType.richtungswechsel =>
+      Assets.instructions.rICHTUNGSWECHSELPic.svg(),
+    BeerculesCardType.schereSteinPaarBier =>
+      Assets.instructions.sCHERESTEINPAARBIERPic.svg(),
+    BeerculesCardType.singNoSong => Assets.instructions.sINGNOSONGPic.svg(),
+    BeerculesCardType.spiegelSpiegel =>
+      Assets.instructions.sPIEGLEINSPIEGLEINPic.svg(),
+    BeerculesCardType.tauschrausch => Assets.instructions.tAUSCHRAUSCHPic.svg(),
+    BeerculesCardType.trinkBuddy => Assets.instructions.tRINKBUDDYPic.svg(),
+    BeerculesCardType.womensHealth => Assets.instructions.wOMENSHEALTHPic.svg(),
+    BeerculesCardType.medusa => Assets.instructions.mEDUSAPic.svg(),
+    BeerculesCardType.liveLaughLaugh =>
+      Assets.instructions.lIVELAUGHLAUGHPic.svg(),
+    BeerculesCardType.vollGeilGeilVoll =>
+      Assets.instructions.vOLLGEILGEILVOLLPic.svg(),
+    BeerculesCardType.heyDu => Assets.instructions.hEYDUPic.svg(),
+    BeerculesCardType.klaus => Assets.instructions.kLAUSPic.svg(),
+    BeerculesCardType.bier123 => Assets.instructions.bIER123Pic.svg(),
+    BeerculesCardType.adsAdsAds => Assets.images.logo.image(),
+    BeerculesCardType.basicRule1 => Assets.images.logo.image(),
+    BeerculesCardType.basicRule2 => Assets.images.logo.image(),
+    BeerculesCardType.basicRule3 => Assets.images.logo.image(),
+    BeerculesCardType.doubleTime => Assets.instructions.dOUBLETIMEPic.svg(),
+  };
 
-  String localizedDescription({
-    required final bool isLastVictimGlass,
-  }) =>
+  String localizedDescription({required bool isLastVictimGlass}) =>
       switch (this) {
         BeerculesCardType.abstimmung =>
           LocaleKeys.game_view_instructions_ABSTIMMUNG_description,
@@ -131,8 +121,9 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_BIERGOTT_description,
         BeerculesCardType.deckelDrauf =>
           LocaleKeys.game_view_instructions_DECKEL_DRAUF_description,
-        BeerculesCardType.dreiGeschenkeVonHerzen => LocaleKeys
-            .game_view_instructions_DREI_GESCHENKE_VON_HERZEN_description,
+        BeerculesCardType.dreiGeschenkeVonHerzen =>
+          LocaleKeys
+              .game_view_instructions_DREI_GESCHENKE_VON_HERZEN_description,
         BeerculesCardType.einGeschenkVonHerzen =>
           LocaleKeys.game_view_instructions_EIN_GESCHENK_VON_HERZEN_description,
         BeerculesCardType.eisprinzessin =>
@@ -157,9 +148,10 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_MENS_HEALTH_description,
         BeerculesCardType.ohrenSpitzen =>
           LocaleKeys.game_view_instructions_OHREN_SPITZEN_description,
-        BeerculesCardType.opferglas => isLastVictimGlass
-            ? LocaleKeys.game_view_instructions_OPFERGLAS_LAST_description
-            : LocaleKeys.game_view_instructions_OPFERGLAS_description,
+        BeerculesCardType.opferglas =>
+          isLastVictimGlass
+              ? LocaleKeys.game_view_instructions_OPFERGLAS_LAST_description
+              : LocaleKeys.game_view_instructions_OPFERGLAS_description,
         BeerculesCardType.rechts =>
           LocaleKeys.game_view_instructions_RECHTS_description,
         BeerculesCardType.reimschwein =>
@@ -199,64 +191,54 @@ enum BeerculesCardType {
         BeerculesCardType.adsAdsAds =>
           LocaleKeys.game_view_instructions_ADS_ADS_ADS_description,
         BeerculesCardType.doubleTime =>
-          LocaleKeys.game_view_instructions_DOUBLE_TIME_description
-      }
-          .tr();
+          LocaleKeys.game_view_instructions_DOUBLE_TIME_description,
+      }.tr();
 
   BeerculesCardEventType eventType() => switch (this) {
-        BeerculesCardType.abstimmung => BeerculesCardEventType.immediate,
-        BeerculesCardType.alleFuerEinen => BeerculesCardEventType.immediate,
-        BeerculesCardType.aufzaehlung => BeerculesCardEventType.miniGame,
-        BeerculesCardType.beerLove => BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.biergott => BeerculesCardEventType.entireGame,
-        BeerculesCardType.deckelDrauf => BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.dreiGeschenkeVonHerzen =>
-          BeerculesCardEventType.immediate,
-        BeerculesCardType.einGeschenkVonHerzen =>
-          BeerculesCardEventType.immediate,
-        BeerculesCardType.eisprinzessin =>
-          BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.filmriss => BeerculesCardEventType.immediate,
-        BeerculesCardType.fragenkoenig => BeerculesCardEventType.entireGame,
-        BeerculesCardType.haendeHoch => BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.ichHabNochNie => BeerculesCardEventType.miniGame,
-        BeerculesCardType.ichPackeMeinenKoffer =>
-          BeerculesCardEventType.miniGame,
-        BeerculesCardType.kettenreaktion => BeerculesCardEventType.immediate,
-        BeerculesCardType.knutschkarte => BeerculesCardEventType.immediate,
-        BeerculesCardType.links => BeerculesCardEventType.immediate,
-        BeerculesCardType.mensHealth => BeerculesCardEventType.immediate,
-        BeerculesCardType.ohrenSpitzen =>
-          BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.opferglas => BeerculesCardEventType.entireGame,
-        BeerculesCardType.rechts => BeerculesCardEventType.immediate,
-        BeerculesCardType.reimschwein => BeerculesCardEventType.miniGame,
-        BeerculesCardType.richtungswechsel => BeerculesCardEventType.immediate,
-        BeerculesCardType.schereSteinPaarBier =>
-          BeerculesCardEventType.miniGame,
-        BeerculesCardType.singNoSong => BeerculesCardEventType.entireGame,
-        BeerculesCardType.spiegelSpiegel => BeerculesCardEventType.immediate,
-        BeerculesCardType.tauschrausch =>
-          BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.trinkBuddy => BeerculesCardEventType.entireGame,
-        BeerculesCardType.medusa => BeerculesCardEventType.immediate,
-        BeerculesCardType.womensHealth => BeerculesCardEventType.immediate,
-        BeerculesCardType.bier123 => BeerculesCardEventType.miniGame,
-        BeerculesCardType.basicRule1 => BeerculesCardEventType.entireGame,
-        BeerculesCardType.basicRule2 => BeerculesCardEventType.entireGame,
-        BeerculesCardType.basicRule3 => BeerculesCardEventType.entireGame,
-        BeerculesCardType.liveLaughLaugh =>
-          BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.vollGeilGeilVoll => BeerculesCardEventType.immediate,
-        BeerculesCardType.heyDu => BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.klaus => BeerculesCardEventType.withinNextRound,
-        BeerculesCardType.adsAdsAds => BeerculesCardEventType.immediate,
-        BeerculesCardType.doubleTime => BeerculesCardEventType.entireGame
-      };
+    BeerculesCardType.abstimmung => BeerculesCardEventType.immediate,
+    BeerculesCardType.alleFuerEinen => BeerculesCardEventType.immediate,
+    BeerculesCardType.aufzaehlung => BeerculesCardEventType.miniGame,
+    BeerculesCardType.beerLove => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.biergott => BeerculesCardEventType.entireGame,
+    BeerculesCardType.deckelDrauf => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.dreiGeschenkeVonHerzen =>
+      BeerculesCardEventType.immediate,
+    BeerculesCardType.einGeschenkVonHerzen => BeerculesCardEventType.immediate,
+    BeerculesCardType.eisprinzessin => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.filmriss => BeerculesCardEventType.immediate,
+    BeerculesCardType.fragenkoenig => BeerculesCardEventType.entireGame,
+    BeerculesCardType.haendeHoch => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.ichHabNochNie => BeerculesCardEventType.miniGame,
+    BeerculesCardType.ichPackeMeinenKoffer => BeerculesCardEventType.miniGame,
+    BeerculesCardType.kettenreaktion => BeerculesCardEventType.immediate,
+    BeerculesCardType.knutschkarte => BeerculesCardEventType.immediate,
+    BeerculesCardType.links => BeerculesCardEventType.immediate,
+    BeerculesCardType.mensHealth => BeerculesCardEventType.immediate,
+    BeerculesCardType.ohrenSpitzen => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.opferglas => BeerculesCardEventType.entireGame,
+    BeerculesCardType.rechts => BeerculesCardEventType.immediate,
+    BeerculesCardType.reimschwein => BeerculesCardEventType.miniGame,
+    BeerculesCardType.richtungswechsel => BeerculesCardEventType.immediate,
+    BeerculesCardType.schereSteinPaarBier => BeerculesCardEventType.miniGame,
+    BeerculesCardType.singNoSong => BeerculesCardEventType.entireGame,
+    BeerculesCardType.spiegelSpiegel => BeerculesCardEventType.immediate,
+    BeerculesCardType.tauschrausch => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.trinkBuddy => BeerculesCardEventType.entireGame,
+    BeerculesCardType.medusa => BeerculesCardEventType.immediate,
+    BeerculesCardType.womensHealth => BeerculesCardEventType.immediate,
+    BeerculesCardType.bier123 => BeerculesCardEventType.miniGame,
+    BeerculesCardType.basicRule1 => BeerculesCardEventType.entireGame,
+    BeerculesCardType.basicRule2 => BeerculesCardEventType.entireGame,
+    BeerculesCardType.basicRule3 => BeerculesCardEventType.entireGame,
+    BeerculesCardType.liveLaughLaugh => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.vollGeilGeilVoll => BeerculesCardEventType.immediate,
+    BeerculesCardType.heyDu => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.klaus => BeerculesCardEventType.withinNextRound,
+    BeerculesCardType.adsAdsAds => BeerculesCardEventType.immediate,
+    BeerculesCardType.doubleTime => BeerculesCardEventType.entireGame,
+  };
 
-  String localizedTitle({
-    required final bool isLastVictimGlass,
-  }) =>
+  String localizedTitle({required bool isLastVictimGlass}) =>
       switch (this) {
         BeerculesCardType.abstimmung =>
           LocaleKeys.game_view_instructions_ABSTIMMUNG_title,
@@ -296,9 +278,10 @@ enum BeerculesCardType {
           LocaleKeys.game_view_instructions_MENS_HEALTH_title,
         BeerculesCardType.ohrenSpitzen =>
           LocaleKeys.game_view_instructions_OHREN_SPITZEN_title,
-        BeerculesCardType.opferglas => isLastVictimGlass
-            ? LocaleKeys.game_view_instructions_OPFERGLAS_LAST_title
-            : LocaleKeys.game_view_instructions_OPFERGLAS_title,
+        BeerculesCardType.opferglas =>
+          isLastVictimGlass
+              ? LocaleKeys.game_view_instructions_OPFERGLAS_LAST_title
+              : LocaleKeys.game_view_instructions_OPFERGLAS_title,
         BeerculesCardType.rechts =>
           LocaleKeys.game_view_instructions_RECHTS_title,
         BeerculesCardType.reimschwein =>
@@ -338,14 +321,8 @@ enum BeerculesCardType {
         BeerculesCardType.adsAdsAds =>
           LocaleKeys.game_view_instructions_ADS_ADS_ADS_title,
         BeerculesCardType.doubleTime =>
-          LocaleKeys.game_view_instructions_DOUBLE_TIME_title
-      }
-          .tr();
+          LocaleKeys.game_view_instructions_DOUBLE_TIME_title,
+      }.tr();
 }
 
-enum BeerculesCardEventType {
-  immediate,
-  withinNextRound,
-  entireGame,
-  miniGame,
-}
+enum BeerculesCardEventType { immediate, withinNextRound, entireGame, miniGame }

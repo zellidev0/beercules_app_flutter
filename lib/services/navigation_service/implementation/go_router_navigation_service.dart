@@ -1,29 +1,19 @@
 import 'dart:async';
 
-import 'package:beercules/go_router.dart';
-import 'package:beercules/services/navigation_service/navigation_service_aggregator.dart';
+import 'package:beercules/services/navigation_service/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'go_router_navigation_service.g.dart';
-
-@riverpod
-NavigationServiceAggregator goRouterNavigationService(
-  final GoRouterNavigationServiceRef ref,
-) =>
-    GoRouterNavigationService(goRouter: ref.watch(goRouterProvider));
-
-class GoRouterNavigationService implements NavigationServiceAggregator {
+class GoRouterNavigationService extends NavigationService {
   final GoRouter _goRouter;
 
   GoRouterNavigationService({
-    required final GoRouter goRouter,
+    required GoRouter goRouter,
   }) : _goRouter = goRouter;
 
   @override
-  void goBack({final Uri? fallbackUri}) {
+  void goBack({Uri? fallbackUri}) {
     if (_goRouter.canPop()) {
       _goRouter.pop();
     } else if (fallbackUri != null) {
@@ -32,51 +22,33 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   }
 
   @override
-  void pop<T>({final T? data}) => _goRouter.pop(data);
+  void pop<T>({T? data}) => _goRouter.pop(data);
 
   @override
-  void push(final String uri) => unawaited(_goRouter.push(uri));
+  void push(String uri) => unawaited(_goRouter.push(uri));
 
   @override
-  void replaceWith(final Uri uri) => unawaited(
+  void replaceWith(Uri uri) => unawaited(
         _goRouter.pushReplacement(uri.toString()),
       );
 
   @override
-  void replaceWithNamed(final Uri uri) => unawaited(
+  void replaceWithNamed(Uri uri) => unawaited(
         _goRouter.replace(uri.toString()),
       );
 
   @override
-  TaskEither<Object, Option<T>> showPopup<T>(
-    final Widget popup, {
-    final bool canBePoppedViaBackGesture = true,
-  }) =>
-      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
-        () => TaskEither<Object, Option<T>>(
-          () async =>
-              left('Error when searching for context - navigation service'),
-        ),
-        (final BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
-          () async => optionOf(
-            await showDialog<T>(
-              context: context,
-              builder: (final _) => WillPopScope(
-                onWillPop: () async => canBePoppedViaBackGesture,
-                child: popup,
-              ),
-            ),
-          ),
-          (final Object error, final _) => error,
-        ),
+  Future<T?> showPopup<T>(Widget popup) => showDialog<T>(
+        context: _goRouter.routerDelegate.navigatorKey.currentContext ??
+            (throw Exception('No context found')),
+        builder: (_) => popup,
       );
 
   @override
-  void showSnackBar(final String message) =>
+  void showSnackBar(String message) =>
       optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
         () {},
-        (final BuildContext context) =>
-            ScaffoldMessenger.of(context).showSnackBar(
+        (BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Theme.of(context).colorScheme.primary,
             content: Text(message),
@@ -86,20 +58,8 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
       );
 
   @override
-  TaskEither<Object, Option<T>> showModal<T>(final Widget widget) =>
-      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
-        () => TaskEither<Object, Option<T>>(
-          () async =>
-              left('Error when searching for context - navigation service'),
-        ),
-        (final BuildContext context) => TaskEither<Object, Option<T>>.tryCatch(
-          () async => optionOf(
-            await showModalBottomSheet<T>(
-              context: context,
-              builder: (final _) => widget,
-            ),
-          ),
-          (final Object error, final _) => error,
-        ),
+  Future<T?> showModal<T>(Widget widget) => showModalBottomSheet<T>(
+        context: _goRouter.routerDelegate.navigatorKey.currentContext!,
+        builder: (_) => widget,
       );
 }

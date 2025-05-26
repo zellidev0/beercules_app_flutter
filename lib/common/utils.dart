@@ -1,10 +1,10 @@
 import 'dart:math';
 
-List<T> shuffle<T>(final int seed, final List<T> items) {
-  final Random random = Random(seed);
-  for (int i = items.length - 1; i > 0; i--) {
-    final int n = random.nextInt(i + 1);
-    final T temp = items[i];
+List<T> shuffle<T>(int seed, List<T> items) {
+  final random = Random(seed);
+  for (var i = items.length - 1; i > 0; i--) {
+    final n = random.nextInt(i + 1);
+    final temp = items[i];
     items[i] = items[n];
     items[n] = temp;
   }
@@ -13,13 +13,12 @@ List<T> shuffle<T>(final int seed, final List<T> items) {
 }
 
 List<T> shuffleCards<T>({
-  required final List<T> cards,
-  required final bool Function(T element) conditionToSortFirst,
-}) =>
-    <T>[
-      ...shuffle(
-        Random().nextInt(10),
-        cards.where((final _) => !conditionToSortFirst(_)).toList(),
-      ),
-      ...cards.where(conditionToSortFirst),
-    ];
+  required List<T> cards,
+  required bool Function(T element) conditionToSortFirst,
+}) => <T>[
+  ...shuffle(
+    Random().nextInt(10),
+    cards.where((it) => !conditionToSortFirst(it)).toList(),
+  ),
+  ...cards.where(conditionToSortFirst),
+];

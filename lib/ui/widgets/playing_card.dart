@@ -14,73 +14,81 @@ part 'playing_card.freezed.dart';
 
 class PlayingCard extends StatelessWidget {
   final VoidCallback _onTap;
+  final bool _showLogo;
   final BeerculesCardType cartType;
+  final bool _isLastVictimGlass;
   final PlayingCardSpecialImage? cardSpecialImage;
   const PlayingCard({
-    required final void Function() onTap,
-    required final BeerculesCardType cardType,
-    required this.cardSpecialImage,
+    required void Function() onTap,
+    required bool showLogo,
+    required BeerculesCardType cardType,
+    bool isLastVictimGlass = false,
     super.key,
-  })  : cartType = cardType,
-        _onTap = onTap;
+    this.cardSpecialImage,
+  }) : _isLastVictimGlass = isLastVictimGlass,
+       cartType = cardType,
+       _showLogo = showLogo,
+       _onTap = onTap;
 
   @override
-  Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            PlayingCardContainer(
-              onTap: _onTap,
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(72, 12, 72, 16),
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: cardSpecialImage == null
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.all(32),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        PlayingCardContainer(
+          onTap: _onTap,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(72, 12, 72, 16),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child:
+                      cardSpecialImage == null
                           ? cartType.asset()
                           : cardSpecialImage!.map(
-                              lastVictimGlass: (final _) =>
-                                  Assets.lotties.skullAnimation.lottie(),
-                              showLogo: (final _) => Assets.images.logo.image(),
-                              adsAdsAds: (final _) {
-                                final BannerAd? ad = _.bannerAd;
-                                if (ad == null) {
-                                  return Assets.images.logo.image();
-                                }
-                                return GameViewCardAd(ad: ad);
-                              },
-                            ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  FittedBox(
-                    fit: BoxFit.fitHeight,
-                    child: Text(
-                      cartType.localizedTitle(
-                        isLastVictimGlass: isLastVictimGlass(),
-                      ),
-                      style: TextStyles.header2,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Expanded(
-                    child: AutoSizeText(
-                      cartType.localizedDescription(
-                        isLastVictimGlass: isLastVictimGlass(),
-                      ),
-                      maxLines: 10,
-                      style: TextStyles.body1,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
+                            lastVictimGlass:
+                                (final _) =>
+                                    Assets.lotties.skullAnimation.lottie(),
+                            showLogo: (final _) => Assets.images.logo.image(),
+                            adsAdsAds: (final addd) {
+                              final ad = addd.bannerAd;
+                              if (ad == null) {
+                                return Assets.images.logo.image();
+                              }
+                              return GameViewCardAd(ad: ad);
+                            },
+                          ),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 16),
+              FittedBox(
+                fit: BoxFit.fitHeight,
+                child: Text(
+                  cartType.localizedTitle(
+                    isLastVictimGlass: _isLastVictimGlass,
+                  ),
+                  style: TextStyles.header2,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Expanded(
+                child: AutoSizeText(
+                  cartType.localizedDescription(
+                    isLastVictimGlass: isLastVictimGlass(),
+                  ),
+                  maxLines: 10,
+                  style: TextStyles.body1,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
         ),
-      );
+      ],
+    ),
+  );
 
   bool isLastVictimGlass() =>
       cardSpecialImage is PlayingCardSpecialImageLastVictimGlass;

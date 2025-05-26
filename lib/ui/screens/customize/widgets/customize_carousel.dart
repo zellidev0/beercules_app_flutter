@@ -41,22 +41,24 @@ class _CustomizeCarouselState extends State<CustomizeCarousel> {
 
   @override
   Widget build(final BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _buildCarouselTitle(carouselTitle: widget.title),
-          const SizedBox(height: 16),
-          _buildCarousel(),
-          const SizedBox(height: 16),
-          Center(child: _buildSmoothPageIndicator()),
-        ],
-      );
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      _buildCarouselTitle(carouselTitle: widget.title),
+      const SizedBox(height: 16),
+      _buildCarousel(),
+      const SizedBox(height: 16),
+      Center(child: _buildSmoothPageIndicator()),
+    ],
+  );
 
   Widget _buildCarousel() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: LayoutBuilder(
-          builder: (final _, final BoxConstraints constraints) => AspectRatio(
-            aspectRatio: constraints.maxWidth /
+    padding: const EdgeInsets.symmetric(horizontal: 24),
+    child: LayoutBuilder(
+      builder:
+          (final _, final BoxConstraints constraints) => AspectRatio(
+            aspectRatio:
+                constraints.maxWidth /
                 ((constraints.maxWidth / Constants.cardAspectRatio) -
                     (12 * 4)) /
                 widget.pageController.viewportFraction,
@@ -65,48 +67,49 @@ class _CustomizeCarouselState extends State<CustomizeCarousel> {
               clipBehavior: Clip.none,
               padEnds: false,
               physics: const BouncingScrollPhysics(),
-              onPageChanged: (final int itemIndex) => widget._onPageChanged(
-                itemIndex: itemIndex,
-              ),
+              onPageChanged:
+                  (final int itemIndex) =>
+                      widget._onPageChanged(itemIndex: itemIndex),
               controller: _pageController,
               itemCount: widget.itemCount,
-              itemBuilder: (final BuildContext context, final int index) =>
-                  Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: widget.builder(context, index),
-              ),
+              itemBuilder:
+                  (final BuildContext context, final int index) => Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: widget.builder(context, index),
+                  ),
             ),
           ),
-        ),
-      );
+    ),
+  );
 
-  Builder _buildCarouselTitle({
-    required final String carouselTitle,
-  }) =>
-      Builder(
-        builder: (final BuildContext context) => Padding(
+  Builder _buildCarouselTitle({required final String carouselTitle}) => Builder(
+    builder:
+        (final BuildContext context) => Padding(
           padding: const EdgeInsets.only(left: 24),
           child: Text(
             carouselTitle,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
         ),
-      );
+  );
 
   Widget _buildSmoothPageIndicator() => Builder(
-        builder: (final BuildContext context) => SmoothPageIndicator(
+    builder:
+        (final BuildContext context) => SmoothPageIndicator(
           controller: _pageController,
           count: widget.itemCount,
           effect: ScrollingDotsEffect(
             activeDotColor: Theme.of(context).colorScheme.secondary,
             activeDotScale: 1,
-            dotColor: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
+            dotColor: Theme.of(
+              context,
+            ).colorScheme.onPrimary.withValues(alpha: 0.3),
             dotHeight: 8,
             dotWidth: 8,
             spacing: 4,
           ),
         ),
-      );
+  );
 }
